@@ -1,0 +1,101 @@
+---
+layout: default
+title: Welcome
+output: bookdown::html_chapter
+---
+  
+# Welcome
+  
+## Overview
+
+The goal of "Archaeological Science with R" is to give you a solid foundation into using R to do archaeological science. The goal is not to be exhaustive, but to instead focus on what we think are the critical skills for archaeological science:
+
+1. Reproducible research: good for science, good for individual productivity 
+ 
+2. Working with common archaeological data structures: from messy to tidy 
+
+3. Survey data: making maps, doing spatial analysis and site classification 
+
+4. Excavation data: working with stratigraphicdata 
+
+5. Chronologies: doing seriation, analysing radiocarbon dates 
+
+6. Subtractive industries: analysing lithic or bone tools 
+
+7. Plastic industries: analysing pottery, glass and metal artefacts 
+
+8. Environmental data: analysing faunal and floral remains 
+
+9. Compositional analysis: cluster and principle components analyses of multivariate data 
+
+10. Simplifying collaborative research with version control 
+
+11. Writing for publication more efficiently with literate programming
+
+ 
+## Prerequisites
+
+To run the code in this book, you will need to have R installed on your computer, as well as the RStudio IDE, an application that makes it easier to use R. Both R and the RStudio IDE are free and easy to install.
+
+### R
+
+To install R, visit [cran.r-project.org](http://cran.r-project.org). Then click the link that matches your operating system. What you do next will depend on your operating system.
+
+* Mac users should click the most current release. This will be the `.pkg` file at the top of the page. Once the file is downloaded, double click it to open an R installer. Follow the directions in the installer to install R.
+
+* Windows users should click "base" and then download the most current version of R, which will be linked at the top of the page.
+
+* Linux users will need to select their distribution and then follow the distribution specific instructions to install R. [cran.r-project.org](https://cran.r-project.org/bin/linux/) includes these instructions along side of the files to download.
+
+
+### RStudio
+
+Once you have R installed, it is time to download RStudio. To download RStudio, visit [www.rstudio.com/download](http://www.rstudio.com/download). 
+
+Choose the installer for your system. Then click the link to download the application. Once you have the application, installation is easy. Once RStudio is installed, open it as you would open any other application.
+
+### R Packages
+
+Some of the most useful parts of R come in _packages_, collections of functions and code that you can download in addition to base R. We will use several packages in this book. These include the  `dplyr`, `ggplot2`, `knitr`, `readr`, `rmarkdown`, `stringr`, and `tidyr` packages, among others. 
+
+There are two general ways to install packages for R. Both require you to have an internet connection, to start an R session (by opening the RStudio IDE), and to run a command at the command line.
+
+The most common way to install R packages is to download them from the package repository at [cran.r-project.org](http://cran.r-project.org). To do this run the command, `install.packages()`. Give `install.packages()` the name or names of the packages you wish to install as a character vector. R will download the packages from [cran.r-project.org](http://cran.r-project.org) and install them in your system library.
+
+You can use this method to download all but one of the packages listed above. To do so, open R and run the command
+
+```{r eval = FALSE}
+install.packages(c("devtools", "dplyr", "ggplot2", "knitr", "readr", "rmarkdown", "scales", "stringr", "tidyr"))
+```
+
+Some R packages are not stored on [cran.r-project.org](http://cran.r-project.org), but are hosted in online repositories maintained by the package's developer. The most common place to host these packages is [www.github.com](http://www.github.com).
+
+For example, `XXX` is a collection of functions and data sets that I have assembled for this book and saved online as a github repository ([github.com/benmarwick/XXX](http://github.com/garrettgman/DSR)). 
+
+You can install packages stored on github with the `install_github()` function in the `devtools` package. (You can install the `devtools` package itself from [cran.r-project.org](http://cran.r-project.org) with `install.packages()`). To use the function, pass it a characterstring with the form `"<github username>/<github repository name>".
+
+To install `DSR`, run the command
+
+```{r eval = FALSE}
+devtools::install_github("benmarwick/XXX")
+```
+
+#### `library()`
+
+When R installs a package, it downloads the package to your system library. This does not automatically load the contents of the package into your current or future R sessions. To use the functions and data sets that come in an R package saved in your system library, you must load the package into your current R session with `library()`. 
+
+For example, to use the functions in the `tidyr` package, you would need to first run
+
+```{r eval = FALSE}
+library("tidyr")
+```
+
+You will need to rerun this command each time you open a new R session in which you wish to use the `tidyr` package.
+
+### Getting help
+
+* Google
+
+* StackOverflow ([reprex](https://github.com/jennybc/reprex))
+
+* Twitter

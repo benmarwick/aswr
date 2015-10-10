@@ -1,0 +1,5 @@
+name: R for data science
+markdown: redcarpet
+highlighter: pygments
+
+exclude: ["CONTRIBUTING.md", "README.md", "book"]
