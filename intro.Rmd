@@ -10,7 +10,17 @@ output: bookdown::html_chapter
 
 The goal of "Archaeological Science with R" is to give you a solid foundation into using R to do archaeological science. By archaeological science, I mean, systematic, objective, and empirical research into past human behaviours using material remains and traces. The goal is not to be exhaustive, but to instead focus on what I think are the critical skills for doing  archaeological science with R. Many archaeologists already use R in an _ad hoc_ way, for a quick plot here, or a linear model there. But this book will show you how R can be at the center of your complete research workflow, from when you start working with raw data until your final report is complete.
 
-This is not a book of detailed discussions of statistical theory, and you will be referred to other authoritative texts on technical details of algorithms, etc. This is a book introducing R for practical and efficient implementations of common tasks in archaeological science, and serves as a springboard to more advanced custom programming. 
+The specific problem is that this book aims to solve is that the  majority of archaeologists receive no training in scientific programming for data analysis and visualization. A command-line interface program such as R is unfamiliar and exotic to most archaeologists, yet R is well-equipped to perform almost every analytical and visualization task an archaeologist could need. Instead, most archaeologists use Microsoft Excel, SPSS, or similar commercial point-and-click software. The problem with this is that is it limits the development of new methods because the you are limited to the built-in suite. Commercial software also makes it difficult to demonstrate and ensure reproducibility due to the ephermerla nature of point-and-click interfaces. Commercial software limit transparency in research because the algorithms behind the functions are not available for inspection.
+
+The major textbooks and handbooks of quantitative archaeology (Baxter 2003; 1994, Van Pool and Leonard 2011, Drennan 2009 –  and Shennan 1997) are excellent for relevant statistical theory, discussion, and examples, but have three limitations that the proposed book will address.
+
+First is the absence of ‘plug-and-play’ examples, leading the reader to invest substantial effort to implement a method described using formulae, creating many opportunities for error. Van Pool and Leonard 2011 instruct the reader to do their statistical analyses by hand, an impractical and outmoded recommendation. The amount of effort required by these texts is prohibitive to exploration and experimentation of new methods. This book includes reproducible examples using real data sets so you can easily step-through the analysis to explore different parameters, and easily interchange your own data.  
+
+Second, the existing books give little coverage to intuitive and methodologically more robust methods such as resampling and Bayesian analyses, favoring traditional parametric methods. This reflects a time when computational power was scarce, and computations often done by hand or with a calculator (cf Fletcher and Lock 1991). Modern computers can now easily handle as resampling and Bayesian methods, and R is unique in having a mature set of methods for computing common tests in these frameworks. These methods are also increasingly common in the published research literature. This book introduces these alternative approaches to give you more options in your analytical toolkit. 
+
+Third, the currently available books are silent on the practical mechanics of many common data analysis and visualization tasks in archaeology that are not traditionally considered statistics, such as displaying and analyzing stratigraphic information from excavation and spatial data from surveys. Learning a tool-chain for these tasks is traditionally done on your own, and often at great expense with proprietary software. This book demonstrates how to write simple programs that are especially useful for archaeologists. By doing this, and providing code for other common tasks, this book addresses the need for instruction in a comprehensive open source tool-chain for these common tasks in archaeological science. It does this by presenting a reproducible research environment to show how R and its contributed packages can be used for start-to-finish research into survey, excavation, and laboratory data. My hope is that practical and accessible introduction to reproducible research, such as this book aims to provide, will improve openness and transparency in archaeology generally. 
+
+This is not a book of detailed discussions of statistical theory, and you will be referred to other authoritative texts on technical details of algorithms, etc. This is a book introducing R for practical and efficient implementations of common tasks in archaeological science, and serves as a springboard to more advanced R programming. The specific topics covered in this book are: 
 
 * Implementing reproducible research as a practice that is good for science generally, and good for your individual productivity 
 * Working with common archaeological data structures, ingesting them into R and manipulating them from messy formats to tidy formats ready for analysis
@@ -21,17 +31,41 @@ This is not a book of detailed discussions of statistical theory, and you will b
 
 * Working with relative and absolute chronologies by doing seriation, and calibrating, analysing and visualising radiocarbon dates 
 
-6. Subtractive industries: analysing lithic or bone tools 
+* Key methods for working with stone artefacts, faunal remains, pottery, glass, and metal artefacts 
 
-7. Plastic industries: analysing pottery, glass and metal artefacts 
+* Compositional analysis using cluster and principle components analyses of multivariate data 
 
-8. Environmental data: analysing faunal and floral remains 
+* Simplifying collaborative research with version control 
 
-9. Compositional analysis: cluster and principle components analyses of multivariate data 
+* Writing for publication more efficiently with literate programming
 
-10. Simplifying collaborative research with version control 
+## Why do archaeologists need to use code?
 
-11. Writing for publication more efficiently with literate programming
+In recent years, biologists have seen great increases in volumes of genomic data, due to improvements in sequencing technology. This has lead them to search for more efficient ways to analyse their data, and automate their analyses. They found that spreadsheet programs did not provide enough flexibility to conduct their analyses. As a result, many have turned to R, Python, and similar programming languages to gain access to a much wider variety of analytical options. The key detail here is a shift from the point-and-click interface of a spreadsheet program, to a command-line interface of a programming language. A command-line interface refers to interacting with software by sending instructions to the program as lines of plain text. 
+
+While archaeologists don't have the same urgency to manage a data deluge in the same way biologists have with genomic data, we can benefit from their efforts to use programming languages for scientific research. There are two big benefits to using a programming language instead of a point-and-click interface.
+
+1. 
+
+## Why R?
+
+If you are new to R, you might wonder what makes learning such a quirky language worthwhile. To me, some of the best features are:
+
+* It’s free, open source, and available on every major platform. As a result, if you do your analysis in R, anyone can easily replicate it.
+
+* A massive set of packages for statistical modelling, machine learning, visualisation, and importing and manipulating data. Whatever model or graphic you’re trying to do, chances are that someone has already tried to do it. At a minimum, you can learn from their efforts.
+
+* Cutting edge tools. Researchers in statistics and machine learning will often publish an R package to accompany their articles. This means immediate access to the very latest statistical techniques and implementations.
+
+* Deep-seated language support for data analysis. This includes features likes missing values, data frames, and subsetting.
+
+* A fantastic community. It is easy to get help from experts on the R-help mailing list, stackoverflow, or subject-specific mailing lists like R-SIG-mixed-models or ggplot2. You can also connect with other R learners via twitter, linkedin, and through many local user groups.
+
+* Powerful tools for communicating your results. R packages make it easy to produce html or pdf reports, or create interactive websites.
+
+* A strong foundation in functional programming. The ideas of functional programming are well suited to solving many of the challenges of data analysis. R provides a powerful and flexible toolkit which allows you to write concise yet descriptive code.
+
+* An IDE tailored to the needs of interactive data analysis and statistical programming.
 
 ## Who should read this book
 
