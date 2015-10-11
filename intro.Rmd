@@ -8,17 +8,18 @@ output: bookdown::html_chapter
   
 ## Overview
 
-The goal of "Archaeological Science with R" is to give you a solid foundation into using R to do archaeological science. The goal is not to be exhaustive, but to instead focus on what we think are the critical skills for archaeological science:
+The goal of "Archaeological Science with R" is to give you a solid foundation into using R to do archaeological science. By archaeological science, I mean, systematic, objective, and empirical research into past human behaviours using material remains and traces. The goal is not to be exhaustive, but to instead focus on what I think are the critical skills for doing  archaeological science with R. Many archaeologists already use R in an _ad hoc_ way, for a quick plot here, or a linear model there. But this book will show you how R can be at the center of your complete research workflow, from when you start working with raw data until your final report is complete.
 
-1. Reproducible research: good for science, good for individual productivity 
- 
-2. Working with common archaeological data structures: from messy to tidy 
+This is not a book of detailed discussions of statistical theory, and you will be referred to other authoritative texts on technical details of algorithms, etc. This is a book introducing R for practical and efficient implementations of common tasks in archaeological science, and serves as a springboard to more advanced custom programming. 
 
-3. Survey data: making maps, doing spatial analysis and site classification 
+* Implementing reproducible research as a practice that is good for science generally, and good for your individual productivity 
+* Working with common archaeological data structures, ingesting them into R and manipulating them from messy formats to tidy formats ready for analysis
 
-4. Excavation data: working with stratigraphicdata 
+* Visualising spatial data by making maps, doing spatial analysis and site classification 
 
-5. Chronologies: doing seriation, analysing radiocarbon dates 
+* Visualising and analysing stratigraphic data from archaeological excavation
+
+* Working with relative and absolute chronologies by doing seriation, and calibrating, analysing and visualising radiocarbon dates 
 
 6. Subtractive industries: analysing lithic or bone tools 
 
@@ -32,7 +33,25 @@ The goal of "Archaeological Science with R" is to give you a solid foundation in
 
 11. Writing for publication more efficiently with literate programming
 
- 
+## Who should read this book
+
+This book is written for archaeologists who are keen to expand their analytical horizons and gain access to new methods and new, more efficient, ways of organising their research process.  No prior knowledge about R or computer programming is necessary, but a curiosity about statistics would be an advantage, as well as a readiness to read beyond this book to make decisions about the suitability of statistical methods for your specific research questions. 
+
+## Getting help
+
+Developing fluency in a language like German or Chinese takes time and has ups and downs. Learning R is a similar process, and you should anticipate ups and downs as R becomes an increasingly central part of your workflow. Fortunately, there are a number of options for seeking help when you get stuck, or have a question. The simplest case is when you execute a line of code, only to get a cryptic error message in reply. Your first action might be to copy the text of the error message to your clipboard, and paste it into Google. In most cases, the top search results will be from [Stack Overflow]( http://stackoverflow.com/) or one of the [R mailing lists](https://www.r-project.org/mail.html). 
+
+Stack Overflow is a free question-and-answer website that is focussed on computer programming. Participants receive points for asking clear questions, and for giving useful answers. This adds a competitive element to participating in the Q&A, and sometimes when you ask a well-formed question, several answers will appear very quickly from participants eager to earn points. The R mailing lists are more traditional email-based fora, with archives at several places online. Highly skilled R programmers and R-using scientists from a variety of disciplines are active on both the R mailing lists and Stack Overflow. I tend to prefer Stack Overflow because I find it easier to see when a question has been answered, compared to browsing the email list archives. 
+I have found that in the course of writing my question to submit to Stack Overflow, the process of simplifiying my code into a small, self-contained example leads me to discover the cause of my problem (often a misplaced comma or bracket) and I can answer my question before I need help from others. Similarly, I often find that many of my questions have already been asked and answered on Stack Overflow - the challenge is to recognise how similar an existing question is to your current problem, and thus how useful the answers are to your specific issue. 
+
+If you are sure that your problem is new and unique, and you want to submit a question, here is some general advice to help you get a useful answer quickly from the Stack Overflow and R mailing lists communities:
+
+* Spend some time browsing previous posts to understand the commmunity norms. Online communities have specific cultural values, and while some of these are spelled out in posting guides, many are also unwritten, and can only be learnt through mindful reading of previous correspondence. If you are familiar with the norms, you are more likely to have an efficient and satisfying interaction with the community.  
+
+* Make sure you have the latest version of R and of the package (or packages) you are having problems with. It may be that your problem is the result of a recently fixed bug.
+
+* Spend some time creating a reproducible example. This mean a simplified version of your problem that another person can copy and paste from their broswer into their R console to reproduce the error that you see. This can be quite an art-form, but the basic ingredients for a good reproducible exaple are: the packages you are using, a small data set, code, and a description of your R environment. R comes with many example data sets built-in, if you run `data()` you can see a list, and these are very convienent to use for reproducible examples. If you want to include your own data, you can use `dput()` to generate R code that another person can copy and paste to recreate your dataset. Your code should be easy to read, with spaces between operators (+, -, *, etc.) and after commas, and conformant to a style guide, such as Hadley Wickham's [guide in Advanced R](http://adv-r.had.co.nz/Style.html). Your code should includes lines of commentary, which begin with `#`, to help others understand your problem. The usual way to communicate your R environment (ie. your operating system type and version), is to include the output from `sessionInfo()` into your question. Don't worry if some of these terms are unfamiliar at the moment, the main thing to know here is that help is available, and that the quality of help you receive is proportional to the effort you spend seeking it. 
+
 ## Prerequisites
 
 To run the code in this book, you will need to have R installed on your computer, as well as the RStudio IDE, an application that makes it easier to use R. Both R and the RStudio IDE are free and easy to install.
@@ -70,14 +89,14 @@ install.packages(c("devtools", "dplyr", "ggplot2", "knitr", "readr", "rmarkdown"
 
 Some R packages are not stored on [cran.r-project.org](http://cran.r-project.org), but are hosted in online repositories maintained by the package's developer. The most common place to host these packages is [www.github.com](http://www.github.com).
 
-For example, `XXX` is a collection of functions and data sets that I have assembled for this book and saved online as a github repository ([github.com/benmarwick/XXX](http://github.com/garrettgman/DSR)). 
+For example, `aswr` is a collection of functions and data sets that I have assembled for this book and saved online as a github repository ([github.com/benmarwick/aswr](http://github.com/benmarwick/aswr)). 
 
 You can install packages stored on github with the `install_github()` function in the `devtools` package. (You can install the `devtools` package itself from [cran.r-project.org](http://cran.r-project.org) with `install.packages()`). To use the function, pass it a characterstring with the form `"<github username>/<github repository name>".
 
-To install `DSR`, run the command
+To install `aswr`, run the command
 
 ```{r eval = FALSE}
-devtools::install_github("benmarwick/XXX")
+devtools::install_github("benmarwick/aswr")
 ```
 
 #### `library()`
@@ -92,10 +111,4 @@ library("tidyr")
 
 You will need to rerun this command each time you open a new R session in which you wish to use the `tidyr` package.
 
-### Getting help
 
-* Google
-
-* StackOverflow ([reprex](https://github.com/jennybc/reprex))
-
-* Twitter
