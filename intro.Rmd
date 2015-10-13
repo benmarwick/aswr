@@ -46,47 +46,23 @@ In recent years, biologists have seen great increases in volumes of genomic data
 
 Archaeologists don't have the same urgency to manage a data deluge in the same way biologists have with genomic data. However, we can benefit from their efforts to use programming languages for scientific research. There are two big benefits to using a programming language instead of a point-and-click interface for quantitative work. 
 
-1. 
+1. Transparency. 
+
+2. Flexibility. With most commercial software packages, you are limited to the suite of functions they choose to make available to you. With an open source programming language, you and anyone else are free to implement new methods. R has extensive functions for data analysis. This includes features likes missing values, data frames, and subsetting. But more improtantly, R has a large set of packages (currently >6000) for quantitative analysis, visualisation, and importing and manipulating data. Whatever analysis or graphic you're trying to do, chances are that someone has already tried it, and made the code available in an R package. R is also the lingua franca for researchers in statistics, who will often publish an R package to accompany their articles. This often means immediate access to the very latest statistical techniques and implementations. 
 
 ## Why R?
 
-If you are new to R, you might wonder what makes learning such a quirky language worthwhile. To me, some of the best features are:
+If you are new to R, you might wonder what the appeal is, especially when there are so many programming languages in common use. Some of the characteristics that drew me to learn R include:
 
-* It's free, open source, and available on every major platform. As a result, if you do your analysis in R, anyone can easily replicate it.
+* It's free, open source, and available on every major type of computer. As a result, if you do your analysis in R, anyone can easily replicate it.
 
-* A massive set of packages for statistical modelling, machine learning, visualisation, and importing and manipulating data. Whatever model or graphic you're trying to do, chances are that someone has already tried to do it. At a minimum, you can learn from their efforts.
+* An active and supportive community. It is easy to get help from experts on the R-help mailing list, Stack Overflow, or subject-specific mailing lists. You can also connect with other R learners via twitter, linkedin, and through many local user groups. Package authors are often pleased to see their packages used by others, and willing to answer questions about your use of their package. 
 
-* Cutting edge tools. Researchers in statistics and machine learning will often publish an R package to accompany their articles. This means immediate access to the very latest statistical techniques and implementations.
-
-* Deep-seated language support for data analysis. This includes features likes missing values, data frames, and subsetting.
-
-* A fantastic community. It is easy to get help from experts on the R-help mailing list, stackoverflow, or subject-specific mailing lists like R-SIG-mixed-models or ggplot2. You can also connect with other R learners via twitter, linkedin, and through many local user groups.
-
-* Powerful tools for communicating your results. R packages make it easy to produce html or pdf reports, or create interactive websites.
-
-* A strong foundation in functional programming. The ideas of functional programming are well suited to solving many of the challenges of data analysis. R provides a powerful and flexible toolkit which allows you to write concise yet descriptive code.
-
-* An IDE tailored to the needs of interactive data analysis and statistical programming.
+* Flexible tools for communicating your results. R packages make it easy to produce html, pdf, or Microsoft Word documents that include text, tables and figures, all generated from R code. 
 
 ## Who should read this book
 
 This book is written for archaeologists who are keen to expand their analytical horizons and gain access to new methods and new, more efficient, ways of organising their research process.  No prior knowledge about R or computer programming is necessary, but a curiosity about statistics would be an advantage, as well as a readiness to read beyond this book to make decisions about the suitability of statistical methods for your specific research questions. 
-
-## Getting help
-
-Developing fluency in a language like German or Chinese takes time and has ups and downs. Learning R is a similar process, and you should anticipate ups and downs as R becomes an increasingly central part of your workflow. Fortunately, there are a number of options for seeking help when you get stuck, or have a question. The simplest case is when you execute a line of code, only to get a cryptic error message in reply. Your first action might be to copy the text of the error message to your clipboard, and paste it into Google. In most cases, the top search results will be from [Stack Overflow]( http://stackoverflow.com/) or one of the [R mailing lists](https://www.r-project.org/mail.html). 
-
-Stack Overflow is a free question-and-answer website that is focussed on computer programming. Participants receive points for asking clear questions, and for giving useful answers. This adds a competitive element to participating in the Q&A, and sometimes when you ask a well-formed question, several answers will appear very quickly from participants eager to earn points. The R mailing lists are more traditional email-based fora, with archives at several places online. Highly skilled R programmers and R-using scientists from a variety of disciplines are active on both the R mailing lists and Stack Overflow. I tend to prefer Stack Overflow because I find it easier to see when a question has been answered, compared to browsing the email list archives. 
-
-I have found that in the course of writing my question to submit to Stack Overflow, the process of simplifiying my code into a small, self-contained example leads me to discover the cause of my problem (often a misplaced comma or bracket) and I can answer my question before I need help from others. Similarly, I often find that many of my questions have already been asked and answered on Stack Overflow - the challenge is to recognise how similar an existing question is to your current problem, and thus how useful the answers are to your specific issue. 
-
-If you are sure that your problem is new and unique, and you want to submit a question, here is some general advice to help you get a useful answer quickly from the Stack Overflow and R mailing lists communities:
-
-* Spend some time browsing previous posts to understand the commmunity norms. Online communities have specific cultural values, and while some of these are spelled out in posting guides, many are also unwritten, and can only be learnt through mindful reading of previous correspondence. If you are familiar with the norms, you are more likely to have an efficient and satisfying interaction with the community.  
-
-* Make sure you have the latest version of R and of the package (or packages) you are having problems with. It may be that your problem is the result of a recently fixed bug.
-
-* Spend some time creating a reproducible example. This mean a simplified version of your problem that another person can copy and paste from their broswer into their R console to reproduce the error that you see. This can be quite an art-form, but the basic ingredients for a good reproducible exaple are: the packages you are using, a small data set, code, and a description of your R environment. R comes with many example data sets built-in, if you run `data()` you can see a list, and these are very convienent to use for reproducible examples. If you want to include your own data, you can use `dput()` to generate R code that another person can copy and paste to recreate your dataset. Your code should be easy to read, with spaces between operators (+, -, *, etc.) and after commas, and conformant to a style guide, such as Hadley Wickham's [guide in Advanced R](http://adv-r.had.co.nz/Style.html). Your code should includes lines of commentary, which begin with `#`, to help others understand your problem. The usual way to communicate your R environment (ie. your operating system type and version), is to include the output from `sessionInfo()` into your question. Don't worry if some of these terms are unfamiliar at the moment, the main thing to know here is that help is available, and that the quality of help you receive is proportional to the effort you spend seeking it. 
 
 ## Prerequisites
 
@@ -109,44 +85,61 @@ Once you have R installed, it is time to download RStudio. To download RStudio, 
 
 Choose the installer for your system. Then click the link to download the application. Once you have the application, installation is easy. Once RStudio is installed, open it as you would open any other application.
 
-### R Packages
 
-Some of the most useful parts of R come in _packages_, collections of functions and code that you can download in addition to base R. We will use several packages in this book. These include the  `dplyr`, `ggplot2`, `knitr`, `readr`, `rmarkdown`, `stringr`, and `tidyr` packages, among others. 
+## Key terms to understand
 
-There are two general ways to install packages for R. Both require you to have an internet connection, to start an R session (by opening the RStudio IDE), and to run a command at the command line.
+Now we've established the basic motivation for learning R to do archaeology, we should introduce some key terms and conventions that appear frequently in this book. Becoming familiar with these terms will help you with the basic tasks of finding your way around when starting to use R.
 
-The most common way to install R packages is to download them from the package repository at [cran.r-project.org](http://cran.r-project.org). To do this run the command, `install.packages()`. Give `install.packages()` the name or names of the packages you wish to install as a character vector. R will download the packages from [cran.r-project.org](http://cran.r-project.org) and install them in your system library.
+The `command line` refers to the location on your screen where you type, paste, or send code. At the left side of the command line is a `prompt`, which looks like this: `>` and has a blinking curser next to it. The prompt is found in the R `console`, which is the name of the window on your desktop where you enter code and receive output. `Code` refers to anything written in a programming language, from a single function to thousands of lines. Code often contains `comments`, which you can recognise by a `#` symbol at the start of the line. Code comments are to help you understand the purpose of the code. The `#` symbol tells R to ignore that line, and skip to the next line of code. A `script` is a file that contains code, and usually R script file names ends with `.R`. 
 
-You can use this method to download all but one of the packages listed above. To do so, open R and run the command
+A `function` refers to the smallest group of code that carries out instructions to do useful work. For example, the function `mean()` computes the mean of a set of numbers. In this book you will always be able to recognise a function because they will always be followed by parenthesis. A function is a handy way to organise code, because a single function can cause hundreds of lines of code to run to produce a result. Rather than running those hundreds of lines, one-by-one, over and over, we can simply run the function that invokes them, and save ourself a lot of typing. Usually we want to keep the output of a function so we can use in other functions, or for plotting. For example, we might want to compare the means lengths of two assemblages of artefacts. To keep the results of function, we `assign` the output to an `object`. Here, we assign the output of the `mean()` function to an object that we arbitrarily call `x`: `x <- mean(c(4, 7, 12))`. This short piece of code computes the mean value of 4, 7, and 12, (the `c` is a function to combine a set of numbers) and then assigns, or stores, it in a object called `x` (we do not need to create `x` in advance). We can then use `x` later in our workflow for other tasks, rather than recomputing the mean repeatedly. 
+
+Functions are at the heart of working with R, and are part of the reason for R's great versatility. They save a lot of copy-and-pasting and time typing, so it's worth to invest some effort into learning how to write your own functions. Functions are typically organised into `packages`, which you can download to extend the usefullness of R. We will use packages extensively in this book, and briefly discuss how and why you might write your own pacakges. There are two common methods to install packages for R. For either method you need an internet connection, an R session (by opening RStudio), and to run a command at the command line.
+
+The most common way to install R packages is to download them from the package repository at [cran.r-project.org](http://cran.r-project.org). To do this run the command, `install.packages()` as you see in the example below. R will download the packages from [cran.r-project.org](http://cran.r-project.org) and install them in your system library.
+
+Try this yourself by opening R and running these commands:
 
 ```{r eval = FALSE, tidy = FALSE}
-install.packages(c("devtools", "dplyr", "ggplot2", 
+# install a single package
+install.packages("devtools")
+# install multiple packages at one time
+install.packages(c("dplyr", "ggplot2", 
                    "knitr", "readr", "rmarkdown", 
                    "scales", "stringr", "tidyr"))
 ```
 
-Some R packages are not stored on [cran.r-project.org](http://cran.r-project.org), but are hosted in online repositories maintained by the package's developer. The most common place to host these packages is [www.github.com](http://www.github.com).
+Most of the packages we will use in this book are stored on [cran.r-project.org](http://cran.r-project.org), but are other online repositories for R packages. For example, many R package authors use [www.github.com](http://www.github.com) to make their packages publicaly available. 
 
-For example, `aswr` is a collection of functions and data sets that I have assembled for this book and saved online as a github repository ([github.com/benmarwick/aswr](http://github.com/benmarwick/aswr)). 
-
-You can install packages stored on github with the `install_github()` function in the `devtools` package. (You can install the `devtools` package itself from [cran.r-project.org](http://cran.r-project.org) with `install.packages()`). To use the function, pass it a characterstring with the form `"<github username>/<github repository name>".
-
-To install `aswr`, run the command
+You can install packages stored on github with the `install_github()` function in the `devtools` package (which we installed using the commands above). To use the `install_github()` function, pass it a character string with the form `"<github username>/<github repository name>"`. For example, we can install the package `ggbiplot` to plot the output of a Principle Components Analysis like this: 
 
 ```{r eval = FALSE}
-devtools::install_github("benmarwick/aswr")
+devtools::install_github("vqv/ggbiplot")
 ```
 
-#### `library()`
-
-When R installs a package, it downloads the package to your system library. This does not automatically load the contents of the package into your current or future R sessions. To use the functions and data sets that come in an R package saved in your system library, you must load the package into your current R session with `library()`. 
-
-For example, to use the functions in the `tidyr` package, you would need to first run
+When R installs a package, it downloads the package to your system `library`. You must use the `library()` function to make the contents of the package available to your current R session. It's good practice to have the `library()` functions among the first few lines of your code, so other users can quickly see what packages they will need to download to prepare to run your code. For example, to use the functions in the `dplyr` package, you would need to first run
 
 ```{r eval = FALSE}
-library("tidyr")
+library("dplyr")
 ```
 
-You will need to rerun this command each time you open a new R session in which you wish to use the `tidyr` package.
+You will need to rerun this `library()` command each time you open a new R session that uses functions from the `dplyr` package. 
+
+## Getting help
+
+Developing fluency in a language like German or Chinese takes time and has ups and downs. Learning R is a similar process, and you should anticipate ups and downs as R becomes an increasingly central part of your workflow. Fortunately, there are a number of options for seeking help when you get stuck, or have a question. The simplest case is when you execute a line of code, only to get a cryptic error message in reply. Your first action might be to copy the text of the error message to your clipboard, and paste it into Google. In most cases, the top search results will be from [Stack Overflow]( http://stackoverflow.com/) or one of the [R mailing lists](https://www.r-project.org/mail.html). 
+
+Stack Overflow is a free question-and-answer website that is focussed on computer programming. Participants receive points for asking clear questions, and for giving useful answers. This adds a competitive element to participating in the Q&A, and sometimes when you ask a well-formed question, several answers will appear very quickly from participants eager to earn points. The R mailing lists are more traditional email-based fora, with archives at several places online. Highly skilled R programmers and R-using scientists from a variety of disciplines are active on both the R mailing lists and Stack Overflow. I tend to prefer Stack Overflow because I find it easier to see when a question has been answered, compared to browsing the email list archives. 
+
+I have found that in the course of writing my question to submit to Stack Overflow, the process of simplifiying my code into a small, self-contained example leads me to discover the cause of my problem (often a misplaced comma or bracket) and I can answer my question before I need help from others. Similarly, I often find that many of my questions have already been asked and answered on Stack Overflow - the challenge is to recognise how similar an existing question is to your current problem, and thus how useful the answers are to your specific issue. 
+
+If you are sure that your problem is new and unique, and you want to submit a question, here is some general advice to help you get a useful answer quickly from the Stack Overflow and R mailing lists communities:
+
+* Spend some time browsing previous posts to understand the commmunity norms. Online communities have specific cultural values, and while some of these are spelled out in posting guides, many are also unwritten, and can only be learnt through mindful reading of previous correspondence. If you are familiar with the norms, you are more likely to have an efficient and satisfying interaction with the community.  
+
+* Make sure you have the latest version of R and of the package (or packages) you are having problems with. It may be that your problem is the result of a recently fixed bug.
+
+* Spend some time creating a reproducible example. This mean a simplified version of your problem that another person can copy and paste from their broswer into their R console to reproduce the error that you see. This can be quite an art-form, but the basic ingredients for a good reproducible exaple are: the packages you are using, a small data set, code, and a description of your R environment. R comes with many example data sets built-in, if you run `data()` you can see a list, and these are very convienent to use for reproducible examples. If you want to include your own data, you can use `dput()` to generate R code that another person can copy and paste to recreate your dataset. Your code should be easy to read, with spaces between operators (+, -, *, etc.) and after commas, and conformant to a style guide, such as Hadley Wickham's [guide in Advanced R](http://adv-r.had.co.nz/Style.html). Your code should includes lines of commentary, which begin with `#`, to help others understand your problem. The usual way to communicate your R environment (ie. your operating system type and version), is to include the output from `sessionInfo()` into your question. Don't worry if some of these terms are unfamiliar at the moment, the main thing to know here is that help is available, and that the quality of help you receive is proportional to the effort you spend seeking it. 
+
 
 
