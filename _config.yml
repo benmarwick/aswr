@@ -1,5 +1,5 @@
-name: R for data science
+name: Archaeological Science with R
 markdown: redcarpet
 highlighter: pygments
 
-exclude: ["CONTRIBUTING.md", "README.md", "book"]
+exclude: ["CONTRIBUTING.md", "contribute.rmd", "README.md", "book"]

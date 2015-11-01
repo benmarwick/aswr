@@ -1,4 +1,4 @@
-library(bookdown)
+library(bookdown2)
 library(rmarkdown)
 
 # Render chapters into tex  ----------------------------------------------------
@@ -8,13 +8,15 @@ needs_update <- function(src, dest) {
   mtime[2] < mtime[1]
 }
 
-render_chapter <- function(src) {
+render_chapter <- function(src, bib) {
   dest <- file.path("book/tex/", gsub("\\.rmd", "\\.tex", src))
   if (!needs_update(src, dest)) return()
 
   message("Rendering ", src)
-  command <- bquote(rmarkdown::render(.(src), bookdown::tex_chapter(),
-                                      output_dir = "book/tex", quiet = TRUE, env = globalenv()))
+  command <- bquote(rmarkdown::render(.(src),
+                                      bookdown2::tex_chapter(bib = .(bib)),
+                                      output_dir = "book/tex",
+                                      quiet = TRUE, env = globalenv()))
   writeLines(deparse(command), "run.r")
   on.exit(unlink("run.r"))
   source_clean("run.r")
@@ -32,19 +34,20 @@ source_clean <- function(path) {
   }
 }
 
+bib <- normalizePath(dir(".", pattern = "\\.bib$", full.names = TRUE))
+# csl <- normalizePath(dir(".", pattern = "\\.csl$", full.names = TRUE))
 chapters <- dir(".", pattern = "\\.rmd$")
-lapply(chapters, render_chapter)
+lapply(chapters, render_chapter, bib)
 
-# Copy across additional files -------------------------------------------------
-file.copy("book/aswr.tex", "book/tex/", recursive = TRUE)
-file.copy("diagrams/", "book/tex/", recursive = TRUE)
-file.copy("screenshots/", "book/tex/", recursive = TRUE)
+# Copy across additional files -----------
+file.copy("book/test_book.tex", "book/tex/", recursive = TRUE)
+file.copy("figures/", "book/tex/", recursive = TRUE)
 
-# Build tex file ---------------------------------------------------------------
+# Build tex file -------------
 # (build with Rstudio to find/diagnose errors)
 old <- setwd("book/tex")
-system("xelatex -interaction=batchmode aswr ")
-system("xelatex -interaction=batchmode aswr ")
+system("xelatex -interaction=batchmode test_book ")
+system("xelatex -interaction=batchmode test_book ")
 setwd(old)
 
-file.copy("book/tex/aswr.pdf", "book/aswr.pdf", overwrite = TRUE)
+file.copy("book/tex/test_book.pdf", "book/test_book.pdf", overwrite = TRUE)
