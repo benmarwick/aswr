@@ -10,7 +10,7 @@ This is the book site for __"Archaeological Science with R"__. This book will te
 
 To be published by XXX in XXX 201X. 
 
-# <img src="cover.png" width="250" height="328" alt="Cover image" />
+ <!-- img src="cover.png" width="250" height="328" alt="Cover image" / -->
 
 ## Table of contents
 

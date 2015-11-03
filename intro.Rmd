@@ -36,7 +36,7 @@ My hope is that practical and accessible introduction to reproducible research, 
 
 This is not a book of detailed discussions of statistical theory, and you will be referred to other texts on technical details of algorithms, etc. This is a book introducing R for practical and efficient implementations of common tasks in archaeological science, and serves as a springboard to more advanced R programming. The specific topics covered in this book are: 
 
-* Implementing reproducible research  with literate programming as a practice that is good for science generally, and good for your individual productivity 
+* Implementing reproducible research with literate programming as a practice that is good for science generally, and good for your individual productivity 
 
 * Working with common archaeological data structures, ingesting them into R and manipulating them from messy formats to tidy formats ready for analysis
 

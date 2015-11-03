@@ -1,0 +1,29 @@
+---
+layout: default
+title: Implementing reproducible research
+output: bookdown::html_chapter
+---
+  
+# Implementing reproducible research
+  
+## Overview
+
+Four factors have lead to growing concerns about the reproducibility of scientific results in modern science. The first factor is reruns of landmark biomedical experiments that have failed to produce the same results as the initial publication of the experiment [@Prinz2011drugtargets; @Begley2012clinical]. The second factor is the discovery of high-profile studies where the published results were flawed due to simple errors data analysis[@baggerly2009deriving; @Herndon2013austerity]. Third, there has been a sharp rise in the number of scholarly publications that have been retracted due to discoveries of misconduct such as fraudulent data and plagiarism [@Vannoorden2011retractions; @Steen2013retractions]. Finally, there has been a growth of data-intensive research that use massive computer simulations or collect enourmous amounts of data from vast numbers of sensors (ie. astronomy and oceanography). These events have stimulated extensive discussion in many disciplines about how to improve the reproducibility of scientific research. Some of this discussion has resulted in calls from diverse dsicplines [@nosek2015open] for publications to be accompanied by both the raw data that generated the figures in the paper [@reichman2011challenges], and the programming code that shows the steps taken in the data analysis [@barnes2010publish; @Ince1012opencomputer; @Morin2012blackbox]. Related to these calls are a manifesto-like journal articles by groups of researchers that call for substantial changes in the research workflow to improve reproducibilty and transparency [@wilson2014best; @Hampton2015tao; @Sandve2013tenrules].
+
+In this chapter I show how archaeologists can respond to these calls for increased reproducibility and transparency. I sketch out how R can be used to enable reproducible research through literate programming. Literate programming refers to the use of a computing environment for authoring mixed natural (eg. English) and computer (eg. R) language documents [@Schulte2012literate]. Conventiently, R and RStudio are well-equipped to support literate programming, so the practice is relatively easy to learn. The second section of this chapter introduces version control as a principle and tool for enhancing transparency and collaboration. Version control of literate programming files allows you to keep track of all the changes that you and your co-authors make to your files. Using the Git software for version control, you and your collaborators can safely create versions of your files to experiment with, and either abandon the results, merge them with the main versions, or revert to an earlier version.
+
+## What does it mean to do reproducible research?
+
+Before showing how we can make our research more reproucible, we should explore exactly what we mean by 'reproducible'. 
+
+http://languagelog.ldc.upenn.edu/nll/?p=21956
+ 
+## Literate programming
+
+
+## Version control
+
+
+
+
+
