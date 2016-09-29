@@ -1,5 +1,13 @@
-Package: placeholder
-Title: Does not matter.
-Version: 0.0.1
+Package: aswr
+Type: Package
+Title: Archaeological Science With R
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
 Imports: bookdown
 Remotes: rstudio/bookdown

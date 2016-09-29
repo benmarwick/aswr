@@ -26,3 +26,10 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
 ), 'packages.bib')
 ```
+
+
+### Notes to self
+
+- To render the book to PDF and HTML (since it's [nested in a project directory](https://github.com/rstudio/bookdown/issues/215)), `source(_render.R)`       
+- To get a [live preview of the book in HTML](https://bookdown.org/yihui/bookdown/serve-the-book.html): `serve_book(dir = ".", output_dir = "_book", preview = TRUE, in_session = TRUE, daemon = FALSE)`
+
