@@ -1,20 +1,28 @@
----
-layout: default
-title: Welcome
-output: bookdown::html_chapter
+--- 
+title: "Archaeological Science with R"
+author: "Ben Marwick"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: benmarwick/aswr
+description: "This is the book site for __'Archaeological Science with R'__. "
 ---
 
 # Archaeological Science with R
 
-This is the book site for __"Archaeological Science with R"__. This book will teach you how to get started doing archaeological science with R: You'll learn how to get your data into R, get it into the most useful structure, transform it, visualise it and model it. In this book, you will find a practicum of skills for archaeological science. ... You'll learn how to use the grammar of graphics, literate programming, and reproducible research to save time. You'll also learn how to manage cognitive resources to facilitate discoveries when wrangling, visualizing, and exploring data. 
+This book will teach you how to get started doing archaeological science with R: You'll learn how to get your data into R, get it into the most useful structure, transform it, visualise it and model it. In this book, you will find a practicum of skills for archaeological science.  
 
 To be published by XXX in XXX 201X. 
 
  <!-- img src="cover.png" width="250" height="328" alt="Cover image" / -->
 
-## Table of contents
-
-<ul class="toc">
-  {% include package-nav.html %}
-</ul>
-
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```

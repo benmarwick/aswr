@@ -1,5 +1,0 @@
-name: Archaeological Science with R
-markdown: redcarpet
-highlighter: pygments
-
-exclude: ["CONTRIBUTING.md", "contribute.rmd", "README.md", "book"]

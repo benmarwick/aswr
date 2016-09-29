@@ -1,10 +1,7 @@
 .Rproj.user
 .Rhistory
-_site
-cache
-temp.Rmd
-/*.html
-*_cache
-*_files
-figures
-.Rapp.history
+.RData
+_publish.R
+_book
+_bookdown_files
+rsconnect
