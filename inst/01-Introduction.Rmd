@@ -85,6 +85,8 @@ Here's a summary of the basic steps to download and install R for the most commo
 
 If you are not sure about these download and install steps then you should research the general methods of installing software for your operating system, which are beyond the scope of this book.
 
+After installing R on your computer, you may be tempted to open it and start exploring. I don't recommend this because the R user interface is not intuitive for novices. Instead, read on to continue with downloading and installing RStudio. Then start your explorations in RStudio, which has a more user-friendly interface. 
+
 ### RStudio
 
 Once you have R installed, it is time to download RStudio. To download RStudio, visit [www.rstudio.com/download](http://www.rstudio.com/download). 
