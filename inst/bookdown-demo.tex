@@ -1,0 +1,1000 @@
+\documentclass[]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Archaeological Science with R},
+            pdfauthor={Ben Marwick},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\ImportTok}[1]{{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{{#1}}}}
+\newcommand{\BuiltInTok}[1]{{#1}}
+\newcommand{\ExtensionTok}[1]{{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Archaeological Science with R}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{Ben Marwick}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{2016-10-14}
+
+\usepackage{booktabs}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\chapter{Archaeological Science with
+R}\label{archaeological-science-with-r}
+
+This book will teach you how to get started doing archaeological science
+with R: You'll learn how to get your data into R, get it into the most
+useful structure, transform it, visualise it and model it. In this book,
+you will find a practicum of skills for archaeological science.
+
+To be published by XXX in XXX 201X.
+
+\subsection{Notes to self}\label{notes-to-self}
+
+\begin{itemize}
+\tightlist
+\item
+  To render the book to PDF and HTML (since it's
+  \href{https://github.com/rstudio/bookdown/issues/215}{nested in a
+  project directory}), setwd and then
+  \texttt{source(\textquotesingle{}\_render.R\textquotesingle{})}\\
+\item
+  To get a
+  \href{https://bookdown.org/yihui/bookdown/serve-the-book.html}{live
+  preview of the book in HTML}:
+  \texttt{bookdown::serve\_book(dir\ =\ ".",\ output\_dir\ =\ "\_book",\ preview\ =\ TRUE,\ in\_session\ =\ TRUE,\ daemon\ =\ FALSE)}
+\end{itemize}
+
+\part{Motivation}\label{part-motivation}
+
+
+\chapter{Introduction}\label{introduction}
+
+\section{Overview}\label{overview}
+
+The goal of ``Archaeological Science with R'' is to give you a solid
+foundation into using R to do archaeological science. By archaeological
+science, I mean, systematic, objective, and empirical research into past
+human behaviours using material remains and traces. The goal is not to
+be exhaustive, but to instead focus on what I think are the critical
+skills for doing archaeological science with R. Some archaeologists
+already use R in an \emph{ad hoc} way, for a quick plot here, or a
+linear model there. But this book will show you how R can be at the
+center of your entire research workflow, from when you start working
+with raw data until your final thesis, report, or manuscript is
+complete.
+
+\section{Why do archaeologists need to learn to
+code?}\label{why-do-archaeologists-need-to-learn-to-code}
+
+This book aims to solve a specific problem. The problem is that the
+majority of archaeologists receive little or no training in scientific
+programming for data analysis and visualization, and yet they routinely
+analyse and visualise data. A command-line interface program such as R
+is ideal for this kind of work, and yet is unfamiliar and exotic to most
+archaeologists. A command-line interface refers to interacting with
+software by sending instructions to the program as lines of plain text.
+Instead, most archaeologists use Microsoft Excel, SPSS, or similar
+commercial point-and-click software. There are four problems with this.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  It usually results in a lot of time-consuming repetition, like
+  copying-and-pasting between sheets in Excel, and between Excel and
+  Microsoft Word. In recent years, biologists have seen great increases
+  in volumes of genomic data, due to improvements in sequencing
+  technology. This has lead them to search for more efficient ways to
+  analyse their data, and automate their analyses. They found that
+  spreadsheet programs did not provide enough flexibility to conduct
+  their analyses. As a result, many have turned to R, Python, and
+  similar programming languages to overcome the limitations and
+  inefficiencies of Excel. The key detail here is a shift from the
+  point-and-click interface of a spreadsheet program, to the
+  command-line interface of a programming language where we supply
+  instructions to the computer in plain text.
+\item
+  It limits the development of new methods because the you are limited
+  to what is available in the commercial software. With most commercial
+  software packages, you are limited to the suite of functions they
+  choose to make available to you. With an open source programming
+  language, you and anyone else are free to implement new methods. R has
+  extensive functions for data analysis. This includes features likes
+  missing values and subsetting. But more importantly, R has a large set
+  of packages (currently \textgreater{}6000) for quantitative analysis,
+  visualisation, and importing and manipulating data. For most
+  archaeologists, whatever analysis or plot you are attempting, chances
+  are that someone has already tried it, or something very similar, and
+  made the code available in an R package. R is also the lingua franca
+  for researchers in statistics, who will often publish an R package to
+  accompany their scholarly articles. This often means immediate access
+  to the very latest statistical techniques and implementations.
+\item
+  Commercial software also makes it difficult to demonstrate and ensure
+  reproducibility due to the ephemeral nature of point-and-click
+  interfaces. Point-and-click interfaces are familiar and easy to use
+  for most people because they are very common in software programs. But
+  it is very challenging to efficiently record a sequence of complex
+  clicks so that another person (or you in the future) can unambiguously
+  repeat the procedure. This means it is difficult to make your analyses
+  reproducible if all your work is done with a mouse. It is not
+  practical to completely abandon using a mouse when using a computer,
+  but by using a command-line program such as R, we can record the most
+  important steps of the analysis workflow in plain text code. Then we
+  have an detailed record of the steps in our analysis that we can
+  easily share with others, and re-use ourselves, months or years into
+  the future
+\item
+  Commercial software limits transparency in research because the
+  algorithms behind the functions are not available for convenient
+  inspection and modification. Staticians have long noted that Excel has
+  flawed statistical procedures
+  \citep[\citet{yalta2008accuracy}]{mccullough2008accuracy}, and
+  introductory texts on statistics warn students not to use Excel when
+  the results matter \citep[eg.][]{keller2000applied}. With an open
+  source program such as R, you can easily inspect and alter the
+  algorithms behind every operation. R in particular has the added
+  advantage of being one of the most accurate software programs for
+  statistical analysis
+  \citep[\citet{keeling2007comparative}]{almiron2009}.
+\end{enumerate}
+
+Using a command-line program such as R goes a long way towards solving
+these four problems.
+
+This book is complimentary to the major textbooks and handbooks of
+quantitative archaeology (Baxter 2003; 1994, Van Pool and Leonard 2011,
+Drennan 2009, Shennan 1997). These are excellent for relevant
+statistical theory, discussion, and examples, and this book does not
+replace them on your shelf. However, those books have three limitations
+that we will address in the following chapters.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  First is the absence of `plug-and-play' examples, leading the reader
+  to invest substantial effort to implement a method described using
+  formulae, creating many opportunities for error. Van Pool and Leonard
+  2011 instruct their reader to do their statistical analyses by hand,
+  an impractical and outmoded recommendation when computers are readily
+  available. The amount of effort required by these texts is prohibitive
+  to rapid exploration and experimentation of data using new methods.
+  This book includes reproducible examples using real data sets so you
+  can easily step-through the analysis to explore the effects of
+  different parameters, and easily interchange your own data.
+\item
+  The existing books give little coverage to intuitive and
+  methodologically more robust methods such as resampling and Bayesian
+  analyses, favoring traditional parametric methods. This reflects a
+  time when computational power was scarce, and computations often done
+  by hand or with a calculator (cf Fletcher and Lock 1991). Modern
+  computers can now easily handle resampling and Bayesian methods, and R
+  is unique in having a mature set of methods for computing common tests
+  in these frameworks. These methods are also increasingly common in the
+  published research literature. This book introduces these alternative
+  approaches to give you more options in your analytical toolkit.
+\item
+  The currently available books are silent on the practical mechanics of
+  many common data analysis and visualization tasks in archaeology that
+  are not traditionally considered statistics. This includes displaying
+  and analyzing stratigraphic information from excavation and spatial
+  data from surveys. Learning a tool-chain for these tasks is
+  traditionally done on your own, and often at substantial expense with
+  proprietary software. This book demonstrates how to write simple
+  programs that are especially useful for archaeologists. By doing this,
+  and providing code for other common tasks, this book addresses the
+  need for instruction in a comprehensive open source tool-chain for
+  these common tasks in archaeological science. It does this by
+  presenting a reproducible research environment to show how R and its
+  contributed packages can be used for start-to-finish research into
+  survey, excavation, and laboratory data.
+\end{enumerate}
+
+My hope is that a practical and accessible introduction to reproducible
+research, such as this book aims to provide, will improve openness and
+transparency in archaeology generally. It will contribute towards
+creating a community of researchers where it it normal and routine to
+publish code and data (after appropriate precautions are taken to
+protect sensitive information) with reports and publications, so that we
+can engage more deeply with, and learn more efficiently from, each
+other.
+
+This is not a book of detailed discussions of statistical theory, and
+you will be referred to other texts on technical details of algorithms,
+etc. This is a book introducing R for practical and efficient
+implementations of common tasks in archaeological science, and serves as
+a springboard to more advanced R programming. The specific topics
+covered in this book are:
+
+\begin{itemize}
+\item
+  Implementing reproducible research with literate programming as a
+  practice that is good for science generally, and good for your
+  individual productivity
+\item
+  Working with common archaeological data structures, ingesting them
+  into R and manipulating them from messy formats to tidy formats ready
+  for analysis
+\item
+  Visualising spatial data by making maps, doing spatial analysis and
+  site classification
+\item
+  Visualising and analysing stratigraphic data from archaeological
+  excavation
+\item
+  Working with relative and absolute chronologies by doing seriation,
+  and calibrating, analysing and visualising radiocarbon dates
+\item
+  Working with data from stone artefacts, faunal remains, pottery,
+  glass, and metal artefacts
+\item
+  Compositional analysis using cluster and principle components analyses
+  of multivariate data
+\item
+  Simplifying collaborative research with version control
+\end{itemize}
+
+\section{Why R?}\label{why-r}
+
+If you are new to R, you might wonder what the appeal is, especially
+when there are so many programming languages in common use. Some of the
+characteristics that drew me to learn R include:
+
+\begin{itemize}
+\item
+  It's free, open source, and available on every major type of computer.
+  As a result, if you do your analysis in R, anyone can easily reproduce
+  it.
+\item
+  It is specialised for use with statistical analysis and data
+  visualisation. R was originaly develped by statisticians, and
+  continues to be widely used by professional and academic
+  statisticians. This means that there are strong links between the
+  statistical literature and R code. Many of its algorithms have been
+  vetted by publication and thoroughly tested through extensive use. It
+  is easy to go from statistical theory to practice using R.
+\item
+  An active, supportive and generally progressive community. It is easy
+  to get help from experts on the R-help mailing list, Stack Overflow,
+  or subject-specific mailing lists. You can also connect with other R
+  learners via social media, and through many local user groups. I have
+  found Stack Overflow and twitter to be particularly useful sources of
+  information. Package authors are often pleased to see their packages
+  used by others, and willing to answer questions about your use of
+  their package.
+\item
+  Flexible tools for communicating your results. R packages make it easy
+  to produce html, pdf, or Microsoft Word documents that include text,
+  tables and figures, all generated from R code. I find this to be a
+  huge time-saver, especially when weeks or months pass between working
+  on a project, and I cannot remember all the details of the last work I
+  did. When I look over my R code I can quickly recall my analysis plan
+  and resume from where I stopped.
+\end{itemize}
+
+\section{Who should read this book}\label{who-should-read-this-book}
+
+This book is written for archaeologists who are keen to expand their
+analytical horizons and gain access to new methods and new, more
+efficient, ways of organising their research process. No prior knowledge
+about R, computer science or programming is expected, but a curiosity
+about statistics would be an advantage, as well as a readiness to read
+beyond this book to make decisions about the suitability of statistical
+methods for your specific research questions.
+
+\section{Prerequisites}\label{prerequisites}
+
+To run the code in this book, you will need to have R installed on your
+computer, as well as RStudio, an application that makes it substantially
+easier to use R. Although I have been interested in R for many years, it
+was only after RStudio was first released that R replaced Excel and SPSS
+for me. Both R and RStudio are free to download and easy to install. You
+can install it on most recent versions of Windows, OSX (Mac) or Linux.
+When used together, R and RStudio will help you to have a smooth and
+efficient experience when programming. RStudio provides many features
+that greatly simplify programming with R (my favourite is
+tab-completion). I do not recommend using R without RStudio, especially
+for the beginner.
+
+You should download and install both R and RStudio before attempting to
+follow any of the examples in this book. If you have installed these
+programs on your computer in the distant past, you should update them
+now (new versions of R are released every six months).
+
+\subsection{R}\label{r}
+
+To install R, visit
+\href{http://cran.r-project.org}{cran.r-project.org}. CRAN is the
+`Comprehensive R Archive Network' which hosts the official releases of
+the R software and documentation. Then click the link that matches your
+operating system. What you do next will depend on your operating system.
+You will need to install a development environment, this is also
+specific to your operating system. The development environment provides
+some additional programs that give you access to more advanced features
+of the R language.
+
+Here's a summary of the basic steps to download and install R for the
+most common operating systems:
+
+\begin{itemize}
+\item
+  Mac users should click the most current release. This will be the
+  \texttt{.pkg} file at the top of the page. Once the file is
+  downloaded, double click it to open an R installer. Follow the
+  directions in the installer to install R. You should also install
+  Xcode from the Mac App Store to install the development environment.
+\item
+  Windows users should click ``base'' and then download the most current
+  version of R, which will be linked at the top of the page. You should
+  also install
+  \href{http://cran.r-project.org/bin/windows/Rtools/}{Rtools} to
+  install the development environment.
+\item
+  Linux users will need to select their distribution and then follow the
+  distribution specific instructions to install R.
+  \href{https://cran.r-project.org/bin/linux/}{cran.r-project.org}
+  includes these instructions along side of the files to download.
+\end{itemize}
+
+If you are not sure about these download and install steps then you
+should research the general methods of installing software for your
+operating system, which are beyond the scope of this book.
+
+After installing R on your computer, you may be tempted to open it and
+start exploring. I don't recommend this because the R user interface is
+not intuitive for novices. Instead, read on to continue with downloading
+and installing RStudio. Then start your explorations in RStudio, which
+has a more user-friendly interface.
+
+\subsection{RStudio}\label{rstudio}
+
+Once you have R installed, it is time to download RStudio. To download
+RStudio, visit
+\href{http://www.rstudio.com/download}{www.rstudio.com/download}.
+
+Choose the installer that matches your operating system. Then click the
+link to download the application. Once you have the application,
+installation is the same as for most programs on your computer. Once
+RStudio is installed, open it as you would open any other application.
+It should look something like this:
+
+{[}insert RStudio\_first\_view about here{]}
+
+When you start RStudio for the first time, you'll see your screen
+divided into three or four window panes. If you don't see four window
+panes similar to the image above, go to File -\textgreater{} New File
+-\textgreater{} R Script to show all four panes. Here is an explanation
+of what you see in the figure above (for more details about the RStudio
+interface, see the RStudio website
+\url{https://www.rstudio.com/products/rstudio}, Verzani
+\citeyearpar{verzani2011getting}, Gandrud \citeyearpar{Gandrud2015}, and
+Racine \citeyearpar{racine2012rstudio}):
+
+\begin{itemize}
+\tightlist
+\item
+  The top left pane is the text editor, known as the `source'. This is
+  where you write and edit code and text. The text editor in RStudio is
+  analogus to a word processor such as Microsoft Word, but has many
+  additional convienent features for writing and editing code. The text
+  editor does not include any tools for formatting your text \emph{in
+  situ}, for example you cannot make words appear in the editor with
+  bold or italic characters. This is a deliberate design, and is typical
+  among text editing programs used for writing code. When we use
+  Microsoft Word, we are using a ``what you see is what you get'' editor
+  -- we edit a document in a form resembling the final printed or
+  presented document. The RStudio text editor is typical of text editors
+  designed for coding in taking a different approach to formatting
+  documents. When working with a plain text editor, we type unformatted
+  plain text and code, and among the text we include instructions on how
+  the final document should appear. We will discuss this further in
+  Chapter XX, but as a quick example, if we wanted a word in bold, we
+  would code it like \texttt{**this**}. In this example, the two asterix
+  symbols will be interpreted by our computer when we convert our source
+  document into a final version, such as a PDF, to produce a document
+  with \textbf{this} word in bold.
+\end{itemize}
+
+This method of creating documents is very common in disciplines such as
+mathematics and physics, where complex equations are written using code
+because for many people it is easier to write code to produce equations
+than use a mouse to click on menus and buttons to select the special
+characters needed for equations. LaTeX is widely used code-based
+document preparation system, with particular strengths in complex
+formatting needed by technical scientific documents. Although highly
+flexible, LaTeX is also complex and verbose, requiring a lot of typing
+to add the formatting code to your document. But don't worry, in this
+book we will use a much simpler document preparation system, known as
+markdown. We will discuss markdown in more detail in chapter XX, for now
+the main thing to know is that we use the text editor to write code and
+text.
+
+\begin{itemize}
+\item
+  The top right pane can have several tabs, depending on what you are
+  doing. Most of the time you will see an `Environment' tab and a
+  `History' tab. The Environment tab lists the objects that are
+  currently available in your R session. For exampe, if you have
+  executed code that reads an Excel spreadsheet into R and stores it as
+  an R object, then you will see this object listed in the Environment
+  tab. This tab is useful because you can get basic information at a
+  glance about the size of objects that you make (e.g.~how many rows and
+  columns). This is convienent for quickly checking the output of your
+  computations so you can see if your code is working as expected. The
+  History tab shows the code you have previously executed in your R
+  session. I rarely use this tab because I write code into the text
+  editor and save the code to my computer, so I always have a copy of
+  the code in the text editor. But if you are experimenting with some
+  code in an expedient fashion, you can use the History tab to browse
+  your previous commands to reuse and edit. You can also save the
+  history of your R commands to a text file, but I don't recommend this
+  as it is not an efficient method for keeping track of your work. A
+  better strategy is to write code in the text editor, interspersed with
+  text that explains what the code is doing, and save that document to
+  your computer. We'll discuss this strategy more in chapter XX.
+\item
+  The lower right pane is another multi-tab pane where plots appear, the
+  most important are the Plots tab and the Files tab. The Plots tab
+  allows you to conveniently browse the plots that you produce. You can
+  navigate back to previous plots created in your current session, and
+  interact with plots by zooming and, in some cases selecting, rotating,
+  etc. The Plots tab has an `Export' button to easily save your plots as
+  image files on your computer (in a variety of formats), or copy to
+  your clipboard for a quick copy-paste transfer. These are useful
+  functions for exploring pictures of your data and iterating towards a
+  publication-quality plot.
+\item
+  The lower left pane is the console where code is executed. There are
+  no buttons specific to the console, so direct interaction with this
+  pane is limited. The most important part of this pane is the prompt,
+  which looks like this \texttt{\textgreater{}}, and when this pane is
+  active, there is a blinking cursor at the prompt. The space where the
+  cursor is in is called the \texttt{command\ line}, where you type,
+  paste, or send code. When you type at the prompt and press Enter, you
+  are submitting code to be interpreted by R, and R will usually return
+  the result in the console. Here is one of the simplest possible
+  examples of using the console:
+\end{itemize}
+
+\begin{verbatim}
+> 1 + 1
+[1] 2
+\end{verbatim}
+
+In this example, I placed my cursor at the prompt, typed
+\texttt{1\ +\ 1} with my keyboard, and then pressed Enter. The R
+interpretor returned the result, 2, directly below my input. The
+\texttt{{[}1{]}} indicates that this is the first item returned by the
+interpretor. At first this might seem unessecary, but this indexing is
+helpful when working with more complex calculations. Most of the time
+you wont type directly at the prompt because it is not efficient for
+more complex code. Instead, you'll type code in the text editor, and
+send that code from the text editor to the prompt by pressing they
+Control + Enter keys simutanteously (on OSX: Command + Enter).
+
+There are two useful features of the console that will save you time
+when working with R. First is the up arrow key, which allows you to
+re-run previous commands. If you place your cursor at the prompt, and
+press the up arrow key, you can browse the previously executed lines of
+code. Once you find the code you want to re-run, you can edit it in the
+console if you wish, and press Enter to send it to the interpreter.
+Second is the small arrow icon at the right side of the title bar of the
+console. If you look at the top of the console pane, you'll see the word
+``Console'', then you'll see a path to a folder on your computer, then
+at the end of that, you'll see a little arrow icon pointing right. The
+path on your computer in this console title bar is your `Working
+Directory'. If you click on the small arrow, it will switch the Files
+pane to show the contents of your Working Directory.
+
+The Working Directory is an important concept to understand because it
+is unlike anything you might have seen in Excel or SPSS. This is the
+directory where R is currently working, for example, where R will look
+when you read files into R, or save output from R to your computer. By
+default, your R working directory was probably set to an inconvienent
+directly when you installed the program, but this is easily changed. I
+find that the simplest method is to go to the RStudio toolbar menu,
+click on `Session', then `Set Working Directory' then `To Source File
+Location'. You may see in other people using R code to set the working
+directory, but I don't recommend this. If you use code to set the
+working directory, your code will only work on your computer in its
+current configuration, and so your code is not portable and not robust
+to change. If you reorganise your files, or give your code to a
+collaborator, the working directory will no longer match what is written
+in the code. This can lead to errors and frustration. So while the
+concept of the Working Directory is important to know about for working
+with R, you should not include it in your R code.
+
+The location and combination of panes and tabs in RStudio are
+customisable via the toolbar menu (Tools -\textgreater{} Global Options
+-\textgreater{} Pane Layout). For example, I prefer to have to console
+on the upper right, and I often minimize some of the panes so I only see
+the text editor and the console.
+
+\section{Key terms to understand (don't skip this
+bit!)}\label{key-terms-to-understand-dont-skip-this-bit}
+
+Now we've established the basic motivation for learning R to do
+archaeology, and introduced the layout of the software, we should
+introduce some key terms and conventions that appear frequently in this
+book. Becoming familiar with these terms will help you with the basic
+tasks of finding your way around when starting to use R.
+
+We have already discussed the prompt and command line above, and we've
+used the word \texttt{code}, but without really defining it.
+\texttt{Code} refers to anything written in a programming language, from
+a single function to thousands of lines. Code often contains
+\texttt{comments}, which you can recognise in the R language by a
+\texttt{\#} symbol at the start of the line. Code comments are to help
+you and other people understand the purpose of the code. The \texttt{\#}
+symbol tells the R interpretor to ignore to everything to the right of
+that symbol, and skip to the next line of code. A \texttt{script} is a
+file that contains code, and usually R script file names ends with
+\texttt{.R} or \texttt{.r}. You can open these files in any program that
+edits text, for example Notepad on Windows (or Notepad++) or TextEdit on
+OSX (or Sublime Text).
+
+A \texttt{function} refers to a group of code that carries out
+instructions to do useful work. For example, the function
+\texttt{mean()} computes the mean of a set of numbers. In this book you
+will always be able to recognise a function because they will always be
+followed by a pair of parentheses. A function is a handy way to organise
+code, because a single function can cause hundreds of lines of code to
+run to produce a result. Rather than running those hundreds of lines,
+one-by-one, over and over, we can simply type the function names that
+invokes them, and save ourself a lot of typing. Usually we want to save
+the output of a function so we can use in other functions, or for
+plotting. For example, we might want to compare the mean of the lengths
+of two assemblages of artefacts. To keep the results of function, we
+\texttt{assign} the output to an \texttt{object}. Here, we assign the
+output of the \texttt{mean()} function to an object that we arbitrarily
+call \texttt{x}, like so \texttt{x\ \textless{}-\ mean(c(4,\ 7,\ 12))}.
+This short piece of code computes the mean of 4, 7, and 12 (ie. (4 + 7 +
+12)/3), and then assigns, or stores, the result in a object called
+\texttt{x} (we do not need to create \texttt{x} in advance). The
+\texttt{c} is a function to combine numbers into a set called a
+\texttt{vector}, which is a fundamental data object type in R. We can
+then use \texttt{x} later in our workflow for other tasks, rather than
+recomputing the mean repeatedly.
+
+There's lot more vocabularly to come, but these are the key terms that
+you need to know to make sense of the rest of this book.
+
+\subsection{Packages}\label{packages}
+
+Functions are at the heart of working with R, and are part of the reason
+for R's great versatility. They save a lot of time by minimizing
+copy-and-pasting and typing, so it's worth to invest some effort into
+learning how to write your own functions. Functions are typically
+organised into \texttt{packages}, which you can download to extend the
+usefulness of R. We will use packages extensively in this book, and
+briefly discuss how and why you might write your own packages. There are
+two common methods to install packages for R. For either method you need
+an internet connection, an R session (by opening RStudio), and to run a
+command at the command line.
+
+The most common way to install R packages is to run the command,
+\texttt{install.packages()} at the R prompt. This will download the
+package from the repository at
+\href{http://cran.r-project.org}{cran.r-project.org} and install them in
+your system library.
+
+Try this yourself by opening R and running these commands:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# install a single package}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{)}
+\CommentTok{# install multiple packages at one time}
+\KeywordTok{install.packages}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{, }\StringTok{"ggplot2"}\NormalTok{, }
+                   \StringTok{"knitr"}\NormalTok{, }\StringTok{"readr"}\NormalTok{, }\StringTok{"rmarkdown"}\NormalTok{, }
+                   \StringTok{"scales"}\NormalTok{, }\StringTok{"stringr"}\NormalTok{, }\StringTok{"tidyr"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Most of the packages we will use in this book are stored on
+\href{http://cran.r-project.org}{cran.r-project.org}, but are other
+online repositories for R packages. For example, many R package authors
+use \href{http://www.github.com}{www.github.com} to make their packages
+publicly available.
+
+You can install packages stored on github with the
+\texttt{install\_github()} function in the \texttt{devtools} package
+(which we installed using the commands above). To use the
+\texttt{install\_github()} function, pass it a character string with the
+form
+\texttt{"\textless{}github\ username\textgreater{}/\textless{}github\ repository\ name\textgreater{}"}.
+For example, we can install the package \texttt{ggbiplot} to plot the
+output of a Principle Components Analysis like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{devtools::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"vqv/ggbiplot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+When R installs a package, it downloads the package to your system
+\texttt{library}. You must use the \texttt{library()} function to make
+the contents of the package available to your current R session. It's
+good practice to have the \texttt{library()} functions among the first
+few lines of your code, so other users can quickly see what packages
+they will need to have to prepare to run your code. For example, to use
+the functions in the \texttt{dplyr} package, you would need to first run
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+You will need to rerun this \texttt{library()} command each time you
+open a new R session that uses functions from the \texttt{dplyr}
+package.
+
+\section{Getting help}\label{getting-help}
+
+Developing fluency in a language like German or Chinese takes time and
+has ups and downs. Learning a programming language like R is a similar
+process, and you should anticipate ups and downs as R becomes an
+increasingly central part of your workflow. Fortunately, there are a
+number of options for seeking help when you get stuck, or have a
+question. The simplest case is when you execute a line of code, only to
+get a cryptic error message in the console. A good first reponse is to
+copy the text of the error message to your clipboard, and paste it into
+a Google search box in your web browser. In most cases, the top search
+results will be from \href{http://stackoverflow.com/}{Stack Overflow} or
+one of the \href{https://www.r-project.org/mail.html}{R mailing lists}.
+Sometimes this will get you a quick solution. However, sometimes error
+messages are too generic, or too specific, and you can browse through
+many pages of search results without getting any useful ideas to solve
+your problem. When that happens, there are a few places online where you
+can give some more detail about your problem, and get more relevant
+responses.
+
+Stack Overflow is a free question-and-answer website that is focused on
+computer programming. Participants receive points for asking clear
+questions, and for giving useful answers. This adds a competitive
+element to participating in the Q\&A, and often when you ask a
+well-formed question, several answers will appear very quickly from
+participants eager to earn points. The R mailing lists are more
+traditional email-based fora, with archives at several places online.
+Highly skilled R programmers and R-using scientists from a variety of
+disciplines are active on both the R mailing lists and Stack Overflow. I
+prefer Stack Overflow because responses to my questions typically come
+quicker, and I find it easier to see when someone else's question has
+been answered, compared to browsing the email list archives.
+
+I find that in the course of writing my question to submit to Stack
+Overflow, the process of simplifying my code into a small,
+self-contained example leads me to discover the cause of my problem
+(very often it's a misplaced comma or bracket). Then I can answer my
+question before I need help from others. Similarly, I often find that
+many of my questions have already been asked and answered on Stack
+Overflow. The challenge in this case is to recognise how similar an
+existing question is to your current problem, and thus how useful the
+answers are to your specific issue.
+
+If you are sure that your problem is new and unique, and you want to
+submit a question, here is some general advice to help you get a useful
+answer quickly from the Stack Overflow and R mailing lists communities:
+
+\begin{itemize}
+\item
+  Spend some time browsing previous posts to understand the community
+  norms. Online communities have specific cultural values that are often
+  strongly held. While some of these are spelled out in posting guides,
+  many are also unwritten, and can only be learnt through mindful
+  reading of previous correspondence. If you are familiar with the
+  norms, you are more likely to have an efficient and satisfying
+  interaction with the community.
+\item
+  Make sure you have the latest version of R and of the package (or
+  packages) you are having problems with. It may be that your problem is
+  the result of a recently fixed bug.
+\item
+  Spend some time creating a reproducible example. This mean a
+  simplified version of your problem that another person can copy and
+  paste from their browser into their R console to reproduce the error
+  that you see. This can be quite an art-form, but the basic ingredients
+  for a good reproducible example are:
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The packages you are using\\
+\item
+  A small data set. R comes with many example data sets built-in, if you
+  run \texttt{data()} you can see a list, and these are very convenient
+  to use for reproducible examples. If you want to include your own
+  data, you can use \texttt{dput()} to generate R code that another
+  person can copy and paste to recreate your data set.\\
+\item
+  Code. Your code should be easy to read, with spaces between operators
+  (+, -, *, etc.) and after commas, and conformant to a style guide,
+  such as Hadley Wickham's \citeyearpar{wickham2014advanced}
+  \href{http://adv-r.had.co.nz/Style.html}{style guide in Advanced R}.
+  Your code should includes lines of commentary, which begin with
+  \texttt{\#}, to help others understand your problem.\\
+\item
+  A description of your R environment. The usual way to communicate your
+  R environment (ie. your operating system type and version), is to
+  include the output from \texttt{sessionInfo()} into your question.
+\end{enumerate}
+
+Don't worry if some of these terms are unfamiliar at the moment. The
+main thing to know at this point is that help is available, and that the
+quality of help you receive is proportional to the effort you spend
+seeking it.
+
+\subsection{Draft TOC}\label{draft-toc}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Introduction
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  R
+\item
+  RStudio
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Reproducible research \& Literate programming
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  markdown
+\item
+  R projects
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+\item
+\end{enumerate}
+
+\chapter{Implementing reproducible
+research}\label{implementing-reproducible-research}
+
+\section{Overview}\label{overview-1}
+
+Four factors have lead to growing concerns about the reproducibility of
+scientific results in modern science. The first factor is reruns of
+landmark biomedical experiments that have failed to produce the same
+results as the initial publication of the experiment
+\citep{Prinz2011drugtargets, Begley2012clinical}. The second factor is
+the discovery of high-profile studies where the published results were
+flawed due to simple errors data
+analysis\citep{baggerly2009deriving, Herndon2013austerity}. Third, there
+has been a sharp rise in the number of scholarly publications that have
+been retracted due to discoveries of misconduct such as fraudulent data
+and plagiarism \citep{Vannoorden2011retractions, Steen2013retractions}.
+Finally, there has been a growth of data-intensive research that use
+massive computer simulations or collect enourmous amounts of data from
+vast numbers of sensors (ie. astronomy and oceanography). These events
+have stimulated extensive discussion in many disciplines about how to
+improve the reproducibility of scientific research. Some of this
+discussion has resulted in calls from diverse dsicplines
+\citep{nosek2015open} for publications to be accompanied by both the raw
+data that generated the figures in the paper
+\citep{reichman2011challenges}, and the programming code that shows the
+steps taken in the data analysis
+\citep{barnes2010publish, Ince1012opencomputer, Morin2012blackbox}.
+Related to these calls are a manifesto-like journal articles by groups
+of researchers that call for substantial changes in the research
+workflow to improve reproducibilty and transparency
+\citep{wilson2014best, Hampton2015tao, Sandve2013tenrules}.
+
+In this chapter I show how archaeologists can respond to these calls for
+increased reproducibilty and transparency. I sketch out how R can be
+used to enable reproducible research through literate programming.
+Literate programming refers to the use of a computing environment for
+authoring mixed natural (eg. English) and computer (eg. R) language
+documents \citep{Schulte2012literate}. Conventiently, R and RStudio are
+well-equipped to support literate programming, so the practice is
+relatively easy to learn. The second section of this chapter introduces
+version control as a principle and tool for enhancing transparency and
+collaboration. Version control of literate programming files allows you
+to keep track of all the changes that you and your co-authors make to
+your files. Using the Git software for version control, you and your
+collaborators can safely create versions of your files to experiment
+with, and either abandon the results, merge them with the main versions,
+or revert to an earlier version.
+
+\section{What does it mean to do reproducible
+research?}\label{what-does-it-mean-to-do-reproducible-research}
+
+Before showing how we can make our research more reproucible, we should
+explore exactly what we mean by `reproducible'. There is some confusion
+surrounding recent use of the term `reproducibility' in biology and
+computer science. The confusion results from using the term at two quite
+different parts of the research pipeline.
+
+The first part is empirical reproducibility, also called
+`replicability'. For an archaeologist, this means evaluating a
+previously obtained result by re-excavating a site that another
+researcher had previously excavated, studying a museum collection that
+had previously been analysed by another person, or repeating an
+experiement that has been previously published. Empirical
+reproducibility is about returning to the source of the data and
+physically collecting the data again. Archaeologists do this routinely,
+for example, we return to famous sites such as Star Carr, Catal Huyuk,
+and Niah Cave to excavate them again. Usually this happens decades after
+the original excavation that make the site prominent. This is not exact
+empirical reproducibility, because we do not use the exact procedures of
+the previous workers, but instead use modern field methods to extract
+more data from the site, and improve upon and extend the earlier work.
+But the general idea of testing the previous claims about the site is
+usually the key motivation for returning to it.
+
+The second use of `reproducibility' is computational and statistical
+reproducibility. This refers to redoing the calculations of another
+researcher's quantitative results using their original datasets and
+methods. This type of reproducibility does not involve independent data
+collection, but instead uses the methods and data collected by the
+original investigator. This kind of reproducibilty is not something that
+is familiar to most archaeologists. Our publications rarely include
+enough of the data to enable reanalysis, and our methods are rarely
+presented in enough detail to allow another person to independantly
+repeat our analysis unabimguously. This type of reproducibility is
+becoming an important issue for recent archaeological research due to
+advances in technology and the rapid spread of computational methods for
+many kinds of basic archaeological analysis. In my view, the short
+answer to improving computational and statistical reproducibility in
+archaeology is for archaeologists to include data files and programming
+code with their publications. These extra documents will allow another
+researcher to see all the steps from when the raw data entered the
+researcher's computer to the end point where these data were summarised
+and visualised in a journal article.
+
+In this chapter I describe two principles, literate programming and
+version control. These are dervied from computer science research and
+have been adopted by other disciplines, such as ecology and political
+science, to enable computational and statistical reproducibility. I also
+demonstrate the current software tools (Rmarkdown, knitr, and Git) that
+allow us to put these principles into practice. Over time, these
+software tools will change, and perhaps be replaced by something
+completely different. However, the principles that they are based on
+will endure, and are worth becoming familiar with as key concepts in
+computational and statistical reproducibility.
+
+\url{http://languagelog.ldc.upenn.edu/nll/?p=21956}
+
+\section{Literate programming}\label{literate-programming}
+
+\section{Version control}\label{version-control}
+
+\bibliography{packages.bib,book.bib}
+
+
+\end{document}
