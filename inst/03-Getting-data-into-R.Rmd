@@ -1,0 +1,33 @@
+# (PART) Preparing the data {-}
+
+# Getting data into R {#gettingdatain}
+  
+## Overview
+
+## Getting data from spreadsheets
+
+Excel read_excel readxl and jailbreakr for complex cases
+CSV readr read_csv
+Google sheets googlesheets
+
+## Getting data from other statistical and database software file formats
+
+SPSS haven
+STATA
+Access  RODBC 
+SQL 
+
+## Getting data from tables in documents
+
+PDF tabulizer
+MS Word docxtractr
+HTML rvest, RSelenium 
+
+## Getting spatial data
+
+shapefiles maptools
+tables of spatial data into shapefiles
+
+
+
+

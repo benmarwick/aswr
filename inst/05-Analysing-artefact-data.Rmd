@@ -1,0 +1,56 @@
+# (PART) Working with data {-}
+
+# Analysing artefact data {#artefactdata}
+  
+## Overview
+
+## Basic analysis tasks
+
+selecting columns
+selecting rows
+summarising by group
+tallying
+
+## Basic plotting tasks
+
+bar plot: counts only - plain, stacked
+distribution plotting: histogram, density, boxplot, beeswarm plot 
+scatter plot: with point shape, colour, size
+facetting
+interactive plotting
+colour schemes on plots
+statistical layers on plots
+plots to avoid: 3d, pie, lines over discrete categories
+
+## Stone artefacts
+
+reduction indeces
+
+geometric morphometry
+
+orientation
+
+## Faunal remains
+
+Species tables
+
+NISP
+MNI
+
+glm 
+richness indeces
+
+
+## Pottery 
+
+
+## Glass 
+
+
+## Metal
+
+
+
+
+
+

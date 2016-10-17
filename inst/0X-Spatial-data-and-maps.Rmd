@@ -1,0 +1,22 @@
+# (PART) Working with data {-}
+
+# Spatial data and maps {#spatialdata}
+  
+## Overview
+
+## Seeing the data
+
+ggplot 
+ggmap
+scale and north arrow
+
+## Common spatial analysis tasks
+
+polygon area
+counting points in an area
+nearest neighbour
+
+## 
+
+
+

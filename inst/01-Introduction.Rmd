@@ -4,7 +4,7 @@
   
 ## Overview
 
-The goal of "Archaeological Science with R" is to give you a solid foundation into using R to do archaeological science. By archaeological science, I mean, systematic, objective, and empirical research into past human behaviours using data collected from material remains and traces. The goal is not to be exhaustive, but to instead focus on what I think are the critical skills for doing  archaeological science with R. Some archaeologists already use R in an _ad hoc_ way, for a quick plot here, or a linear model there. If you are one of these people, you will see some familiar things in this book. But you will also see a lot of new ideas, because this book will show you how R can be at the center of your entire research workflow, from when you start working with raw data until your final thesis, report, or manuscript is complete.
+The goal of "Archaeological Science with R" is to give you a solid foundation into using R to do archaeological science. By archaeological science, I mean, systematic, objective, and empirical research into past human behaviours using data collected from material remains and traces. The goal is not to be exhaustive, but to instead focus on what I think are the critical skills for doing archaeological science with R. Some archaeologists already use R in an _ad hoc_ way, for a quick plot here, or a linear model there. If you are one of these people, you will see some familiar things in this book. But you will also see a lot of new ideas, because this book will show you how R can be at the center of your entire research workflow, from when you start working with raw data until your final thesis, report, or manuscript is complete.
 
 ## Why do archaeologists need to learn to code?
 
@@ -36,15 +36,16 @@ This is not a book of detailed discussions of statistical theory, and you will b
 
 * Working with common archaeological data structures, ingesting them into R and manipulating them from messy formats to tidy formats ready for analysis
 
-* Visualising spatial data by making maps, doing spatial analysis and site classification 
+* Working with data from stone artefacts, faunal remains, pottery, glass, and metal artefacts
+
+* Compositional analysis using cluster and principle components analyses of multivariate data 
+
+* Working with relative and absolute chronologies by doing seriation, and calibrating, analysing and visualising radiocarbon dates
 
 * Visualising and analysing stratigraphic data from archaeological excavation
 
-* Working with relative and absolute chronologies by doing seriation, and calibrating, analysing and visualising radiocarbon dates 
+* Visualising spatial data by making maps, doing spatial analysis and site classification 
 
-* Working with data from stone artefacts, faunal remains, pottery, glass, and metal artefacts 
-
-* Compositional analysis using cluster and principle components analyses of multivariate data 
 
 * Simplifying collaborative research with version control 
 

@@ -1,0 +1,21 @@
+# (PART) Working with data {-}
+
+# Working with stratigraphic data from archaeological excavations {#stratigraphic}
+  
+## Overview
+
+## Visualising excavation data
+
+stratiplot
+
+## Stratigraphic analysis
+
+CONISS
+
+
+
+
+
+
+
+

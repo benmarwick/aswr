@@ -1,4 +1,60 @@
 
+
+
+
+# random samples ----------------------------------------------------------
+
+x <- 1:10
+sample(x)
+replicate(10, rnorm(10))
+
+library(dplyr)
+data_frame(x = 1:10, y = x + rnorm(10))
+
+
+# Find multiple strings in any order --------------------------------------
+
+# for example, we might want to find all the artefacts classified as
+# 'red green', 'redgreen', 'green red', how can we select those?
+
+Reduce(intersect, lapply(matches, grep, my_vector))
+
+matches <- c("fe", "ve")
+
+#                1    2    3      4        5       6       7       8      9
+my_vector <- c("fv", "v", "f", "f_v_e", "fe_ve", "feve", "vefe", "fve" , "a")
+
+# want to get 5, 6, 7
+
+Reduce(intersect, lapply(matches, grep, my_vector))
+
+
+# last observation carried forward (LOCF) ---------------------------------
+
+# basic use
+library(zoo)
+x <- c(1, NA, NA, NA, 2, NA, NA, NA, 3, NA, NA, NA)
+y <- na.locf(x)
+
+# more complex: by group
+library(dplyr)
+dfr <- frame_data(
+         ~group, ~value,
+         'a', 2,
+         'a', NA,
+         'a', NA,
+         'b', 3,
+         'b', NA,
+         'b', NA)
+
+dfr %>%
+  group_by(group) %>%
+  mutate(value = na.locf(value,
+                         na.rm = TRUE))
+
+
+# plot stacked bars where width = depth of layer --------------------------
+
 # Plot frequencies of items in groups by depth
 
 dfr <- data.frame(

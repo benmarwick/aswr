@@ -1,0 +1,45 @@
+# (PART) Preparing the data {-}
+
+# Preparing the data for analysis {#preparingthedata}
+  
+## Overview
+
+## Getting data into a useful container
+
+dataframe
+list of dataframes
+matrix
+
+## Dealing with typos and data entry mistakes
+
+changing column names
+regex to clean data values, remove spaces
+getting data in the most useful object type (numeric, integer, character, factor, logical)
+ifelse to update/correct data values
+
+splitting one column into two or more
+combining multiple columns into one for unique IDs
+adding new columns based on calculations of other columns
+
+## Wide and long data
+
+Wide data - better for data entry
+Long data - better for data analysis and viz
+
+tidyr gather/spread
+
+## Dealing with missing data
+
+removing rows/columns with missing data
+imputing missing values by mean value, adjacent value, ifelse for arbitrary values
+filling in with previous values
+
+## Joining data together
+
+rbind, cbind
+left_join
+
+
+
+
+
