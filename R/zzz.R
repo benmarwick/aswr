@@ -1,5 +1,14 @@
 
-
+# match by ranges of depths ------------------------------------------------
+source("https://bioconductor.org/biocLite.R")
+biocLite("GenomicRanges")
+library(IRanges)
+isnps <- with(sw_col, IRanges(total_station_depth_below_surf, width=1, names=sw_col))
+igenes <- with(sw_coords, IRanges(upper, lower, names=sw_coords))
+olaps <- findOverlaps(isnps, igenes)
+queryHits(olaps)
+subjectHits(olaps)
+sw_col_join <- cbind(sw_col[queryHits(olaps),], sw_coords[subjectHits(olaps),])
 
 
 # random samples ----------------------------------------------------------
