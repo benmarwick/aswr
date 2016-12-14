@@ -1,11 +1,37 @@
 
+# Intervals ------------------------------------------------------------
 
+# Find which interval that each element of the vector belongs in
+
+library(tidyverse)
+elements <- c(0.1, 0.2, 0.5, 0.9, 1.1, 1.9, 2.1)
+
+intervals <-
+  frame_data(  ~phase, ~start, ~end,
+               "a",     0,      0.5,
+               "b",     1,      1.9,
+               "c",     2,      2.5
+  )
+
+
+library(data.table) #v1.10.0
+setDT(intervals)[data.table(elements), on = .(start <= elements, end >= elements)]
+
+library(fuzzyjoin)
+library(tidyverse)
+
+fuzzy_left_join(data.frame(elements),
+                intervals,
+                by = c("elements" = "start",
+                       "elements" = "end"),
+                match_fun = list(`>=`, `<=`)) %>%
+  distinct()
 
 
 # random samples ----------------------------------------------------------
 
 x <- 1:10
-sample(x)
+sample(x, 3)
 replicate(10, rnorm(10))
 
 library(dplyr)

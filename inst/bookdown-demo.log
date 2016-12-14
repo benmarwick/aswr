@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99996 (MiKTeX 2.9) (preloaded format=xelatex 2016.7.15)  15 OCT 2016 21:41
+This is XeTeX, Version 3.14159265-2.6-0.99996 (MiKTeX 2.9) (preloaded format=xelatex 2016.7.15)  10 DEC 2016 21:49
 entering extended mode
 **./bookdown-demo.tex
 (bookdown-demo.tex
@@ -904,13 +904,14 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 5.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\microtype\mt-msb.cfg"
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-))
+)
+Underfull \vbox (badness 1681) has occurred while \output is active []
+
+[3])
 \tf@toc=\write5
 \openout5 = `bookdown-demo.toc'.
 
-[3] [4
-
-]
+[4]
 Chapter 1.
 LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 156
 .
@@ -921,7 +922,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 153--158
 
  []
 
-[5] [6
+[5
+
+] [6
 
 ] [7] [8]
 Chapter 2.
@@ -958,23 +961,59 @@ Underfull \hbox (badness 10000) in paragraph at lines 860--867
 
 ]
 Chapter 3.
-[19] (bookdown-demo.bbl [20] [21
+[19] [20] [21
 
-])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1031.
-[22]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1031.
+] [22]
+Chapter 4.
+[23
+
+] [24
+
+] [25] [26]
+Chapter 5.
+[27
+
+] [28
+
+] [29] [30]
+Chapter 6.
+[31
+
+] [32] [33
+
+] [34]
+Chapter 7.
+[35
+
+]
+Overfull \hbox (14.94843pt too wide) has occurred while \output is active
+\EU1/lmr/m/n/10 36 \EU1/lmr/m/sl/10 CHAPTER 7.  WORKING WITH STRATIGRAPHIC DATA
+ FROM ARCHAEOLOGICAL EXCAVATIONS
+ []
+
+[36
+
+] [37] [38]
+Chapter 8.
+(bookdown-demo.bbl [39
+
+] [40
+
+] [41])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1167.
+[42]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1167.
 (bookdown-demo.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1031.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1031.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1167.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1167.
  ) 
 Here is how much of TeX's memory you used:
- 25331 strings out of 428408
- 442037 string characters out of 3159514
- 505275 words of memory out of 3000000
- 28498 multiletter control sequences out of 15000+200000
+ 25377 strings out of 428408
+ 442922 string characters out of 3159514
+ 510044 words of memory out of 3000000
+ 28544 multiletter control sequences out of 15000+200000
  16391 words of font info for 48 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  52i,6n,68p,10413b,457s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on bookdown-demo.pdf (22 pages).
+Output written on bookdown-demo.pdf (42 pages).

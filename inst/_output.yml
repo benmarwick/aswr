@@ -5,12 +5,14 @@ bookdown::pdf_book:
   citation_package: natbib
 bookdown::epub_book: default
 bookdown::gitbook:
+  template: insert_blocks.html
   css: style.css
   config:
     toc:
       before: |
-        <li><a href="./">A Minimal Book Example</a></li>
+        <li><a href="./">Archaeological Science with R</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     edit:
-      link: https://github.com/rstudio/bookdown-demo/edit/master/%s
+      link: https://github.com/benmarwick/aswr/edit/master/inst/%s
+
