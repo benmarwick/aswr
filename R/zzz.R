@@ -1,5 +1,6 @@
 
-# Intervals ------------------------------------------------------------
+
+# Match by intervals ------------------------------------------------------------
 
 # Find which interval that each element of the vector belongs in
 
@@ -27,6 +28,37 @@ fuzzy_left_join(data.frame(elements),
                 match_fun = list(`>=`, `<=`)) %>%
   distinct()
 
+# Match by ranges ------------------------------------------------
+
+# We assign the spits into layers
+
+# Here's a list of the spits in each layer, for example
+# layer 4 includes spits 4 to 7
+spits_in_layers <- list(1, 2, 3, 4:7, 8:11,
+                        12:14, 15:17, 18:22,
+                        23:26, 27:31, 32:38,
+                        39:50, 51:59)
+layers <- 1:13
+# get the start and end spits for each layer
+spits_in_layers_start <- map_dbl(spits_in_layers, min)
+spits_in_layers_end <- map_dbl(spits_in_layers, max)
+
+# Compute which layer each spit belongs in using the
+# IRanges package
+
+# source("https://bioconductor.org/biocLite.R")
+# biocLite("GenomicRanges")
+library(IRanges)
+spits_Ranges <-
+  IRanges(na.omit(mmc1_extract_spit$spit),
+          width = 1,
+          names = na.omit(mmc1_extract_spit$spit))
+spit_ranges_for_levels <-
+  IRanges(start = spits_in_layers_start,
+          end = spits_in_layers_end,
+          names = layers)
+olaps <- findOverlaps(spits_Ranges, spit_ranges_for_levels)
+levels_from_spits <- subjectHits(olaps)
 
 # random samples ----------------------------------------------------------
 
