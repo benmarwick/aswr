@@ -1,4 +1,20 @@
 
+# Update a cell in situ ---------------------------------------------
+
+# update a value in situ by replacing it according to some conditions
+
+df %>%
+  mutate(existing_col = ifelse(existing_col == "some_condition",
+                               new_value,
+                               existing_value))
+
+
+# Extact by matching a pattern ------------------------------------------
+
+# We want to clean the data so that we only get "GS 00"
+
+library(stringr)
+GS$GS_n <- str_extract(GS$`Artefact no.`, "GS\\s\\d{1,2}")
 
 # Match by intervals ------------------------------------------------------------
 
