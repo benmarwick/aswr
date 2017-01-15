@@ -160,10 +160,11 @@ install.packages(c("dplyr", "ggplot2",
 
 Most of the packages we will use in this book are stored on [cran.r-project.org](http://cran.r-project.org), but are other online repositories for R packages. For example, many R package authors use [www.github.com](http://www.github.com) to make their packages publicly available. 
 
-You can install packages stored on github with the `install_github()` function in the `devtools` package (which we installed using the commands above). To use the `install_github()` function, pass it a character string with the form `"<github username>/<github repository name>"`. For example, we can install the package `ggbiplot` to plot the output of a Principle Components Analysis like this: 
+You can install packages stored on GitHub with the `install_github()` function in the `devtools` package (which we installed using the commands above). To use the `install_github()` function, pass it a character string with the form `"<github username>/<github repository name>"`. For example, we can install the package `ggbiplot` to plot the output of a Principle Components Analysis like this: 
 
 ```{r eval = FALSE}
 devtools::install_github("vqv/ggbiplot")
+# The two colons are a short-cut to avoid typing library(devtools)
 ```
 
 When R installs a package, it downloads the package to your system `library`. You must use the `library()` function to make the contents of the package available to your current R session. It's good practice to have the `library()` functions among the first few lines of your code, so other users can quickly see what packages they will need to have to prepare to run your code. For example, to use the functions in the `dplyr` package, you would need to first run
@@ -212,5 +213,8 @@ Don't worry if some of these terms are unfamiliar at the moment. The main thing 
 
 4. 
 
+Further reading:
 
+- http://ellisp.github.io/blog/2017/01/14/books
+- http://andrewgelman.com/2011/01/03/5_books/
 
