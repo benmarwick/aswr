@@ -1,3 +1,11 @@
+# Data cleaning ---------------------------------------------
+
+# Basic pattern:
+# - inspect unique values with table() or tally()
+# - recode with mutate() and ifelse()
+
+# watch for spaces, caps, data types (numeric/character)
+
 
 # Update a cell in situ ---------------------------------------------
 
