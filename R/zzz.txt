@@ -3,8 +3,10 @@
 # Basic pattern:
 # - inspect unique values with table() or tally()
 # - recode with mutate() and ifelse()
+# - fill down, split cols
+# - remove duplicate rows
 
-# watch for spaces, caps, data types (numeric/character)
+# watch for spaces, caps, dates, data types (numeric/character)
 
 
 # Update a cell in situ ---------------------------------------------
