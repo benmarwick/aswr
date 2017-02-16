@@ -16,4 +16,3 @@ From \url{https://github.com/pascal-niklaus/pascal/}
 \author{
 Pascal Niklaus \email{pascal.niklaus@ieu.uzh.ch}
 }
-

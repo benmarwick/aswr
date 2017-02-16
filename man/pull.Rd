@@ -22,4 +22,3 @@ Sometimes we want to get a single value from a dplyr pipeline so we can use it w
 pull(iris, Species)
 
 }
-

@@ -5,7 +5,7 @@ bookdown::pdf_book:
   citation_package: natbib
 bookdown::epub_book: default
 bookdown::gitbook:
-  template: insert_blocks.html
+  # template: insert_blocks.html
   css: style.css
   config:
     toc:

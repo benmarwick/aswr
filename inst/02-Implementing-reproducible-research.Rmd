@@ -1,8 +1,4 @@
----
-layout: default
-title: Implementing reproducible research
-output: bookdown::html_chapter
----
+# (PART) Motivation {-}
   
 # Implementing reproducible research
   

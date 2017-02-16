@@ -29,4 +29,3 @@ toupper_first('5th avenue')
 ## -> [1] "5th Avenue"
 
 }
-

@@ -4,6 +4,10 @@
   
 ## Overview
 
+In this chapter we will survey some of the key methods for getting data into R. The canonical method for many years has been to use the `read.csv` function with a CSV (comma separated variables) file. This is a decent approach because most file types that contain tabular data can be saved as CSV, for example, we can save Excel files as CSV using Microsoft Excel. CSV is also ideal because it is an open, plain-text format that can be widely read and edited by many different programs. It is suitable for long-term archiving because it is a stable format.  However, it is often more convienent to work directly with the file that the data were entered into, and convienent to work with a format that our collaborators are comfortable with, such as an Excel spreadsheet. Fortunately, there are several packages that allow Excel, other common tabular data file formats, and even databases, to be read directly into R. 
+
+R is also capable of handling more challenging situations, such as working with hundreds or thousands of data files, reading tabular data from Microsoft Word documents or PDFs, and directly from the internet. In this chapter we will breifly demonstrate how to handle these situations 
+
 ## Getting data from spreadsheets
 
 Excel read_excel readxl and jailbreakr for complex cases

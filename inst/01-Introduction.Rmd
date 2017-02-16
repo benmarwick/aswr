@@ -137,7 +137,7 @@ x <- c(4, 7, 12) # length measurements of three artefacts
 y <- mean(x)     # compute the mean length
 ```
 
-The `c()` is a function to combine our artefact measuremens into a type of set called a `vector`. A vector is which is a fundamental data object type in R that we will use a lot. In the above example we have stored the result of the `c()` function in an object that we call `x` (we can call it almost anything that we like, and we do not need to create `x` in advance). The second line of code in the above example computes the mean of 4, 7, and 12 (ie. (4 + 7 + 12)/3), and then assigns, or stores, the result in a object called `y` . We can then use both `x` and `y` later in our workflow for other tasks. This is useful because it means we don't have to recompute the mean repeatedly. An important new concept in this example is the assignment operator, `<-`, which we can translate as 'put the results from the right side of this symbol into the thing on the left side'. Note that in the above example I have not included the prompt character (`>`). Omitting this character makes it easier for you to copy and paste from this book into your R console so you can run the code yourself, and explore what happens when you make minor changes. 
+The `c()` is a function to combine our artefact measuremens into a type of set called a `vector`. A vector is which is a fundamental data object type in R that we will use a lot. In the above example we have stored the result of the `c()` function in an object that we call `x` (we can call it almost anything that we like, and we do not need to create `x` in advance). The second line of code in the above example computes the mean of 4, 7, and 12 (ie. (4 + 7 + 12)/3), and then assigns, or stores, the result in a object called `y`. We can then use both `x` and `y` later in our workflow for other tasks. This is useful because it means we don't have to recompute the mean repeatedly. An important new concept in this example is the assignment operator, `<-`, which we can translate as 'put the results from the right side of this symbol into the thing on the left side'. Note that in the above example I have not included the prompt character (`>`). Omitting this character makes it easier for you to copy and paste from this book into your R console so you can run the code yourself, and explore what happens when you make minor changes. 
 
 There's a lot more vocabularly to come, but these are the key terms that you need to know to make sense of the rest of this book and to get started exploring R by yourself. 
 
@@ -152,6 +152,7 @@ Try this yourself by opening R and running these commands:
 ```{r eval = FALSE, tidy = FALSE}
 # install a single package
 install.packages("devtools")
+
 # install multiple packages at one time
 install.packages(c("dplyr", "ggplot2", 
                    "knitr", "readr", "rmarkdown", 
@@ -177,41 +178,30 @@ You will need to rerun this `library()` command each time you open a new R sessi
 
 ## Getting help
 
-Developing fluency in a language like German or Chinese takes time and has ups and downs. Learning a programming language like R is a similar process, and you should anticipate ups and downs as R becomes an increasingly central part of your workflow. Fortunately, there are a number of options for seeking help when you get stuck, or have a question. The simplest case is when you execute a line of code, only to get a cryptic error message in the console. A good first reponse is to copy the text of the error message to your clipboard, and paste it into a Google search box in your web browser. In most cases, the top search results will be from [Stack Overflow]( http://stackoverflow.com/) or one of the [R mailing lists](https://www.r-project.org/mail.html). Sometimes this will get you a quick solution. However, sometimes error messages are too generic, or too specific, and you can browse through many pages of search results without getting any useful ideas to solve your problem. When that happens, there are a few places online where you can give some more detail about your problem, and get more relevant responses.
+Developing fluency in a language like German or Chinese takes time, practice, and has ups and downs. Learning a programming language like R is a similar process, and you should anticipate ups and downs as R becomes an increasingly central part of your workflow. Fortunately, there are a number of options for seeking help when you get stuck, or have a question. The simplest case is when you execute a line of code, only to get a cryptic error message in the console. A good first reponse is to copy the text of the error message to your clipboard, and paste it into a Google search box in your web browser. In most cases, the top search results will be from [Stack Overflow]( http://stackoverflow.com/) or one of the [R mailing lists](https://www.r-project.org/mail.html). Sometimes this will get you a quick solution. However, sometimes error messages are too generic, or too specific, and you can browse through many pages of search results without getting any useful ideas to solve your problem. When that happens, there are a few places online where you can give some more detail about your problem, and often get helpful responses.
 
-Stack Overflow is a free question-and-answer website that is focused on computer programming. Participants receive points for asking clear questions, and for giving useful answers. This adds a competitive element to participating in the Q&A, and often when you ask a well-formed question, several answers will appear very quickly from participants eager to earn points. The R mailing lists are more traditional email-based fora, with archives at several places online. Highly skilled R programmers and R-using scientists from a variety of disciplines are active on both the R mailing lists and Stack Overflow. I prefer Stack Overflow because responses to my questions typically come quicker, and I find it easier to see when someone else's question has been answered, compared to browsing the email list archives. 
+Stack Overflow is a free question-and-answer website that is focused on computer programming. Participants receive points for asking clear questions, and for giving useful answers. This adds a competitive element to participating in the Q&A, and when you ask a well-formed question, several answers can appear very quickly from participants eager to earn points by being the best answer to your question (you award these points, as the question-asker). The R mailing lists are more traditional email-based fora, with archives at several places online. Highly skilled R programmers and R-using scientists from a variety of disciplines are active on both the R mailing lists and Stack Overflow. I prefer Stack Overflow because responses to my questions typically come quicker, and I find it easier to see when someone else's question has been answered, compared to browsing the email list archives. 
 
-I find that in the course of writing my question to submit to Stack Overflow, the process of simplifying my code into a small, self-contained example leads me to discover the cause of my problem (very often it's a misplaced comma or bracket). Then I can answer my question before I need help from others. Similarly, I often find that many of my questions have already been asked and answered on Stack Overflow. The challenge in this case is to recognise how similar an existing question is to your current problem, and thus how useful the answers are to your specific issue. 
+I find that in the course of writing my question to submit to Stack Overflow, the process of simplifying my code into a small, self-contained example (a vital ingredient of a good question) leads me to discover the cause of my problem.  Very often it's as simple as a misplaced comma or bracket. Then I can answer my question before posting it and seeking help from others. Similarly, I often find that many of my questions have already been asked and answered on Stack Overflow. One of the big challenges in getting the most out of Stack Overflow and email list archives is to recognise how similar an existing question is to your current problem, and thus how useful the answers are to your specific issue. 
 
-If you are sure that your problem is new and unique, and you want to submit a question, here is some general advice to help you get a useful answer quickly from the Stack Overflow and R mailing lists communities:
+If you are sure that your problem is new and unique, and you want to submit a question, here is some general advice to help you get a useful answer quickly, and have a pleasant experience at the same time, from the Stack Overflow and R mailing lists communities:
 
 * Spend some time browsing previous posts to understand the community norms. Online communities have specific cultural values that are often strongly held. While some of these are spelled out in posting guides, many are also unwritten, and can only be learnt through mindful reading of previous correspondence. If you are familiar with the norms, you are more likely to have an efficient and satisfying interaction with the community.  
 
-* Make sure you have the latest version of R and of the package (or packages) you are having problems with. It may be that your problem is the result of a recently fixed bug.
+* Make sure your computer has the latest version of R and of the package (or packages) you are having problems with. It may be that your problem is the result of a recently fixed bug.
 
-* Spend some time creating a reproducible example. This mean a simplified version of your problem that another person can copy and paste from their browser into their R console to reproduce the error that you see. This can be quite an art-form, but the basic ingredients for a good reproducible example are: 
+* Spend some time creating a simple reproducible example that captures the essence of your problem. This mean a simplified version of your problem that another person can copy and paste from their browser into their R console to reproduce the error that you see. This can be quite an art-form, but the basic ingredients for a good reproducible example are: 
 
-1. The packages you are using    
-2. A small data set. R comes with many example data sets built-in, if you run `data()` you can see a list, and these are very convenient to use for reproducible examples. If you want to include your own data, you can use `dput()` to generate R code that another person can copy and paste to recreate your data set.       
-3. Code. Your code should be easy to read, with spaces between operators (+, -, *, etc.) and after commas, and conformant to a style guide, such as Hadley Wickham's [-@wickham2014advanced] [style guide in Advanced R](http://adv-r.had.co.nz/Style.html). Your code should includes lines of commentary, which begin with `#`, to help others understand your problem.    
-4. A description of your R environment. The usual way to communicate your R environment (ie. your operating system type and version), is to include the output from `sessionInfo()` into your question.      
+1. The packages you are using, e.g. library(dplyr)    
+2. A small data set. R comes with many example data sets built-in, if you run `data()` you can see a list. These are very convenient to use for reproducible examples because you can count on everyone having them. If you want to include your own data, you can use `dput()` to generate R code that another person can copy and paste to recreate your data set.       
+3. Code. Your code should be easy to read, with spaces between operators (+, -, *, etc.) and after commas, and conformant to a style guide, such as Hadley Wickham's [-@wickham2014advanced] [style guide in Advanced R](http://adv-r.had.co.nz/Style.html). Your code should includes lines of commentary, which begin with `#`, to help others understand your problem. There should be just enough code to demonstrate your problem, don't burden your audience with haaving to make sense of lots of your code that is not central to your question. 
+4. A description of your R environment. The usual way to communicate your R environment (ie. your operating system type and version), is to include the output from `sessionInfo()` or `devtools::session_info()` (same output, but in a tidyer format) into your question.      
 
-Don't worry if some of these terms are unfamiliar at the moment. The main thing to know at this point is that help is available, and that the quality of help you receive is proportional to the effort you spend seeking it. 
+Don't worry if some of these terms are unfamiliar at the moment. The main thing to know at this point is that help is available, and that the quality of help you receive is often directly proportional to the effort you spend seeking it. 
 
 
 ### Draft TOC
-
-1. Introduction
-- R
-- RStudio
-
-2. Reproducible research & Literate programming
-- markdown
-- R projects
-
-3. 
-
-4. 
+ 
 
 Further reading:
 

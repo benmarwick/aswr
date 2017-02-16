@@ -34,4 +34,3 @@ ggplot2 + scale_x_continuous(labels = human_gbp)
 # custom function for large currency values:
 human_usd   <- function(x){human_numbers(x, smbl = "$")}
 }
-
