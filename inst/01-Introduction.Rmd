@@ -84,7 +84,7 @@ Here's a summary of the basic steps to download and install R for the most commo
 
 * Linux users will need to select their distribution and then follow the distribution specific instructions to install R. [cran.r-project.org](https://cran.r-project.org/bin/linux/) includes these instructions along side of the files to download.
 
-If you are not sure about these download and install steps then you should research the general methods of installing software for your operating system, which are beyond the scope of this book.
+If you are not sure about these download and install steps then you should research the general methods of installing software for your operating system (e.g. how-to videos on youtube), which are beyond the scope of this book.
 
 After installing R on your computer, you may be tempted to open it and start exploring. I don't recommend this because the R user interface is not intuitive for novices. Instead, read on to continue with downloading and installing RStudio. Then start your explorations in RStudio, which has a more user-friendly interface. 
 
@@ -92,7 +92,7 @@ After installing R on your computer, you may be tempted to open it and start exp
 
 Once you have R installed, it is time to download RStudio. To download RStudio, visit [www.rstudio.com/download](http://www.rstudio.com/download). 
 
-Choose the installer that matches your operating system. Then click the link to download the application. Once you have the application, installation is the same as for most programs on your computer. Once RStudio is installed, open it as you would open any other application. It should look something like this:
+Choose the installer that matches your operating system. Then click the link to download the application. Once you have the application downloaded, installation is the same as for most programs on your computer. Once RStudio is installed, open it as you would open any other application. It should look something like this:
 
 ![insert RStudio_first_view about here]
 
@@ -100,7 +100,7 @@ When you start RStudio for the first time, you'll see your screen divided into t
 
 - The top left pane is the text editor, known as the 'source'. This is where you write and edit code and text. The text editor in RStudio is analogus to a word processor such as Microsoft Word, but has many additional convienent features for writing and editing code. The text editor does not include any tools for formatting your text _in situ_, for example you cannot make words appear in the editor with bold or italic characters. This is a deliberate design, and is typical among text editing programs used for writing code. When we use Microsoft Word, we are using a "what you see is what you get" editor -- we edit a document in a form resembling the final printed or presented document. The RStudio text editor is typical of text editors designed for coding in taking a different approach to formatting documents. When working with a plain text editor, we type unformatted plain text and code, and among the text we include instructions on how the final document should appear. We will discuss this further in Chapter XX, but as a quick example, if we wanted a word in bold, we would code it like `**this**`. In this example, the two asterix symbols will be interpreted by our computer when we convert our source document into a final version, such as a PDF, to produce a document with **this** word in bold.     
 
- This method of creating documents is very common in disciplines such as mathematics and physics, where complex equations are written using code because for many people it is easier to write code to produce equations than use a mouse to click on menus and buttons to select the special characters needed for equations. LaTeX is widely used code-based document preparation system, with particular strengths in complex formatting needed by technical scientific documents. Although highly flexible, LaTeX is also complex and verbose, requiring a lot of typing to add the formatting code to your document. But don't worry, in this book we will use a much simpler document preparation system, known as markdown. We will discuss markdown in more detail in chapter XX, for now the main thing to know is that we use the text editor to write code and text. 
+ This method of creating documents is very common in disciplines such as mathematics and physics, where complex equations are written using code because for many people it is easier to write code to produce equations than use a mouse to click on menus and buttons to select the special characters needed for equations. LaTeX is a widely used code-based document preparation system, with particular strengths in complex formatting needed by technical scientific documents. Although highly flexible, LaTeX is also complex and verbose, requiring a lot of typing to add the formatting code to your document. But don't worry, in this book we will use a much simpler document preparation system, known as markdown. We will discuss markdown in more detail in chapter XX, for now the main thing to know is that we use the text editor to write code and text. 
 
 - The top right pane can have several tabs, depending on what you are doing. Most of the time you will see an 'Environment' tab and a 'History' tab. The Environment tab lists the objects that are currently available in your R session. For exampe, if you have executed code that reads an Excel spreadsheet into R and stores it as an R object, then you will see this object listed in the Environment tab. This tab is useful because you can get basic information at a glance about the size of objects that you make (e.g. how many rows and columns). This is convienent for quickly checking the output of your computations so you can see if your code is working as expected. The History tab shows the code you have previously executed in your R session. I rarely use this tab because I write code into the text editor and save the code to my computer, so I always have a copy of the code in the text editor. But if you are experimenting with some code in an expedient fashion, you can use the History tab to browse your previous commands to reuse and edit. You can also save the history of your R commands to a text file, but I don't recommend this as it is not an efficient method for keeping track of your work. A better strategy is to write code in the text editor, interspersed with text that explains what the code is doing, and save that document to your computer. We'll discuss this strategy more in chapter XX. 
 
@@ -109,7 +109,7 @@ When you start RStudio for the first time, you'll see your screen divided into t
 - The lower left pane is the console where code is executed. There are no buttons specific to the console, so direct interaction with this pane is limited. The most important part of this pane is the prompt, which looks like this `>`, and when this pane is active, there is a blinking cursor at the prompt. The space where the cursor is in is called the `command line`, where you type, paste, or send code. When you type at the prompt and press Enter, you are submitting code to be interpreted by R, and R will usually return the result in the console. Here is one of the simplest possible examples of using the console:
 
 ```
-> 1 + 1
+> 1 + 1 # I typed 1 + 1 and then pressed the 'enter' key on my keyboard
 [1] 2
 ```
 
@@ -118,7 +118,6 @@ When you start RStudio for the first time, you'll see your screen divided into t
   There are two useful features of the console that will save you time when working with R. First is the up arrow key on your keyboard, which allows you to re-run previous commands. If you place your cursor at the prompt, and press the up arrow key, you can browse the previously executed lines of code. Once you find the code you want to re-run, you can edit it in the console, if you wish, or simply press Enter to send it to the interpreter. The second handy feature of the console pane in RStudio is the small arrow icon at the right side of the title bar of the console. If you look at the top of the console pane, you'll see the word "Console", then you'll see a path to a folder on your computer, then at the end of that, you'll see a little curved arrow icon pointing to the right. The path on your computer in this console title bar is your 'Working Directory'. If you click on the small arrow, it will switch the Files pane to show the contents of your Working Directory. 
   
   The Working Directory is an important concept to understand because it is unlike anything you might have seen in Excel or other point-and-click software. The Working Directory is the directory where R is currently working, for example, where R will look when you read files into R, or save output from R to your computer. By default, your R working directory was probably set to an inconvienent directly when you installed the program (this is always the case for me), but this is easily changed. I find that the simplest method is to go to the RStudio toolbar menu, click on 'Session', then 'Set Working Directory' then 'To Source File Location'. You may see in other people using R code to set the working directory, but I don't recommend this. If you use code to set the working directory, your code will only work on your computer, in its current configuration of files and folders. This means that your code is not portable and not robust to change. If you reorganise your files, or give your code to a collaborator, the working directory will no longer match what is written in the code. This can lead to errors and frustration. So while the concept of the Working Directory is important to know about for working with R, you should not include it in your R code. You may need your code to refer to other directories relative to your main project directory (for example, a directory called 'data' that contains spreadsheets, etc.), but that is a different task to setting the Working Directory, and we'll look into that in Chapter XX. 
-
 
 Although I have described the default appearance, the location and combination of panes and tabs in RStudio are customisable via the toolbar menu (Tools -> Global Options -> Pane Layout). For example, I prefer to have to console on the upper right, and I often minimize some of the panes so I only see the text editor and the console. This makes it easier for me to keep track of what I'm doing and I don't get distracted by unnecesary details on my screen.
 
@@ -137,17 +136,17 @@ x <- c(4, 7, 12) # length measurements of three artefacts
 y <- mean(x)     # compute the mean length
 ```
 
-The `c()` is a function to combine our artefact measuremens into a type of set called a `vector`. A vector is which is a fundamental data object type in R that we will use a lot. In the above example we have stored the result of the `c()` function in an object that we call `x` (we can call it almost anything that we like, and we do not need to create `x` in advance). The second line of code in the above example computes the mean of 4, 7, and 12 (ie. (4 + 7 + 12)/3), and then assigns, or stores, the result in a object called `y`. We can then use both `x` and `y` later in our workflow for other tasks. This is useful because it means we don't have to recompute the mean repeatedly. An important new concept in this example is the assignment operator, `<-`, which we can translate as 'put the results from the right side of this symbol into the thing on the left side'. Note that in the above example I have not included the prompt character (`>`). Omitting this character makes it easier for you to copy and paste from this book into your R console so you can run the code yourself, and explore what happens when you make minor changes. 
+The `c()` is a function to combine our artefact measuremens into a type of set called a `vector`. A vector is a single sequence of data elements of the same type. In our example above all elements are numbers (as in our example above). There are two other commonly used vectors: a character vector where all elements could be letters or words, and a logical vector where all elements are logical constants, either `TRUE` or `FALSE`. The vector is a fundamental data type in R that we will use a lot. In the above example we have stored the result of the `c()` function in an object that we call `x` (we can call it almost anything that we like, and we do not need to create `x` in advance). The second line of code in the above example computes the mean of 4, 7, and 12 (ie. (4 + 7 + 12)/3), and then assigns, or stores, the result in a object called `y`. We can then use both `x` and `y` later in our workflow for other tasks. This is useful because it means we don't have to recompute the mean repeatedly. An important new concept in this example is the assignment operator, `<-`, which we can translate as 'put the results from the right side of this symbol into the thing on the left side'. Note that in the above example I have not included the prompt character (`>`). Omitting this character makes it easier for you to copy and paste from this book into your R console so you can run the code yourself, and explore what happens when you make minor changes. 
 
 There's a lot more vocabularly to come, but these are the key terms that you need to know to make sense of the rest of this book and to get started exploring R by yourself. 
 
 ### Packages
 
-Functions, such as `c()` and `mean()` in the above example, are at the heart of working with R, and are part of the reason for R's great versatility. They save a lot of time by minimizing typing and copy-and-pasting, so it's worth to invest some effort into learning how to use functions, and how to write your own functions. Functions are typically organised into `packages`, which you can download to extend the usefulness of R. We will use packages extensively in this book, and briefly discuss how and why you might write your own packages. 
+Functions, such as `c()` and `mean()` in the above example, are at the heart of working with R, and are part of the reason for R's great versatility. They save a lot of time by minimizing typing and copy-and-pasting, so it's worth to invest some effort into learning how to use functions, and how to write your own functions (more on that in Chapter XX). Functions are typically organised into `packages`, which you can download to extend the usefulness of R. We will use packages extensively in this book, and briefly discuss how and why you might write your own packages in Chapter XX. 
 
-The most common way to install R packages is to run the command, `install.packages()` at the R prompt. This will automatically download the package from the repository at [cran.r-project.org](http://cran.r-project.org) (you need to be connected to the internet) and install them in your system library. 
+The most common way to install R packages is to run the function, `install.packages()` at the R prompt. For example, if you run `install.packages("binford")`, you will automatically download the package `binford` from the repository at [cran.r-project.org](http://cran.r-project.org) (you need to be connected to the internet) and install them in your system library. The `binford` package contains datasents from his 2001 book 'Constructing Frames of Reference: An Analytical Method for Archaeological Theory Building Using Ethnographic and Environmental Data Sets'.
 
-Try this yourself by opening R and running these commands:
+Try this yourself by opening R and running these commands to install some useful packages that we will use in later chapters:
 
 ```{r eval = FALSE, tidy = FALSE}
 # install a single package
@@ -168,7 +167,7 @@ devtools::install_github("vqv/ggbiplot")
 # The two colons are a short-cut to avoid typing library(devtools)
 ```
 
-When R installs a package, it downloads the package to your system `library`. You must use the `library()` function to make the contents of the package available to your current R session. It's good practice to have the `library()` functions among the first few lines of your code, so other users can quickly see what packages they will need to have to prepare to run your code. For example, to use the functions in the `dplyr` package, you would need to first run
+When R installs a package, it downloads the package to your system `library`. You must use the `library()` function to make the contents of the package available to your current R session. It's good practice to have the `library()` functions among the first few lines of your code for a project, so other users can quickly see what packages they will need to have to prepare to run your code. For example, to use the functions in the `dplyr` package, you would need to first run
 
 ```{r eval = FALSE}
 library("dplyr")
@@ -195,7 +194,9 @@ If you are sure that your problem is new and unique, and you want to submit a qu
 1. The packages you are using, e.g. library(dplyr)    
 2. A small data set. R comes with many example data sets built-in, if you run `data()` you can see a list. These are very convenient to use for reproducible examples because you can count on everyone having them. If you want to include your own data, you can use `dput()` to generate R code that another person can copy and paste to recreate your data set.       
 3. Code. Your code should be easy to read, with spaces between operators (+, -, *, etc.) and after commas, and conformant to a style guide, such as Hadley Wickham's [-@wickham2014advanced] [style guide in Advanced R](http://adv-r.had.co.nz/Style.html). Your code should includes lines of commentary, which begin with `#`, to help others understand your problem. There should be just enough code to demonstrate your problem, don't burden your audience with haaving to make sense of lots of your code that is not central to your question. 
-4. A description of your R environment. The usual way to communicate your R environment (ie. your operating system type and version), is to include the output from `sessionInfo()` or `devtools::session_info()` (same output, but in a tidyer format) into your question.      
+4. A description of your R environment. The usual way to communicate your R environment (ie. your operating system type and version), is to include the output from `sessionInfo()` or `devtools::session_info()` (same output, but in a tidyer format) into your question.   
+
+The [reprex](http://jennybc.github.io/reprex/) package by Jenny Bryan provides some convenient functions that greatly simplify this process of preparing reproducible examples for seeking help online. 
 
 Don't worry if some of these terms are unfamiliar at the moment. The main thing to know at this point is that help is available, and that the quality of help you receive is often directly proportional to the effort you spend seeking it. 
 
@@ -207,4 +208,15 @@ Further reading:
 
 - http://ellisp.github.io/blog/2017/01/14/books
 - http://andrewgelman.com/2011/01/03/5_books/
+
+Notes on common mistakes:
+
+- http://arrgh.tim-smith.us/    
+- https://github.com/noamross/zero-dependency-problems/blob/master/misc/stack-overflow-common-r-errors.md   
+- http://www.burns-stat.com/pages/Tutor/R_inferno.pdf    
+
+Hypothesis testing:
+
+- http://allendowney.blogspot.com/2011/05/there-is-only-one-test.html    
+- https://ismayc.github.io/moderndiver-book (also 5NG, 5Mv)
 

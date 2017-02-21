@@ -34,3 +34,12 @@ knitr::write_bib(c(
 # - To get a [live preview of the book in HTML](https://bookdown.org/yihui/bookdown/serve-the-book.html): setwd and then `bookdown::serve_book(dir = ".", output_dir = "_book", preview = TRUE, in_session = TRUE, daemon = FALSE)`
 ```
 
+<!---
+# TODO
+- rexcel and jailbreakr: how to get a dataframe out of that?
+- where to put list and data frame indexing? ch4 prep
+- where to put regex? ch4 prep
+
+
+
+--->
