@@ -10,7 +10,16 @@ dataframe
 list of dataframes
 matrix
 
-## Dealing with typos and data entry mistakes
+## Dealing with data typos and inconsistences
+
+5CC: Five cleaning concepts for cleaning and tidying data to make it ready for analysis and visualisation 
+
+1. Names: spelling, spaces, using ifelse, gsub, regex    
+2. Types: character to numeric, extract numbers from strings
+3. Missing data: replacing with NA or 0, imputing    
+4. Splitting: separating one col into two or more
+5. Reshaping: wide <-> long
+
 
 changing column names
 regex to clean data values, remove spaces
