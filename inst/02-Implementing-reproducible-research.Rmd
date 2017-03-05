@@ -24,6 +24,10 @@ http://languagelog.ldc.upenn.edu/nll/?p=21956
  
 ## Literate programming
 
+The text editor does not include any tools for formatting your text _in situ_, for example you cannot make words appear in the editor with bold or italic characters. This is a deliberate design, and is typical among text editing programs used for writing code. When we use Microsoft Word, we are using a "what you see is what you get" editor -- we edit a document in a form resembling the final printed or presented document. The RStudio text editor is typical of text editors designed for coding in taking a different approach to formatting documents. When working with a plain text editor, we type unformatted plain text and code, and among the text we include instructions on how the final document should appear. We will discuss this further in Chapter XX, but as a quick example, if we wanted a word in bold, we would code it like `**this**`. In this example, the two asterix symbols will be interpreted by our computer when we convert our source document into a final version, such as a PDF, to produce a document with **this** word in bold.     
+
+This method of creating documents is very common in disciplines such as mathematics and physics, where complex equations are written using code because for many people it is easier to write code to produce equations than use a mouse to click on menus and buttons to select the special characters needed for equations. LaTeX is a widely used code-based document preparation system, with particular strengths in complex formatting needed by technical scientific documents. Although highly flexible, LaTeX is also complex and verbose, requiring a lot of typing to add the formatting code to your document. But don't worry, in this book we will use a much simpler document preparation system, known as markdown. We will discuss markdown in more detail in chapter XX, for now the main thing to know is that we use the text editor to write code and text. The advantage of these plain-text document preparation systems such as markdown is that     
+
 ## Version control
 
 
