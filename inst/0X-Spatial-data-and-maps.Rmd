@@ -4,6 +4,14 @@
   
 ## Overview
 
+library(sf)
+
+http://strimas.com/r/tidy-sf/
+https://walkerke.github.io/2016/12/spatial-pipelines/
+
+http://rpubs.com/mharris/r_mapping_spatial_data
+https://pakillo.github.io/GISwithR/#12
+
 ## Seeing the data
 
 ggplot 
