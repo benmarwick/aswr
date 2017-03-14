@@ -565,3 +565,20 @@ theme_rotate_x_text <- function(angle = -90,
 }
 
 
+#' Clean up a character vector to make it numeric
+#'
+#' Remove commas & whitespace, primarily, from https://github.com/hrbrmstr/hrbrmisc
+#'
+#' @param x character vector to process
+#' @return numeric vector
+#' @export
+make_numeric <- function(x) { as.numeric(gsub(",|[^0-9.]", "", trimws(x))) }
+
+#' Clean up a character vector to make it a percent
+#'
+#' Remove "%" primarily, convert to numeric & divide by 100, from https://github.com/hrbrmstr/hrbrmisc
+#'
+#' @param x character vector to process
+#' @return numeric vector
+#' @export
+make_percent <- function(x) { as.numeric(gsub("%", "", trimws(x))) / 100 }
