@@ -1,0 +1,23 @@
+# Collecting & organising data to analyse with R {#dataorganisation}
+  
+## Overview
+
+## Spreadsheets
+
+http://www.datacarpentry.org/spreadsheet-ecology-lesson/
+
+http://kbroman.org/dataorg/
+
+## Cells
+
+## File names
+
+CONISS
+
+
+
+
+
+
+
+

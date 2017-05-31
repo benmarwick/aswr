@@ -19,6 +19,35 @@ This book will teach you how to get started doing archaeological science with R:
 To be published by XXX in XXX 201X. 
 
  <!-- img src="cover.png" width="250" height="328" alt="Cover image" / -->
+ 
+Here is a summary of the progress of the book:
+
+```{r echo = FALSE}
+# get word counts of the chapters
+the_chapters <- list.files(pattern = "^[0-9]{2}.*Rmd$")
+
+# get word counts of each chapter
+library(wordcountaddin)
+library(purrr)
+library(tibble)
+library(tidyr)
+library(dplyr)
+library(knitr)
+
+the_word_counts_of_the_chapters <- 
+  map(the_chapters, 
+      ~wordcountaddin:::text_stats_fn_(readLines(.x))) %>% 
+  map_int(., ~.x$n_words_stri) %>% 
+  data_frame(chapter = the_chapters,
+             Wordcount = .) %>% 
+  separate(chapter, 
+           c("Number", "Title"), 
+             sep = "(?<=[0-9]{2})\\-(?=[A-Z]+)") %>% 
+  mutate(Title = gsub("-|.Rmd", " ", Title)) 
+
+kable(the_word_counts_of_the_chapters)
+```
+
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
@@ -30,7 +59,12 @@ knitr::write_bib(c(
 ```{r eval = FALSE, echo = FALSE}
 ### Notes to self
 
-# - To render the book to PDF and HTML (since it's [nested in a project directory](https://github.com/rstudio/bookdown/issues/215)), setwd and then `source('_render.R')`       
+# - To render the book to PDF and HTML (since it's [nested in a project directory](https://github.com/rstudio/bookdown/issues/215)), 
+# rmarkdown::render_site("inst/.", output_format = 'bookdown::gitbook', encoding = 'UTF-8')
+# setwd and then bookdown::render_book("index.Rmd", "bookdown::gitbook")
+# setwd and then `source('_render.R')` or 
+# Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook')" or 
+
 # - To get a [live preview of the book in HTML](https://bookdown.org/yihui/bookdown/serve-the-book.html): setwd and then `bookdown::serve_book(dir = ".", output_dir = "_book", preview = TRUE, in_session = TRUE, daemon = FALSE)`
 ```
 

@@ -6,8 +6,6 @@ opts_chunk$set(messages = FALSE,
 ```
 
 
-# (PART) Preparing the data {-}
-
 # Getting data into R {#gettingdatain}
   
 ## Overview

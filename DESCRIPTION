@@ -7,41 +7,42 @@ Authors@R: c(
             role = c("aut", "cre"),
             email = "benmarwick@gmail.com"),
       person("Bob", "Rudis", 
-             role = c("aut", "cre"),
+             role = c("ctb"),
              email = "bob@rud.is",
              comment = "functions from hrbrmisc"),
       person("Pascal", "Niklaus", 
-             role = c("aut", "cre"),
+             role = c("ctb"),
              email = "pascal.niklaus@@ieu.uzh.ch",
              comment = "misc functions"),
       person("Michael", "Toth", 
-             role = c("aut", "cre"),
+             role = c("ctb"),
             email = "mt.toth@gmail.com", 
             comment = "misc functions"),
       person("Karl", "Broman", 
-             role = c("aut", "cre"),
+             role = c("ctb"),
             email = "kbroman@biostat.wisc.edu", 
-            comment = "misc functions"),
-            
-            )
-             
-             
-             
-             
-             
-            Karl W Broman <kbroman@biostat.wisc.edu>
-
-Maintainer: The package maintainer <yourself@somewhere.net>
+            comment = "misc functions"))
+Maintainer: Ben Marwick <benmarwick@gmail.com>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+License: MIT + file LICENSE
 Suggests:
     dplyr,
     ggplot2,
-    scales
+    scales,
+    googlesheets,
+    purrr,
+    tibble,
+    tidyr
 Encoding: UTF-8
 LazyData: true
 Imports:
     bookdown
-Remotes: rstudio/bookdown
+Remotes: rstudio/bookdown,
+         hadley/xml2, 
+         rsheets/linen, 
+         rsheets/cellranger, 
+         rsheets/rexcel, 
+         rsheets/jailbreakr,
+         benmarwick/wordcountaddin
 RoxygenNote: 6.0.1

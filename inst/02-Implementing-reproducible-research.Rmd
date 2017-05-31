@@ -1,5 +1,3 @@
-# (PART) Motivation {-}
-  
 # Implementing reproducible research
   
 ## Overview
@@ -33,7 +31,7 @@ This method of creating documents is very common in disciplines such as mathemat
 ## Version control
 
 
-# Summary
+## Summary
 
 In this chapter I described two principles, literate programming and version control. These are dervied from computer science research and have been adopted by other disciplines, such as ecology and political science, to enable computational and statistical reproducibility. I also demonstrate the current software tools (Rmarkdown, knitr, and Git) that allow us to put these principles into practice. Over time, these software tools will change, and perhaps be replaced by something completely different. However, the principles that they are based on will endure, and are worth becoming familiar with as key concepts in computational and statistical reproducibility. 
 
