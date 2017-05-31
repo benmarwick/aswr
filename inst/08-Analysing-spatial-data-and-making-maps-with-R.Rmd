@@ -12,13 +12,13 @@ https://walkerke.github.io/2016/12/spatial-pipelines/
 http://rpubs.com/mharris/r_mapping_spatial_data
 https://pakillo.github.io/GISwithR/#12
 
-## Seeing the data
+## Making maps
 
 ggplot 
 ggmap
 scale and north arrow
 
-## Common spatial analysis tasks
+## Doing spatial analysis 
 
 polygon area
 counting points in an area

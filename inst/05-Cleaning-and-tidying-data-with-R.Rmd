@@ -45,7 +45,7 @@ filling in with previous values
 
 ## Joining data together
 
-rbind, cbind
+bind_rows, bind_cols
 left_join
 
 

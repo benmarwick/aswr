@@ -2,17 +2,17 @@
   
 ## Overview
 
-## Spreadsheets
+## File organisation
+
+## Spreadsheets organisation
+
+## Cell organisation
+
+## Summary
 
 http://www.datacarpentry.org/spreadsheet-ecology-lesson/
 
 http://kbroman.org/dataorg/
-
-## Cells
-
-## File names
-
-CONISS
 
 
 

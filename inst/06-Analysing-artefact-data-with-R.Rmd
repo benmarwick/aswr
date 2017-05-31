@@ -42,13 +42,13 @@ richness indeces
 
 
 ## Pottery 
-
+??
 
 ## Glass 
-
+# compositional, PCA, CA
 
 ## Metal
-
+# shapes?
 
 
 

@@ -2,7 +2,8 @@
 library(knitr)
 opts_chunk$set(messages = FALSE,
                warning = FALSE,
-               fig.align = 'center')
+               fig.align = 'center',
+               fig.width = 7)
 ```
 
 
