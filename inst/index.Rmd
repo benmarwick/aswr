@@ -22,7 +22,7 @@ To be published by XXX in XXX 201X.
  
 Here is a summary of the progress of the book:
 
-```{r writing-progress, echo = FALSE}
+```{r writing-progress, echo = FALSE, message = FALSE}
 
 library(wordcountaddin)
 library(purrr)
@@ -78,6 +78,8 @@ ggplot(book_stats_updated,
            colour = paste0(Number, "_", Title))) +
   geom_line() +
   scale_colour_discrete("Chapter")
+
+# total words per day
 
 
 
