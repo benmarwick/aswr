@@ -75,11 +75,56 @@ library(ggplot2)
 ggplot(book_stats_updated,
        aes(last_edit,
            Wordcount,
-           colour = paste0(Number, "_", Title))) +
+           colour = paste0(Number, " ", Title))) +
   geom_line() +
-  scale_colour_discrete("Chapter")
+  scale_colour_discrete("Chapter") + 
+  ylab("Word count per chapter") +
+  xlab("Date") +
+  theme_bw() +
+  theme(legend.position = "bottom",
+        legend.text = element_text(size = 6)) +
+  ggtitle(paste0("Current length of each chapter (Total = ",
+                 prettyNum(sum(the_word_counts_of_the_chapters$Wordcount),
+                 big.mark = ","),
+                 " words)"))
+          
 
 # total words per day
+book_stats_updated_per_day <- 
+book_stats_updated %>% 
+  # remove duplicate rows
+  distinct(Number, Title, Wordcount, .keep_all = TRUE) %>%  
+  # get day
+  mutate(day = as.Date(last_edit,
+                       format = "%Y-%m-%d"),
+         Title = paste0(Number, " ", Title)) %>% 
+  # get max word count for each chapter for each day
+  group_by(day, Title) %>% 
+  summarise(max_word_count = max(Wordcount)) %>% 
+  # sort by date
+  arrange(day) %>% 
+  group_by(Title) %>% 
+  # compute change in word count for each chapter from the previous day
+  mutate(diff_from_previous_day =  c(0, diff(max_word_count))) %>% 
+  group_by(day) %>% 
+  # tally up for all chapters on each day
+  summarise(words_per_day = sum(diff_from_previous_day))
+
+ggplot(book_stats_updated_per_day,
+       aes(day, 
+           words_per_day)) +
+  geom_point() +
+  geom_line() +
+  ylab("Words written per day") +
+  theme_bw() + 
+    ggtitle(paste0("Words written per day (Total = ",
+                 prettyNum(sum(the_word_counts_of_the_chapters$Wordcount),
+                 big.mark = ","),
+                 " words)"))
+  
+
+  
+
 
 
 
