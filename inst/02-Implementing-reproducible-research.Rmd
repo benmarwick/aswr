@@ -28,7 +28,7 @@ The general principle of literate programming is to write code and text in one d
 
 Using R we have several options for doing literate programming. The one I recommend is centred on the `knitr` package and the `markdown` plain text format. It is easy to learn, very well supported with extensive documentation [@YihuiKnitrBook], and enables all the usual scholarly writing requirements, such as captioning and cross-references figures and tables, citations and complex notation. The file format we use for this is called R Markdown, which is a plain text file that has the .Rmd suffx. We write text and code in the Rmd file using a text editor (such as RStudio), and 'render' or 'knit' that Rmd into an output format such as Microsoft Word, HTML or PDF. The rendered version contains the formatted text, citations, tables, figures, etc., and is suitable for submission to a journal, or circulation to colleagues. When writing an Rmd file, you typically have three key components: (1) the document metadata (usually a section at the top of the document), (2) the narrative text (the text of your article or report), and (3) the code blocks (sections of R code in between paragraphs of narrative text that generate plots, tables and other output to appear in the rendered document). 
 
-### Document metadata
+### Document metadata, citations and the bibliography
 
 The metadata section is defined by three dashes at the top and bottom of the section. In this section, we can indicate the title, author, date and many other details of the document. Crucially we can also specify what type of document to render the Rmd into, e.g. Microsoft Word document, PDF or HTML file. The metadata contains instructions for document-level details such as whether or not to include a table of contents, what style to use for the citations and reference list, and what template should be used to style the rendered document (e.g. to add line numbers). Here is an example of the metadata section from the Rmd file of one of my publications: 
 
@@ -90,15 +90,15 @@ Multiple cites by same author | `many good examples by Marwick et al. [-@Marwick
 
 When the Rmd document is rendered, these citations appear in the output document with proper styling and the reference list is automatically generated and added to the end of the document. The styleing of the citations and reference list is controlled by the  `.csl` file, it could be author-date, as above, or numbered citations, etc.
 
-### Narrative text
+### Narrative text, structuring the document and special characters in the text
 
 Narrative text refers to the body text of your document, such as this paragraph you're currently reading. Most archaeologists are accustomed to writing in a word processor such as Miscroft Word, where can change the appearance of the document while we write, for example by adding bold formatting and changing the size of the font. When we use Microsoft Word, we are using a "what you see is what you get" editor -- we edit a document in a form resembling the final printed or presented document. Writing an R Markdown document is a different experience because we writing in plain text, and we include instructions in the document that only apply formatting during the process of rendering to generate the output. This means that while we are writing an R Markdown document we do not see bold text or text in difference sizes. This is a very typical writing experience for many researchers in the natural and physical sciences, where the LaTeX document preparation system is popular for writing journal articles [@brischoux2009don]. LaTeX is a widely used code-based document preparation system, with particular strengths in complex formatting needed by technical scientific documents. Although highly flexible, LaTeX is also complex and verbose, requiring a lot of typing to add the formatting code to your document. LaTeX requires a basic working knowledge of computer programming, so non-programming researchers seldom use it. This method of creating documents is preferred in disciplines such as mathematics and physics, where complex equations are written using code, because for many people it is easier to write code to produce equations than use a mouse to click on menus and buttons to select the special characters needed for equations. Markdown is closely related to LaTeX, but much simpler system for preparing documents. Markdown does not require any programming skills to use, so it is well-suited for researchers in the social sciences. The advantage of Markdown over LaTeX is that the document is much less cluttered with formatting code for typical writing, but LaTeX can be used where more complex symbols, expressions or formatting are necessary. 
 
-There are several reasons why a plain text document preparation system might be prefereble over a word processor. The most compelling one is that we cannot interweave exectutible R code in a word processor document. Of course we can add R code to a word processor document, but there is no way to run the code in that document to update the document. We must copy and paste updated results into the word processor document. With a plain text format such as R Markdown, we can include R code, and have that code generate output to update the figures, tables and other results in the document. This is the most important charactersting of R Markdown that makes our documents more reproducbile. 
+There are several reasons why a plain text document preparation system might be prefereble over a word processor. The most compelling one is that we cannot interweave exectutible R code in a word processor document. Of course we can add R code to a word processor document, but there is no way to run the code in that document to update the document. We must copy and paste updated results into the word processor document. With a plain text format such as R Markdown, we can include R code, and have that code generate output to update the figures, tables and other results in the document. This is the most important charactersting of R Markdown that makes our documents more reproducbile. Finally, plain text files are able to take advantage of the git version control system for collaboration. This system allow fine-grained control of the history of changes to a plain text document, more on this below in the [Version Control](#vc) section below.
 
 Some other reasons to use a plain text format that are important to me include portability, compactness, security and collaboration [@cottrell1999word]. Portability means that when we use a plain text system such as R Markdown, anybody, using any computer platform, will be able to read our text, even if they don't have the means to view or print the rendered version. With plain text, the accessibiltiy of the contents of our document is not restricted to a certain program, or a specific operating system, which might become increasly hard to find working copies of in the future. This guarantee of long-term accessibility should have a special appeal to archaeologists who are more senstive than most researchers to the decadal pace of technological change. Compactness refers to the size of the file, often plain text files requires orders of magnitude less disk space that corresponding word processor files. This means plain text files are more quicker and more responsive to work with, and easier to circulate and store. Security is about the risk of losing your document to software crashes or file corruption. With a plain text document we have much less that can go wrong in the normal course of preparing the document. 
 
-Choosing software to write plain text documents can be challenging because of the wide variety of options. I recommend RStudio because it contains many convienences specifically for writing R Markdown that save time and effort. For example, RStudio will highlight markdown text and R code in a way that makes it more readable. It will automatically indent or tidy up your code as you write it. It will also passively signal to you when you’ve done something wrong in your code (such as forget a closing bracket or semicolon or quotation mark). RStudio also comes with Pandoc built-in, which is the software that helps with converting between Markdown and Micrsoft Word, PDF and HTML. Having Pandoc built-in to RStudio saves time working with Pandoc directly. 
+Choosing software to write plain text documents can be challenging because of the wide variety of options. I recommend RStudio because it contains many comprensive support for writing R Markdown that save time and effort. For example, RStudio will highlight markdown text and R code in a way that makes it more readable. It will automatically indent or tidy up your code as you write it. It will also passively signal to you when you’ve done something wrong in your code (such as forget a closing bracket or semicolon or quotation mark). RStudio also comes with Pandoc built-in, which is the software that helps with converting between Markdown and Micrsoft Word, PDF and HTML. Having Pandoc built-in to RStudio saves time working with Pandoc directly. 
 
 Other popular editors for writing R Markdown documents include Sublime Text (for OSX only), Notepad++ (for Windows only), Atom (cross-platorm) and Emacs (also cross-platorm). These other editors are ideal if you enjoy spening time configuring and customising your writing environment. If your priority is writing text and code, or you are collaborationg with authors who don't enjoy spening time configuring and customising, then RStudio is a good choice. The RStudio text editor, like the others, do not include any tools for formatting your text _in situ_, for example you cannot make words appear in the editor with bold or italic characters. This is a deliberate design, and is typical among text editing programs used for writing code and Markdown. When working with a plain text editor, we type unformatted plain text and code, and among the text we include instructions on how the final document should appear. For example if we want a word to appear in italics, we would type in our R Markdown document it like `*this*`. In this example, when we convert our R Markdown document into a final version, such as a PDF, the two asterix symbols will be interpreted by Pandoc to produce a document with *this* word in italics. Headings and subheadings are indicated by `#` symbols, the top level heading has a single `#` directly preceeding the header text, and second and third level headings have `##` and `###`, and so on, like so: 
 
@@ -124,17 +124,94 @@ superscript E=mc^2^ | `E=mc^2^`
 With LaTeX it is possible to include a great range of mathematical symbols into your text. There are numerous online sources to look up the notation for a specific symbol or expression, e.g. <https://en.wikibooks.org/wiki/LaTeX/Mathematics>
 
 
-### Code blocks and inline code
+### Code blocks, cross-referencing figures and tables, and inline R code
 
-...code chunks...
+In an R Mardowm document code blocks (also known as chunks) are demarcated by three backticks, followed by curly brackets indicating the programming language of the code. Here is a very simple code block that demonstrates how the backticks are used:
 
-...captions and cros references...
+````r
+`r ''````{r}
+1 + 1
+```
+````
+
+If this block was in our document, the output would look like this:
+
+```{r}
+1 + 1
+```
+
+Often in writing for research we don't want all the code blocks to be visible in the rendered output because they disrupt the reader's experience with the contents of the document (and journal editors don't like to see code blocks in submitted manuscripts). We can stop the code blocks from appearing in the rendered output in two ways. First is an option we can set for each block in the document, in case we case to show some blocks and hide others in the rendered output. Second is a single setting we can make for the whole document that hides all the blocks. To hide one code block we can use the `echo` option in the block we want to hide, like this:
+
+````r
+`r ''````{r echo = FALSE}
+1 + 1
+```
+````
+
+But to hide all the blocks, we add a new block at the top of our document, directly below our document metadata, to set document-wide options, like this:
+
+````r
+`r ''````{r include = FALSE}
+library(knitr)
+opts_chunk$set(echo = FALSE)
+```
+````
+
+Note that this example has both `include = `, and `echo = `. They are subtly different, `include = FALSE` will let the code run, but include neither the text of the code nor its output in the rendered document, while `echo = FALSE` hides the code but lets the output appear (such as a plot). There are a large number of options for controlling the behaviour of code blocks in R Markdown documents. These are documented at <https://yihui.name/knitr/options/>,  @YihuiKnitrBook and @Gandrud2015. I typically use these options to configure how the code blocks appear in my rendered documents:
+
+```{r eval = FALSE}
+library(knitr)
+opts_chunk$set(echo = FALSE,
+               warning = FALSE,
+               message = FALSE,
+               dpi = 900,
+               fig.align = 'center')
+```
+
+In addition to hiding all the code blocks with `echo = FALSE`, the `warning = ` and `message = ` options prevent these types of messages from appearing with my output. This means that if I have a code block that generates a plot, but might also produce a warning, I will not see that that warning in my rendered output. I will still see the warnings and messages while I am developing the code interactively in the console, and they will be printed in the console when the document is rendered. The `dpi =` option ensures that the resolution of the plots that are created by the code blocks are suitably high, and `fig.align =` centre-aligns my figures.  
+
+Another important option for managing code blocks in an R Markdown document is labelling them. Labelling is useful for two reasons, firstly for efficiently navigating through many blocks in a document, and secondly to enable cross-referencing of tables and figures. Here's an example of a code block with a label:
+
+````r
+`r ''````{r simple-addition, echo = FALSE}
+1 + 1
+```
+````
+
+In this example the label is 'simple-addition', and this is the key to make cross-references work in R Markdown. Code block labels have a few constraints, they can only contain alphanumeric characters (a-z, A-Z, 0-9), slashes (/), or dashes (-). Underscores are not allowed in code block labels, and code block labels must be unique, you cannot have two blocks with the same label. We use the labels to link in-text cross-reference to the output of the code block with that label. The general for of cross-referencing is to type `\@ref(fig:label)` where `label` is the code block label that you are referring to. If you are referring to a code block that produces a table (by using `knitr::kable()`), then the general form is `\@ref(tab:label)`. In addition to a code block label, a second element is required to enable cross-referencing. This is a caption, which we can add using the `fig.cap` option in the first line of the code block.  For example, this code block produces a simple plot, and is labelled 'simple-plot', and we have set the caption as 'A simple plot' :
+
+````r
+`r ''````{r simple-plot, echo = FALSE, fig.cap = "A simple plot"}
+plot(1:10)
+```
+````
+
+```{r simple-plot, echo = FALSE, fig.cap = "A simple plot"}
+plot(1:10)
+```
+
+When we want to refer to that plot in our text, we type `\@ref(fig:simple-plot)` and this will be rendered into the figure number that this plot has in our document, for example, Figure \@ref(fig:simple-plot). 
+
+Often in writing for research we want to include some numeric output within our text, such as the output of some data analysis or a hypothesis test. For writers using Microsoft Word or similiar software, they will compute their result in another program, such as Microsoft Excel or SPSS, and then paste the results into their Word document. When writing in R Markdown document, we can write R code in the middle of a sentence to compute a result, and when the document is rendered the code is excecuted and numerical output appears in place of the R code. Inline R code is demarcated with a single backtick at the start and end, and the letter 'r' to indicate the programming language. Here is a simple example: in our R Markdown document we type `` `r '\x60r  5 * 2\x60'` `` (as in 'five times two'), and then when we render that document we will see `r 5 * 2` in place of the R code. 
+
+When writing in line R code it is good practice to keep the code short so that the code doesn't interrupt the flow of the sentence for the reader (i.e. you, when you are writing the Rmd document, and your colleagues who are also editing that document). An easy way to keep the inline code short is to use a code block for the more complex operates, and then assign the result that you want to show in the text to an object. Here iss a simple code block to demonstrate this approach:
+
+```{r}
+# We add up all the numbers from 1 to 10
+x <- sum(1:10)  
+```
+
+And here is our narrative text that includes inline code to use the output from that code block in a sentence. The inline code is typed as: `` `r '\x60r  x\x60'` ``, and we can use the output like this: The sum of all the numbers from 1 to 10 is `r x`. This appoach is especially convienent for extracting a few values value from a large table or other data object, and rounding them so it is suitable to include in a sentence. 
+
+
+
+
 
    
 
     
 
-## Version control
+## Version control {#vc}
 
 
 ## Summary

@@ -1,4 +1,52 @@
+#  bround
+#'
+#' Round a number, preserving extra 0's
+#'
+#' Round a number, preserving extra 0's.
+#'
+#' From \url{https://github.com/kbroman/broman}
+#'
+#' #' @author Karl Broman \email{kbroman@gmail.com}
+#'
+#' @param x Number to round.
+#'
+#' @param digits Number of digits past the decimal point to keep.
+#'
+#' @details
+#' Uses \code{\link[base]{sprintf}} to round a number, keeping extra 0's.
+#'
+#' @export
+#' @return
+#' A vector of character strings.
+#'
+#' @examples
+#' bround(51.01, 3)
+#' bround(0.199, 2)
+#'
+#' @seealso
+#' \code{\link[base]{round}}, \code{\link[base]{sprintf}}
+#'
+#' @keywords
+#' utilities
+bround <-
+  function(x, digits=1)
+  {
+    if(digits < 1)
+      stop("This is intended for the case digits >= 1.")
 
+    if(length(digits) > 1) {
+      digits <- digits[1]
+      warning("Using only digits[1]")
+    }
+
+    tmp <- sprintf(paste("%.", digits, "f", sep=""), x)
+
+    # deal with "-0.00" case
+    zero <- paste0("0.", paste(rep("0", digits), collapse=""))
+    tmp[tmp == paste0("-", zero)] <- zero
+
+    tmp
+  }
 
 
 #' pull a vector or scalar (vector of length one) from a data frame
@@ -179,6 +227,7 @@ xtreme <- function(x,f=3.5)
 #' @return a character vector the same length as the input vector
 #' @param x a numeric vector to format
 #' @param smbl a symbol you'd like to prefix your numbers by
+#' @export
 #' @examples
 #' human_numbers(c(1000000 , 1500000, 10000000000))
 #' human_numbers(c(1.200000e+05, -2.154660e+05, 2.387790e+05, 4.343500e+04 ,5.648675e+12), "$")

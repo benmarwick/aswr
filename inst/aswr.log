@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6300) (preloaded format=xelatex 2017.5.30)  30 MAY 2017 21:51
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6300) (preloaded format=xelatex 2017.5.30)  4 JUN 2017 11:54
 entering extended mode
 **./aswr.tex
 (aswr.tex
@@ -881,7 +881,7 @@ LaTeX Info: Redefining \nameref on input line 131.
 ] [2
 
 ] (aswr.toc
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 3.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 4.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -889,325 +889,164 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `lmr' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 3.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 4.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 3.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 4.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 3.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 4.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 3.
+(Font)              <10> on input line 4.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 3.
+(Font)              <7> on input line 4.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 3.
-LaTeX Font Info:    Try loading font information for U+msa on input line 3.
+(Font)              <5> on input line 4.
+LaTeX Font Info:    Try loading font information for U+msa on input line 4.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\microtype\mt-msa.cfg"
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 3.
+LaTeX Font Info:    Try loading font information for U+msb on input line 4.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\microtype\mt-msb.cfg"
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-) [3])
+))
 \tf@toc=\write5
 \openout5 = `aswr.toc'.
 
-[4]
-Chapter 1.
-[5
+[3] [4
 
-] [6
+]
+Chapter 1.
+[5] [6
 
 ]
 Chapter 2.
-[7]
+[7] [8
 
-Package natbib Warning: Citation `mccullough2008accuracy' on page 8 undefined o
-n input line 230.
-
-
-Package natbib Warning: Citation `yalta2008accuracy' on page 8 undefined on inp
-ut line 230.
-
-
-Package natbib Warning: Citation `keller2000applied' on page 8 undefined on inp
-ut line 232.
-
-
-Package natbib Warning: Citation `almiron2009' on page 8 undefined on input lin
-e 237.
-
-
-Package natbib Warning: Citation `keeling2007comparative' on page 8 undefined o
-n input line 237.
-
-[8] [9]
-
-Package natbib Warning: Citation `de2015r' on page 10 undefined on input line 3
-85.
-
-
-Package natbib Warning: Citation `braun2016first' on page 10 undefined on input
- line 386.
-
-
-Package natbib Warning: Citation `matloff2011art' on page 10 undefined on input
- line 388.
-
-
-Package natbib Warning: Citation `wickham2014advanced' on page 10 undefined on 
-input line 389.
-
-[10]
-Overfull \hbox (24.63794pt too wide) in paragraph at lines 460--463
-\TU/lmr/m/n/10 Once you have R installed, it is time to download RStudio. To do
-wnload RStudio, visit []www.rstudio.com/download[]. 
- []
-
-
-Package natbib Warning: Citation `verzani2011getting' on page 11 undefined on i
-nput line 499.
-
-
-Package natbib Warning: Citation `Gandrud2015' on page 11 undefined on input li
-ne 499.
-
-
-Package natbib Warning: Citation `racine2012rstudio' on page 11 undefined on in
-put line 500.
-
-[11] [12] [13]
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 699.
-[14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 892--894
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 894--901
-
- []
-
-
-Package natbib Warning: Citation `wickham2014advanced' on page 16 undefined on 
-input line 903.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 944--946
-
- []
-
-
-Overfull \hbox (35.31499pt too wide) in paragraph at lines 946--948
-[][]$[][][][][] [] [] [] [][][][][][] [] [][][] [] [][][][][][][][] [] [][][][]
-[][][][][][][][][][][][][][][][][][][][][][] [] [][][][] [] [][][][][][] [] [][
-][][] [] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] [
 ]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 946--948
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 956--958
-
- []
-
-[16]
 Chapter 3.
+[9] [10]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Package natbib Warning: Citation `Goodman341ps12' on page 17 undefined on input
- line 968.
-
-
-Package natbib Warning: Citation `Prinz2011drugtargets' on page 17 undefined on
- input line 986.
-
-
-Package natbib Warning: Citation `Begley2012clinical' on page 17 undefined on i
-nput line 986.
+[11]
+Overfull \hbox (76.24498pt too wide) in paragraph at lines 391--391
+[]\TU/lmtt/m/n/10 title: []Movement of lithics by trampling: An experiment in t
+he Madjedbebe sediments, northern Australia[][] 
+ []
 
 
-Package natbib Warning: Citation `baggerly2009deriving' on page 17 undefined on
- input line 989.
+Overfull \hbox (6796.24498pt too wide) in paragraph at lines 391--391
+[]  \TU/lmtt/m/n/10 Understanding post-depositional movement of artefacts is vi
+tal to making reliable claims about the formation of archaeological deposits. H
+uman trampling has long been recognised as a contributor to post-depositional a
+rtefact displacement. We investigate the degree to which artefact form (shape-a
+nd-size) attributes can predict how an artefact is moved by trampling. We use t
+he Zingg classification system to describe artefact form. Our trampling substra
+te is the recently excavated archaeological deposits from Madjedbebe, northern 
+Australia. Madjedbebe is an important site because it contains early evidence o
+f human activity in Australia. The age of artefacts at Madjedbebe is contentiou
+s because of the possibility of artefacts moving due to trampling. We trampled 
+artefacts in Madjedbebe sediments and measured their displacement, as well as m
+odelling the movement of artefacts by computer simulation. Artefact elongation 
+is a significant predictor of horizontal distance moved by trampling, and lengt
+h, width, thickness and volume are significant predictors of the vertical dista
+nce. The explanatory power of these artefact variables is small, indicating tha
+t many other factors are also important in determining how an artefact moves du
+ring trampling. Our experiment indicates that trampling has not contributed to 
+extensive downward displacement of artefacts at Madjedbebe.[] 
+ []
+
+[12]
+Overfull \hbox (181.24498pt too wide) in paragraph at lines 457--457
+[]\TU/lmtt/m/n/10 title={Computational Reproducibility in Archaeological Resear
+ch: Basic Principles and a Case Study of Their Implementation},[] 
+ []
 
 
-Package natbib Warning: Citation `Herndon2013austerity' on page 17 undefined on
- input line 989.
+Overfull \hbox (133.99498pt too wide) in paragraph at lines 457--457
+[]\TU/lmtt/m/n/10 keywords={Reproducible research; Computer programming; Softwa
+re engineering; Australian archaeology; Open science},[] 
+ []
 
+[13] [14]
+Overfull \hbox (370.24498pt too wide) in paragraph at lines 655--655
+[]\TU/lmtt/m/n/10 ### This is my third-level heading, i.e. a sub-sub-heading. P
+robably we don[]t want to many levels of heading below this one because it may 
+overwhelm our reader.[] 
+ []
 
-Package natbib Warning: Citation `Vannoorden2011retractions' on page 17 undefin
-ed on input line 992.
+Missing character: There is no δ in font [lmroman10-regular]:mapping=tex-text;!
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Package natbib Warning: Citation `Steen2013retractions' on page 17 undefined on
- input line 992.
-
-
-Package natbib Warning: Citation `nosek2015open' on page 17 undefined on input 
-line 999.
-
-
-Package natbib Warning: Citation `reichman2011challenges' on page 17 undefined 
-on input line 1001.
-
-
-Package natbib Warning: Citation `barnes2010publish' on page 17 undefined on in
-put line 1003.
-
-
-Package natbib Warning: Citation `Ince1012opencomputer' on page 17 undefined on
- input line 1003.
-
-
-Package natbib Warning: Citation `Morin2012blackbox' on page 17 undefined on in
-put line 1003.
-
-
-Package natbib Warning: Citation `wilson2014best' on page 17 undefined on input
- line 1007.
-
-
-Package natbib Warning: Citation `Hampton2015tao' on page 17 undefined on input
- line 1007.
-
-
-Package natbib Warning: Citation `Sandve2013tenrules' on page 17 undefined on i
-nput line 1007.
-
-
-Package natbib Warning: Citation `Schulte2012literate' on page 17 undefined on 
-input line 1015.
-
+[15] [16]
+Chapter 4.
 [17
 
-]
-
-Package natbib Warning: Citation `Baker2016' on page 18 undefined on input line
- 1037.
-
-
-Package natbib Warning: Citation `Marwick2016JAMT' on page 18 undefined on inpu
-t line 1088.
-
-
-Package natbib Warning: Citation `knuth1992literate' on page 18 undefined on in
-put line 1094.
-
-[18] [19] [20
-
-]
-Chapter 4.
-[21] [22
+] [18
 
 ]
 Chapter 5.
-[23] [24
+[19] [20
 
-]
+] [21] [22]
 Chapter 6.
-[25]
-File: images/rstudio_tab_complete_file_browsing.png Graphic file (type QTm)
-<use  "images/rstudio_tab_complete_file_browsing.png" >
-File: images/simple_excel_file_organisation.png Graphic file (type QTm)
-<use  "images/simple_excel_file_organisation.png" >
+[23
 
-Package natbib Warning: Citation `MarwickJerimalai' on page 26 undefined on inp
-ut line 1283.
+] [24
 
-[26]
-File: images/read_excel_help_page.png Graphic file (type QTm)
-<use  "images/read_excel_help_page.png" >
-
-Package natbib Warning: Citation `de2015r' on page 27 undefined on input line 1
-391.
-
-
-Package natbib Warning: Citation `matloff2011art' on page 27 undefined on input
- line 1392.
-
-
-Package natbib Warning: Citation `wickham2014advanced' on page 27 undefined on 
-input line 1393.
-
-[27] [28] [29]
-
-Package natbib Warning: Citation `MarwickVanVlack' on page 30 undefined on inpu
-t line 1506.
-
-File: images/messy_ktc_data.png Graphic file (type QTm)
-<use  "images/messy_ktc_data.png" > [30] [31] [32] [33
-
-] [34]
+] [25] [26]
 Chapter 7.
+[27
 
-Underfull \hbox (badness 10000) in paragraph at lines 1647--1649
+] [28
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1651--1653
-
- []
-
-[35
-
-] [36] [37
-
-] [38]
+] [29] [30]
 Chapter 8.
-[39
-
-] [40] [41
-
-] [42]
-Chapter 9.
-[43
+[31
 
 ]
 Overfull \hbox (14.94843pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 44 \TU/lmr/m/sl/10 CHAPTER 9.  WORKING WITH STRATIGRAPHIC DATA F
+\TU/lmr/m/n/10 32 \TU/lmr/m/sl/10 CHAPTER 8.  WORKING WITH STRATIGRAPHIC DATA F
 ROM ARCHAEOLOGICAL EXCAVATIONS
  []
 
-[44
+[32
 
-] [45] [46]
-Chapter 10.
-No file aswr.bbl.
+] [33] [34]
+Chapter 9.
+(aswr.bbl [35
 
-Package natbib Warning: There were undefined citations.
+] [36
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1765.
-[47
-
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1765.
+] [37])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 748.
+[38]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 748.
 (aswr.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1765.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1765.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 748.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 748.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 21880 strings out of 427867
- 394451 string characters out of 3151872
- 529762 words of memory out of 3000000
- 25607 multiletter control sequences out of 15000+200000
- 16383 words of font info for 47 fonts, out of 3000000 for 9000
+ 21852 strings out of 427867
+ 394281 string characters out of 3151872
+ 529153 words of memory out of 3000000
+ 25593 multiletter control sequences out of 15000+200000
+ 16375 words of font info for 46 fonts, out of 3000000 for 9000
  1314 hyphenation exceptions out of 8191
- 41i,6n,68p,10404b,409s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,7n,68p,10404b,461s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Error -1073741819 (driver return code) generating output;
 file aswr.pdf may not be valid.
