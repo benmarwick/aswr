@@ -126,7 +126,7 @@ superscript ^14^C | `^14^C`
 With LaTeX it is possible to include a great range of mathematical symbols into your text. There are numerous online sources to look up the notation for a specific symbol or expression, e.g. <https://en.wikibooks.org/wiki/LaTeX/Mathematics>
 
 
-### Code blocks, cross-referencing figures and tables, and inline R code
+### Code blocks, cross-referencing figures and tables, captions, and inline R code
 
 In an R Mardowm document code blocks (also known as chunks) are demarcated by three backticks, followed by curly brackets indicating the programming language of the code. Here is a very simple code block that demonstrates how the backticks are used:
 
@@ -193,22 +193,41 @@ Another important option for managing code blocks in an R Markdown document is l
 In this example the label is 'simple-addition', and this is the key to make cross-references work in R Markdown. Code block labels do have a few constraints, they can only contain alphanumeric characters (a-z, A-Z, 0-9), slashes (/), or dashes (-). Underscores are not allowed in code block labels, and code block labels must be unique, you cannot have two blocks with the same label. We use the labels to link in-text cross-reference to the output of the code block with that label. The general for of cross-referencing is to type `\@ref(fig:label)` where `label` is the code block label that you are referring to. If you are referring to a code block that produces a table (by using `knitr::kable()`), then the general form is `\@ref(tab:label)`. In addition to a code block label, a second element is required to enable cross-referencing. This is a caption, which we can add using the `fig.cap` option in the first line of the code block.  For example, this code block produces a simple plot, and is labelled 'simple-plot', and we have set the caption as 'A simple plot' :
 
 ````r
-`r ''````{r simple-plot, echo = FALSE, fig.cap = "A simple plot"}
+`r ''````{r simple-plot, echo = FALSE, fig.cap = = "This is a simple plot."}
 plot(1:10)
 ```
 ````
 
-```{r simple-plot, echo = FALSE, fig.cap = "A simple plot"}
+```{r simple-plot, echo = TRUE, fig.cap = "This is a simple plot."}
 plot(1:10)
 ```
 
 When we want to refer to that plot in our text, we type `\@ref(fig:simple-plot)` and this will be rendered into the figure number that this plot has in our document, for example, Figure \@ref(fig:simple-plot). Occasionally we need to include a cross-reference within the caption of a table or figure. To make this work need to add one backslash, like this `\\@ref(fig:simple-plot)`. The second backslash 'escapes' or hides the other backslash from being interpreted by R. This is necessary because the backslash is one of a small set of special characters, or metacharacters that have specific meaning in R that is different from how we use them in English writing. The others metacharacters are: $ * + ? [ ] ^ { } | ( ) \ and the period at the end of this sentence. The special properties of these metacharacters are very useful for cleaning and manipulating data, we'll discuss this more in Chapter XX.
 
-Felating to figures, another code block option that I use often is `fig.width`. When writing a manuscript for submission to a journal, I will check the journal's instructions to authors for information about figure sizes. Often they specify a width in millimeters for images that span one or two columns. You can see in one of the above code blocks I created an object called `fig_width_one_col`, this just holds a single numeric value for the width of a figure (in inches) in order to span two columns in one of the archaeology journals that I have published in. This saves me time so I don't have to adjust the width of each figure indvidually. I can use this value in a code chunk to determine how wide the resulting figure will be, like this: 
+Relating to figures, another code block option that I use often is `fig.width`. When writing a manuscript for submission to a journal, I will check the journal's instructions to authors for information about figure sizes. Often they specify a width in millimeters for images that span one or two columns. You can see in one of the above code blocks I created an object called `fig_width_one_col`, this just holds a single numeric value for the width of a figure (in inches) in order to span two columns in one of the archaeology journals that I have published in. This saves me time so I don't have to adjust the width of each figure indvidually. In this example we can see three important functions: 1) how to set the width of the plot using `fig.width =`, 2) how to cross-reference another figure elswhere in the document with `\\@ref`, and 3) how to use a citation in a caption (just like we would in a paragraph of narrative text: 
 
-```{r simple-plot-one-col-wide, echo = FALSE, fig.cap = "A simple plot. This plot is one column wide.", fig.width = fig_width_one_col}
+````r
+`r ''````{r simple-plot-one-col-wide, echo = TRUE, fig.cap = "A simple plot. This plot is one column wide, unlike Figure `` `\\@ref(fig:simple-plot)` `` which is wider. A classic source of information for plotting in R is @murrell2016Rgraphics.", fig.width = fig_width_one_col}
 plot(1:10)
 ```
+````
+
+```{r simple-plot-one-col-wide, echo = FALSE, fig.cap = "A simple plot. This plot is one column wide, unlike Figure \\@ref(fig:simple-plot) which is wider. Good sources of information for plotting in R include @murrell2016Rgraphics and @wickham2016ggplot2.", fig.width = fig_width_one_col}
+plot(1:10)
+```
+
+Including tables in R Markdown is similarly straightforward. I typically use the `kable()` function from the knitr package, but there are a many other packages for producing more complex tables. Table \@ref(tab:simple-table) shows the output of this function. 
+
+```{r, include=FALSE}
+a_table_about_tables <- readr::read_csv("data/a_table_about_tables.csv")
+```
+
+```{r simple-table, echo = FALSE}
+knitr::kable(a_table_about_tables, 
+      caption = "The table summarises @ehrenberg1977rudiments's simple and classic guidelines for presenting data in tables. To make the guidelines more memorable, we can abbreviate them into the mnemonic 'oracle'. These guidelines should not be followed blindly: tables are meant for communication, and you should rather ignore these guidelines than slavishly follow them and corrupt the message of your table.")
+```
+
+
 
 Often in writing for research we want to include some numeric output within our text, such as the output of some data analysis or a hypothesis test. For writers using Microsoft Word or similiar software, they will compute their result in another program, such as Microsoft Excel or SPSS, and then paste the results into their Word document. The problem with this method is keeping the Word document up to date during the many iternations that data anlyses often involve. There is a mental burden to keeping track of all the locations iin a document where a value needs to be updated when a new analysis is completed. R Markdown provides a solution to the problem with in-line R code. When writing in R Markdown document, we can write R code in the middle of a sentence to compute a result, and when the document is rendered, the code is excecuted and numerical output appears in our rendered document in place of the R code. When typing in-line R code we demarcate it with a single backtick at the start and end, and the code is prefixed with the letter 'r' to indicate the programming language. Here is a simple example: in our R Markdown document we type `` `r '\x60r  5 * 2\x60'` `` (as in 'five times two'), and when we render that document we will see `r 5 * 2` in place of the R code. 
 
@@ -223,7 +242,7 @@ And here is our narrative text that includes inline code to use the output from 
 
 ### Rendering the R Markdown into an output file
 
-By far the simplest method to render, or convert, an R Markdown document into a Microsoft Word, HTML or PDF document is to click on the 'Knit' button at the top of the source editor window in RStudio. The Knit button will inspect the settings in our R Markdown document metadata, and render the output according to those specifications. It is of course also possible to use a function to render the document from the console. For example `rmarkdown::render("my_document.Rmd")` (i.e. the render fucntion in the rmarkdown package) or `knitr::knit("my_document.Rmd")` (i.e. the knit function in the knitr package). These functions can take many options to control how the Rmd file is rendered, however, I generally avoid using them because they are bad for reproducibility. Because a document cannot render itself, we must use the `knit` or `render` functions outside of the document, and this means that some of the options for how the document is rendered might not be contained in the document. I prefer to have the rendering options self-contained in the Rmd document, and then either use the knit button, or a very simple function such as `render("my_document.Rmd") with no additional arguments. This means that I will always have a record of the settings I need to render the my document because they are contained within the document itself.  
+By far the simplest method to render, or convert, an R Markdown document into a Microsoft Word, HTML or PDF document is to click on the 'Knit' button at the top of the source editor window in RStudio. The Knit button will inspect the settings in our R Markdown document metadata, and render the output according to those specifications. It is of course also possible to use a function to render the document from the console. For example `rmarkdown::render("my_document.Rmd")` (i.e. the render function in the rmarkdown package) or `knitr::knit("my_document.Rmd")` (i.e. the knit function in the knitr package). These functions can take many options to control how the Rmd file is rendered, however, I generally avoid using them because they are bad for reproducibility. Because a document cannot render itself, we must use the `knit` or `render` functions outside of the document, and this means that some of the options for how the document is rendered might not be contained in the document. I prefer to have the rendering options self-contained in the Rmd document, and then either use the knit button, or a very simple function such as `render("my_document.Rmd")` with no additional arguments. This means that I will always have a record of the settings I need to render the my document because they are contained within the document itself, rather than as arguments to the `render()` function.  
 
 Generally I eschew mouse-driven actions in the course of data anlaysis, because they often leave no trace and are bad for reproducbility. The two major exceptions are rendering an R Markdown into an output document, where I recommend a mouse-click on the knit button in RStudio, and setting the working directory. For setting the working directory, I recommend using the RStudio toolbar and clicking on 'Session' -> 'Set Working Directory', and then usually the best option is to choose 'To Source File Location'. However, when you become more familiar with complex file structures you may find the other options more useful. By excluding these two actions from the code in your R Markdown document you make your document more portable. This is because the full path of the working directory your computer is probably unique to that computer, and if another person attempts to use your code on their computer any function that uses your path will fail because your path does not exist on their computer. For rendering the document, it is important to keep the rendering options specified in the document metadata, rather than in a `render()` function call. This ensures that when another person attempts to render your document, then have all the information necessary about, for example, what `.bib` file to use for your citations and references. 
 

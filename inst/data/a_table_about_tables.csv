@@ -1,0 +1,7 @@
+Rule,Details
+O,Order rows and columns by size or some other meaningful measure
+R,Round to two or significant or effective digits.
+A,Average or sum rows and columns to provide a visual focus
+C,"Columnize: put items to be compared in the same column, one above the other."
+L,"Lay out the table to facilitate comparisons, don’t insert too much white space: things to be compared should be close to each other, but add gaps every 5 or so rows to help the eye travel across the table. "
+E,Explain the patterns of the data and use descriptive titles
