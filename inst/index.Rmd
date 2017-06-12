@@ -22,7 +22,7 @@ To be published by XXX in XXX 201X.
  
 Here is a summary of the progress of the book:
 
-```{r writing-progress, echo = FALSE, message = FALSE}
+```{r writing-progress, echo = FALSE, message = FALSE, warning=FALSE}
 
 library(wordcountaddin)
 library(purrr)
@@ -121,12 +121,6 @@ ggplot(book_stats_updated_per_day,
                  prettyNum(sum(the_word_counts_of_the_chapters$Wordcount),
                  big.mark = ","),
                  " words)"))
-  
-
-  
-
-
-
 
 ```
 
@@ -155,6 +149,16 @@ knitr::write_bib(c(
 - rexcel and jailbreakr: how to get a dataframe out of that?
 - where to put list and data frame indexing? ch4 prep
 - where to put regex? ch4 prep
+
+Intro
+Implementing
+Collecting data
+Getting data into R
+Cleaning and tidying
+Analysing artefacts
+Analysing excavation data
+Analysing spatial data
+Making a research compendium
 
 
 

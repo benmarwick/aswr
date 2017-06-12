@@ -2,6 +2,8 @@
   
 ## Overview
 
+The purpose of this chapter is to explain how thoughtful decisions made before and during the point of data collection can save time and effort later during the data analysis and visualisation process. The chapter is organised hierarchically, starting with file oranisation at the project or individual level, then moving down to discuss efficient organisation of spreadsheets (as one of the most common tools for collecting, sharing and storing archaeological data), and finally at the highly granular level of the individual cell within a spreadsheet. Much of the content of this chapter is not highly sophisticated, and might seem like common sense or typical expectations. However, I think it's important to disscuss these issues directly and explicitly as part of the data analysis process, rather than assume archaeologists will 'pick them up' along the way without any specific guideance. 
+
 ## File organisation
 
 ## Spreadsheets organisation
