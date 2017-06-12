@@ -2,9 +2,121 @@
   
 ## Overview
 
-The purpose of this chapter is to explain how thoughtful decisions made before and during the point of data collection can save time and effort later during the data analysis and visualisation process. The chapter is organised hierarchically, starting with file oranisation at the project or individual level, then moving down to discuss efficient organisation of spreadsheets (as one of the most common tools for collecting, sharing and storing archaeological data), and finally at the highly granular level of the individual cell within a spreadsheet. Much of the content of this chapter is not highly sophisticated, and might seem like common sense or typical expectations. However, I think it's important to disscuss these issues directly and explicitly as part of the data analysis process, rather than assume archaeologists will 'pick them up' along the way without any specific guideance. 
+The purpose of this chapter is to explain how thoughtful decisions made before and during the point of data collection can save time and effort later during the data analysis and visualisation process, using R or any other tool. The chapter is organised hierarchically, starting with file oranisation at the project level, then moving down to discuss efficient organisation of spreadsheets (as one of the most common tools for collecting, sharing and storing archaeological data), and finally at the highly granular level of the individual cell within a spreadsheet. 
+
+Saving time and effort is of course an important motivation for changing your data collection and analysis behaviours, however there is a greater vision that relates to data organisation principles. This vision is two-fold. First is enhancing the reproducibility of archaeological research. When a project is well-organised, it is easier to find the key files to check the previous results. Second is large-scale inter-operability of datasets, so that archaeological data from diverse projects might be easily combined to address questions that no single project can by itself. This vision has many other dependencies, such as a willingness to share data and make it publicly available, and agreement about what to measure and how to name variables. While sharing your data is the first step in allowing reuse, and this is not yet common in archaeology, to ensure that it is easy for others to reuse your data they must be easy to understand [@White2013Nineways].
+
+Much of the content of this chapter is not highly sophisticated, and might seem like common sense. However, because the practices decsribed here make a big difference to the reusability of data, I think it is important to discuss these issues directly and explicitly as part of learning about the data analysis process, rather than assume archaeologists will 'pick them up' along the way without any specific guidance or instruction. This chapter draws on materials in the public domain that were orignally prepared by Jenny Bryan, Karl Broman, and others for Data Carpentry's reproducible science curriculum.  
 
 ## File organisation
+
+The most fundamental principle to follow to improve file organisation is simply to have a strategy and be faithful to it. A key motivation for organising files is to make it easy to work with them, both during the time of your anlaysis, and in the future when you or other people use the files. If your files are well-organised, someone unfamiliar with your project (which could also be you in the future) should be able to look at your files and quickly understand in detail what you did and why [@Noble2009org]. A second motivation for being organised is that for almost everything you do during your analysis, you will probably have to do it again. We commonly explore many analytical options with our data, so the process of data analysis is more like a branching tree than a single sequence of consecutive actions. Often we loop back to an earlier stage in the analysis to explore the effect of adjusting a selection of data, or the parameters of a model. This means that many parts of our analysese are redone in the natural flow of working on a project. If we have organized and documented our work clearly, then repeating the earlier steps of the analysis with minor variations will be much easier.
+
+Beyond the fundamental principle of simply having a strategy, there are several guidelines that have been proposed by biologists and ecologists that are applicable to archaeological research [@Noble2009org; @White2013Nineways]. The most important of these are that (1) raw data is kept separate from derived data, and (2) data is kept separate from code. 
+
+Raw data means data files as they were when you originally received them, for example transcribed from a notebook, directly entered into a database or spreadsheet, or downloaded from an instrument such as a total station or XRF. Derived data refers to the data that result from actions you take after you receive the data files. This includes manual manipulations, such as edits in an Excel spreadsheet, and programmatic manipulations that occur when you use R code to output an updated version of your data. Manual manipulations should be avoided as much as possible because they leave no trace, unlike a manipulation performed by code, making them difficult to undo if you change your mind. If a manual manipulations are necessary in your data, you should keep a plain text file with the data file and type in that file a brief narrative of the changes you make so that you have a record of them. A simple way to keep raw data separate from derived data is to have a folder (also known as a directory) called `data/` that contains two directories, `raw_data/` and `clean_data/`, see the schematic below. Using a simple structure like means you only need one copy of the original raw data files in your project files, rather than duplicating them across your file structure, which can be a source of substantial confusion about which file is the correct one.
+
+```
+|- data            # raw and primary data, are not changed once created
+|  |- raw_data/    # raw data files, will not be altered ever
+|  +- clean_data/  # cleaned data files, will not be altered once created
+```
+
+This practice of keeping the raw data isolated from everything else means that you are always able to loop back to the first steps of your anaysis where you read in the raw data in case you need to explore a different path or check your results. This is vital for ensuring the reproducibility of your research, and for peace of mind that you can check your results. If you make many changes to your raw data files along the way of your analysis, you may never be able to retrace your steps back to the start of your analysis, you will not have the option of checking your results, and your work will be irreproducible. Keeping the raw data intact also gives other researchers more options when they reuse your data, increasing the value of your work to the broader research community of archaeologists. 
+
+The second file organisation guidelines we can take from biologists and ecologists is closely related: data is kept separate from code. Your code will change frequently while you work on an analysis, but your raw data should not change. If you keep these files in separate folders you will be less tempted to change the raw data by hand while you are writing code. This is a core principle of software design, and helps to minimise confusion when browsing the files in a project. A second reason why it is good practice to keep code separete from data is that you may be unable to share yoru raw data (for example, it may contain senstive information about archaeological site locations), but you may be willing to share your code. When these two compoenents of the project are well-separated, it is easy to control what can be made public and what must remain private. Here is an example of a project folder structure that shows how code and data can be seperated: 
+
+```
+|- data/           # raw and primary data, are not changed once created
+|  |- raw_data/    # raw data files, will not be altered ever
+|  +- clean_data/  # cleaned data files, will not be altered once created
+|
+|- code/           # any programmatic code, e.g. R script files
+```
+A third guideline relating to the general idea of separation is to keep the files associated with mansuscript or report production separate from everything else. In the example below this is represented by the `paper/` directory. It contains one (or more) R Markdown files that document the analysis in executable form. This means that it should be possible to render the R Markdown document into a HTML/PDF/Word file that shows the main methods, decisions and results of the analysis. This R Markdown file might connection to the code in the `code/` directory by using the `source` function to import code from a script in `code/` into the R Markdown file. This example also shows how files for tables, figures and other images can be organised: 
+
+```
+|- data/           # raw and primary data, are not changed once created
+|  |- raw_data/    # raw data files, will not be altered ever
+|  +- clean_data/  # cleaned data files, will not be altered once created
+|
+|- code/           # any programmatic code, e.g. R script files
+|
+|- paper/          # all output from workflows and analyses
+|  |  report.Rmd   # One or more R Markdown files
+|  |- tables/      # text version of tables to be rendered with kable in R
+|  |- figures/     # plots, likely designated for manuscript figures
+|  +- pictures/    # diagrams, images, and other non-graph graphics
+```
+
+A final guideline related to the general theme of separation is to have a 'scratch' directory for experimentation. This directory should hold snippets of code and output that are produced during short journeys down alternative paths of the analysis, when you want to explore some ideas, but you are not sure if they will be relevant to the main analysis. If the experimental analyisis proved worthwhile, you can then incroporate it into the appropriate place in the main project folders. If the experiment is not directly relevant to the main analysis, you canleave it in the scratch directory or delete it. The most important details about the scratch directory is that everything in the this directory may be deleted at any time without any negative consequences for your project.
+
+A final guideline, not related to separation, is to include a plain text file named 'README' (e.g. "README.txt" or "README.md") at the top level of a project file structure to document some basic details about the project. This might include about dozen lines of text providing the project name, the names of the people involved, a brief description of the project, and a summary of the contents of the folders in the project. You may also wish to include similar README files in other folders in your project, for example to document instrument parameters that are important for using the raw data. Below is an example of a project file structure that includes a scratch directory and a README file:
+
+```
+|- data/           # raw and primary data, are not changed once created
+|  |- raw_data/    # raw data files, will not be altered ever
+|  +- clean_data/  # cleaned data files, will not be altered once created
+|
+|- code/           # any programmatic code, e.g. R script files
+|
+|- paper/          # all output from workflows and analyses
+|  |  report.Rmd   # One or more R Markdown files
+|  |- tables/      # text version of tables to be rendered with kable in R
+|  |- figures/     # plots, likely designated for manuscript figures
+|  +- pictures/    # diagrams, images, and other non-graph graphics
+|
+|- scratch/        # temporary files that can be safely deleted
+|
+|- README.txt     # the top level description of he project & its content
+```
+
+These guidelines about separation are broadly applicable to most archaeology projects, regardless of scale or methods. Some adjustments of the details provided in the schematic above may be required for large or secure datasets that cannot be stored on a laptop, and for time-consuming computations. In any case, the general principle of separation remains a useful starting point for organising files. 
+
+
+
+
+
+
+structure...
+
+raw data separate from clean data and both of these separate from output
+clean 
+
+Pick a strategy, any strategy, just pick one and stick to it!
+
+EP White, E Baldridge, ZT Brym, KJ Locey, DJ McGlinn, SR Supp (2013) "Nine simple ways to make it easier to (re)use your data." Ideas in Ecology and Evolution 6(2): 1–10, 2013. doi:10.4033/iee.2013.6b.6.f (in particular the section "Use standard table formats")
+WS Noble (2009) "A Quick Guide to Organizing Computational Biology Projects." PLoS Computational Biology 5 (7): e1000424. doi:10.1371/journal.pcbi.1000424
+
+
+naming...
+
+three principles: 
+
+# - machine readable
+- regular expression and globbing friendly
+--- avoid spaces, punctuation, accented characters, case sensitivity
+
+- easy to compute on
+--- deliberate use of delimiters:  Deliberate use of “_” and “-” allows us to recover metadata from the filenames. “_” underscore used to delimit units of meta-data I want later “-” hyphen used to delimit words so my eyes don’t bleed
+
+easy to search for files later
+easy to narrow file lists based on names
+easy to extract info from file names, e.g. by splitting
+new to regular expressions and globbing? be kind to
+yourself and avoid
+ - spaces in file names
+ - punctuation
+ - accented characters
+ - different files named “foo” and “Foo”
+
+# - human readable
+- plays well with default ordering:
+-- put something numeric first
+-- use the ISO 8601 standard for dates YYYY-MM-DD
+-- left pad other numbers with zeros
+-- name contains info on content
+
 
 ## Spreadsheets organisation
 
