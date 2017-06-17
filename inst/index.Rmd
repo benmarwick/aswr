@@ -128,8 +128,12 @@ ggplot(book_stats_updated_per_day,
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
+  .packages(), 
+  'bookdown', 
+  'knitr', 
+  'rmarkdown'), 
+  'packages.bib',
+  tweak = FALSE) # because readr gets an NA if TRUE
 ```
 
 ```{r eval = FALSE, echo = FALSE}

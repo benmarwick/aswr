@@ -575,12 +575,4 @@
   publisher = {Springer},
 }
 
-@Article{ferris1999s,
-  author  = {Ferris, Neal},
-  title   = {What's in a Name? The Implications of Archaeological Terminology Used in Nonarchaeological Contexts},
-  journal = {Taming the Taxonomy: Toward a New Understanding of Great Lakes Archaeology, edited by Ronald Williamson and Christopher Watts},
-  year    = {1999},
-  pages   = {111--121},
-}
-
 @Comment{jabref-meta: databaseType:bibtex;}

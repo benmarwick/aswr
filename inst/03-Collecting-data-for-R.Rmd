@@ -14,7 +14,7 @@ Much of the content of this chapter is not highly sophisticated, and might seem 
 
 The most fundamental principle to follow to improve file organisation is simply to have a strategy and be faithful to it. A key motivation for organising files is to make it easy to work with them, both during the time of your anlaysis, and in the future when you or other people use the files. If your files are well-organised, someone unfamiliar with your project (which could also be you in the future) should be able to look at your files and quickly understand in detail what you did and why [@Noble2009org]. A second motivation for being organised is that for almost everything you do during your analysis, you will probably have to do it again. We commonly explore many analytical options with our data, so the process of data analysis is more like a branching tree than a single sequence of consecutive actions. Often we loop back to an earlier stage in the analysis to explore the effect of adjusting a selection of data, or the parameters of a model. This means that many parts of our analysese are redone in the natural flow of working on a project. If we have organized and documented our work clearly, then repeating the earlier steps of the analysis with minor variations will be much easier.
 
-Beyond the fundamental principle of simply having a strategy, there are several guidelines that have been proposed by biologists and ecologists that are applicable to archaeological research [@Noble2009org; @White2013Nineways]. The most important of these are that (1) raw data is kept separate from derived data, and (2) data is kept separate from code. 
+Beyond the fundamental principle of simply having a strategy, there are several guidelines that have been proposed by biologists and ecologists that are applicable to archaeological research [@Noble2009org; @White2013Nineways]. These guidelines relfect the principle that file organization should indicate inputs and outputs and the flow of information during your data anlysis. The most important of these are that (1) raw data is kept separate from derived data, and (2) data is kept separate from code. 
 
 Raw data means data files as they were when you originally received them, for example transcribed from a notebook, directly entered into a database or spreadsheet, or downloaded from an instrument such as a total station or XRF. Derived data refers to the data that result from actions you take after you receive the data files. This includes manual manipulations, such as edits in an Excel spreadsheet, and programmatic manipulations that occur when you use R code to output an updated version of your data. Manual manipulations should be avoided as much as possible because they leave no trace, unlike a manipulation performed by code, making them difficult to undo if you change your mind. If a manual manipulations are necessary in your data, you should keep a plain text file with the data file and type in that file a brief narrative of the changes you make so that you have a record of them. A simple way to keep raw data separate from derived data is to have a folder (also known as a directory) called `data/` that contains two directories, `raw_data/` and `clean_data/`, see the schematic below. Using a simple structure like means you only need one copy of the original raw data files in your project files, rather than duplicating them across your file structure, which can be a source of substantial confusion about which file is the correct one.
 
@@ -79,47 +79,95 @@ These guidelines about separation are broadly applicable to most archaeology pro
 
 ### Guidelines for naming your files to improve reproducibility 
 
-As archaeologists we are accustomed the challenge of naming things, when working with finds that don't fit neatly in existing typologies, or identifying fragments of objects that lack distinctive attribute. We often take care when naming things because names are communication, and privilige some interpretations and meanings over others. Often as archaeologists when we assign a name we bring something into being and delineate its boundary. We argue about the meaning of names, such as 'Middle Palaeolithic' or 'Acheulean'. 
+As archaeologists we are accustomed the challenge of naming things, when working with finds that don't fit neatly in existing typologies, or identifying fragments of objects that lack distinctive attribute [@kleindienst2006naming; @ferris1999s. We often take care when naming things because names are communication, and privilige some interpretations and meanings over others. Often as archaeologists when we assign a name we bring something into being and delineate its boundary. We argue about the meaning of names, such as 'Middle Palaeolithic' or 'Acheulean'. 
 
+However, because traditionally many digital products of our analytical workflow are rarely made public, we don't put as much care and effort into naming them. Many archaeologists have the mindset that files created as part of the data analysis of a project are their private property for immediate use, and so little thought is given to naming them in a way that might save time and make it easier for these files to be resued. In large projects this may be less true, but in my experience even when working with a dozen or more collaborators, file naming is often chaotic. Below is a sample of poorly choosen file names:
+```
+myAbstract.docx
+Ben’s Filenames Use Spaces and Punctuation.xlsx
+figure 1.png
+Fig 2.png
+paper FINAL v.3 Jan16 pleasefixyoursection.pdf
+```
 
-naming...
+To help with this chaos, and make files easier to use and reuse we can use are two principles for naming files: make the file names machine readable; and make them human readable. Here is a sample of more effective filenames that these guidelines help us to make:
 
-three principles: 
+```
+2016-09-17_abstract-for-saa.docx
+bens-filenames-are-getting-better.xlsx
+fig01_scatterplot-lithics-chert.png
+fig02_histogram-lithic-chert-flakes.png
+```
 
-# - machine readable
-- regular expression and globbing friendly
---- avoid spaces, punctuation, accented characters, case sensitivity
+There are three componenets of machine readable file names that are particularly relevant in research contexts. The first is that file names do not contain spaces, punctuation marks (with some exceptions) or exotic characters such as accents. Machine readability is also improved by consistent capitalisation of letters, since to a computer upper and lower case instances of the same letter are almost as different as A and Z are to us. 
 
-- easy to compute on
---- deliberate use of delimiters:  Deliberate use of “_” and “-” allows us to recover metadata from the filenames. “_” underscore used to delimit units of meta-data I want later “-” hyphen used to delimit words so my eyes don’t bleed
+The second component of making file names machine readable is to make them easy to compute on. File names that are easy to compute on make deliberate use of delimiters such as the hyphen and underscore. In the examples above, hyphens are used to delimit words in the file name, and numbers in the data. But the underscore is used to delimit units of metadata in the filename, for example to separate the date from the description, or the figure number from its description. This careful use of delimiters means that it is possible to extract metadata from the file names. For example, we can use R to compute on the file names to get data relevant to our analysis:
 
-easy to search for files later
-easy to narrow file lists based on names
-easy to extract info from file names, e.g. by splitting
-new to regular expressions and globbing? be kind to
-yourself and avoid
- - spaces in file names
- - punctuation
- - accented characters
- - different files named “foo” and “Foo”
+```{r}
+# read in the file names
+my_files <- list.files("data/file_naming/")
 
-# - human readable
-- plays well with default ordering:
--- put something numeric first
--- use the ISO 8601 standard for dates YYYY-MM-DD
--- left pad other numbers with zeros
--- name contains info on content
+# Make a data frame of the units of infomation in the file names
+library(stringr)
+library(dplyr)
 
+str_split(my_files, 
+          pattern = "_", 
+          simplify = TRUE) %>% 
+  as_data_frame()
+```
+
+Thoughtful use of delimiters can make working with a large set of files very efficient. This is because we can use R to search for specific files or groups of files and we can extract information from the file names, as demonstrated above. 
+
+The third componenet of machine readability is ensuring that file names start with something that works well with default ordering. Often the simplest way to do this is put something numeric first, such as a date, or other sequence of numbers. Then we can easly use the desktop view on our computer to sort our files according to the date or other number at the start of the file name. There are a two more requirements to follow when making file names play well with ordering. You must use the ISO 8601 standard for dates (YYYY-MM-DD) otherwise the dates will not automatically be ordered in the way you expect. If you're not using dates but a simple numeric sequence, you must left-pad the numbers with zeros. This is important to ensure that, for example, values 10 through 19 are recognised by your computer as greater than 2. A good example of numeric prefixes to filenames is 001_, 002_, 003_, etc. A bad example is 1_, 2_, 3_, because 10_ will be sorted by you computer and placed between 1_ and 2_, rather than after 9_, as you would be expecting. The princple of left-padding file names will also work when prefixed by characters, for example, Fig-01_, Fig-02_, Fig-03_ will still work well with default ordering.  
+
+Making file names readable for humans mean including information about the contents of the file in its name. When a file name contains some information about its contents, it is easy for other users to figure out what the file is, and make a decision about how to use it. 
 
 ## Spreadsheets organisation
 
+Spreadsheets are ubiquitous in archaeology, as they are in many other domains. For many researchers a spreadsheet is the hub of their data anlaysis activities: they collect data into a spreadsheet, they analyse and visualise the data directly in a spreadsheet, and they copy and paste from the spreadsheet into their reports and manuscripts for publication. Spreadsheets are good for collecting data, but they are inefficient for data anlysis (when you want to change a variable or run an analysis with a new dataset, you usually have to redo everything by hand), and they make your analytical workflow difficult to track. This is because they primarily work by mouse-driven drag-and-drop operations and so spreadsheets do not impose an easy to follow linear order to your analysis. In short, using spreadsheets for data analysis is bad for the reproducibility and transparency of your research. In this section I will review some rules for organising data in spreadsheets that make the data easier to use downstream in your analysis workflow. I am imagining that you will be using R to analyse and visualise the data in the spreadsheet, but these rules will also be good for any programming language, such as Python or Julia. 
+
+The overall principle that unites these rules is 'tidy data' [@wickham2014tidy], which has three characteristics:
+
+1. Each variable forms a column.   
+2. Each observation forms a row.   
+3. Each type of observational unit forms a table.   
+
+Make data 'tidy' means getting  datasets organised in a way that makes data analysis possible, or better, easy. The rules relating to the principle of tidy data are simply, first, put all your variables in their own columns - where a variable is the thing you’re measuring, like 'weight' or 'length', and second, put each observation in its own row. The most common violation of these rules is a failure to keep each variable in its own column, with one column representing more than one variable. The table below is two thirds tidy, with each observation (i.e. each archaeological site) as a row, and each observational unit as a table, but is a typical example of a violation of having each variable in its own column. In the Site_type column we see h (for hearth), as h (artefact scatter and hearth), as kf (artefact scatter and knapping floor), and so on. In this form, it is difficult to subset the sites, for example to extract only the sites containing hearths. A more tidy approach would be to have one column for hearth, one column for artefact scatter, and so on. Then each of these columns can be operated on individually, and we have more fine-grained control over the data. 
+
+```{r untidy-data}
+untidy_data <- readxl::read_excel("data/untidy_data.xlsx")
+knitr::kable(untidy_data)
+```
+
+Combining multiple pieces of information into one cell is often tempting beacause it makes data collection faster because less time is spent navigating between fields. If you find it impossible to avoid combining information into one cell, or the data were collected by someone else and has this problem already, there are methods in R for cleaning and separating that we will explore in Chapter X. The main point here is to clean and tidy the data before you analyse it, and before you archive it for others to use. 
+
+The second characteristic of tidy data, each observation forming a row, is easy to accomplish when recording data from a set of speciments, such as artefacts or faunal remains. In that situation it is natural for one artefact to be represented by one row of the table. It is less natural to follow this rule when, for example each row is a site, and some of the columns are counts of pottery types. The proper tidy form in this case would be one row for each site-pottery type combination, but this is a very inconvienent form for data collection. So during data collection we can tolerate a little untidyness for the sake of optimising the speed and convienence of data entry. In Chapter X we will explore methods for making field-collected data truely tidy and suitable for analysis and visualisation.   
+
+By contrast, the third characteristic of tidy data, that each type of observational unit forms a table, is simple to implement. In the context of working in a spreadsheet, the implication is that each sheet contains only one table. Each sheet should have a single contiguous rectangle of data. This means resisting the temptation to arrange a grid of small tables across a single sheet. Although this a common strategy for organising data because it makes it easy to glance across the small tables to compare them, it is problematic because each row in that sheet contains more than one observation because one row spans several small tables. Similarly, column names are likely to be duplicated because they appear in each of the small tables. These complications make it harder to clean and tidy your data into a form that is useful for analysis and visualisation. The rule is one table per sheet, and if you follow that rule you will make the final tidying of your data for analysis much simpler and quicker. Making small changes to the way you organise your data in spreadsheets, can have a great impact on efficiency and reliability when it comes to data cleaning and analysis. 
+
+```{r, fig.cap="This screenshot shows archaeological data that is untidy for several reasons, including multiple tables on one sheet, multiple values in one column (e.g. SW1), and multiple header rows in a table"}
+knitr::include_graphics("images/messy_ktc_data.png")
+```
+
 ## Cell organisation
+
+At the most granular level of data collection is the individual spreadsheet cell or data entry field. Bad habits in data entry can require substantial time to fix before those data are suitable for analysis, and lead to errors in the results, regardless of what software yo use. Here I briefly review some of the common errors of cell organiation in the hope that if you are aware of them you might be motivated to avoid them in your data collection. 
+
+Choosing a good null value requires careful thought. Where you know that the value is zero, of course you should enter zero. But where the value was not measured, or could not be measured, you don't want to enter zero because that implies that you know something about the value. You also don't want to leave that field blank, because that could be interpreted as having missed to record that data. Blank cells are ambiguous - did the data collector skip that field by accident, or is were they not able to record a value for that field, or was the value zero? The best choice for the value we need in this situation is NA or NULL [@White2013Nineways]. NA is a good choice because it is a special (or reserved) word in the R language, so R can handle NAs easily. NULL might be better if your data uses NA as an abbreviation, such as "North America" (NULL is also a special word in R)
+
+Another common pain point when moving from data collection to data analysis is where spreadsheets using formatting to convey information. For example, when a cell has coloured text or highlighting to indicate some extra information about that specimen or record. Related problems occur when bold or italic text is used to signal some important quality about the data. These types of are well-established in tables in publication, for example using bold to indicate values that are statistically significant. But at the point of data collection that use of cell and text decoration to convey information makes it very difficult to calculate on those values. It is always better to have another column to capture that information, rather than highlighting the cell or formatting the text. 
+
+```{r, fig.cap="This screenshot shows spreadsheet formatting that is usesd to convey information. In this case, this yellow highlighing indicates that complete ceramic vessels were found in that level. A better approach would be to have a column called 'complete_pots', with values indicating the number of complete vessels in each unit"}
+
+knitr::include_graphics("images/messy_ktc_data_cell_decoration.png")
+```
+
+Related contaminants of spreadshet data include merged cells, cell comments and the inclusion of measurement units in a cell, such as the percent symbol. Merged cells can make it difficult to sort and filter data, and difficult move your into other programs for analysis. The proper place for comments is a 'comments' column, and units should be expressed in the column header, with only the same measurement unit used for every row in a column. When adding headers to your columns, take care not to include spaces, numbers, or special characters. A good alternative to spaces in column headings are underscore ("_"), for example, "Max_len_mm" or "MaxLenMM" is better than "Max len", for a column of maximum length values in milimeters. Short or abbreviated field names (i.e. column headers) are often desirable during data collection to save screen space, but they may become confusing later when you revisit the data for analysis. So take care when devising column headers so they are not too ambiguous, and consider keeping a code book or data dictionary that pairs each column header with your description of the variable and how it was measured.  
 
 ## Summary
 
-http://www.datacarpentry.org/spreadsheet-ecology-lesson/
-
-http://kbroman.org/dataorg/
+In this chapter we have reviewed principles, guidelines and rules for collecting data to maximise the ease of analysing that data in R. We considered some general principles of file organisation and file naming to keep your projects orderly and easy for you to keep track of your work over the duration of your project, as well as for others to inspect and resuse your work in the future. We explored methods to enhance the machine- and human-readability of your files. We introcuded the concept of 'tidy data' and some practical applications of this approach to spreadsheets. We noted were data are often untidy because of how they are collected, but proposed some rules to ensure data are as tidy as possible at the moment of collection. Finally we looked at the individual cell or field to identify some bad habits that are often seen in other people's data. We proposed some simple rules for data entry into spreadsheet cells (i.e. sensible null values, not using formatting as data, not merging cells, etc.). The overarching concept is to excersice restraint when working with spreadsheets, and resist the temptation to engage all of its features. Be mindful of the downstream use of your data, by you in R, and by others in other softare environments. We can't optimise our data collection for every possible data anlaysis situation, but with a few rules we can improve the organisation of our data to make it a lot easier to analyse it with other toolds. 
 
 
 
