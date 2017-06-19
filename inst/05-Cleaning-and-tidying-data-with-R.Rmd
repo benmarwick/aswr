@@ -20,6 +20,9 @@ matrix
 4. Splitting: separating one col into two or more
 5. Reshaping: wide <-> long
 
+docxtractr::assign_colnames to move first row to colnames
+automatic column class detection with readr::type_convert
+
 
 changing column names
 regex to clean data values, remove spaces

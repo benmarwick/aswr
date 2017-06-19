@@ -26,8 +26,8 @@ From \url{https://github.com/kbroman/broman}
 Uses \code{\link[base]{sprintf}} to round a number, keeping extra 0's.
 }
 \examples{
-myround(51.01, 3)
-myround(0.199, 2)
+bround(51.01, 3)
+bround(0.199, 2)
 
 }
 \seealso{

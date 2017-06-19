@@ -1,3 +1,69 @@
+#' @name make_table_from_vector
+#'
+#' @description Takes a list of vectors of equal size and converts each vector into a data frame of a given number of columns. All tables must have the same number of columns.
+#'
+#' @param list_of_tables A list of vectors
+#' @param ncol int The number of columns that each table should have.
+#'
+#' @return A list of data frames.
+#' @export
+#'
+#' @importFrom tibble as_tibble
+#' @importFrom readr type_convert
+#'
+#' @examples
+#'
+#' list_of_tables <- list(rep(1:10), rep(1:10), rep(1:10))
+#'
+#' make_table_from_vector(list_of_tables, 2)
+#'
+make_table_from_vector <- function(list_of_tables, ncol) {
+
+  list_of_df <-  vector("list", length = length(list_of_tables))
+  for(i in seq_along(list_of_tables)) {
+
+    col_list <- vector("list", length = ncol)
+    for(j in seq_len(ncol)) {
+      chr_vec <-  list_of_tables[[i]]
+      col_list[[j]] <- chr_vec[seq(j, length(chr_vec), ncol)]
+    }
+
+
+    list_of_df[[i]] <- tibble::as.tibble(do.call("cbind", col_list))
+    list_of_df[[i]] <- readr::type_convert(list_of_df[[i]])
+
+  }
+  names(list_of_df) <-  names(list_of_tables)
+  list_of_df
+}
+
+
+
+
+#' @name split_at
+#'
+#' @description Split a vector at specific positions defined by indices. From https://stackoverflow.com/a/16358095/1036500
+#'
+#' @param x A vector to split, e.g. a character vector
+#' @param pos int An integer vector of indices to split at
+#'
+#' @return a list
+#' @export
+#'
+#' @examples
+#'
+#' split_at(c("a", "b", "c", "d", "e", "f", "g"), 1)
+#' split_at(c("a", "b", "c", "d", "e", "f", "g"), c(3, 5))
+#'
+split_at <- function(x, pos){
+
+  unname(split(x, cumsum(seq_along(x) %in% pos)))
+
+}
+
+
+
+
 #  bround
 #'
 #' Round a number, preserving extra 0's
@@ -48,24 +114,6 @@ bround <-
     tmp
   }
 
-
-#' pull a vector or scalar (vector of length one) from a data frame
-#'
-#' Sometimes we want to get a single value from a dplyr pipeline so we can use it with inline R code in R markdown. This function is an efficient method of extracting a column from a tibble as a vector. From \url{http://stackoverflow.com/a/24730843/1036500}
-#'
-#' @param x a data frame
-#' @param y a column name
-#'
-#' @return a vector or scalar
-#' @export
-#'
-#' @examples
-#'
-#' pull(iris, Species)
-#'
-pull <- function(x,y) {
-  x[,if(is.name(substitute(y))) deparse(substitute(y)) else y, drop = FALSE][[1]]
-}
 
 #' Search and replace in a vector using a vector of patterns
 #'

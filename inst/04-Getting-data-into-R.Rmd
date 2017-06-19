@@ -149,7 +149,7 @@ The decision about whether to manually edit the data, or write code to arrange t
 
 One factor that might help you decide where to manually edit a spreadsheet or to write code to workaround the messy spreadsheet is whether or not other people need to edit the spreadsheet during to time that you are working with it. If your collaborators are still updating and circulating the spreadsheet while you are working on the analysis, then it may be disruptive if you reorganise the sheet in the middle of this process. In this situation it may be preferable to write code to handle the messiness. On the other hand, if the data in the spreadsheet is final and no further changes are being made by other people, then manual editing wont be disruptive to the collaboration process, and might be a better option. 
 
-### Tabular data from non-spreadsheet programs: PDFs and Microsoft Word documents
+## Tabular data from non-spreadsheet programs: PDFs and Microsoft Word documents
 
 While spreadsheets and spreadsheet-like data are easy to import into R, occasionally we need to get tabular data out of other kinds of documents for our analysis. This is often the case when we want to use data published in a report or as supplementary materials to a journal article. For small tables it may be practical to transcribe them into a spreadsheet by hand, and then read that spreadsheet into R using the methods described above. However, when you have large tables, or many tables across many pages or many documents this is undesirable because it is time consuming and will likely introduce transcription errors. 
 
@@ -168,33 +168,155 @@ library(dplyr)
 # read in the table from the PDF file
 table_from_pdf <- extract_tables("data/Terry_et_al_2000_[P].pdf", pages = 9)
 
-# inspect the output of extract_tables()
+# inspect the output of extract_tables(), here we acces the first item in the list
+# and coerce to a data frame
 as_data_frame(table_from_pdf[[1]])
+
+# save as a CSV file easier downstream use and reuse by others
+write.csv(table_from_pdf[[1]], "data/data_output/table_from_Terry_et_al_2000.csv")
 ```
 
-The  tabulizer package also has an interactive mode allowing you to click and drag a rectangle over a page to select the area to extract from. For large PDF files you can use the `split_pdf()` function to separate out the pages with tables to improve the performance of `extract_tables()`.
+The tabulizer package also has an interactive mode allowing you to click and drag a rectangle over a page to select the area to extract from. For large PDF files you can use the `split_pdf()` function to separate out the pages with tables to improve the performance of `extract_tables()`. Of course, after extracting the table from the PDF you should save it as a CSV file to ensure that it can more easily be resued in the future. 
 
-docxtractr
+We can similarly extract table from Microsoft Word documents using the Bob Rudis' docxtractr packages.The docxtractr package provides tools to count the number of tables in a documents, identify the table structure, and extract tables from Microsoft Word docx documents. The example below shows how we can extract a table of magnetic susceptibility data from the supplementary materials published in from @Haslam2012. Here is how the table looks in Microsoft Word:
 
-pdftools
-
-tabulizer
-
-
-
-
-### Spreadsheet data that are not from Excel
-
-Although Excel is by far the most popular spreadsheet application, there are other programs in common use for storing and sharing spreadsheet-style data. In this section we demonstrate how to get data into R from Google Sheets (a web-based collaborative spreadsheet editing program) and SPSS (a commercial software for statitical analysis). 
-
-
-```{r googlesheetsbasic}
-library(googlesheets)
+```{r haslam-table-pic, fig.cap="A table of a data from a Microsoft Word file."}
+knitr::include_graphics("images/Haslam_et_al_2012_[Jwalapuram].png")
 ```
+
+And here is the code for extracting this table out of the complete supplementary materials document: 
+
+```{r}
+library(docxtractr) # load the library
+
+# read in the docx file
+docx_file <- read_docx("data/Haslam_et_al_2012_[Jwalapuram].docx")
+
+# extract the second table in the docx file into a data frame
+table_from_docx <- docx_extract_tbl(docx_file, tbl_number = 2)
+
+# view the first few rows
+head(table_from_docx)
+
+# write to CSV file for easier reuse and achiving
+write.csv(table_from_docx, "data/data_output/mag-sus-data-from-Haslam_et_al_2012.csv")
+```
+
+Notice that we do not get the Greek symbols in the data frame, nor do we get the comments below the table. The `docx_extract_tbl()` function only extracts the contents of the table, and exotic characters may be dropped.  
+
+The docxtractr package does not have an interactive method like the tabulizer does for PDF files, but docxtractr has the `docx_describe_tbls()` function that can detect cells merged across rows or columns. It does not un-merge those cells, but it will help you identify where they are, so you can be more efficient with data cleaning. 
 
 ## Getting tabular data out of unstructured files
 
-scan(), readLines()
+The methods above for working with spreadsheets and tables will likely cover the majority of cases for getting data into R, but occassionaly we have to work with data that is not stored in a convienently structured format. For example, some kinds of analytical instruments output data in plain text files that lack a convenient structure or widely used format. In that case, we can read the file in using more generic file reading functions. Consider this plain text file of excavation data with three columns of data, each column separated by a space:
+
+```{r plain-text-table-pic, fig.cap="A table of a data from a plain text file (viewed in Notepad++)"}
+knitr::include_graphics("images/unstructured_data_example.png")
+```
+
+We can use the function `read_table2()` from Hadley Wickham's readr package, this can read plain text files and identify columns that are separated by one or more white spaces. A 'white space' is one or more spaces, tabs, newlines characters or carriage return characters (i.e. a press of the 'enter' or 'return' key). Since our text file has space-separated columns, this function will automatically detect these, and place the data into a data frame. The `read_table2()` function is very similar to the base R `read.table()` function, which does not require installation of any packages. However, `read_table2()` has two major advantages which make it worth installing the readr package: first, the default settings are more convienent (with `read.table()` we also need to specify `stringsAsFactors = FALSE`), and it automatically detects the column classes and sets them for us. In the example below we see that the column classes are 'character', 'integer' and 'double', which is what we would expect them to be, and so they are immediately useful for calculation and visualisation, saving us a few steps of data cleaning. 
+
+```{r}
+library(readr) # load library
+
+# read in unstructured data from plain text file
+unstr_data <- read_table2("data/unstructured_data_simple_example.txt")
+
+# inspect the result
+head(unstr_data)
+```
+
+But what if we had a more complicated plain text document, say with series of table separatd by a blank line, and with each table having a short table on the line above the column headers? Consider the image below, which shows total statin data colleced during archaeological excavations at Madjedbebe [@Clarkson2015]: 
+
+```{r plain-text-copmlex-table-pic, fig.cap="A table of a complex data from a plain text file (viewed in Notepad++)"}
+knitr::include_graphics("images/unstructured_data_complex_example.png")
+```
+
+One option is to manually edit the plain text file to save it as many separate files, with one table in each file. This is feasible for a small number of tables, but if we have hundreds of tables in a single plain text file we would prefer a more efficient method. We can use the `scan()` function to read this file into R, and then perform some operations to get it into a useful form:
+
+
+```{r read-in-unstr-data-complex}
+# read in the file
+unstr_data_complex <- scan("data/unstructured_data_complex_example.txt", 
+                          what = character(),
+                          blank.lines.skip = FALSE)
+
+# inspect the output
+head(unstr_data_complex)
+```
+
+The result of the `scan()` function is a single character vector, where each item in the table is one item in the vector. No structure of the table is preserved in this character vector, we must impose this structure back on to the data, based on our knoweldge of the plain text file. The first detail to work on is that each table is separated by a blank line. To ensure that `scan()` sees these, we se the argument `blank.lines.skip =` to FALSE. Then, in the character vector resulting from `scan()`, we see the blanks lines as an empty element, `""`, in the vector. We can split this character vector on these empty elements to separate each table into its own object.
+
+First we find the locations in the character vector of the empty elements that represent the blank lines. We can use `which()` to find the index values where the vector is equivalent to (`==`) the empty element:
+
+```{r}
+blank_line_locations <- which(unstr_data_complex == "")
+```
+
+They are at element numbers `r blank_line_locations[1]` and `r blank_line_locations[2]`. We can use these element numbers with `split_at()`, a function in the aswr package, to split the character vector at the blank line locations, and get a list of several vectors: 
+
+```{r}
+library(aswr)
+list_of_tables <- split_at(unstr_data_complex, blank_line_locations)
+
+# inspect the output
+str(list_of_tables)
+```
+
+Because we know that the first element of the second and subsequent items in the list represents the empty line, we can delete it. We firstly select only the second and later elements of the list with `list_of_tables[2:length(list_of_tables)] `, and then we map over those elements and using negative indexing in square brackets to drop the first item in each character vector in those elements of the list: 
+
+```{r}
+library(purrr)
+
+list_of_tables[2:length(list_of_tables)] <-
+  map(list_of_tables[2:length(list_of_tables)], ~.x[-1])
+```
+
+Now we can take the table labels ('first set', 'second set', etc.) from the character vectors and into the list, to name the elements in the list. We map over each character vector in the list, extract the first two items in the vector with `.x[1:2`], paste them into a single item with `paste0(.x[1:2], collapse = " ")`, and then simplify the result (which woult normally be a list using `map()`) into a character vector by using `map_chr`:
+
+```{r}
+table_labels <- map_chr(list_of_tables, ~paste0(.x[1:2], collapse = " "))
+
+# assign these labels to name the list items:
+names(list_of_tables) <- table_labels
+```
+
+Now the table names are preserved in the list, we can delete them from the character vectors using negative indexing to drop the first two elements of each vector:
+
+```{r}
+list_of_tables <- map(list_of_tables, ~.x[-c(1:2)])
+```
+
+Now we want to transform each character vector into a table with four columns, as we see them in the plain text file. Because we know there are four columns, we can use the `seq()` function to extract values from every fourth position in the vector to extract each column. By starting at the first item and extracting every fourth item we get the first column, then starting at the second item and extracting every fourth item we get the second column, and so on. Then we have four vectors that can be combined into a data frame. I have spelled this out in detail for the first table in the file below:
+
+```{r}
+# Just transform the first character vector into a table with four cols:
+x <- list_of_tables[[1]]
+
+col1 <- x[seq(1, length(x), 4)]
+col2 <- x[seq(2, length(x), 4)]
+col3 <- x[seq(3, length(x), 4)]
+col4 <- x[seq(4, length(x), 4)]
+
+the_first_table <- data_frame(col1, col2, col3, col4)
+```
+
+But we want an approach that will operate automatically on each item in the list, to avoid copying and pasting this code, which is time consumring and error-inducing. The aswr package contains the function `make_table_from_vector()` that automates this process for a list of any length, and for tables of any number of columns. We supply the name of the list of character vectors, and the number of columns that each table should have, and we get a list of data frames in return:
+
+```{r}
+# process the list of character vectors into a list of data frames
+list_of_data_frames <- make_table_from_vector(list_of_tables, 4)
+
+# inspect the output
+str(list_of_data_frames)
+```
+
+And now that list of data frames presents the data to use in a convienent tabular structure that is amenable for cleaning, analysis and visualisation. Some further cleaning is necessary, such as adding informative column names, but we have saved a lot of tedious manipulation of the file by hand with a few lines of code. 
+
+
+
+
+readLines()
 
 pdftools
 
