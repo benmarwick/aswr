@@ -149,8 +149,30 @@ The decision about whether to manually edit the data, or write code to arrange t
 
 One factor that might help you decide where to manually edit a spreadsheet or to write code to workaround the messy spreadsheet is whether or not other people need to edit the spreadsheet during to time that you are working with it. If your collaborators are still updating and circulating the spreadsheet while you are working on the analysis, then it may be disruptive if you reorganise the sheet in the middle of this process. In this situation it may be preferable to write code to handle the messiness. On the other hand, if the data in the spreadsheet is final and no further changes are being made by other people, then manual editing wont be disruptive to the collaboration process, and might be a better option. 
 
+### Tabular data from non-spreadsheet programs: PDFs and Microsoft Word documents
 
-### Tabular data from Microsoft Word documents or PDFs
+While spreadsheets and spreadsheet-like data are easy to import into R, occasionally we need to get tabular data out of other kinds of documents for our analysis. This is often the case when we want to use data published in a report or as supplementary materials to a journal article. For small tables it may be practical to transcribe them into a spreadsheet by hand, and then read that spreadsheet into R using the methods described above. However, when you have large tables, or many tables across many pages or many documents this is undesirable because it is time consuming and will likely introduce transcription errors. 
+
+Below is an example of how we can extract a table from a specific page of a PDF file of a journal article. Using Thomas Leeper's tabulizer package, we specify the file to operate on, and the page (or pages) to look for tables on. Consider the table in Figure \@ref(fig:terry-table-pic), which is from @Terry2000. This would be tediuos to transcribe by hand, so we can use the extract_tables function from the tabulizer package to read the PDF and extract this table to use in R.
+
+```{r terry-table-pic, fig.cap="A table of a data from a PDF file."}
+knitr::include_graphics("images/page_from_Terry_et_ al_2000_[P].png")
+```
+
+In the example below, the `extract_tables()` function returns a list with one item. If a page has multiple tables, or text and tables, this list would have additional items. In the example below, the list item is a character matrix, which is the table that we want to work with. We can coerce the matrix to a data frame with `as_data_frame()` from the dplyr package, and then the table is nearly ready to work with in R. There are a few additional steps of cleaning to do before we can work with this table, such as moving the first and second rows out of the table and into the column headings, and coercing the measurement columns from character class to numeric class so they are suitable for numerical operations. We will investigate how to do these tasks when we discuss cleaning data in Chapter X. 
+
+```{r}
+library(tabulizer) # load the libraries
+library(dplyr)
+
+# read in the table from the PDF file
+table_from_pdf <- extract_tables("data/Terry_et_al_2000_[P].pdf", pages = 9)
+
+# inspect the output of extract_tables()
+as_data_frame(table_from_pdf[[1]])
+```
+
+The  tabulizer package also has an interactive mode allowing you to click and drag a rectangle over a page to select the area to extract from. For large PDF files you can use the `split_pdf()` function to separate out the pages with tables to improve the performance of `extract_tables()`.
 
 docxtractr
 
@@ -170,24 +192,15 @@ Although Excel is by far the most popular spreadsheet application, there are oth
 library(googlesheets)
 ```
 
+## Getting tabular data out of unstructured files
 
+scan(), readLines()
 
+pdftools
 
+data_frame(x = seq)
 
-## Getting data from other statistical and database software file formats
-
-SPSS haven
-STATA
-Access  RODBC 
-SQL 
-
-## Getting data from tables in documents
-
-PDF tabulizer
-MS Word docxtractr
-HTML rvest, RSelenium 
-
-## Getting spatial data
+## Getting spatial data into R
 
 shapefiles maptools
 tables of spatial data into shapefiles

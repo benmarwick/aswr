@@ -110,6 +110,7 @@ book_stats_updated %>%
   # tally up for all chapters on each day
   summarise(words_per_day = sum(diff_from_previous_day))
 
+p <- 
 ggplot(book_stats_updated_per_day,
        aes(day, 
            words_per_day)) +
@@ -121,6 +122,9 @@ ggplot(book_stats_updated_per_day,
                  prettyNum(sum(the_word_counts_of_the_chapters$Wordcount),
                  big.mark = ","),
                  " words)"))
+
+library(plotly)
+ggplotly(p)
 
 ```
 

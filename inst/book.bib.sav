@@ -594,4 +594,18 @@
   publisher = {Foundation for Open Access Statistics},
 }
 
+@Article{Terry2000,
+  author   = {Terry, Richard E. and Nelson, Sheldon D. and Carr, Jared and Parnell, Jacob and Hardin, Perry J. and Jackson, Mark W. and Houston, Stephen D.},
+  title    = {Quantitative phosphorus measurement: A field test procedure for archaeological site analysis at Piedras Negras, Guatemala},
+  journal  = {Geoarchaeology},
+  year     = {2000},
+  volume   = {15},
+  number   = {2},
+  pages    = {151-166},
+  issn     = {1520-6548},
+  abstract = {Currently there is a wide interest in the use of chemical analyses for the evaluation of anthropogenically altered soils and other archaeological deposits. Because soil phosphorus levels increase in areas of human habitation, and leave a permanent signature that can only be removed by erosion of the soil itself, phosphorus mapping has become a popular field procedure to indicate areas of habitation where overt evidence of ancient occupance is absent. We have developed a methodology to obtain accurate acid-extractable phosphorus concentrations (mg/kg) in calcareous soils under the primitive field conditions of Piedras Negras, Guatemala. Predicated on Mehlich-II acid extractant and colorimetric methods, this procedure processed 36 samples per hour at very low cost per sample. Based on eight replicate measurements of a group of samples, the coefficient of variation of the procedure was 8.3%. Subsequent analysis of 35 soil samples in a controlled laboratory revealed a moderate correlation of 0.44 between the Mehlich-extractable phosphorus and total phosphorus. The correlation was 0.91 between the Mehlich procedure and Olsen bicarbonate extractable phosphorus, indicating that Mehlich-based results are similar to those obtainable using a traditional extractable phosphorus method on soils of neutral to alkaline pH. There was a moderate correlation between Mehlich P and ring-test rating (r = 0.42). The wider dynamic range of the Mehlich extraction, coupled with the use of a battery-operated colorimeter, facilitated the finding of a refuse midden within an area of phosphate enriched soils. Further tests indicated that phosphorus concentrations measured in the field deviated by only 7% from those made under controlled laboratory conditions. © 2000 John Wiley & Sons, Inc.},
+  type     = {Journal Article},
+  url      = {http://dx.doi.org/10.1002/(SICI)1520-6548(200002)15:2<151::AID-GEA3>3.0.CO;2-T},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
