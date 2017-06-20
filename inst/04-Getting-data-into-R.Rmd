@@ -1,7 +1,8 @@
 ```{r echo=FALSE}
 library(knitr)
-opts_chunk$set(messages = FALSE,
+opts_chunk$set(message = FALSE,
                warning = FALSE,
+               cache = TRUE,
                fig.align = 'center',
                fig.width = 7)
 ```
@@ -13,7 +14,7 @@ opts_chunk$set(messages = FALSE,
 
 In this chapter we will survey some of the key methods for getting data into R. The canonical method for many years has been to use the `read.csv` function with a CSV (comma separated variables) file. This is a decent approach because most file types that contain tabular data can be saved as CSV, for example, we can save Excel files as CSV using Microsoft Excel. CSV is also ideal because it is an open, plain-text format that can be widely read and edited by many different programs. It is suitable for long-term archiving because it is a stable format. However, it is often more convienent to work directly with the file that the data were entered into, and convienent to work with a format that our collaborators are comfortable with, such as an Excel spreadsheet. Fortunately, there are several packages that allow Excel, other common tabular data file formats, and even databases, to be read directly into R. The focus of much of this chapter is getting data stored in spreadsheets into R, ready to analyse. If you have spreadsheet-like data files from other software, such as SPSS, you can use `read_*` functions from Hadley Wickham's haven package in much the same way that you see `read_excel` used in this chapter. 
 
-R is also capable of handling more challenging situations, such as working with hundreds or thousands of data files, reading tabular data from Microsoft Word documents or PDFs, and directly from the internet. In this chapter we will briefly demonstrate how to handle these situations 
+R is also capable of handling more challenging situations, such as working with hundreds or thousands of data files, reading tabular data from Microsoft Word documents or PDFs, and reading in data from unstructured plain text files. In this chapter we will briefly demonstrate how to handle these situations.
 
 ## Getting data from spreadsheets
 
@@ -153,7 +154,7 @@ One factor that might help you decide where to manually edit a spreadsheet or to
 
 While spreadsheets and spreadsheet-like data are easy to import into R, occasionally we need to get tabular data out of other kinds of documents for our analysis. This is often the case when we want to use data published in a report or as supplementary materials to a journal article. For small tables it may be practical to transcribe them into a spreadsheet by hand, and then read that spreadsheet into R using the methods described above. However, when you have large tables, or many tables across many pages or many documents this is undesirable because it is time consuming and will likely introduce transcription errors. 
 
-Below is an example of how we can extract a table from a specific page of a PDF file of a journal article. Using Thomas Leeper's tabulizer package, we specify the file to operate on, and the page (or pages) to look for tables on. Consider the table in Figure \@ref(fig:terry-table-pic), which is from @Terry2000. This would be tediuos to transcribe by hand, so we can use the extract_tables function from the tabulizer package to read the PDF and extract this table to use in R.
+Below is an example of how we can extract a table from a specific page of a PDF file of a journal article. Using Thomas Leeper's tabulizer package, we specify the file to operate on, and the page (or pages) to look for tables on. Consider the table in Figure \@ref(fig:terry-table-pic), which is from @Terry2000. This would be tedious to transcribe by hand, so we can use the extract_tables function from the tabulizer package to read the PDF and extract this table to use in R.
 
 ```{r terry-table-pic, fig.cap="A table of a data from a PDF file."}
 knitr::include_graphics("images/page_from_Terry_et_ al_2000_[P].png")
@@ -301,32 +302,109 @@ col4 <- x[seq(4, length(x), 4)]
 the_first_table <- data_frame(col1, col2, col3, col4)
 ```
 
-But we want an approach that will operate automatically on each item in the list, to avoid copying and pasting this code, which is time consumring and error-inducing. The aswr package contains the function `make_table_from_vector()` that automates this process for a list of any length, and for tables of any number of columns. We supply the name of the list of character vectors, and the number of columns that each table should have, and we get a list of data frames in return:
+But we want an approach that will operate automatically on each item in the list, to avoid copying and pasting this code, which is time consumring and error-inducing. The aswr package contains the function `df_from_vector()` that automates this process for a list of any length, and for tables of any number of columns. We supply the name of the list of character vectors, and the number of columns that each table should have, and we get a list of data frames in return:
 
 ```{r}
 # process the list of character vectors into a list of data frames
-list_of_data_frames <- make_table_from_vector(list_of_tables, 4)
+list_of_data_frames <- 
+  map(list_of_tables, ~df_from_vector(.x, 4))
 
 # inspect the output
 str(list_of_data_frames)
 ```
 
-And now that list of data frames presents the data to use in a convienent tabular structure that is amenable for cleaning, analysis and visualisation. Some further cleaning is necessary, such as adding informative column names, but we have saved a lot of tedious manipulation of the file by hand with a few lines of code. 
+And now that list of data frames presents the data to use in a convienent tabular structure that is amenable for cleaning, analysis and visualisation. Some further cleaning is necessary, such as adding informative column names, but we have saved a lot of tedious manipulation of the file by hand with these few lines of code. However, this example does contain one detail that we can explore further, to better approximate an unstructured data file - that the table names in the raw data data will be exactly the same length (i.e. "first set", "second set", etc.). A more challenging data set would have table names of unpredictable length, requiring a slightly different strategy to read in the file and impose a tabular structure onto the text. To tackle this problem, we can start with `readLines()`, which reads in each row of the raw data as one element of a character vector:
 
+```{r}
+more_complex <- readLines("data/unstructured_data_more_complex_example.txt")
+str(more_complex)
+```
 
+We can follow the same pattern as above by splitting this one large character vector by the empty elements, here we next `which()` in `split_at()` for more compact expression, and we can go ahead and remove the empty element (that we used to split on) from the second and subsequent list elements with `map()`:
 
+```{r}
+list_of_complex_tables <- split_at(more_complex, 
+                                   which(more_complex == ""))
 
-readLines()
+list_of_complex_tables[2:length(list_of_complex_tables)] <-
+  map(list_of_complex_tables[2:length(list_of_complex_tables)], ~.x[-1])
+```
 
-pdftools
+Now we have a list, where each element is a character vector, and each element in the vectors is a row of the table. For example, each element looks something like this "5012.884297 4997.24741 100.707435 PF_B6_1_C14X232", with the four columns combined into one element, separated by a space. Our task now is to extract the table names and remove them from the character vectors, then transform the character vectors into a data frame.
 
-data_frame(x = seq)
+Here we assign the first element of each vector to be the names of the list items:
 
-## Getting spatial data into R
+```{r}
+names(list_of_complex_tables) <- 
+  map(list_of_complex_tables, ~.x[1])
+```
 
-shapefiles maptools
-tables of spatial data into shapefiles
+And then remove that first item from the character vector, now that we have preserved it elsewhere:
 
+```{r}
+list_of_complex_tables <- 
+  map(list_of_complex_tables, ~.x[-1])
+```
 
+Now we have a list of character vectors, and we can separate each item in the vector into four columns. Let's show how this can be done on the first item in the list, then generalise to all items in the list:
 
+```{r}
+library(dplyr) # load libraries
+library(tidyr)
 
+# extract the first item in the list
+x <- list_of_complex_tables[[1]]
+
+output <- 
+  x %>% 
+  data_frame(y = .) %>% 
+  separate(col = y, 
+           into = c("col1", "col2", "col3", "col4"), 
+           sep = " ",
+           convert = TRUE)
+```
+
+In the above example, we first extract the first item from the list, which we store as an object called 'x'. Then we convert this character vector into a data frame with one column using`data_frame()`, in this function we create a column called 'y', by assigning the character vector 'y' to this column. In this sequence of operations we are using the 'pipe' symbol, `%>%`, which we can translate as 'then', in the example above we can translate the first few lines as "Take the character vector 'x', then (`%>%`), place that vector into a column in a new data frame (`data_frame(y = .)`), and then separate", and so on. The specific task that the pipe does is to take the object to its left (in this case x) and pass it to the first function on its right (in this case `data_frame()`. We can specifically refer to the object taken by the pipe with a period `.`, so that the period in `data_frame(y = .)` refers to the object 'x' on the previous line. This pattern of piping objects from one function to another is highly readable, and often results in efficient, tidy code that is easy to understand and re-use.
+
+After creating the data frame from the character vector, we then (`%>%`) pass this data frame to the `separate()` function from Hadley Wickham's tidyr package. The `separate()` function is designed to split one column in a data frame into multiple columns, so it is ideal for our problem of splitting the column we have into four new columns. In the `separate()` function, the first argument is the data frame with the column to split, in our example we this is passed in invisibly by the pipe symbol, and we do not need to type it. So the first argument that we need to explicity supply to  `separate()` is the name of the column in our data frame to separate, which is 'y'. After that, we need to give the names of the new columns that we want to split 'y' into. Here I have simply called them col1 through col4, but they can be almost anything. The next required detail is the character to split 'y' on. In this case, we can split on the single blank space between each item in the character column 'y'. Finally, we set `convert = TRUE`, this tells the `separate()` fucntion to automatically detect the column class, and convert the new column to the detected class. The result of this sequence of operations is shown below. We can see that we have a data frame with four columns, as expected, and the columns have sensible classes and are ready for analysis:
+
+```{r}
+head(output)
+```
+
+To generalise this column-splitting approach for automated repeated use on multiple items in a list we can combine it with the `map()` function. The only change we need to make to the sequence of operations we described above is to to change 'x' to '.x', the rest remains the same. This change from 'x' to '.x' means that the input to the `data_frame()`-`separate()` sequence changes from the character vector 'x' that we extracted above, to the iterator, '.x', which stands in place of each item in the list that we supply to the `map()` function.
+
+```{r}
+list_of_complex_tables_separated <- 
+map(list_of_complex_tables, 
+  ~.x %>% 
+  data_frame(y = .) %>% 
+  separate(col = y, 
+           into = c("col1", "col2", "col3", "col4"), 
+           sep = " ",
+           convert = TRUE))
+```
+
+In the example above, we start with the `map()` function because we want to repeatedly apply a set of operations to each item in a list. Our list is the list of character vectors, called 'list_of_complex_tables', resulting from reading in the unstructured plain te file, and the first few steps of extracting the table lables. The tilde symbol `~` indicates that what follows that symbol is a function to apply to each element of the list 'list_of_complex_tables'. For this function, we have pasted in the code that we used to experiment on the first item in the list, and now the `map()` function will automatically apply this code to each item in the list. All we have to do it wait for it to finish. The structure of the output of this operation is shown below. We have a list with three items, each item is a data frame with four columns, just as expected. 
+
+```{r}
+str(list_of_complex_tables_separated)
+```
+
+You may never encounter unstructered data exactly like these examples, but this general pattern is likely to save time and frustration when working with data in unsual formats. The general pattern that the above examples use is:
+
+1. Read in the plain text file using a generic function such as `read_table2()`, `scan()`, or `readLines()`. If the unstructured data is in a Microsoft Word document, you may need to open that document in a word processer and save it as a plain text file (i.e. .txt) to read it into R. If the data are in a PDF, Jeroen Ooms' package pdftools can read the PDF into R as a character vector.      
+
+2. Inspect the resulting object with `str()` and `head()` to evaluate how best to proceed.     
+
+3. If there are multiple tables in your file, split the object into the individual tables as items in a list object using `split()` or the more convenient derivative function `split_at()`.     
+
+4. Extract table labels or empty elements so that the only items in the list are the data values that you want to see in a data frame. We used `map()` and sqaure braket indexing (e.g. `[-1]` to remove the first item in a vector) to do this in the above examples.     
+
+5. Separate or split the character vector in each list item into columns in a data frame. The above examples demonstrate two of methods for this task, including the convienent functions `df_from_vector()` and `separate()`. We demonstrated how it is good practise to experiment on the first item in the list to explore how to get the desired output. Then we adapted the code for this experiment to apply it repeatedly to a list of items by using the `map()` function.     
+
+6. Finally, inspect the output with  with `str()` and `head()` to check that the format is as you expect, and save is at one or more CSV files to make it easier to reuse these data.      
+
+## Summary 
+
+In this chapter we have surveyed several methods for getting data into R from data 'containers' that are commonly used in archaeology. We have described how to get data from one spreadsheet file, one file with many sheets of data, and many spreadsheet files. We have also looked at more challenging situations where a table of data is in a Microsoft Word document or a PDF. With the aid of some contributed packages, R can import tabular data from these files with relative ease. Finally, we explored several methods for handling unstructured, or less structured data. These methods are more complex and will vary according to the specific characteristics of the data you are attempting to import. We concluded these more complex data import examples with a set of general steps to guide you when importing more challenging data sets. In the following chapter we show how to clean and tidy data, this will close the gap between getting the data into R and doing useful analysis with the data. 

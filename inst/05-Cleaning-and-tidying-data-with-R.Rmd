@@ -1,6 +1,18 @@
+```{r echo=FALSE}
+library(knitr)
+opts_chunk$set(message = FALSE,
+               warning = FALSE,
+               cache = TRUE,
+               fig.align = 'center',
+               fig.width = 7)
+```
+
 # (PART) Preparing the data {-}
 
 # Preparing the data for analysis {#preparingthedata}
+
+
+
   
 ## Overview
 

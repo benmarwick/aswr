@@ -1,11 +1,11 @@
-#' @name make_table_from_vector
+#' @name df_from_vector
 #'
-#' @description Takes a list of vectors of equal size and converts each vector into a data frame of a given number of columns. All tables must have the same number of columns.
+#' @description Takes a vector and converts it into a data frame of a given number of columns.
 #'
-#' @param list_of_tables A list of vectors
-#' @param ncol int The number of columns that each table should have.
+#' @param vec A vector
+#' @param n_col int The number of columns that the resulting table should have.
 #'
-#' @return A list of data frames.
+#' @return A data frame.
 #' @export
 #'
 #' @importFrom tibble as_tibble
@@ -13,29 +13,30 @@
 #'
 #' @examples
 #'
-#' list_of_tables <- list(rep(1:10), rep(1:10), rep(1:10))
+#' vec <- rep(1:10)
 #'
-#' make_table_from_vector(list_of_tables, 2)
+#' df_from_vector(vec, 2)
 #'
-make_table_from_vector <- function(list_of_tables, ncol) {
+df_from_vector <- function(vec, n_col) {
 
-  list_of_df <-  vector("list", length = length(list_of_tables))
-  for(i in seq_along(list_of_tables)) {
+  # check that lenth of vector is divisible by ncol
+  # so we can make columns of equal length
 
-    col_list <- vector("list", length = ncol)
-    for(j in seq_len(ncol)) {
-      chr_vec <-  list_of_tables[[i]]
-      col_list[[j]] <- chr_vec[seq(j, length(chr_vec), ncol)]
+  if(length(vec) %% n_col != 0) stop("The number of elements in the vector is not an even multiple of the number of columns that you have requested")
+
+    col_list <- vector("list", length = n_col)
+    for(j in seq_len(n_col)) {
+      chr_vec <-  vec
+      col_list[[j]] <- chr_vec[seq(j, length(chr_vec), n_col)]
     }
 
+    df_out <- tibble::as.tibble(do.call("cbind", col_list))
+    df_out <- readr::type_convert(df_out)
 
-    list_of_df[[i]] <- tibble::as.tibble(do.call("cbind", col_list))
-    list_of_df[[i]] <- readr::type_convert(list_of_df[[i]])
+    return(df_out)
 
   }
-  names(list_of_df) <-  names(list_of_tables)
-  list_of_df
-}
+
 
 
 

@@ -37,7 +37,8 @@ the_chapters <- dir(pattern = "^[0-9]{2}.*Rmd$")
 last_edit <- 
   map_df(the_chapters, ~file.info(.x)) %>% 
   select(mtime) %>% 
-  rename(last_edit = mtime)
+  rename(last_edit = mtime) %>% 
+  mutate(Title = trimws(gsub("[0-9]|-|\\.Rmd", " ", the_chapters)))
 
 # get word counts of the chapters
 the_word_counts_of_the_chapters <- 
@@ -50,7 +51,7 @@ the_word_counts_of_the_chapters <-
            c("Number", "Title"), 
              sep = "(?<=[0-9]{2})\\-(?=[A-Z]+)") %>% 
   mutate(Title = trimws(gsub("-|.Rmd", " ", Title))) %>% 
-  bind_cols(last_edit) 
+  left_join(last_edit) 
 
 # writing log, idea from https://github.com/Robinlovelace/geocompr/blob/5076612a8913165083cfd62610d01c0b38c061d7/README.Rmd
 
@@ -110,10 +111,17 @@ book_stats_updated %>%
   # tally up for all chapters on each day
   summarise(words_per_day = sum(diff_from_previous_day))
 
+
+# plotly doesn't format dates well
+library(lubridate)
+book_stats_updated_per_day$dmy <-
+  format(book_stats_updated_per_day$day, "%d/%m/%Y")
+
 p <- 
 ggplot(book_stats_updated_per_day,
        aes(day, 
-           words_per_day)) +
+           words_per_day,
+           label = dmy)) +
   geom_point() +
   geom_line() +
   ylab("Words written per day") +
@@ -124,7 +132,7 @@ ggplot(book_stats_updated_per_day,
                  " words)"))
 
 library(plotly)
-ggplotly(p)
+ggplotly(p, tooltip = c("dmy", "words_per_day"))
 
 ```
 
