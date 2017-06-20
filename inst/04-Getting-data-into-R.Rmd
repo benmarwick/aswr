@@ -1,3 +1,8 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
 ```{r echo=FALSE}
 library(knitr)
 opts_chunk$set(message = FALSE,
@@ -166,7 +171,8 @@ library(tabulizer) # load the libraries
 library(dplyr)
 
 # read in the table from the PDF file
-table_from_pdf <- extract_tables("data/Terry_et_al_2000_[P].pdf", pages = 9)
+table_from_pdf <- extract_tables("data/Terry_et_al_2000_[P].pdf", 
+                                 pages = 9)
 
 # inspect the output of extract_tables(), here we acces the first item in the list
 # and coerce to a data frame

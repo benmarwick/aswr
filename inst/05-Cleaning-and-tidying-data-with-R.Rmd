@@ -15,24 +15,26 @@ It is rarely the case that data that are fresh from field work or obtained direc
 
 ## Navigating data
 
-The most natural container for tabular data in R is the data frame. Data frames have serveral variants with slightly different properties. For example in this book we frequnely use the tibble class, a trimmed down version of a data frame, because it  provides neater and more informative output when we print a tibble to the R console. But the core data frame functions remain the same. For example we can extract the first row of a tibble data frame ca lled 'df' using the square braket subsetting method like so `df[1, ]`, and extract the third column like this `df[ , 3]`. On the left side of the comma in the middle of the square brakets we control how to subset the rows of the data frame, and on the right side we control how to subset the columns of the data frame. This method of square braket subsetting is useful for quick interactive exploration of the data during the data cleaning steps. The examples below show how to use the square brackets for a variety of different subsetting tasks:
+The most natural container for tabular data in R is the data frame. Data frames have serveral variants with slightly different properties. For example in this book we frequnely use the tibble class, a trimmed down version of a data frame, because it  provides neater and more informative output when we print a tibble to the R console. But the core data frame functions remain the same. For example we can extract the first row of a tibble data frame called 'my_df' using the square braket subsetting method like so `my_df[1, ]`, and extract the third column like this `my_df[ , 3]`. On the left side of the comma in the middle of the square brakets we control how to subset the rows of the data frame, and on the right side we control how to subset the columns of the data frame. This method of square braket subsetting is useful for quick interactive exploration of the data during the data cleaning steps. The examples below show how to use the square brackets for a variety of different subsetting tasks:
 
 ```
-df[1]      # first column in the data frame (as a data frame)
-df[, 1]    # first column in the data frame (as a vector)
-df[1, 1]   # first element in the first column of the data frame (as a vector)
-df[1, 6]   # first element in the 6th column (as a vector)
-df[1:3, 7] # first three elements in the 7th column (as a vector)
-df[3, ]    # the 3rd element for all columns (as a data frame)
-df["col1"] # Result is a data.frame
-df[, "col1"]     # Result is a vector
-df[["col1"]]     # Result is a vector
-df$col1          # Result is a vector
+my_df[1]      # first column in the data frame (as a data frame)
+my_df[, 1]    # first column in the data frame (as a vector)
+my_df[[1]]    # also the first column in the data frame (as a vector)
+my_df[1, 1]   # first element in the first column of the data frame 
+                (as a vector)
+my_df[1, 6]   # first element in the 6th column (as a vector)
+my_df[1:3, 7] # first three elements in the 7th column (as a vector)
+my_df[3, ]    # the 3rd element for all columns (as a data frame)
+my_df["col1"] # Result is a data.frame
+my_df[, "col1"]     # Result is a vector
+my_df[["col1"]]     # Result is a vector
+my_df$col1          # Result is a vector
 ```
 
-Because it can be confusing to predict the output class when using square brackets, we will use a different and more consistent method for subsetting during data analysis. But these methods are good for quickly inspecting your data and identifying cleaning tasks. In some cases a matrix may be a better container for your data than a data frame. If your rectangular data is all one class (i.e. all character or all numeric), is relatively big (i.e. hundred to thousands or more or columns or rows), and you don't need column names, then a matrix will probably take up less space in the memory of your computer and be faster to analyse. Matrices have similiar subsetting methods to data frames, so for the purpose of this chapter we will group them together.
+Because it can be confusing to predict the output class when using square brackets, we will use a different and more consistent method for subsetting during data analysis. But these methods are good for quickly inspecting your data and identifying cleaning tasks. In some cases a matrix may be a better container for your data than a data frame, or your data may be transformed into a matrix by a function you're using. Matrices have similiar subsetting methods to data frames, so for the purpose of this chapter we will group them together. You may want to choose a matrix over a data frame for your data if your rectangular data is all one class (i.e. all character or all numeric), is relatively big (i.e. hundred to thousands or more or columns or rows), and you don't need column names, then a matrix will probably take up less space in the memory of your computer and be faster to analyse. 
 
-A small number of data frames are can be efficently managed as individual obejcts in your R environment without confusion,  but if you have a dozen or more data frames of similar sizes you will find yourself repeating code unnessearily as you repeat functions on each of the data frames. This can result in mistakes in your code and wasted time. A more efficient way to work with multiple data frames is to store them in a list. We have used lists extensively in the previous chapter as a conivenent way to store multiple data frames and operate on them. The square bracket method of subsetting also works on lists, with some important differences resulting from the use of double square brackets. Consider a simple list with three items, and the items are names a, b, and c:
+A small number of data frames are can be efficently managed as individual obejcts in your R environment without confusion,  but if you have a dozen or more data frames of similar sizes you will find yourself repeating code unnessearily as you repeat functions on each of the data frames. This can result in mistakes in your code and wasted time. A more efficient way to work with multiple data frames is to store them in a list. We have used lists extensively in the previous chapter as a conivenent way to store multiple data frames and operate on them. The square bracket method of subsetting also works on lists, and you'll notice that the double square brackets we can use to extract a column from a data frame is used extensively for lists. This is due to the fact that on a technical level a data frame is a list of vectors of equal length [@Matloff2011]. Consider a simple list with three items, and the items are names a, b, and c:
 
 ```
 my_list[[1]]       # first item in the list (as the class of that item)
@@ -49,7 +51,7 @@ The general pattern is that double square brackets including an 'unlist-ing' ste
 
 ## Five concepts for cleaning data
 
-Now that we have our data imported into R, and we have some familiarity with how to access it, we can work on cleaning and tidying the data to make it ready for analysis and visualisation. I have divided this process into five common actions to cover the majority of data cleaning tasks:
+Now that we have our data imported into R, and we have some familiarity with how to access it, we can work on cleaning and tidying the data to make it ready for analysis and visualisation. I have divided this process into five common tasks that I routinely do when cleaning for analysis:
 
 1. Fixing names: correting spelling, replacing spaces, etc.    
 2. Converting types: character to numeric, extracting numbers from strings, etc.   
@@ -57,12 +59,107 @@ Now that we have our data imported into R, and we have some familiarity with how
 4. Splitting columns: separating one col into two or more    
 5. Reshaping: from wide to long and long to wide  
 
-
 ### Fixing names
 
-colunn names
+Fixing names refers to two tasks: putting the correct column names on a data frame, and correcting misspellings of names of items with columns in the data frame. A common problem with column names on data frames is that the ones your expect are missing, and instead you have column names like X1, X2, X3... or V1, V2, V3... We encountered this problem in the previous chapter when we used the `extract_tables()` function from the tabulizer package to extract a table from a PDF. The first challenge with the output of that function is that it returns a matrix:
 
-character columns
+```{r}
+class(table_from_pdf[[1]])
+```
+
+So we use `as_data_frame()` from the dplyr package to convert this into a tibble data frame (there is a `as.data.frame()` function for which no package is needed, but I find that the dplyr version has more useful defaults settings). We need to convert the matrix into a data frame so that we can have column with different classes, for example the 'Sample' column needs to be character class so it can hold a mix of letters and numbers, and the measurement columns need to be numeric so we can compute on them. So we can convert to a data frame, and then use `head()` to inspect the output:
+
+```{r}
+terry_table <- as_data_frame(table_from_pdf[[1]])
+head(terry_table)
+```
+
+In the output we see that the actual column names are V1, V2, V3, etc., and the column names we want are in the first and second row. If the column names were exclisvely in the first row, we could assign the first row to the data frame column names, and then delete the first row. The pattern for this is:
+
+```{r echo = FALSE}
+my_df <- data.frame(1, 2)
+```
+
+```{r}
+names(my_df) <- my_df[ 1, ]      # assign first row to the column names
+my_df        <- my_df[-1, ]      # delete the first row 
+```
+
+Or for the same result in one line, we can use the `assign_colnames()` function from the docxtractr package. In the example below the `::` saves us from having to type `library(docxtractr)` to make the `assign_colnames()` function available to our R session: 
+
+```{r echo = FALSE}
+my_df <- data.frame(1, 2)
+```
+
+```{r}
+# move the first row of the data frame to the column names
+my_df <- docxtractr::assign_colnames(my_df, 1)
+```
+
+This is an ideal solution for this common problem where the column names are in the first row and we want to move them to the proper place. However, our example here is slighly more complex because the column names are spread across the first and second rows of the data frame. In this case, the general strategy is to create a character vecttor that is the result of pasting together the first and second row for each column, then proceed as above and move the first row to the column names. In the code below we take the first and second rows of the data frame (`terry_table[c(1:2), ]`), and use the `paste()` function to combine them into a a single character string for each column. The `collapse = " "` argument to to the `paste()` function indicates that we want to collapse the two items into one item where they are separated by a space. So that "Total P" (row 1 col 4), and "(mg/kg)" (row 2 col 4) become one item: "Total P (mg/kg)". To automate this process across each column of the 'terry_table' data frame, we use the `map_chr()` function, which also converts the output to a character vector (compare to the generic `map()` which returns a list):  
+
+```{r}
+# extract and combine first two rows
+terry_table_col_names <- 
+  map_chr(terry_table[c(1:2), ], 
+          ~paste0(.x, collapse = " "))
+
+# delete first two rows from the table
+terry_table <- terry_table[-c(1:2), ]
+
+# view output 
+terry_table_col_names
+```
+
+The output is quite good, we have combined the first and second row of each column to get a meaningful set of column names. But a few problems remain: there is a space before the S in 'Sample' in the first item in the resulting character vector, the fifth item is only a space, with no text, and the sixth item does not have the correct symbols. The leading space in the first item is s nuisance and can easily be removed with the function `trimws()` which trims white space from the start and end of a character string (but not the internal spaces:
+
+```{r}
+terry_table_col_names <- 
+trimws(terry_table_col_names)
+
+# see the result
+terry_table_col_names
+```
+
+The empty element in the fifth item is due to the `extract_tables()` function guessing that there was a fifth column in this table. However, we saw in our earlier inspections that the fifth column contains no values, so it can safely be deleted from the table, and the fifth element of the names can also be deleted:
+
+```{r}
+# delete the fifth column 
+terry_table <- terry_table[ , -5]
+
+# delete the fifth element of the names vector
+terry_table_col_names <- terry_table_col_names[-5]
+```
+
+The only issue remaining now is the incorrect reading of the characters in the name of the last column. These errors are likely due to subtle differences in the encoding of numbers and letters in the PDF, and the types of encoding that R can easily handle. Encoding is a complex topic relating to the rules a computer follows when it stores human-readable characters as zeros and ones. In any case, the simplest fix is to directly update that item by replacing it with what we can see in the PDF that we got the data from:
+
+```{r}
+terry_table_col_names[5] <- "Ring Test Rating (1-6)" 
+```
+
+If we had a large table with many columns, and most of the column names had an encoding issue like this, we would want an automated method to deal with all the columns at once, rather than directly updating each element by hand as we did here. For example, we could use the `parse_character()` fucntion from the readr package to convert the encoding to something that looks sensible:
+
+```{r}
+terry_table_col_names <- 
+parse_character(terry_table_col_names, 
+                locale = locale(encoding = "UTF-8"))
+```
+
+The final step here is to assign the character vector of column names to the column names of the data frame:
+
+```{r}
+names(terry_table) <- terry_table_col_names
+
+# inspect the result:
+head(terry_table)
+```
+
+That completes the process of fixing the column names for this table, which is a typical set of operations for cleaning a data frame to prepare it for analysis. We still need to convert the column classes for some of the columns from character to numeric, but we will do that in a later section. 
+
+The second important task relating to fixing names is correcting data entry errors in values in a column. 
+
+
+
 
 1. Fixing names: correting spelling, replacing spaces, using ifelse, gsub, regex    
 2. Types: character to numeric, extract numbers from strings
