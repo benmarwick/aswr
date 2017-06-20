@@ -7,26 +7,64 @@ opts_chunk$set(message = FALSE,
                fig.width = 7)
 ```
 
-# (PART) Preparing the data {-}
-
 # Preparing the data for analysis {#preparingthedata}
 
-
-
-  
 ## Overview
 
-## Getting data into a useful container
+It is rarely the case that data that are fresh from field work or obtained directly from an instrument are immediately ready for analysis and visualisation. Often there are minor inconistences and errors in the data that need to be cleared out of the data. Identifying and removing these contaminants is rarely taught during undergraduate or gradute training, and as a result, many researchers spend a lot of time struggling with making their data fit for analysis and visualisation. The aim of this chapter is to investigate five key concepts for cleaning data with R. This chapter will give you the tools to identify problems with your data, fix them quickly and simply, and get your data into a suitable shape for analysis and visualisation. First we will ensure that you can navigate your data easily, then we will describe five data cleaning concepts, and finally we will explore some methods for joining tables together. 
 
-dataframe
-list of dataframes
-matrix
+## Navigating data
 
-## Dealing with data typos and inconsistences
+The most natural container for tabular data in R is the data frame. Data frames have serveral variants with slightly different properties. For example in this book we frequnely use the tibble class, a trimmed down version of a data frame, because it  provides neater and more informative output when we print a tibble to the R console. But the core data frame functions remain the same. For example we can extract the first row of a tibble data frame ca lled 'df' using the square braket subsetting method like so `df[1, ]`, and extract the third column like this `df[ , 3]`. On the left side of the comma in the middle of the square brakets we control how to subset the rows of the data frame, and on the right side we control how to subset the columns of the data frame. This method of square braket subsetting is useful for quick interactive exploration of the data during the data cleaning steps. The examples below show how to use the square brackets for a variety of different subsetting tasks:
 
-5CC: Five cleaning concepts for cleaning and tidying data to make it ready for analysis and visualisation 
+```
+df[1]      # first column in the data frame (as a data frame)
+df[, 1]    # first column in the data frame (as a vector)
+df[1, 1]   # first element in the first column of the data frame (as a vector)
+df[1, 6]   # first element in the 6th column (as a vector)
+df[1:3, 7] # first three elements in the 7th column (as a vector)
+df[3, ]    # the 3rd element for all columns (as a data frame)
+df["col1"] # Result is a data.frame
+df[, "col1"]     # Result is a vector
+df[["col1"]]     # Result is a vector
+df$col1          # Result is a vector
+```
 
-1. Names: spelling, spaces, using ifelse, gsub, regex    
+Because it can be confusing to predict the output class when using square brackets, we will use a different and more consistent method for subsetting during data analysis. But these methods are good for quickly inspecting your data and identifying cleaning tasks. In some cases a matrix may be a better container for your data than a data frame. If your rectangular data is all one class (i.e. all character or all numeric), is relatively big (i.e. hundred to thousands or more or columns or rows), and you don't need column names, then a matrix will probably take up less space in the memory of your computer and be faster to analyse. Matrices have similiar subsetting methods to data frames, so for the purpose of this chapter we will group them together.
+
+A small number of data frames are can be efficently managed as individual obejcts in your R environment without confusion,  but if you have a dozen or more data frames of similar sizes you will find yourself repeating code unnessearily as you repeat functions on each of the data frames. This can result in mistakes in your code and wasted time. A more efficient way to work with multiple data frames is to store them in a list. We have used lists extensively in the previous chapter as a conivenent way to store multiple data frames and operate on them. The square bracket method of subsetting also works on lists, with some important differences resulting from the use of double square brackets. Consider a simple list with three items, and the items are names a, b, and c:
+
+```
+my_list[[1]]       # first item in the list (as the class of that item)
+my_list[[3]]       # third item in the list (as the class of that item)
+my_list[1]         # a list containing only the first item 
+my_list[1:3]       # a list containing only the first three items 
+my_list[c(1, 3)]   # a list containing only the first and third items 
+my_list[['a']]     # first item in the list (as the class of that item)
+my_list['b']       # a list containing only the second item in the list 
+my_list$c          # third item in the list (as the class of that item)
+```
+
+The general pattern is that double square brackets including an 'unlist-ing' step in extracting an item from the list, while the single square brackets preserve the list structure. For example, if you have a list of data frames, then 'my_list[[1]]' will return the first data frame in the list, as a data frame. However, 'my_list[1]' will return a list containing the first data frame. These might seem like arcane subtleties, but its worth to take care when subsetting a list to minimize frustration and ensure that the result is a class that is useful to your analysis. 
+
+## Five concepts for cleaning data
+
+Now that we have our data imported into R, and we have some familiarity with how to access it, we can work on cleaning and tidying the data to make it ready for analysis and visualisation. I have divided this process into five common actions to cover the majority of data cleaning tasks:
+
+1. Fixing names: correting spelling, replacing spaces, etc.    
+2. Converting types: character to numeric, extracting numbers from strings, etc.   
+3. Defining missing data: replacing with NA or 0, imputing, etc    
+4. Splitting columns: separating one col into two or more    
+5. Reshaping: from wide to long and long to wide  
+
+
+### Fixing names
+
+colunn names
+
+character columns
+
+1. Fixing names: correting spelling, replacing spaces, using ifelse, gsub, regex    
 2. Types: character to numeric, extract numbers from strings
 3. Missing data: replacing with NA or 0, imputing    
 4. Splitting: separating one col into two or more
