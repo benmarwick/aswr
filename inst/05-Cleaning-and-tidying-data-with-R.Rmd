@@ -51,7 +51,7 @@ The general pattern is that double square brackets including an 'unlist-ing' ste
 
 ## Five concepts for cleaning data
 
-Now that we have our data imported into R, and we have some familiarity with how to access it, we can work on cleaning and tidying the data to make it ready for analysis and visualisation. I have divided this process into five common tasks that I routinely do when cleaning for analysis:
+Now that we have our data imported into R, and we have some familiarity with how to access it, we can work on cleaning and tidying the data to make it ready for analysis and visualisation. Data cleaning can profoundly influence the results of a statistical analysis, so it is important to take care with these steps. I have divided this process into five common tasks that I routinely do when cleaning for analysis [cf @de2013introduction]:
 
 1. Fixing names: correting spelling, replacing spaces, etc.    
 2. Converting types: character to numeric, extracting numbers from strings, etc.   
@@ -156,8 +156,56 @@ head(terry_table)
 
 That completes the process of fixing the column names for this table, which is a typical set of operations for cleaning a data frame to prepare it for analysis. We still need to convert the column classes for some of the columns from character to numeric, but we will do that in a later section. 
 
-The second important task relating to fixing names is correcting data entry errors in values in a column. 
+The second important task relating to fixing names is correcting data entry errors in values in a column. Suppose we have this simple table of counts of artefact by colours, compiled by a group of undergraduate students:
 
+```{r echo = FALSE}
+
+artefacts_by_colour <- 
+  dplyr::data_frame(colour = c("red", " green", "greenish", "green-like", "bleu", "blue", "Red "),
+             count = c(3, 5, 8, 4, 2, 0, 7))
+
+knitr::kable(artefacts_by_colour)
+```
+
+At a quick glance at the 'colour' column we can see that 'blue' is mis-spelled as 'bleu', we might want to combine the variants of 'green', and 'red' appears in the last row with a capital 'R', but all the other colour names are in lower case. These are very typical issues that make raw data dirty, and we can easily clean them in R. First, we will fix the case so that all the items in the 'colour' column are lower case:
+
+```{r}
+artefacts_by_colour$colour <- tolower(artefacts_by_colour$colour)
+
+# inspect the result
+artefacts_by_colour
+```
+
+That has fixed the 'red' in the last row, and now we will fix the spelling mistake using the `if_else()` function. This function is from the dplyr package, there is also an `ifelse()` in base R, but I prefer the dplyr version becuase it is more strict, predictable and faster: 
+
+```{r}
+artefacts_by_colour$colour <- 
+  with(artefacts_by_colour, 
+       if_else(colour == "bleu", 
+              "blue", 
+              colour))
+
+# inspect the result
+artefacts_by_colour
+```
+
+The `if_else()` function is very useful for data cleaning because we can use it to easily update values in a column. It works by evaluating a condition for each item in a vector, one-by-one, and retuning a new vector with values that depend on how each item is evaluated. In this case the condition is `colour == "bleu"`, which we can translate as 'is the value of the column 'colour' equivalent to "bleu"?'. For each item in the 'colour' column, the `if_else()` function will evaluate that condition and return either `TRUE` (the value is equalivant to "bleu") or `FALSE ` (the value is not "bleu", but something else, like "red", or "green"). The second argument to `if_else()` is the value to return if the condition is `TRUE`. In our example, we can translate this as 'if the value of the column 'colour' is "bleu", then return the value "blue"'. Or more plainly 'where "bleu" occurs in the 'colour' column, replace it with "blue"', akin to a find-and-replace task you might do in a word processing document. The last argument to `if_else()` is the value to return if the condition is `FALSE`. In our example, this value is whatever the value of the 'colour' column is. So when the `if_else()` gets to the last item in the 'colour' column, it sees the value "red", and it evaluates the condition as 'is "red" equivalent to "bleu"?' and returns `FALSE`, and then skips over the second argument (what to return if `TRUE`) and looks at the third argument (what to return if `FALSE`), sees the column name 'colour' and returns the last value of that column, which is "red". Effectively, it leaves the column values unchanged if the condition is `FALSE`. 
+
+Note the use of `with()` in the example above, it saves me from having to type the name of the data frame twice. Without `with()` I would have typed it like this, repeating the name of the data frame each time I refer to the 'colour' column:
+
+
+```{r}
+artefacts_by_colour$colour <- 
+       if_else(artefacts_by_colour$colour == "bleu", 
+              "blue", 
+               artefacts_by_colour$colour)
+```
+
+We could use a pair of `if_else()` functions, one nested inside the other, to change 'greenish' and 'green-like', but instead will will use a simpler option. We can use the function `gsub()`, which stands for 'global substituion', and works by searching through each element in a vector for a match to a pattern that we supply, and then when it finds a match to that pattern, substitutes the element with a replacement that we supply. 
+
+```{r}
+gsub("green.*", "green", artefacts_by_colour$colour)
+```
 
 
 
