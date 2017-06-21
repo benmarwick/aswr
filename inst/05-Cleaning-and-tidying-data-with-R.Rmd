@@ -167,7 +167,7 @@ artefacts_by_colour <-
 knitr::kable(artefacts_by_colour)
 ```
 
-At a quick glance at the 'colour' column we can see that 'blue' is mis-spelled as 'bleu', we might want to combine the variants of 'green', and 'red' appears in the last row with a capital 'R', but all the other colour names are in lower case. These are very typical issues that make raw data dirty, and we can easily clean them in R. First, we will fix the case so that all the items in the 'colour' column are lower case:
+At a quick glance at the 'colour' column we can see that 'blue' is mis-spelled as 'bleu', we might want to combine the variants of 'green', and 'red' appears in the last row with a capital 'R', but all the other colour names are in lower case. In a small table like this is a easy to browse the whole column, but in larger tables we can run `unique(artefacts_by_colour$colour)` to give a character vector of the unique values in the 'colour' column, or `table(artefacts_by_colour$colour)`, which returns a table showing each unique value and how many times it occurs in the column. However you discover the problems in a column, the good news is that these are very typical issues that make raw data dirty, and we can easily clean them in R. First, we will fix the case so that all the items in the 'colour' column are lower case:
 
 ```{r}
 artefacts_by_colour$colour <- tolower(artefacts_by_colour$colour)
@@ -201,10 +201,22 @@ artefacts_by_colour$colour <-
                artefacts_by_colour$colour)
 ```
 
-We could use a pair of `if_else()` functions, one nested inside the other, to change 'greenish' and 'green-like', but instead will will use a simpler option. We can use the function `gsub()`, which stands for 'global substituion', and works by searching through each element in a vector for a match to a pattern that we supply, and then when it finds a match to that pattern, substitutes the element with a replacement that we supply. 
+We could use a pair of `if_else()` functions, one nested inside the other, to change 'greenish' and 'green-like', but instead will will use a simpler option. We can use the function `gsub()`, which stands for 'global substituion', and works by searching through each element in a vector for a match to a pattern that we supply, and then when it finds a match to that pattern, substitutes the element with a replacement that we supply. Below, we supply that pattern to match as "green.*", which translates as 'the word green, followed by any character (indicated by the period), any number of times (indicated by the plus symbol)'. In this context, the period and plus symbol are metacharacters that have special meanings instead of their usual literal meanings. The pattern that we have supplied, using this metacharacters is called a 'regular expression'. Working with regular expressions gives you access to a powerful, flexible, and efficient system for cleaning and manipulating data [see @fitzgerald2012introducing; friedl2002mastering for detailed introductions]. Regular expressions are used for processing strings in many programming languages, and are notorius for their terse and cryptic appearance. However, learning to work with regular expressions is a worthwhile investment because they can save a lot of time when cleaning data. The code below shows how we use `gsub()` with a regular expression to replace  "greenish" and "green-like" with "green" in the 'colour' column:
 
 ```{r}
-gsub("green.*", "green", artefacts_by_colour$colour)
+artefacts_by_colour$colour <- 
+  gsub("green.*", "green", artefacts_by_colour$colour)
+
+# inspect the result
+artefacts_by_colour
+```
+
+In the above example we show the use of the period and asterix as metacharacters in a regular expression. The table below summarises other metacharacters and symbols that are commonly used in regular expressions during data cleaning.
+
+```{r echo = FALSE}
+regex_tbl <- readr::read_csv("data/regex.csv")
+1+8
+knitr::kable(regex_tbl)
 ```
 
 
