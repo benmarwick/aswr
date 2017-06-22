@@ -1,0 +1,6 @@
+Task,Functions
+Identify match to a pattern,"`grep(..., value = FALSE)`, `grepl()`, `stringr::str_detect()`"
+Extract match to a pattern,"`grep(..., value = TRUE)`, `stringr::str_extract()`, `stringr::str_extract_all()`"
+"Locate pattern within a string, i.e. give the start position of matched patterns","`stringr::str_locate()`, `string::str_locate_all()`"
+Replace a pattern,"`gsub()`, `stringr::str_replace()`, `stringr::str_replace_all()`"
+Split a string using a pattern,"`strsplit()`, `stringr::str_split()`"

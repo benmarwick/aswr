@@ -34,7 +34,7 @@ my_df$col1          # Result is a vector
 
 Because it can be confusing to predict the output class when using square brackets, we will use a different and more consistent method for subsetting during data analysis. But these methods are good for quickly inspecting your data and identifying cleaning tasks. In some cases a matrix may be a better container for your data than a data frame, or your data may be transformed into a matrix by a function you're using. Matrices have similiar subsetting methods to data frames, so for the purpose of this chapter we will group them together. You may want to choose a matrix over a data frame for your data if your rectangular data is all one class (i.e. all character or all numeric), is relatively big (i.e. hundred to thousands or more or columns or rows), and you don't need column names, then a matrix will probably take up less space in the memory of your computer and be faster to analyse. 
 
-A small number of data frames are can be efficently managed as individual obejcts in your R environment without confusion,  but if you have a dozen or more data frames of similar sizes you will find yourself repeating code unnessearily as you repeat functions on each of the data frames. This can result in mistakes in your code and wasted time. A more efficient way to work with multiple data frames is to store them in a list. We have used lists extensively in the previous chapter as a conivenent way to store multiple data frames and operate on them. The square bracket method of subsetting also works on lists, and you'll notice that the double square brackets we can use to extract a column from a data frame is used extensively for lists. This is due to the fact that on a technical level a data frame is a list of vectors of equal length [@Matloff2011]. Consider a simple list with three items, and the items are names a, b, and c:
+A small number of data frames are can be efficently managed as individual objects in your R environment without confusion,  but if you have a dozen or more data frames of similar sizes you will find yourself repeating code unnessearily as you repeat functions on each of the data frames. This can result in mistakes in your code and wasted time. A more efficient way to work with multiple data frames is to store them in a list. We have used lists extensively in the previous chapter as a conivenent way to store multiple data frames and operate on them. The square bracket method of subsetting also works on lists, and you'll notice that the double square brackets we can use to extract a column from a data frame is used extensively for lists. This is due to the fact that on a technical level a data frame is a list of vectors of equal length [@Matloff2011]. Consider a simple list with three items, and the items are names a, b, and c:
 
 ```
 my_list[[1]]       # first item in the list (as the class of that item)
@@ -54,7 +54,7 @@ The general pattern is that double square brackets including an 'unlist-ing' ste
 Now that we have our data imported into R, and we have some familiarity with how to access it, we can work on cleaning and tidying the data to make it ready for analysis and visualisation. Data cleaning can profoundly influence the results of a statistical analysis, so it is important to take care with these steps. I have divided this process into five common tasks that I routinely do when cleaning for analysis [cf @de2013introduction]:
 
 1. Fixing names: correting spelling, replacing spaces, etc.    
-2. Converting types: character to numeric, extracting numbers from strings, etc.   
+2. Converting column classes: character to numeric, extracting numbers from strings, etc.   
 3. Defining missing data: replacing with NA or 0, imputing, etc    
 4. Splitting columns: separating one col into two or more    
 5. Reshaping: from wide to long and long to wide  
@@ -102,7 +102,7 @@ This is an ideal solution for this common problem where the column names are in 
 # extract and combine first two rows
 terry_table_col_names <- 
   map_chr(terry_table[c(1:2), ], 
-          ~paste0(.x, collapse = " "))
+          ~paste(.x, collapse = " "))
 
 # delete first two rows from the table
 terry_table <- terry_table[-c(1:2), ]
@@ -141,8 +141,8 @@ If we had a large table with many columns, and most of the column names had an e
 
 ```{r}
 terry_table_col_names <- 
-parse_character(terry_table_col_names, 
-                locale = locale(encoding = "UTF-8"))
+  parse_character(terry_table_col_names, 
+                  locale = locale(encoding = "UTF-8"))
 ```
 
 The final step here is to assign the character vector of column names to the column names of the data frame:
@@ -156,13 +156,12 @@ head(terry_table)
 
 That completes the process of fixing the column names for this table, which is a typical set of operations for cleaning a data frame to prepare it for analysis. We still need to convert the column classes for some of the columns from character to numeric, but we will do that in a later section. 
 
-The second important task relating to fixing names is correcting data entry errors in values in a column. Suppose we have this simple table of counts of artefact by colours, compiled by a group of undergraduate students:
+The second important task relating to fixing names is correcting data entry errors in values in a column. Suppose we have this simple table of artefact by colours, compiled by a group of undergraduate students:
 
 ```{r echo = FALSE}
 
 artefacts_by_colour <- 
-  dplyr::data_frame(colour = c("red", " green", "greenish", "green-like", "bleu", "blue", "Red "),
-             count = c(3, 5, 8, 4, 2, 0, 7))
+  dplyr::data_frame(colour = c("red", " green", "greenish", "green-like", "bleu", "blue", "Red "), mass_kg = c(3, 5, 8, 4, 2, 1, 7))
 
 knitr::kable(artefacts_by_colour)
 ```
@@ -179,6 +178,8 @@ artefacts_by_colour
 That has fixed the 'red' in the last row, and now we will fix the spelling mistake using the `if_else()` function. This function is from the dplyr package, there is also an `ifelse()` in base R, but I prefer the dplyr version becuase it is more strict, predictable and faster: 
 
 ```{r}
+library(dplyr)
+
 artefacts_by_colour$colour <- 
   with(artefacts_by_colour, 
        if_else(colour == "bleu", 
@@ -201,7 +202,7 @@ artefacts_by_colour$colour <-
                artefacts_by_colour$colour)
 ```
 
-We could use a pair of `if_else()` functions, one nested inside the other, to change 'greenish' and 'green-like', but instead will will use a simpler option. We can use the function `gsub()`, which stands for 'global substituion', and works by searching through each element in a vector for a match to a pattern that we supply, and then when it finds a match to that pattern, substitutes the element with a replacement that we supply. Below, we supply that pattern to match as "green.*", which translates as 'the word green, followed by any character (indicated by the period), any number of times (indicated by the plus symbol)'. In this context, the period and plus symbol are metacharacters that have special meanings instead of their usual literal meanings. The pattern that we have supplied, using this metacharacters is called a 'regular expression'. Working with regular expressions gives you access to a powerful, flexible, and efficient system for cleaning and manipulating data [see @fitzgerald2012introducing; friedl2002mastering for detailed introductions]. Regular expressions are used for processing strings in many programming languages, and are notorius for their terse and cryptic appearance. However, learning to work with regular expressions is a worthwhile investment because they can save a lot of time when cleaning data. The code below shows how we use `gsub()` with a regular expression to replace  "greenish" and "green-like" with "green" in the 'colour' column:
+We could use a pair of `if_else()` functions, one nested inside the other, to change 'greenish' and 'green-like', but instead will will use a simpler option. We can use the function `gsub()`, which stands for 'global substituion', and works by searching through each element in a vector for a match to a pattern that we supply, and then when it finds a match to that pattern, substitutes the element with a replacement that we supply. Below, we supply that pattern to match as "green.*", which translates as 'the word green, followed by any character (indicated by the period), any number of times (indicated by the plus symbol)'. In this context, the period and plus symbol are metacharacters that have special meanings instead of their usual literal meanings. The pattern that we have supplied, using this metacharacters is called a 'regular expression'. Working with regular expressions gives you access to a powerful, flexible, and efficient system for cleaning and manipulating data (see @fitzgerald2012introducing and  @friedl2002mastering for detailed introductions). Regular expressions are used for processing strings in many programming languages, and are notorius for their terse and cryptic appearance. However, learning to work with regular expressions is a worthwhile investment because they can save a lot of time when cleaning data. The code below shows how we use `gsub()` with a regular expression to replace  "greenish" and "green-like" with "green" in the 'colour' column:
 
 ```{r}
 artefacts_by_colour$colour <- 
@@ -211,25 +212,192 @@ artefacts_by_colour$colour <-
 artefacts_by_colour
 ```
 
-In the above example we show the use of the period and asterix as metacharacters in a regular expression. The table below summarises other metacharacters and symbols that are commonly used in regular expressions during data cleaning.
+In the above example we show the use of the period and asterix as metacharacters in a regular expression. We can group characters used in regular expressions into three categories according to their function: converters, quantifiers, positioners, and operators. Converters are perhaps the most confusing of these, because it is not always obvious what they do and how many of them to use. Table \@ref(tab:regex-converters) demonstrates this challenge where `\\` seems to have two opposite functions. When working with `\\` to convert characters in a regular expression, a useful rule of thumb is to keep adding adding backslashes until it works as desired.
 
-```{r echo = FALSE}
-regex_tbl <- readr::read_csv("data/regex.csv")
-1+8
-knitr::kable(regex_tbl)
+```{r regex-converters, echo = FALSE}
+regex_converters_tbl <- readr::read_csv("data/regex_converters.csv")
+knitr::kable(regex_converters_tbl,
+             caption = "Characters commonly used for converting other characters in regular expressions")
 ```
 
+Quantifiers specify how many repetitions of the pattern we want to match in a string. Table \@ref(tab:regex-converters) describes the commonly used quantifiers in R's regular expressions. 
+
+```{r regex-quantifiers, echo = FALSE}
+regex_quantifiers_tbl <- readr::read_csv("data/regex_quantifiers.csv")
+knitr::kable(regex_quantifiers_tbl,
+             caption = "Characters commonly used for quantifing characters to match in regular expressions")
+```
+
+Positioners, or anchors, indicate the position of a pattern to match within a string. Table \@ref(tab:regex-positioners) summarisese some common positioners. These are especially useful for getting a match only at the start or end of a character string. 
+
+```{r regex-positioners, echo = FALSE}
+regex_positioners_tbl <- readr::read_csv("data/regex_positioners.csv")
+knitr::kable(regex_positioners_tbl,
+             caption = "Characters commonly used match at specific positions in regular expressions")
+```
+
+Operators are the core of a regular expression pattern, helping to define what to include in the pattern or exclude from it. Table \@ref(tab:regex-positioners) summarises some common positioners
+
+```{r regex-operators, echo = FALSE}
+regex_operators_tbl <- readr::read_csv("data/regex_operators.csv")
+knitr::kable(regex_operators_tbl,
+             caption = "Operators commonly used to make regular expression patterns")
+```
+
+An good guide to regular expresions is @fitzgerald2012introducing, and for R in particular, the chapter on strings in @wickham2016r is excellent (and is online here: <http://r4ds.had.co.nz/strings.html>). There are also many useful websites summarising common uses of regular expressions in R, such as <http://stat545.com/block022_regular-expression.html>, as well as sites to learn, build and test your regular expressions (e.g. <http://www.regexr.com/>, <https://regex101.com/>, and <https://www.debuggex.com/>). These sites are useful for learning more about regular expressions and understanding specific patterns, but it is easy to get confused with subtle differences in the way various programming languages interpret patterns on these websites. I find that the most effective way to use regular expressions is to experiment in my R console with trial and error on a very small example that represents the operation I want to apply to a data set.  Table \@ref(tab:regex-fns) shows the R functions that I most commonly use when working with regular expressions in R.
+
+```{r regex-fns, echo = FALSE}
+regex_fns_tbl <- readr::read_csv("data/regex_fns.csv")
+knitr::kable(regex_fns_tbl,
+             caption = "Functions commonly used to work with regular expressions. The stringr package has many other functions in addition to these that make data clearning easy and fast.")
+```
+
+Regular expressions are useful for many other data cleaning tasks besides fixing names, and we will see them pop up in other contexts. However, it can be templing to try to use regular expressions where another approach may be better suited. For example, you might try to write a complex regular expression where a series of simpler regular expressions or even `if_else()` statements might be easier to write and understand. When you get stuck with regular expressions, take a moment to reflect on simpler options, perhaps breaking the problem into smaller pieces and tackling each piece one at a time. 
+
+To return to our small table of artefacts, we are nearly done with fixing the problems in with the colour names. The data frame looks good when we view it in the console, but a final check with `table(artefacts_by_colour$colour)` reveals that we still have some inconsistences in some of the colour names. 
+
+```{r}
+# check the data frame
+artefacts_by_colour
+
+# final check to see if anything else needs fixing
+table(artefacts_by_colour$colour)
+```
+
+The output of `table()` shows that we still have two distinct names for 'green' and also for 'red', yet we cannot see any obvious differences in these names. To take a closer look, we must print the vector in isolation:
+
+```{r}
+artefacts_by_colour$colour
+```
+
+Now we can see the problem - there are leading and trailing spaces that are revealed by the double quotation marks. Those single spaces mean that R sees " green" as distinct from "green". An easy and fast way to remove these is with the `str_trim()` function from Hadley Wickham's stringr package. After that we can use `table()` to confirm that the colour names are as expected:
+
+```{r}
+library(stringr)
+artefacts_by_colour$colour <- str_trim(artefacts_by_colour$colour)
+
+# check that the colour names are as expected
+table(artefacts_by_colour$colour)
+```
+
+In situations where you have a large number of columns we can use `map_df()` to automatically apply the function `str_trim()` to all the columns in a data frame, for example:
+
+```{r}
+map_df(artefacts_by_colour, ~str_trim(.x))
+```
+
+However, this has the undesirable side-effect of coercing all columns into the character class, notice in the above output that the 'mass_kg' is now a character column. To trim the white space on only the character coloumns, andleave the numeric columns untouched, we can use `map_if()` and specify a condition that the columns must satisfy to determine if the function will be applied:
+
+```{r}
+map_if(artefacts_by_colour, 
+       is.character, 
+       ~str_trim(.x)) %>% 
+  as_data_frame()
+```
+
+The condition we apply here is `is.character()` which tests to see if each column is character class. If the column is character class, then the `str_trim()` function is applied to it. The output from `map_if()` is a list, so we need to add `as_data_frame()` to convert the list back into a data frame, ready for the next step. 
+
+### Converting column classes
+
+As we saw in the last example, sometimes functions convert our columns to classes that are unexpected or at least not convienent for our analysis. This is a common issue that can cause frustrations with data anlysis, so it is worth taking some time to check your column classes periodically during data clearning and analysis, and being familiar with quick and easy methods to change column classes. For the simplest case, a single column, we can use `as.numeric()` to coerce a column of numbers from character class to numeric class. Conisider the previous table of artefact colours and masses, and imagine that one more artefact has been added to the data. Notice that the mass value has been mistakenly entered as '2.5.' with an extra period at the end:
+
+```{r echo = FALSE}
+artefacts_by_colour <- rbind(artefacts_by_colour, c("yellow", "2.5."))
+knitr::kable(artefacts_by_colour)
+```
+
+When we read this table into R, this 'mass_kg' column is now a character column and our attempts to do numerical operations, like calculate the average, will fail. In a simple case like this, where we can see digits but the class is character, `as.numeric()` is a good choice:
+
+```{r}
+artefacts_by_colour$mass_kg <- as.numeric(artefacts_by_colour$mass_kg)
+
+# see the result
+artefacts_by_colour
+```
+
+The key thing to notice here is that while the 'mass_kg' column has been converted to a numeric (of the type 'double'), the last item, which was '2.5.' is now "NA", which stands for 'not available'. This is a special or 'reserved' word in the R language that represents a missing value. Is is important to be aware of missing values in your data because some common functions (such as `mean()`) will return only NA if there is even one missing value, unless you specifically instruct the function to remove the NA values (e.g. `mean(x, na.rm = TRUE)` will remove the NAs so that a mean can be calculated). In some cases data are genuinely missing, for example if the last item in the 'mass_kg' column was '??', then all we know is that someone entered some data, but it's not meaningful data about the mass of the artefact. But since we have '2.5.' we can reasonably infer that the correct value is '2.5'. We can use a regular expresion to handle this situation, for example, here is a fairly comprehensive pattern that will extract numbers (including decimal values) from a wide variety of situations in a character vector:
+
+```{r}
+library(stringr)
+
+x <- c("2.5.", "-100.001", "1.1kg", "p.10", "10kg", "1.0p5", "1p0.5")
+str_extract(x, "-?\\.?\\d+\\.*\\d*")
+```
+
+It is often helpful to annotate a complex regular expression to show the role of each character:
+
+```
+str_extract(x, "-?\\.?\\d+\\.*\\d*")
+#                |  |  |   |  |
+#                |  |  |   |  \\d* matches any digit, zero or more times
+#                |  |  | \\.* matches a literal period, zero or more times
+#                |  | \\d+ matches any digit one or more times
+#                | \\.? matches a literal period, zero or one time, in case 
+#                |      of the decimal with no leading zero
+#               -? matches a negative sign, zero or one time 
+
+```
+This pattern captures numbers in several typical mis-entered forms, including when units are accidently added, or stray characters appear at the beginning or end of the number. It does not do well with more ambiguous cases such as the last two items where there is a character in the middle of the number. Indeed, even as humans we cannot easily determine if '1.0p5' is meant to be '1.005' or '1.05'. We would need to consider the context of the data recording in detail to make a decision about how to handle values like that (e.g. Was the instrument even capable of reporting a mass to the nearest 0.005 kg? Can we round up to the nearest 0.5 kg wihout any substantial loss of data?). Such a complex regular expression as the previous example may cause more problems that it solves, and we may prefer a simpler, case-by-case approach for handling badly formed values. To solve only the problem of unwanted trailing characters, such a '2.5.' and '10kg', we can use a simpler regular expresion: 
+
+```{r}
+x <- c("2.5.", "-100.001", "1.1kg", "p.10", "10kg", "1.0p5", "1p0.5")
+str_extract(x, "\\d+\\.*\\d*")
+```
+
+Here it is with annotations:
+```
+str_extract(x, "\\d+\\.*\\d*")
+#                |   |  |
+#                |   |  \\d* matches any digit, zero or more times
+#                |  \\.* matches a literal period, zero or more times
+#               \\d+ matches any digit one or more times
+```
+
+This works well for cases like '2.5.' and '10kg'. Although it is not helpful for other types of mistakes, we might prefer to fix those with seperate regular expression functions. To return to our example data frame with '2.5.' in the 'mass_kg' column, we can now extract a number from the commonly mis-typed values, and with `as.numeric()` we can coerce the column to numeric class, ready for analysis:
+
+```{r echo = FALSE}
+artefacts_by_colour <- 
+  dplyr::data_frame(colour = c("red", " green", "greenish", "green-like", "bleu", "blue", "Red "),  mass_kg = c(3, 5, 8, 4, 2, 1, 7))
+artefacts_by_colour <- rbind(artefacts_by_colour, c("yellow", "2.5."))
+```
+
+```{r}
+artefacts_by_colour$mass_kg <- 
+  as.numeric(str_extract(artefacts_by_colour$mass_kg, 
+                         "\\d+\\.*\\d*"))
+
+# inspect the output
+artefacts_by_colour
+  
+```
+
+In some situations, such as when you have much larger data frames, it may not be practical to attend to each mis-typed value and extract the numeric value, as in the example above. With a larger data set you may be more tolerant of missing values, and main task is simply to get all the columns into the most convienent class, and deal with the NA values later. The `type_convert()` function from the readr package solves this problem by automatically sampling a bunch of rows in each column and guessing what the class is, and then coercing the column to that class. Consider the 'terry_table' data frame that we worked on earlier in the chapter to fix the column names. Last we looked at it all the columns were character class, although columns 2-4 clearly contain numbers. We can use `type_convert()` to quickly and easily fix the column classes:
+
+```{r}
+library(readr)
+
+terry_table <- type_convert(terry_table)
+
+# inspect the output
+str(terry_table)
+```
+
+An especially nice detail about `type_convert()` is that is also automatically trims leading and trailing white spaces, solving the problem we saw above with " green" and "green". The`type_convert()` function is automatically applied when you use any of the the `read_*()` functions from the readr package (e.g. `read_csv()` and `read_table2()`), so that can save some time and frustration by choosing one of those functions to import your data. 
 
 
-1. Fixing names: correting spelling, replacing spaces, using ifelse, gsub, regex    
-2. Types: character to numeric, extract numbers from strings
-3. Missing data: replacing with NA or 0, imputing    
-4. Splitting: separating one col into two or more
-5. Reshaping: wide <-> long
+### Defining missing data
 
-docxtractr::assign_colnames to move first row to colnames
-automatic column class detection with readr::type_convert
 
+
+
+
+
+
+[x]   1. Fixing names: correting spelling, replacing spaces, using ifelse, gsub, regex    
+[x]   2. Types: character to numeric, extract numbers from strings
+[ ]   3. Missing data: replacing with NA or 0, imputing    
+[ ]   4. Splitting: separating one col into two or more, after the n-th item
+[ ]   5. Reshaping: wide <-> long
 
 changing column names
 regex to clean data values, remove spaces

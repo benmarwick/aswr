@@ -1,18 +1,17 @@
 Type,character,meaning,example
-Quantifier,`*`," any number of repetition, including none = 0 or more of some character/expression (metacharacter)",* matches anything combination of characters
-Quantifier,`+`,1 or more repetitions = 1 or more of some character/expression (metacharacter),"[0-9]+ matches matches many at least digit 1 numbers such as “0”, “90”, or “021442132”"
-Quantifier,`?`,expression is optional = 0/1 of some character/expression (metacharacter),"[Gg]eorge( [Ww]\.)? [Bb]ush matches “george bush”, “George W. Bush”"
-Quantifier,"`{m, n}`","interval quantifier, allows specifying the minimum and maximum number of matches (metacharacter); `{n}` matches exactly n times; `{n,}` matches at least n times; `{n,m}`  matches between n and m times.","Bush( +[ˆ ]+ +){1, 5} debates matches “Bush + (at least one space + any word that  doesn’t contain space + at least one space) this pattern repeated between 1 and 5 times + debates”"
-Positioner,`^`,start of the line (metacharacter),ˆtext matches lines such as “text . . . ”
-Positioner,`$`,end of the line (metacharacter),text$ matches lines such as “. . . text”
-Positioner,`\b`,empty string at either edge of a word. Don’t confuse it with ^ $ which marks the edge of a string.,
-Positioner,`\B`,empty string provided it is not at an edge of a word,
-Operator,`.`,any character (metacharacter),"9.11 matches 9/11, 9911, 9-11, etc"
-Operator,`[...]`,set of characters that will be accepted in the match (character class),`^[Ii]` matches lines such as “I . . . ” or “i . . . ”
-Operator,`[0-9]`,searches for a a range of characters (character class),[a-zA-Z] will match any letter in upper or lower case
-Operator,`[^...]`,"when used at beginning of character class, ""^"" means not (metacharacter)", [^?.]$ matches any line that does not end in “.” or “?”
-Operator,`|`,"or, used to combine subexpressions called alternatives (metacharacter)",ˆ([Gg}ood | [Bb]ad) matches any lines that start with lower/upper “Good. . . ” and “Bad . . . ”
-Operator,`(...)`,"define group as the the text in parentheses, groups will be remembered and can be referred to by \1, \2, etc.","([a-zA-Z]+) +\1 + matches “any word + at least one space + the same word repeated + at least one space” = “night night”, “so so”, etc."
-Converter,`\`,convert a normal character into a metacharacter,"`\s` matches any whitespace character (tabs, newlines and spaces); `\S` matches any non-whitespace characters; `\d` matches any digit; `\D` matches any non-digit character; `\w` matches any word character (uppercase letters, lowercase letters, digits and underscore); `\W` matches any non-word characters"
-Converter,`\`,convert a some characters into a normal (literal) character,"`\'` matches a literal single quote mark; `\""` matches a literal double quote mark"
-Converter,`\\`,convert a metacharacter into a normal (literal) character,`\\`. matches with a literal period; `\\(` matches with a literal left parenthesis
+Quantifier,`*`,"any number of repetition, including zero or more of some character/expression (metacharacter)","`""*""` matches anything combination of characters"
+Quantifier,`+`,1 or more repetitions; 1 or more of some character/expression (metacharacter),"`""[0-9]+""` matches matches many at least digit 1 numbers such as '0', '90', or '021442132'"
+Quantifier,`?`,expression is optional; 0/1 of some character/expression (metacharacter),"`""[Gg]ordon( [Vv]\\.)? [Cc]hilde""` matches gordon childe' and 'Gordon V. Childe' (two backslashes are needed to match with a literal period)"
+Quantifier,"`{m, n}`","interval quantifier, allows specifying the minimum and maximum number of matches (metacharacter); `{n}` matches exactly n times; `{n,}` matches at least n times; `{n,m}`  matches between n and m times.","`"" [1-2]{1}[0-9]{3} ""` matches years in a sentence, i.e. a space, followed by 1 or 2, followed by three of any of the digits between 0 and 9, followed by a space. It will match ' 1984 ', but not ' 5000 ' or ' 2e '."
+Positioner,`^`,start of the line (metacharacter),"`""^text`"" matches lines such as 'text…'"
+Positioner,`$`,end of the line (metacharacter),"`""text$""` matches lines such as '...text'"
+Positioner,`\b`,"empty string at either edge of a word. Don’t confuse it with `""^ $""` which marks the edge of a string.","`""\\bpost`"" will match 'post-processual' and' post hole', but not 'imposter'"
+Positioner,`\B`,empty string provided it is not at an edge of a word,"`""\Bbpost`"" will match 'imposter' but not 'post-processual' and' post hole'"
+Operator,`.`,any character (metacharacter),"`""8.11""` matches 8/11, 0811, 9-11, etc"
+Operator,`[...]`,set of characters that will be accepted in the match (character class),"`""^[Ii]""` matches both of these lines: 'I dug at...' or i dug at...'"
+Operator,`[0-9]`,searches for a a range of characters (character class),"`""[a-zA-Z]""` will match any letter in upper or lower case, `""[0-9]""` will match any digit"
+Operator,`[^...]`,"when used at beginning of character class, ""^"" means not (metacharacter)"," `""[^?.]$""` matches any line that does not end in '.' or '?'"
+Operator,`|`,"or, used to combine subexpressions called alternatives (metacharacter)","`""^([Nn]eolithic|[Pp]al(ae|e)olithic)""` matches any character strings that start with lower/upper case 'Neolithic…' and 'Palaeolithic…' and 'Paleolithic...' (alternate spelling)."
+Operator,`(...)`,"define group as the the text in parentheses, groups will be remembered and can be referred to by \1, \2, etc.","`""([A-Z]\\.)"",  ""\\1""` matches any single capital letter, followed by a single literal period, anywhere in the character string (e.g. a person's middle initial)"
+Converter,`\`,convert a normal character into a metacharacter,"`""\\s""` matches any whitespace character (tabs, newlines and spaces); `""\\S""` matches any non-whitespace characters; `""\\d""` matches any digit; `""\\D""` matches any non-digit character; `""\\w""` matches any word character (uppercase letters, lowercase letters, digits and underscore); `""\\W""` matches any non-word characters (note that we need to double-up the backslash in R)"
+Converter,`\\`,convert a metacharacter into a normal (literal) character,"`""\\.""` matches with a literal period; `""\\(""` matches with a literal left parenthesis"

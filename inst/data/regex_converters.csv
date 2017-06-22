@@ -1,0 +1,3 @@
+character,meaning,example
+`\\`,convert a normal character into a metacharacter,"`""\\s""` matches any whitespace character (tabs, newlines and spaces); `""\\S""` matches any non-whitespace characters; `""\\d""` matches any digit; `""\\D""` matches any non-digit character; `""\\w""` matches any word character (uppercase letters, lowercase letters, digits and underscore); `""\\W""` matches any non-word characters (note that we need to double-up the backslash in R, other languages use a single backslash in these contexts)"
+`\\`,convert a metacharacter into a normal (literal) character,"`""\\.""` matches with a literal period; `""\\(""` matches with a literal left parenthesis"

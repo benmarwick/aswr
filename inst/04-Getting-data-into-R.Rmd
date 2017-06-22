@@ -278,10 +278,10 @@ list_of_tables[2:length(list_of_tables)] <-
   map(list_of_tables[2:length(list_of_tables)], ~.x[-1])
 ```
 
-Now we can take the table labels ('first set', 'second set', etc.) from the character vectors and into the list, to name the elements in the list. We map over each character vector in the list, extract the first two items in the vector with `.x[1:2`], paste them into a single item with `paste0(.x[1:2], collapse = " ")`, and then simplify the result (which woult normally be a list using `map()`) into a character vector by using `map_chr`:
+Now we can take the table labels ('first set', 'second set', etc.) from the character vectors and into the list, to name the elements in the list. We map over each character vector in the list, extract the first two items in the vector with `.x[1:2`], paste them into a single item with `paste(.x[1:2], collapse = " ")`, and then simplify the result (which woult normally be a list using `map()`) into a character vector by using `map_chr`:
 
 ```{r}
-table_labels <- map_chr(list_of_tables, ~paste0(.x[1:2], collapse = " "))
+table_labels <- map_chr(list_of_tables, ~paste(.x[1:2], collapse = " "))
 
 # assign these labels to name the list items:
 names(list_of_tables) <- table_labels

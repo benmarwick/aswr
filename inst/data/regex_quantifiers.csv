@@ -1,0 +1,7 @@
+character,meaning,example
+`*`,"any number of repetition, including zero or more of some character/expression (metacharacter)","`""*""` matches anything combination of characters"
+`+`,1 or more repetitions; 1 or more of some character/expression (metacharacter),"`""[0-9]+""` matches matches many at least digit 1 numbers such as '0', '90', or '021442132'"
+`?`,expression is optional; 0/1 of some character/expression (metacharacter),"`""[Gg]ordon( [Vv]\\.)? [Cc]hilde""` matches gordon childe' and 'Gordon V. Childe' (two backslashes are needed to match with a literal period)"
+`{n}` ,matches exactly n times,"`""ap{2}lique""` matches 'applique' but not 'aplique' or 'appplique'"
+"`{n,}`",matches at least n times,"`""ap{2,}lique""` matches 'applique' and  'appplique', but not 'aplique'"
+"`{m, n}`","interval quantifier, allows specifying the minimum and maximum number of matches (metacharacter);  `{n,m}`  matches between n and m times.","`"" [1-2]{1}[0-9]{3} ""` matches years in a sentence, i.e. a space, followed by 1 or 2, followed by three of any of the digits between 0 and 9, followed by a space. It will match ' 1984 ', but not ' 5000 ' or ' 2e '."
