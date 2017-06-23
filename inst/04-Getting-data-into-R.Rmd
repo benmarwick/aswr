@@ -30,7 +30,7 @@ Although the CSV file might be the ideal format for tabular data, and the simple
 ```{r readxlsimple}
 library(readxl)
 jerimalai_sq_a <- read_excel("data/jerimalai_lithics.xlsx")
-# if you have a CSV file, use read.csv() instead of read_excel()
+# if you have a CSV file, use read_csv() from the readr package
 ```
 
 As you type that code to import your own spreadsheets, you can save some typing with a special tab-complete function in RStudio. After you type `read_excel("")`, move your cursor between the two double quotation marks, and press tab (or Control+Space). A small window will pop up at that location, giving you a list of items to choose from, saving you from typing the full names of the path and file. Figure \@ref(fig:rstudiotabcompletefilebrowsing) shows an example of this, where you can see that I have tabbed once to get a list and select the 'data' folder, and then I've tabbed again to get a list of the contents of that folder. Then I can use the arrow keys to select, or type the first few letters of the file I want to complete the command. This kind of tab-completion is possible for many R functions, and can substantially increase the efficiency of your coding by reducing the amount of typing you need to do, and saving you from making spelling mistakes. 

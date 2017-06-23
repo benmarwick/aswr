@@ -2,4 +2,4 @@ character,meaning,example
 `^`,start of the line (metacharacter),"`""^text`"" matches lines such as 'text…'"
 `$`,end of the line (metacharacter),"`""text$""` matches lines such as '...text'"
 `\b`,"empty string at either edge of a word. Don’t confuse it with `""^ $""` which marks the edge of a string.","`""\\bpost`"" will match 'post-processual' and' post hole', but not 'imposter'"
-`\B`,empty string provided it is not at an edge of a word,"`""\\Bbpost`"" will match 'imposter' but not 'post-processual' and 'post hole'"
+`\B`,empty string provided it is not at an edge of a word,"`""\\Bpost`"" will match 'imposter' but not 'post-processual' and 'post hole'"
