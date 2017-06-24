@@ -205,7 +205,8 @@ table_from_docx <- docx_extract_tbl(docx_file, tbl_number = 2)
 head(table_from_docx)
 
 # write to CSV file for easier reuse and achiving
-write.csv(table_from_docx, "data/data_output/mag-sus-data-from-Haslam_et_al_2012.csv")
+library(readr)
+write_csv(table_from_docx, "data/data_output/mag-sus-data-from-Haslam_et_al_2012.csv")
 ```
 
 Notice that we do not get the Greek symbols in the data frame, nor do we get the comments below the table. The `docx_extract_tbl()` function only extracts the contents of the table, and exotic characters may be dropped.  
