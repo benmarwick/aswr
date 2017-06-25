@@ -34,7 +34,7 @@ my_df$col1          # Result is a vector
 
 Because it can be confusing to predict the output class when using square brackets, we will use a different and more consistent method for subsetting during data analysis. But these methods are good for quickly inspecting your data and identifying cleaning tasks. In some cases a matrix may be a better container for your data than a data frame, or your data may be transformed into a matrix by a function you're using. Matrices have similiar subsetting methods to data frames, so for the purpose of this chapter we will group them together. You may want to choose a matrix over a data frame for your data if your rectangular data is all one class (i.e. all character or all numeric), is relatively big (i.e. hundred to thousands or more or columns or rows), and you don't need column names, then a matrix will probably take up less space in the memory of your computer and be faster to analyse. 
 
-A small number of data frames are can be efficently managed as individual objects in your R environment without confusion,  but if you have a dozen or more data frames of similar sizes you will find yourself repeating code unnessearily as you repeat functions on each of the data frames. This can result in mistakes in your code and wasted time. A more efficient way to work with multiple data frames is to store them in a list. We have used lists extensively in the previous chapter as a conivenent way to store multiple data frames and operate on them. The square bracket method of subsetting also works on lists, and you'll notice that the double square brackets we can use to extract a column from a data frame is used extensively for lists. This is due to the fact that on a technical level a data frame is a list of vectors of equal length [@Matloff2011]. Consider a simple list with three items, and the items are names a, b, and c:
+A small number of data frames are can be efficently managed as individual objects in your R environment without confusion,  but if you have a dozen or more data frames of similar sizes you will find yourself repeating code unnessearily as you repeat functions on each of the data frames. This can result in mistakes in your code and wasted time. A more efficient way to work with multiple data frames is to store them in a list. We have used lists extensively in the previous chapter as a conivenent way to store multiple data frames and operate on them. The square bracket method of subsetting also works on lists, and you'll notice that the double square brackets we can use to extract a column from a data frame is used extensively for lists. This is due to the fact that on a technical level a data frame is a list of vectors of equal length [@Matloff2011art]. Consider a simple list with three items, and the items are names a, b, and c:
 
 ```
 my_list[[1]]       # first item in the list (as the class of that item)
@@ -391,7 +391,7 @@ terry_table <- type_convert(terry_table)
 str(terry_table)
 ```
 
-An especially nice detail about `type_convert()` is that is also automatically trims leading and trailing white spaces, solving the problem we saw above with " green" and "green". The`type_convert()` function is automatically applied when you use any of the the `read_*()` functions from the readr package (e.g. `read_csv()` and `read_table2()`), so that can save some time and frustration by choosing one of those functions to import your data. Finally we have a table that is suitable for visualisation and analysis, so we should save it as a CSV ready for the next steps, and so we can deposit it in a repository where it can easilty be reused by others:
+An especially nice detail about `type_convert()` is that is also automatically trims leading and trailing white spaces, solving the problem we saw above with " green" and "green". The`type_convert()` function is automatically applied when you use any of the the `read_*()` functions from the readr package (e.g. `read_csv()` and `read_table2()`), so that can save some time and frustration by choosing one of those functions to import your data. Finally we have a table that is basically suitable for visualisation and analysis, so we should save it as a CSV ready for the next steps, and so we can deposit it in a repository where it can easilty be reused by others:
 
 ```{r}
 write_csv(terry_table, "data/data_output/terry_table.csv")
@@ -399,7 +399,23 @@ write_csv(terry_table, "data/data_output/terry_table.csv")
 
 ### Splitting and combining columns
 
+If we look carefully at the first column of 'terry_table', we see sample identifiers that area combination of letters and number, and an dash as a separator. During analysis it is often useful to have each item in this identifier is a separate column so we can do group-wise comparisons. This is a common situation when samples are labelled with a string that combines several pieces of provenance information, such as abbreviations for site, sector, square, exacavation unit, etc. For example, if we want to compare all the artefacts from one square to another square, then it is convienient to have the square identifier in its own column. The exact combination of items in these identifiers varies from project to project, so here we will explore some flexible techniques for splitting one column into several which will be useful in a variety of situations.
 
+The simplest method is one we have seen in the previous chapter, `separate()` from the tidyr package:
+
+```{r}
+library(tidyr) # load the library
+
+terry_table_split <- 
+terry_table %>%            # start with the data frame
+  separate(Sample,         # the column to split
+           c("a", "b"),    # new column names
+           "-",            # character to split at
+           convert = TRUE) # conver to numeric       
+
+```
+
+The `separate()` function takes a data frame as its first argument (here passed invisibly by the pipe), and then the name of the column that we want to split up, followed by the names of the new columns that will be created by the function (here simply 'a' and 'b', but could be something like 'site', 'square', 'unit', etc.), then the character to split (here it is '-', but we can aslo supply a regular expression), and finally `convert = TRUE` which ensures that our column of numbers has the numeric class. Among the other arguments to this function, one that I use occasaionlly is `remove = ` which by default removes the input column from the output data frame.
 
 [x]   1. Fixing names: correting spelling, replacing spaces, using ifelse, gsub, regex    
 [x]   2. Types: character to numeric, extract numbers from strings

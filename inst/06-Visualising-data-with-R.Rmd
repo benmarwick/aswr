@@ -11,7 +11,7 @@ opts_chunk$set(message = FALSE,
 
 ## Overview
 
-Before 
+To prepare for statistical testing it is essential to visualise your data to see ..
 
 ## Empirical research into effective data visualisation 
 
