@@ -250,8 +250,11 @@ a_table_about_tables <- readr::read_csv("data/a_table_about_tables.csv")
 
 ```{r simple-table, echo = FALSE}
 knitr::kable(a_table_about_tables, 
-      caption = "The table summarises some simple and classic guidelines for presenting data in tables [@ehrenberg1977rudiments; @feinberg2011extracting; @Wainer1997ImprovingTabular]. To make the guidelines more memorable, we can abbreviate them into the mnemonic 'oracle'. These guidelines should not be followed blindly: tables are meant for communication, and you should rather ignore these guidelines than slavishly follow them and corrupt the message of your table.")
+      caption = "")
 ```
+
+
+Caption with 'invalid multibyte string': "The table summarises some simple and classic guidelines for presenting data in tables [@ehrenberg1977rudiments; @feinberg2011extracting; @Wainer1997ImprovingTabular]. To make the guidelines more memorable, we can abbreviate them into the mnemonic 'oracle'. These guidelines should not be followed blindly: tables are meant for communication, and you should rather ignore these guidelines than slavishly follow them and corrupt the message of your table."
 
 Notice that the method for adding a caption to a table is slightly different from captioning a figure. For a table, we add a caption with the `caption = ` argument in the `kable()` function, rather than the `fig.cap =` option for the code block. However, the method for cross-referencing a table is similar to cross-referencing a figure, we type `\@ref(tab:simple-table)`, which automatically gives us the table number when rendered: \@ref(tab:simple-table). Just like when referencing figures we use the code block label as the link. The only difference in the cross-reference syntax is `tab:` for tables instead of `fig:` for figures.
 

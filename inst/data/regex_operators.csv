@@ -3,5 +3,5 @@ character,meaning,example
 `[...]`,set of characters that will be accepted in the match (character class),"`""^[Ii]""` matches both of these lines: 'I dug at...' or i dug at...'"
 `[0-9]`,searches for a a range of characters (character class),"`""[a-zA-Z]""` will match any letter in upper or lower case, `""[0-9]""` will match any digit"
 `[^...]`,"when used at beginning of character class, ""^"" means ""not"" (metacharacter)"," `""[^?.]$""` matches any line that does not end in '.' or '?'. Will match 'How old is it!' but not  'How old is it?'"
-`|`,"""or"", used to combine subexpressions called alternatives (metacharacter)","`""^([Nn]eolithic|[Pp]al(ae|e)olithic)""` matches any character strings that start with lower/upper case 'Neolithic…' and 'Palaeolithic…' and 'Paleolithic...' (alternate spelling)."
+`|`,"""or"", used to combine subexpressions called alternatives (metacharacter)","`""^([Nn]eolithic|[Pp]al(ae|e)olithic)""` matches any character strings that start with lower/upper case 'Neolithic' and 'Palaeolithic' and 'Paleolithic...' (alternate spelling)."
 `(...)`,"define group as the the text in parentheses, groups will be remembered and can be referred to by \\1, \\2, etc.","`""([A-Z]\\.)"",  ""\\1""` matches any single capital letter, followed by a single literal period, anywhere in the character string (e.g. a person's middle initial)"

@@ -262,7 +262,7 @@ blank_line_locations <- which(unstr_data_complex == "")
 
 They are at element numbers `r blank_line_locations[1]` and `r blank_line_locations[2]`. We can use these element numbers with `split_at()`, a function in the aswr package, to split the character vector at the blank line locations, and get a list of several vectors: 
 
-```{r}
+```{r eval = FALSE}
 library(aswr)
 list_of_tables <- split_at(unstr_data_complex, blank_line_locations)
 
@@ -272,7 +272,7 @@ str(list_of_tables)
 
 Because we know that the first element of the second and subsequent items in the list represents the empty line, we can delete it. We firstly select only the second and later elements of the list with `list_of_tables[2:length(list_of_tables)] `, and then we map over those elements and using negative indexing in square brackets to drop the first item in each character vector in those elements of the list: 
 
-```{r}
+```{r eval = FALSE}
 library(purrr)
 
 list_of_tables[2:length(list_of_tables)] <-
@@ -281,7 +281,7 @@ list_of_tables[2:length(list_of_tables)] <-
 
 Now we can take the table labels ('first set', 'second set', etc.) from the character vectors and into the list, to name the elements in the list. We map over each character vector in the list, extract the first two items in the vector with `.x[1:2`], paste them into a single item with `paste(.x[1:2], collapse = " ")`, and then simplify the result (which woult normally be a list using `map()`) into a character vector by using `map_chr`:
 
-```{r}
+```{r eval = FALSE}
 table_labels <- map_chr(list_of_tables, ~paste(.x[1:2], collapse = " "))
 
 # assign these labels to name the list items:
@@ -290,13 +290,13 @@ names(list_of_tables) <- table_labels
 
 Now the table names are preserved in the list, we can delete them from the character vectors using negative indexing to drop the first two elements of each vector:
 
-```{r}
+```{r eval = FALSE}
 list_of_tables <- map(list_of_tables, ~.x[-c(1:2)])
 ```
 
 Now we want to transform each character vector into a table with four columns, as we see them in the plain text file. Because we know there are four columns, we can use the `seq()` function to extract values from every fourth position in the vector to extract each column. By starting at the first item and extracting every fourth item we get the first column, then starting at the second item and extracting every fourth item we get the second column, and so on. Then we have four vectors that can be combined into a data frame. I have spelled this out in detail for the first table in the file below:
 
-```{r}
+```{r eval = FALSE}
 # Just transform the first character vector into a table with four cols:
 x <- list_of_tables[[1]]
 
@@ -310,7 +310,7 @@ the_first_table <- data_frame(col1, col2, col3, col4)
 
 But we want an approach that will operate automatically on each item in the list, to avoid copying and pasting this code, which is time consumring and error-inducing. The aswr package contains the function `df_from_vector()` that automates this process for a list of any length, and for tables of any number of columns. We supply the name of the list of character vectors, and the number of columns that each table should have, and we get a list of data frames in return:
 
-```{r}
+```{r eval = FALSE}
 # process the list of character vectors into a list of data frames
 list_of_data_frames <- 
   map(list_of_tables, ~df_from_vector(.x, 4))
@@ -328,7 +328,7 @@ str(more_complex)
 
 We can follow the same pattern as above by splitting this one large character vector by the empty elements, here we next `which()` in `split_at()` for more compact expression, and we can go ahead and remove the empty element (that we used to split on) from the second and subsequent list elements with `map()`:
 
-```{r}
+```{r eval = FALSE}
 list_of_complex_tables <- split_at(more_complex, 
                                    which(more_complex == ""))
 
@@ -340,21 +340,21 @@ Now we have a list, where each element is a character vector, and each element i
 
 Here we assign the first element of each vector to be the names of the list items:
 
-```{r}
+```{r eval = FALSE}
 names(list_of_complex_tables) <- 
   map(list_of_complex_tables, ~.x[1])
 ```
 
 And then remove that first item from the character vector, now that we have preserved it elsewhere:
 
-```{r}
+```{r eval = FALSE}
 list_of_complex_tables <- 
   map(list_of_complex_tables, ~.x[-1])
 ```
 
 Now we have a list of character vectors, and we can separate each item in the vector into four columns. Let's show how this can be done on the first item in the list, then generalise to all items in the list:
 
-```{r}
+```{r eval = FALSE}
 library(dplyr) # load libraries
 library(tidyr)
 
@@ -374,13 +374,13 @@ In the above example, we first extract the first item from the list, which we st
 
 After creating the data frame from the character vector, we then (`%>%`) pass this data frame to the `separate()` function from Hadley Wickham's tidyr package. The `separate()` function is designed to split one column in a data frame into multiple columns, so it is ideal for our problem of splitting the column we have into four new columns. In the `separate()` function, the first argument is the data frame with the column to split, in our example we this is passed in invisibly by the pipe symbol, and we do not need to type it. So the first argument that we need to explicity supply to  `separate()` is the name of the column in our data frame to separate, which is 'y'. After that, we need to give the names of the new columns that we want to split 'y' into. Here I have simply called them col1 through col4, but they can be almost anything. The next required detail is the character to split 'y' on. In this case, we can split on the single blank space between each item in the character column 'y'. Finally, we set `convert = TRUE`, this tells the `separate()` fucntion to automatically detect the column class, and convert the new column to the detected class. The result of this sequence of operations is shown below. We can see that we have a data frame with four columns, as expected, and the columns have sensible classes and are ready for analysis:
 
-```{r}
+```{r eval = FALSE}
 head(output)
 ```
 
 To generalise this column-splitting approach for automated repeated use on multiple items in a list we can combine it with the `map()` function. The only change we need to make to the sequence of operations we described above is to to change 'x' to '.x', the rest remains the same. This change from 'x' to '.x' means that the input to the `data_frame()`-`separate()` sequence changes from the character vector 'x' that we extracted above, to the iterator, '.x', which stands in place of each item in the list that we supply to the `map()` function.
 
-```{r}
+```{r eval = FALSE}
 list_of_complex_tables_separated <- 
 map(list_of_complex_tables, 
   ~.x %>% 
@@ -393,7 +393,7 @@ map(list_of_complex_tables,
 
 In the example above, we start with the `map()` function because we want to repeatedly apply a set of operations to each item in a list. Our list is the list of character vectors, called 'list_of_complex_tables', resulting from reading in the unstructured plain te file, and the first few steps of extracting the table lables. The tilde symbol `~` indicates that what follows that symbol is a function to apply to each element of the list 'list_of_complex_tables'. For this function, we have pasted in the code that we used to experiment on the first item in the list, and now the `map()` function will automatically apply this code to each item in the list. All we have to do it wait for it to finish. The structure of the output of this operation is shown below. We have a list with three items, each item is a data frame with four columns, just as expected. 
 
-```{r}
+```{r eval = FALSE}
 str(list_of_complex_tables_separated)
 ```
 
