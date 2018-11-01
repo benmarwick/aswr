@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Archaeological Science with R</title>
+  <meta name="description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Archaeological Science with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>." />
+  <meta name="github-repo" content="benmarwick/aswr" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Archaeological Science with R" />
+  
+  <meta name="twitter:description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>." />
+  
+
+<meta name="author" content="Ben Marwick">
+
+
+<meta name="date" content="2018-11-01">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="preparingthedata.html">
+<link rel="next" href="artefactdata.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Archaeological Science with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Archaeological Science with R</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#overview"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#why-do-archaeologists-need-to-learn-to-code"><i class="fa fa-check"></i><b>2.2</b> Why do archaeologists need to learn to code?</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i><b>2.3</b> Why R?</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#who-should-read-this-book"><i class="fa fa-check"></i><b>2.4</b> Who should read this book</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction.html"><a href="introduction.html#prerequisites"><i class="fa fa-check"></i><b>2.5</b> Prerequisites</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction.html"><a href="introduction.html#r"><i class="fa fa-check"></i><b>2.5.1</b> R</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction.html"><a href="introduction.html#rstudio"><i class="fa fa-check"></i><b>2.5.2</b> RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="introduction.html"><a href="introduction.html#key-terms-to-understand-dont-skip-this-bit"><i class="fa fa-check"></i><b>2.6</b> Key terms to understand (don’t skip this bit!)</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="introduction.html"><a href="introduction.html#packages"><i class="fa fa-check"></i><b>2.6.1</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="introduction.html"><a href="introduction.html#getting-help"><i class="fa fa-check"></i><b>2.7</b> Getting help</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="introduction.html"><a href="introduction.html#draft-toc"><i class="fa fa-check"></i><b>2.7.1</b> Draft TOC</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html"><i class="fa fa-check"></i><b>3</b> Implementing reproducible research</a><ul>
+<li class="chapter" data-level="3.1" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#overview-1"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#what-does-it-mean-to-do-reproducible-research"><i class="fa fa-check"></i><b>3.2</b> What does it mean to do reproducible research?</a></li>
+<li class="chapter" data-level="3.3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#literate-programming"><i class="fa fa-check"></i><b>3.3</b> Literate programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#document-metadata-citations-and-the-bibliography"><i class="fa fa-check"></i><b>3.3.1</b> Document metadata, citations and the bibliography</a></li>
+<li class="chapter" data-level="3.3.2" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#narrative-text-structuring-the-document-and-special-characters-in-the-text"><i class="fa fa-check"></i><b>3.3.2</b> Narrative text, structuring the document and special characters in the text</a></li>
+<li class="chapter" data-level="3.3.3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#code-blocks-cross-referencing-figures-and-tables-captions-and-inline-r-code"><i class="fa fa-check"></i><b>3.3.3</b> Code blocks, cross-referencing figures and tables, captions, and inline R code</a></li>
+<li class="chapter" data-level="3.3.4" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#rendering-the-r-markdown-into-an-output-file"><i class="fa fa-check"></i><b>3.3.4</b> Rendering the R Markdown into an output file</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#summary"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dataorganisation.html"><a href="dataorganisation.html"><i class="fa fa-check"></i><b>4</b> Collecting &amp; organising data to analyse with R</a><ul>
+<li class="chapter" data-level="4.1" data-path="dataorganisation.html"><a href="dataorganisation.html#overview-2"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="dataorganisation.html"><a href="dataorganisation.html#file-organisation"><i class="fa fa-check"></i><b>4.2</b> File organisation</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="dataorganisation.html"><a href="dataorganisation.html#guidelines-for-organising-your-files-for-improved-reproducibility"><i class="fa fa-check"></i><b>4.2.1</b> Guidelines for organising your files for improved reproducibility</a></li>
+<li class="chapter" data-level="4.2.2" data-path="dataorganisation.html"><a href="dataorganisation.html#guidelines-for-naming-your-files-to-improve-reproducibility"><i class="fa fa-check"></i><b>4.2.2</b> Guidelines for naming your files to improve reproducibility</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="dataorganisation.html"><a href="dataorganisation.html#spreadsheets-organisation"><i class="fa fa-check"></i><b>4.3</b> Spreadsheets organisation</a></li>
+<li class="chapter" data-level="4.4" data-path="dataorganisation.html"><a href="dataorganisation.html#cell-organisation"><i class="fa fa-check"></i><b>4.4</b> Cell organisation</a></li>
+<li class="chapter" data-level="4.5" data-path="dataorganisation.html"><a href="dataorganisation.html#summary-1"><i class="fa fa-check"></i><b>4.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="gettingdatain.html"><a href="gettingdatain.html"><i class="fa fa-check"></i><b>5</b> Getting data into R</a><ul>
+<li class="chapter" data-level="5.1" data-path="gettingdatain.html"><a href="gettingdatain.html#overview-3"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="gettingdatain.html"><a href="gettingdatain.html#getting-data-from-spreadsheets"><i class="fa fa-check"></i><b>5.2</b> Getting data from spreadsheets</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="gettingdatain.html"><a href="gettingdatain.html#one-spreadsheet-file-one-or-more-sheets"><i class="fa fa-check"></i><b>5.2.1</b> One spreadsheet file, one or more sheets</a></li>
+<li class="chapter" data-level="5.2.2" data-path="gettingdatain.html"><a href="gettingdatain.html#mulitiple-spreadsheet-files"><i class="fa fa-check"></i><b>5.2.2</b> Mulitiple spreadsheet files</a></li>
+<li class="chapter" data-level="5.2.3" data-path="gettingdatain.html"><a href="gettingdatain.html#importing-messy-spreadsheets-or-when-is-it-ok-to-manually-edit-the-data"><i class="fa fa-check"></i><b>5.2.3</b> Importing messy spreadsheets, or when is it ok to manually edit the data?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="gettingdatain.html"><a href="gettingdatain.html#tabular-data-from-non-spreadsheet-programs-pdfs-and-microsoft-word-documents"><i class="fa fa-check"></i><b>5.3</b> Tabular data from non-spreadsheet programs: PDFs and Microsoft Word documents</a></li>
+<li class="chapter" data-level="5.4" data-path="gettingdatain.html"><a href="gettingdatain.html#getting-tabular-data-out-of-unstructured-files"><i class="fa fa-check"></i><b>5.4</b> Getting tabular data out of unstructured files</a></li>
+<li class="chapter" data-level="5.5" data-path="gettingdatain.html"><a href="gettingdatain.html#summary-2"><i class="fa fa-check"></i><b>5.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="preparingthedata.html"><a href="preparingthedata.html"><i class="fa fa-check"></i><b>6</b> Preparing the data for analysis</a><ul>
+<li class="chapter" data-level="6.1" data-path="preparingthedata.html"><a href="preparingthedata.html#overview-4"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="preparingthedata.html"><a href="preparingthedata.html#navigating-data"><i class="fa fa-check"></i><b>6.2</b> Navigating data</a></li>
+<li class="chapter" data-level="6.3" data-path="preparingthedata.html"><a href="preparingthedata.html#five-concepts-for-cleaning-data"><i class="fa fa-check"></i><b>6.3</b> Five concepts for cleaning data</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="preparingthedata.html"><a href="preparingthedata.html#fixing-names"><i class="fa fa-check"></i><b>6.3.1</b> Fixing names</a></li>
+<li class="chapter" data-level="6.3.2" data-path="preparingthedata.html"><a href="preparingthedata.html#converting-column-classes"><i class="fa fa-check"></i><b>6.3.2</b> Converting column classes</a></li>
+<li class="chapter" data-level="6.3.3" data-path="preparingthedata.html"><a href="preparingthedata.html#splitting-and-combining-columns"><i class="fa fa-check"></i><b>6.3.3</b> Splitting and combining columns</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="preparingthedata.html"><a href="preparingthedata.html#wide-and-long-data"><i class="fa fa-check"></i><b>6.4</b> Wide and long data</a></li>
+<li class="chapter" data-level="6.5" data-path="preparingthedata.html"><a href="preparingthedata.html#dealing-with-missing-data"><i class="fa fa-check"></i><b>6.5</b> Dealing with missing data</a></li>
+<li class="chapter" data-level="6.6" data-path="preparingthedata.html"><a href="preparingthedata.html#joining-data-together"><i class="fa fa-check"></i><b>6.6</b> Joining data together</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="visualisatingthedata.html"><a href="visualisatingthedata.html"><i class="fa fa-check"></i><b>7</b> Exploring the data with visualisations</a><ul>
+<li class="chapter" data-level="7.1" data-path="visualisatingthedata.html"><a href="visualisatingthedata.html#overview-5"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="visualisatingthedata.html"><a href="visualisatingthedata.html#empirical-research-into-effective-data-visualisation"><i class="fa fa-check"></i><b>7.2</b> Empirical research into effective data visualisation</a></li>
+</ul></li>
+<li class="part"><span><b>I Working with data</b></span></li>
+<li class="chapter" data-level="8" data-path="artefactdata.html"><a href="artefactdata.html"><i class="fa fa-check"></i><b>8</b> Analysing artefact data</a><ul>
+<li class="chapter" data-level="8.1" data-path="artefactdata.html"><a href="artefactdata.html#overview-6"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="artefactdata.html"><a href="artefactdata.html#basic-analysis-tasks"><i class="fa fa-check"></i><b>8.2</b> Basic analysis tasks</a></li>
+<li class="chapter" data-level="8.3" data-path="artefactdata.html"><a href="artefactdata.html#basic-plotting-tasks"><i class="fa fa-check"></i><b>8.3</b> Basic plotting tasks</a></li>
+<li class="chapter" data-level="8.4" data-path="artefactdata.html"><a href="artefactdata.html#stone-artefacts"><i class="fa fa-check"></i><b>8.4</b> Stone artefacts</a></li>
+<li class="chapter" data-level="8.5" data-path="artefactdata.html"><a href="artefactdata.html#faunal-remains"><i class="fa fa-check"></i><b>8.5</b> Faunal remains</a></li>
+<li class="chapter" data-level="8.6" data-path="artefactdata.html"><a href="artefactdata.html#pottery"><i class="fa fa-check"></i><b>8.6</b> Pottery</a></li>
+<li class="chapter" data-level="8.7" data-path="artefactdata.html"><a href="artefactdata.html#glass"><i class="fa fa-check"></i><b>8.7</b> Glass</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="compositional-pca-ca.html"><a href="compositional-pca-ca.html"><i class="fa fa-check"></i><b>9</b> compositional, PCA, CA</a><ul>
+<li class="chapter" data-level="9.1" data-path="compositional-pca-ca.html"><a href="compositional-pca-ca.html#metal"><i class="fa fa-check"></i><b>9.1</b> Metal</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="shapes.html"><a href="shapes.html"><i class="fa fa-check"></i><b>10</b> shapes?</a></li>
+<li class="part"><span><b>II Working with data</b></span></li>
+<li class="chapter" data-level="11" data-path="stratigraphic.html"><a href="stratigraphic.html"><i class="fa fa-check"></i><b>11</b> Working with stratigraphic data from archaeological excavations</a><ul>
+<li class="chapter" data-level="11.1" data-path="stratigraphic.html"><a href="stratigraphic.html#overview-7"><i class="fa fa-check"></i><b>11.1</b> Overview</a></li>
+<li class="chapter" data-level="11.2" data-path="stratigraphic.html"><a href="stratigraphic.html#visualising-excavation-data"><i class="fa fa-check"></i><b>11.2</b> Visualising excavation data</a></li>
+<li class="chapter" data-level="11.3" data-path="stratigraphic.html"><a href="stratigraphic.html#stratigraphic-analysis"><i class="fa fa-check"></i><b>11.3</b> Stratigraphic analysis</a></li>
+<li class="chapter" data-level="11.4" data-path="stratigraphic.html"><a href="stratigraphic.html#particle-size-analysis"><i class="fa fa-check"></i><b>11.4</b> Particle size analysis</a></li>
+</ul></li>
+<li class="part"><span><b>III Working with data</b></span></li>
+<li class="chapter" data-level="12" data-path="spatialdata.html"><a href="spatialdata.html"><i class="fa fa-check"></i><b>12</b> Spatial data and maps</a><ul>
+<li class="chapter" data-level="12.1" data-path="spatialdata.html"><a href="spatialdata.html#overview-8"><i class="fa fa-check"></i><b>12.1</b> Overview</a></li>
+<li class="chapter" data-level="12.2" data-path="spatialdata.html"><a href="spatialdata.html#making-maps"><i class="fa fa-check"></i><b>12.2</b> Making maps</a></li>
+<li class="chapter" data-level="12.3" data-path="spatialdata.html"><a href="spatialdata.html#doing-spatial-analysis"><i class="fa fa-check"></i><b>12.3</b> Doing spatial analysis</a></li>
+<li class="chapter" data-level="12.4" data-path="spatialdata.html"><a href="spatialdata.html#section"><i class="fa fa-check"></i><b>12.4</b> </a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Archaeological Science with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="visualisatingthedata" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Exploring the data with visualisations</h1>
+<div id="overview-5" class="section level2">
+<h2><span class="header-section-number">7.1</span> Overview</h2>
+<p>To prepare for statistical testing it is essential to visualise your data to see ..</p>
+</div>
+<div id="empirical-research-into-effective-data-visualisation" class="section level2">
+<h2><span class="header-section-number">7.2</span> Empirical research into effective data visualisation</h2>
+<p>There are no definitive principles for best practices in poster design, but there is a substantial body of literature on data visualisation. This has resulted in some widely repeated basic principles, often motivated by ethical and aesthetic concerns. An example of an ethical concern is the principle that only sequential data can be connected with a line chart, because the line implies a continuous change between the points. Measurement of categories, such as artefact types, locations and methods, should not be linked by lines (for example, there is no continuous sequence between a stone artefact and an animal bone). A related principle is that when absolute magnitudes of the data are important, the vertical axis should begin at zero (Robbins, 2005; Strange, 2007). Displaying data along a vertical axis that does not include zero can misrepresent the data range and exaggerate the relative magnitude between values. ONOe influential set of ideas come from the minimimalist mantras of Tufte. One of his most frequently quoted principles is “maximize the data-ink ratio, within reason”. ‘Data-ink’ refers to the ink used to show data, and so the data-ink ratio is the amount of data-ink relative to the total ink used in a visualisation. These principles ensure that the data are not hidden or distorted by poor choices or irrelevant elements on the visualisation, and that the reader can appreciate the data in the visualisation without distraction and confusion. The practical consequences of this advice include avoiding three-dimensional charts where are two-dimensional chart will suffice (e.g. bar charts and pie charts). Similarly, omitting ‘chartjunk’ - grids, colours, and artistic elements on the charts - helps to improve the data-ink ratio.</p>
+<p>While these principles have intuitive appeal and are widely repeated, they can lead to highly minimimalist charts that are difficult to interpret <span class="citation">(Tukey <a href="#ref-Tukey1990">1990</a>)</span>. Inbar, Tractinsky and Meyer <span class="citation">(<a href="#ref-Inbar2007">2007</a>)</span> and Kulla-Mader <span class="citation">(<a href="#ref-kulla2007graphs">2007</a>)</span> found that standard charts where overwhelmingly preferred over Tufte-style minimalist charts. Kosslyn <span class="citation">(<a href="#ref-kosslyn1985graphics">1985</a>)</span> and Carswell <span class="citation">(<a href="#ref-carswell1992choosing">1992</a>)</span>, have raised the question of how to decide what is data-ink and what is not, concluding that it is frequently highly subjective. Hullman et al., <span class="citation">(<a href="#ref-hullman2011benefitting">2011</a>)</span> have suggested that some chartjunk may benefit readers by promoting engagement with the visualisation. For example, Bateman et al. <span class="citation">(<a href="#ref-bateman2010useful">2010</a>)</span> and Li and Moacdieh <span class="citation">(<a href="#ref-limoacdieh">2014</a>)</span> found that subjects who were shown charts with chartjunk had a significantly higher chance of comprehending the message of the chart as compared to non-embellished charts. Kelly <span class="citation">(<a href="#ref-kelly1989data">1989</a>)</span> found no difference in immediate recall of information from high and low data-ink charts in a newspaper format. Similarly, McGurgan <span class="citation">(<a href="#ref-mcgurgan2015data">2015</a>)</span> found participants reported similar levels of accuracy and mental effort when answering graph comprehension questions using bar graphs and boxplots with varying data-ink ratios. On the other hand, Gillan and Richman <span class="citation">(<a href="#ref-gillan1994minimalism">1994</a>; <a href="#ref-Gillan1992">1992</a>)</span> found empirical support for the principle of data-ink maximization. They found that the percentage of correct interpretations of chart data was significantly lower for the low data-ink charts compared to medium and high data-ink charts. This brief summary of research into the data-ink ratio shows that it is a problematic concept, with only equivocal empirical support. In sum, it seems that principles based on subjective issues of graph aesthetics, often seen Tufte-style graph designs, do not always lead to the most effective visualisations.</p>
+<p>These mixed findings suggest that aesthetic minimalism might not always ensure that our data visualisations are easy to interpret accurately. What, then, are the basic principles for optimising the speed at which a reader can percieve the patterns in the data, and the accuracy of the information that a reader can extract from the visualisation? In the context of a poster presentation these optimisations are highly desirable, as the reader of a poster is typically hoping to get information from a poster much quicker than if they were sitting down reading a scholarly article.</p>
+<p>Cleveland and McGill <span class="citation">(<a href="#ref-clevelandmcgill1984">1984</a>)</span> conducted experiments using several common types of data visualisations to test the accuracy with which subjects could read point-values and make comparisons in the data. They found that chart types based on length (such as dot charts and bar charts) were read much more accurately than chart types based on angle, area or volume (such as pie charts and three dimensional charts). Furthermore, they found that people perform substantially worse on stacked bar charts than on aligned bar charts, and that comparisons between adjacent bars are more accurate than between widely separated bars. Numerous subsequent studies have generally supported these findings <span class="citation">(Heer and Bostock <a href="#ref-heer2010crowdsourcing">2010</a>; Kosara and Ziemkiewicz <a href="#ref-Kosara2010">2010</a>; Talbot, Setlur, and Anand <a href="#ref-talbot2014four">2014</a>)</span>. Heer and Bostock <span class="citation">(<a href="#ref-heer2010crowdsourcing">2010</a>)</span> repicated the core results for comparing sizes across categories, and also found that the addition of gridlines on a plot improved accuracy. Kosara and Ziemkiewicz <span class="citation">(<a href="#ref-Kosara2010">2010</a>)</span> tested square pie, or waffle charts (a square divided into 10 x 10 = 100 cells) along with pie, stacked bar and donut charts, and found that respondants were more confident of their reading of square pie charts, and more accurate in reading the chart values, compared to the other types. Zubiaga et al. <span class="citation">(<a href="#ref-zubiaga2015knowing">2015</a>)</span> tested respondants with five types of chart (bar charts showing the average value of the distribution, bee swarms, boxplots, stacked bar charts, and histograms) to determine their relative effectiveness in visualising distributions of variables. They find that histograms are the most complete in terms of details given, as well as being the chart type that leads respondants to the most accurate understanding of the underlying data. Rangecroft <span class="citation">(<a href="#ref-Rangecroftpie">2003</a>)</span> and Schonlau and Peters <span class="citation">(<a href="#ref-schonlau2012comprehension">2012</a>)</span> found that respondants can read 2D pie charts more accurately than 3D pie charts. Zachs et al. <span class="citation">(<a href="#ref-zacks1998reading">1998</a>)</span> found a similar result for 2D bar charts over 3D bar charts.</p>
+<p>Recent experients have cast some light on the traditional rivalry between pie charts and bar charts <span class="citation">(Spence <a href="#ref-spence2005no">2005</a>)</span>. For comparison judgements between categories, bars are more accurately judged than pies <span class="citation">(Feldman-Stewart et al. <a href="#ref-FeldmanStewart2000">2000</a>)</span>. However, for estimates of the proportion of the whole, pie charts were as accurate as bar charts <span class="citation">(Simkin and Hastie <a href="#ref-simkinhastie">1987</a>; Spence <a href="#ref-spence1990visual">1990</a>)</span>. For pair-wise comparisons, pie and bar charts also perform similarly <span class="citation">(Spence and Lewandowsky <a href="#ref-spence1991displaying">1991</a>; Meyer, Shinar, and Leiser <a href="#ref-meyer1997multiple">1997</a>)</span>. These studies show that under certain conditions, pie charts may be more effective than bar charts. The best choice of chart type depends on the purpose of the chart <span class="citation">(Kosslyn and Chabris <a href="#ref-kosslyn1992minding">1992</a>)</span>, and the evidence does not support making a universal perscriptions about chart types.</p>
+<p>Although these empirical studies demonstrate a complex relationship between chart type and effectiveness, they can provide a simple, if approximate, rank-order of strategies for visualising data. Dot charts and bar charts are generally at the high-ranking end of the spectrum, along with more exotic styles such as waffle charts and histograms. Lower ranking chart types include stacked bar charts, pie charts. Any kind of 3D chart ranks last.</p>
+
+</div>
+</div>
+
+
+
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Tukey1990">
+<p>Tukey, John W. 1990. “Data-Based Graphics: Visual Display in the Decades to Come.” Journal Article. <em>Statistical Science</em> 5 (3): 327–39. <a href="http://www.jstor.org/stable/2245820">http://www.jstor.org/stable/2245820</a>.</p>
+</div>
+<div id="ref-Inbar2007">
+<p>Inbar, Ohad, Noam Tractinsky, and Joachim Meyer. 2007. “Minimalism in Information Visualization: Attitudes Towards Maximizing the Data-Ink Ratio.” In <em>Proceedings of the 14th European Conference on Cognitive Ergonomics: Invent! Explore!</em>, 185–88. ECCE ’07. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/1362550.1362587">https://doi.org/10.1145/1362550.1362587</a>.</p>
+</div>
+<div id="ref-kulla2007graphs">
+<p>Kulla-Mader, Julia. 2007. “Graphs via Ink: Understanding How the Amount of Non-Data-Ink in a Graph Affects Perception and Learning.” <em>Master’s Thesis, Department of Information and Library Science, University of North Carolina</em>.</p>
+</div>
+<div id="ref-kosslyn1985graphics">
+<p>Kosslyn, Stephen M. 1985. “Graphics and Human Information Processing: A Review of Five Books.” <em>Journal of the American Statistical Association</em> 80 (391): 499–512.</p>
+</div>
+<div id="ref-carswell1992choosing">
+<p>Carswell, C Melody. 1992. “Choosing Specifiers: An Evaluation of the Basic Tasks Model of Graphical Perception.” <em>Human Factors: The Journal of the Human Factors and Ergonomics Society</em> 34 (5): 535–54.</p>
+</div>
+<div id="ref-hullman2011benefitting">
+<p>Hullman, Jessica, Eytan Adar, and Priti Shah. 2011. “Benefitting Infovis with Visual Difficulties.” <em>IEEE Transactions on Visualization and Computer Graphics</em> 17 (12): 2213–22.</p>
+</div>
+<div id="ref-bateman2010useful">
+<p>Bateman, Scott, Regan L Mandryk, Carl Gutwin, Aaron Genest, David McDine, and Christopher Brooks. 2010. “Useful Junk?: The Effects of Visual Embellishment on Comprehension and Memorability of Charts.” In <em>Proceedings of the Sigchi Conference on Human Factors in Computing Systems</em>, 2573–82. ACM.</p>
+</div>
+<div id="ref-limoacdieh">
+<p>Li, Huiyang, and Nadine Moacdieh. 2014. “Is ‘Chart Junk’ Useful? An Extended Examination of Visual Embellishment.” Journal Article. <em>Proceedings of the Human Factors and Ergonomics Society Annual Meeting</em> 58 (1): 1516–20. <a href="https://doi.org/10.1177/1541931214581316">https://doi.org/10.1177/1541931214581316</a>.</p>
+</div>
+<div id="ref-kelly1989data">
+<p>Kelly, James D. 1989. “The Data-Ink Ratio and Accuracy of Newspaper Graphs.” <em>Journalism and Mass Communication Quarterly</em> 66 (3): 632.</p>
+</div>
+<div id="ref-mcgurgan2015data">
+<p>McGurgan, Kevin. 2015. “Data-Ink Ratio and Task Complexity in Graph Comprehension.” <em>Master’s Thesis, Department of Psychology, Rochester Institute of Technology</em>.</p>
+</div>
+<div id="ref-gillan1994minimalism">
+<p>Gillan, Douglas J, and Edward H Richman. 1994. “Minimalism and the Syntax of Graphs.” <em>Human Factors: The Journal of the Human Factors and Ergonomics Society</em> 36 (4): 619–44.</p>
+</div>
+<div id="ref-Gillan1992">
+<p>Gillan, Douglas J., Edward Richman, and Michael Neary. 1992. “Minimalism in Graphics.” In <em>Posters and Short Talks of the 1992 Sigchi Conference on Human Factors in Computing Systems</em>, 75–76. CHI ’92. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/1125021.1125090">https://doi.org/10.1145/1125021.1125090</a>.</p>
+</div>
+<div id="ref-clevelandmcgill1984">
+<p>Cleveland, William S., and Robert McGill. 1984. “Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods.” Journal Article. <em>Journal of the American Statistical Association</em> 79 (387): 531–54. <a href="http://links.jstor.org/sici?sici=0162-1459%28198409%2979%3A387%3C531%3AGPTEAA%3E2.0.CO%3B2-Y ">http://links.jstor.org/sici?sici=0162-1459%28198409%2979%3A387%3C531%3AGPTEAA%3E2.0.CO%3B2-Y</a>.</p>
+</div>
+<div id="ref-heer2010crowdsourcing">
+<p>Heer, Jeffrey, and Michael Bostock. 2010. “Crowdsourcing Graphical Perception: Using Mechanical Turk to Assess Visualization Design.” In <em>Proceedings of the Sigchi Conference on Human Factors in Computing Systems</em>, 203–12. ACM.</p>
+</div>
+<div id="ref-Kosara2010">
+<p>Kosara, Robert, and Caroline Ziemkiewicz. 2010. “Do Mechanical Turks Dream of Square Pie Charts?” In <em>Proceedings of the 3rd Beliv’10 Workshop: BEyond Time and Errors: Novel evaLuation Methods for Information Visualization</em>, 63–70. BELIV ’10. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/2110192.2110202">https://doi.org/10.1145/2110192.2110202</a>.</p>
+</div>
+<div id="ref-talbot2014four">
+<p>Talbot, Justin, Vidya Setlur, and Anushka Anand. 2014. “Four Experiments on the Perception of Bar Charts.” <em>IEEE Transactions on Visualization and Computer Graphics</em> 20 (12): 2152–60.</p>
+</div>
+<div id="ref-zubiaga2015knowing">
+<p>Zubiaga, Arkaitz, and Brian MacNamee. 2015. “Knowing What You Dont Know: Choosing the Right Chart to Show Data Distributions to Non-Expert Users.” In <em>Web Science 2015 Conference, Oxford, United Kingdom, 28 June-1 July 2015</em>. ACM.</p>
+</div>
+<div id="ref-Rangecroftpie">
+<p>Rangecroft, Margaret. 2003. “As Easy as Pie.” Journal Article. <em>Behaviour &amp; Information Technology</em> 22 (6): 421–26. <a href="https://doi.org/10.1080/01449290310001615437">https://doi.org/10.1080/01449290310001615437</a>.</p>
+</div>
+<div id="ref-schonlau2012comprehension">
+<p>Schonlau, Matthias, and Ellen Peters. 2012. “Comprehension of Graphs and Tables Depend on the Task: Empirical Evidence from Two Web-Based Studies.” <em>Statistics, Politics, and Policy</em> 3 (2).</p>
+</div>
+<div id="ref-zacks1998reading">
+<p>Zacks, Jeff, Ellen Levy, Barbara Tversky, and Diane J Schiano. 1998. “Reading Bar Graphs: Effects of Extraneous Depth Cues and Graphical Context.” <em>Journal of Experimental Psychology: Applied</em> 4 (2): 119.</p>
+</div>
+<div id="ref-spence2005no">
+<p>Spence, Ian. 2005. “No Humble Pie: The Origins and Usage of a Statistical Chart.” <em>Journal of Educational and Behavioral Statistics</em> 30 (4): 353–68.</p>
+</div>
+<div id="ref-FeldmanStewart2000">
+<p>Feldman-Stewart, Deb, Nancy Kocovski, Beth A. McConnell, Michael D. Brundage, and William J. Mackillop. 2000. “Perception of Quantitative Information for Treatment Decisions.” Journal Article. <em>Medical Decision Making</em> 20 (2): 228–38. <a href="https://doi.org/10.1177/0272989x0002000208">https://doi.org/10.1177/0272989x0002000208</a>.</p>
+</div>
+<div id="ref-simkinhastie">
+<p>Simkin, David, and Reid Hastie. 1987. “An Information-Processing Analysis of Graph Perception.” Journal Article. <em>Journal of the American Statistical Association</em> 82 (398): 454–65. <a href="https://doi.org/10.1080/01621459.1987.10478448">https://doi.org/10.1080/01621459.1987.10478448</a>.</p>
+</div>
+<div id="ref-spence1990visual">
+<p>Spence, Ian. 1990. “Visual Psychophysics of Simple Graphical Elements.” <em>Journal of Experimental Psychology: Human Perception and Performance</em> 16 (4): 683.</p>
+</div>
+<div id="ref-spence1991displaying">
+<p>Spence, Ian, and Stephan Lewandowsky. 1991. “Displaying Proportions and Percentages.” <em>Applied Cognitive Psychology</em> 5 (1): 61–77.</p>
+</div>
+<div id="ref-meyer1997multiple">
+<p>Meyer, Joachim, David Shinar, and David Leiser. 1997. “Multiple Factors That Determine Performance with Tables and Graphs.” <em>Human Factors: The Journal of the Human Factors and Ergonomics Society</em> 39 (2): 268–86.</p>
+</div>
+<div id="ref-kosslyn1992minding">
+<p>Kosslyn, Stephen M, and Christopher F Chabris. 1992. “Minding Information Graphics.” <em>Folio: The Magazine for Magazine Management</em> 21 (2): 69–71.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="preparingthedata.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="artefactdata.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/benmarwick/aswr/edit/master/inst/06-Visualising-data-with-R.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
