@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Archaeological Science with R</title>
+  <meta name="description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Archaeological Science with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>." />
+  <meta name="github-repo" content="benmarwick/aswr" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Archaeological Science with R" />
+  
+  <meta name="twitter:description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>." />
+  
+
+<meta name="author" content="Ben Marwick">
+
+
+<meta name="date" content="2018-11-01">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="introduction.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Archaeological Science with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Archaeological Science with R</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#overview"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#why-do-archaeologists-need-to-learn-to-code"><i class="fa fa-check"></i><b>2.2</b> Why do archaeologists need to learn to code?</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i><b>2.3</b> Why R?</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#who-should-read-this-book"><i class="fa fa-check"></i><b>2.4</b> Who should read this book</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction.html"><a href="introduction.html#prerequisites"><i class="fa fa-check"></i><b>2.5</b> Prerequisites</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction.html"><a href="introduction.html#r"><i class="fa fa-check"></i><b>2.5.1</b> R</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction.html"><a href="introduction.html#rstudio"><i class="fa fa-check"></i><b>2.5.2</b> RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="introduction.html"><a href="introduction.html#key-terms-to-understand-dont-skip-this-bit"><i class="fa fa-check"></i><b>2.6</b> Key terms to understand (don’t skip this bit!)</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="introduction.html"><a href="introduction.html#packages"><i class="fa fa-check"></i><b>2.6.1</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="introduction.html"><a href="introduction.html#getting-help"><i class="fa fa-check"></i><b>2.7</b> Getting help</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="introduction.html"><a href="introduction.html#draft-toc"><i class="fa fa-check"></i><b>2.7.1</b> Draft TOC</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html"><i class="fa fa-check"></i><b>3</b> Implementing reproducible research</a><ul>
+<li class="chapter" data-level="3.1" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#overview-1"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#what-does-it-mean-to-do-reproducible-research"><i class="fa fa-check"></i><b>3.2</b> What does it mean to do reproducible research?</a></li>
+<li class="chapter" data-level="3.3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#literate-programming"><i class="fa fa-check"></i><b>3.3</b> Literate programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#document-metadata-citations-and-the-bibliography"><i class="fa fa-check"></i><b>3.3.1</b> Document metadata, citations and the bibliography</a></li>
+<li class="chapter" data-level="3.3.2" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#narrative-text-structuring-the-document-and-special-characters-in-the-text"><i class="fa fa-check"></i><b>3.3.2</b> Narrative text, structuring the document and special characters in the text</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#this-is-my-second-level-heading-suitable-for-a-sub-heading"><i class="fa fa-check"></i><b>3.4</b> This is my second-level heading, suitable for a sub-heading</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#this-is-my-third-level-heading-i.e.a-sub-sub-heading.-probably-we-dont-want-to-many-levels-of-heading-below-this-one-because-it-may-overwhelm-our-reader."><i class="fa fa-check"></i><b>3.4.1</b> This is my third-level heading, i.e. a sub-sub-heading. Probably we don’t want to many levels of heading below this one because it may overwhelm our reader.</a></li>
+<li class="chapter" data-level="3.4.2" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#code-blocks-cross-referencing-figures-and-tables-captions-and-inline-r-code"><i class="fa fa-check"></i><b>3.4.2</b> Code blocks, cross-referencing figures and tables, captions, and inline R code</a></li>
+<li class="chapter" data-level="3.4.3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#rendering-the-r-markdown-into-an-output-file"><i class="fa fa-check"></i><b>3.4.3</b> Rendering the R Markdown into an output file</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#summary"><i class="fa fa-check"></i><b>3.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dataorganisation.html"><a href="dataorganisation.html"><i class="fa fa-check"></i><b>4</b> Collecting &amp; organising data to analyse with R</a><ul>
+<li class="chapter" data-level="4.1" data-path="dataorganisation.html"><a href="dataorganisation.html#overview-2"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="dataorganisation.html"><a href="dataorganisation.html#file-organisation"><i class="fa fa-check"></i><b>4.2</b> File organisation</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="dataorganisation.html"><a href="dataorganisation.html#guidelines-for-organising-your-files-for-improved-reproducibility"><i class="fa fa-check"></i><b>4.2.1</b> Guidelines for organising your files for improved reproducibility</a></li>
+<li class="chapter" data-level="4.2.2" data-path="dataorganisation.html"><a href="dataorganisation.html#guidelines-for-naming-your-files-to-improve-reproducibility"><i class="fa fa-check"></i><b>4.2.2</b> Guidelines for naming your files to improve reproducibility</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="dataorganisation.html"><a href="dataorganisation.html#spreadsheets-organisation"><i class="fa fa-check"></i><b>4.3</b> Spreadsheets organisation</a></li>
+<li class="chapter" data-level="4.4" data-path="dataorganisation.html"><a href="dataorganisation.html#cell-organisation"><i class="fa fa-check"></i><b>4.4</b> Cell organisation</a></li>
+<li class="chapter" data-level="4.5" data-path="dataorganisation.html"><a href="dataorganisation.html#summary-1"><i class="fa fa-check"></i><b>4.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="gettingdatain.html"><a href="gettingdatain.html"><i class="fa fa-check"></i><b>5</b> Getting data into R</a><ul>
+<li class="chapter" data-level="5.1" data-path="gettingdatain.html"><a href="gettingdatain.html#overview-3"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="gettingdatain.html"><a href="gettingdatain.html#getting-data-from-spreadsheets"><i class="fa fa-check"></i><b>5.2</b> Getting data from spreadsheets</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="gettingdatain.html"><a href="gettingdatain.html#one-spreadsheet-file-one-or-more-sheets"><i class="fa fa-check"></i><b>5.2.1</b> One spreadsheet file, one or more sheets</a></li>
+<li class="chapter" data-level="5.2.2" data-path="gettingdatain.html"><a href="gettingdatain.html#mulitiple-spreadsheet-files"><i class="fa fa-check"></i><b>5.2.2</b> Mulitiple spreadsheet files</a></li>
+<li class="chapter" data-level="5.2.3" data-path="gettingdatain.html"><a href="gettingdatain.html#importing-messy-spreadsheets-or-when-is-it-ok-to-manually-edit-the-data"><i class="fa fa-check"></i><b>5.2.3</b> Importing messy spreadsheets, or when is it ok to manually edit the data?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="gettingdatain.html"><a href="gettingdatain.html#tabular-data-from-non-spreadsheet-programs-pdfs-and-microsoft-word-documents"><i class="fa fa-check"></i><b>5.3</b> Tabular data from non-spreadsheet programs: PDFs and Microsoft Word documents</a></li>
+<li class="chapter" data-level="5.4" data-path="gettingdatain.html"><a href="gettingdatain.html#getting-tabular-data-out-of-unstructured-files"><i class="fa fa-check"></i><b>5.4</b> Getting tabular data out of unstructured files</a></li>
+<li class="chapter" data-level="5.5" data-path="gettingdatain.html"><a href="gettingdatain.html#summary-2"><i class="fa fa-check"></i><b>5.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="preparingthedata.html"><a href="preparingthedata.html"><i class="fa fa-check"></i><b>6</b> Preparing the data for analysis</a><ul>
+<li class="chapter" data-level="6.1" data-path="preparingthedata.html"><a href="preparingthedata.html#overview-4"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="preparingthedata.html"><a href="preparingthedata.html#navigating-data"><i class="fa fa-check"></i><b>6.2</b> Navigating data</a></li>
+<li class="chapter" data-level="6.3" data-path="preparingthedata.html"><a href="preparingthedata.html#five-concepts-for-cleaning-data"><i class="fa fa-check"></i><b>6.3</b> Five concepts for cleaning data</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="preparingthedata.html"><a href="preparingthedata.html#fixing-names"><i class="fa fa-check"></i><b>6.3.1</b> Fixing names</a></li>
+<li class="chapter" data-level="6.3.2" data-path="preparingthedata.html"><a href="preparingthedata.html#converting-column-classes"><i class="fa fa-check"></i><b>6.3.2</b> Converting column classes</a></li>
+<li class="chapter" data-level="6.3.3" data-path="preparingthedata.html"><a href="preparingthedata.html#splitting-and-combining-columns"><i class="fa fa-check"></i><b>6.3.3</b> Splitting and combining columns</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="preparingthedata.html"><a href="preparingthedata.html#wide-and-long-data"><i class="fa fa-check"></i><b>6.4</b> Wide and long data</a></li>
+<li class="chapter" data-level="6.5" data-path="preparingthedata.html"><a href="preparingthedata.html#dealing-with-missing-data"><i class="fa fa-check"></i><b>6.5</b> Dealing with missing data</a></li>
+<li class="chapter" data-level="6.6" data-path="preparingthedata.html"><a href="preparingthedata.html#joining-data-together"><i class="fa fa-check"></i><b>6.6</b> Joining data together</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="visualisatingthedata.html"><a href="visualisatingthedata.html"><i class="fa fa-check"></i><b>7</b> Exploring the data with visualisations</a><ul>
+<li class="chapter" data-level="7.1" data-path="visualisatingthedata.html"><a href="visualisatingthedata.html#overview-5"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="visualisatingthedata.html"><a href="visualisatingthedata.html#empirical-research-into-effective-data-visualisation"><i class="fa fa-check"></i><b>7.2</b> Empirical research into effective data visualisation</a></li>
+</ul></li>
+<li class="part"><span><b>I Working with data</b></span></li>
+<li class="chapter" data-level="8" data-path="artefactdata.html"><a href="artefactdata.html"><i class="fa fa-check"></i><b>8</b> Analysing artefact data</a><ul>
+<li class="chapter" data-level="8.1" data-path="artefactdata.html"><a href="artefactdata.html#overview-6"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="artefactdata.html"><a href="artefactdata.html#basic-analysis-tasks"><i class="fa fa-check"></i><b>8.2</b> Basic analysis tasks</a></li>
+<li class="chapter" data-level="8.3" data-path="artefactdata.html"><a href="artefactdata.html#basic-plotting-tasks"><i class="fa fa-check"></i><b>8.3</b> Basic plotting tasks</a></li>
+<li class="chapter" data-level="8.4" data-path="artefactdata.html"><a href="artefactdata.html#stone-artefacts"><i class="fa fa-check"></i><b>8.4</b> Stone artefacts</a></li>
+<li class="chapter" data-level="8.5" data-path="artefactdata.html"><a href="artefactdata.html#faunal-remains"><i class="fa fa-check"></i><b>8.5</b> Faunal remains</a></li>
+<li class="chapter" data-level="8.6" data-path="artefactdata.html"><a href="artefactdata.html#pottery"><i class="fa fa-check"></i><b>8.6</b> Pottery</a></li>
+<li class="chapter" data-level="8.7" data-path="artefactdata.html"><a href="artefactdata.html#glass"><i class="fa fa-check"></i><b>8.7</b> Glass</a></li>
+<li class="chapter" data-level="8.8" data-path="artefactdata.html"><a href="artefactdata.html#metal"><i class="fa fa-check"></i><b>8.8</b> Metal</a></li>
+</ul></li>
+<li class="part"><span><b>II Working with data</b></span></li>
+<li class="chapter" data-level="9" data-path="stratigraphic.html"><a href="stratigraphic.html"><i class="fa fa-check"></i><b>9</b> Working with stratigraphic data from archaeological excavations</a><ul>
+<li class="chapter" data-level="9.1" data-path="stratigraphic.html"><a href="stratigraphic.html#overview-7"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="stratigraphic.html"><a href="stratigraphic.html#visualising-excavation-data"><i class="fa fa-check"></i><b>9.2</b> Visualising excavation data</a></li>
+<li class="chapter" data-level="9.3" data-path="stratigraphic.html"><a href="stratigraphic.html#stratigraphic-analysis"><i class="fa fa-check"></i><b>9.3</b> Stratigraphic analysis</a></li>
+<li class="chapter" data-level="9.4" data-path="stratigraphic.html"><a href="stratigraphic.html#particle-size-analysis"><i class="fa fa-check"></i><b>9.4</b> Particle size analysis</a></li>
+</ul></li>
+<li class="part"><span><b>III Working with data</b></span></li>
+<li class="chapter" data-level="10" data-path="spatialdata.html"><a href="spatialdata.html"><i class="fa fa-check"></i><b>10</b> Spatial data and maps</a><ul>
+<li class="chapter" data-level="10.1" data-path="spatialdata.html"><a href="spatialdata.html#overview-8"><i class="fa fa-check"></i><b>10.1</b> Overview</a></li>
+<li class="chapter" data-level="10.2" data-path="spatialdata.html"><a href="spatialdata.html#making-maps"><i class="fa fa-check"></i><b>10.2</b> Making maps</a></li>
+<li class="chapter" data-level="10.3" data-path="spatialdata.html"><a href="spatialdata.html#doing-spatial-analysis"><i class="fa fa-check"></i><b>10.3</b> Doing spatial analysis</a></li>
+<li class="chapter" data-level="10.4" data-path="spatialdata.html"><a href="spatialdata.html#section"><i class="fa fa-check"></i><b>10.4</b> </a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Archaeological Science with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Archaeological Science with R</h1>
+<h4 class="author"><em>Ben Marwick</em></h4>
+<h4 class="date"><em>2018-11-01</em></h4>
+</div>
+<div id="archaeological-science-with-r" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Archaeological Science with R</h1>
+<p>This book will teach you how to get started doing archaeological science with R: You’ll learn how to get your data into R, get it into the most useful structure, transform it, visualise it and model it. In this book, you will find a practicum of skills for archaeological science.</p>
+<p>To be published by XXX in XXX 201X.</p>
+<p><!-- img src="cover.png" width="250" height="328" alt="Cover image" / --></p>
+<p>Here is a summary of the progress of the book:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Number</th>
+<th align="left">Title</th>
+<th align="right">Wordcount</th>
+<th align="left">last_edit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">01</td>
+<td align="left">Introduction</td>
+<td align="right">7413</td>
+<td align="left">2018-11-01 10:27:04</td>
+</tr>
+<tr class="even">
+<td align="left">02</td>
+<td align="left">Implementing reproducible research</td>
+<td align="right">8174</td>
+<td align="left">2018-11-01 11:06:15</td>
+</tr>
+<tr class="odd">
+<td align="left">03</td>
+<td align="left">Collecting data for R</td>
+<td align="right">4696</td>
+<td align="left">2018-11-01 10:27:04</td>
+</tr>
+<tr class="even">
+<td align="left">04</td>
+<td align="left">Getting data into R</td>
+<td align="right">7752</td>
+<td align="left">2018-11-01 11:47:43</td>
+</tr>
+<tr class="odd">
+<td align="left">05</td>
+<td align="left">Cleaning and tidying data with R</td>
+<td align="right">5853</td>
+<td align="left">2018-11-01 10:27:04</td>
+</tr>
+<tr class="even">
+<td align="left">06</td>
+<td align="left">Visualising data with R</td>
+<td align="right">1162</td>
+<td align="left">2018-11-01 10:27:04</td>
+</tr>
+<tr class="odd">
+<td align="left">07</td>
+<td align="left">Analysing artefact data with R</td>
+<td align="right">86</td>
+<td align="left">2018-11-01 10:27:04</td>
+</tr>
+<tr class="even">
+<td align="left">08</td>
+<td align="left">Analysing Excavation and stratigraphic data with R</td>
+<td align="right">23</td>
+<td align="left">2018-11-01 10:27:04</td>
+</tr>
+<tr class="odd">
+<td align="left">09</td>
+<td align="left">Analysing spatial data and making maps with R</td>
+<td align="right">57</td>
+<td align="left">2018-11-01 10:27:04</td>
+</tr>
+</tbody>
+</table>
+<p><img src="aswr_files/figure-html/writing-progress-1.png" width="672" /><div id="htmlwidget-149ef53741afc35d2ffa" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-149ef53741afc35d2ffa">{"x":{"data":[{"x":[17091,17222,17238,17316,17317,17318,17321,17323,17327,17328,17329,17330,17331,17333,17334,17335,17336,17337,17338,17339,17340,17341,17342,17836],"y":[0,0,0,0,1374,694,2223,1132,234,1060,2093,142,112,-6,2516,453,1888,3506,978,2055,257,243,174,529],"text":["words_per_day:    0<br />dmy: 17/10/2016","words_per_day:    0<br />dmy: 25/02/2017","words_per_day:    0<br />dmy: 13/03/2017","words_per_day:    0<br />dmy: 30/05/2017","words_per_day: 1374<br />dmy: 31/05/2017","words_per_day:  694<br />dmy: 01/06/2017","words_per_day: 2223<br />dmy: 04/06/2017","words_per_day: 1132<br />dmy: 06/06/2017","words_per_day:  234<br />dmy: 10/06/2017","words_per_day: 1060<br />dmy: 11/06/2017","words_per_day: 2093<br />dmy: 12/06/2017","words_per_day:  142<br />dmy: 13/06/2017","words_per_day:  112<br />dmy: 14/06/2017","words_per_day:   -6<br />dmy: 16/06/2017","words_per_day: 2516<br />dmy: 17/06/2017","words_per_day:  453<br />dmy: 18/06/2017","words_per_day: 1888<br />dmy: 19/06/2017","words_per_day: 3506<br />dmy: 20/06/2017","words_per_day:  978<br />dmy: 21/06/2017","words_per_day: 2055<br />dmy: 22/06/2017","words_per_day:  257<br />dmy: 23/06/2017","words_per_day:  243<br />dmy: 24/06/2017","words_per_day:  174<br />dmy: 25/06/2017","words_per_day:  529<br />dmy: 01/11/2018"],"type":"scatter","mode":"markers+lines","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)","dash":"solid"},"frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":48.9497716894977},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":"Words written per day (Total = 35,216 words)","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[17053.75,17873.25],"tickmode":"array","ticktext":["2017-01","2017-07","2018-01","2018-07"],"tickvals":[17167,17348,17532,17713],"categoryorder":"array","categoryarray":["2017-01","2017-07","2018-01","2018-07"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"day","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-181.6,3681.6],"tickmode":"array","ticktext":["0","1000","2000","3000"],"tickvals":[0,1000,2000,3000],"categoryorder":"array","categoryarray":["0","1000","2000","3000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":"Words written per day","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"source":"A","attrs":{"3cea16a273f1":{"x":{},"y":{},"label":{},"type":"scatter"},"3cea369ded3":{"x":{},"y":{},"label":{}}},"cur_data":"3cea16a273f1","visdat":{"3cea16a273f1":["function (y) ","x"],"3cea369ded3":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script></p>
+<!---
+# TODO
+- rexcel and jailbreakr: how to get a dataframe out of that?
+- where to put list and data frame indexing? ch4 prep
+- where to put regex? ch4 prep
+
+Intro
+Implementing
+Collecting data
+Getting data into R
+Cleaning and tidying
+Analysing artefacts
+Analysing excavation data
+Analysing spatial data
+Making a research compendium
+
+
+
+--->
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/benmarwick/aswr/edit/master/inst/index.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

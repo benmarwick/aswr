@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Archaeological Science with R</title>
+  <meta name="description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Archaeological Science with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>." />
+  <meta name="github-repo" content="benmarwick/aswr" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Archaeological Science with R" />
+  
+  <meta name="twitter:description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>." />
+  
+
+<meta name="author" content="Ben Marwick">
+
+
+<meta name="date" content="2018-11-01">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="stratigraphic.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Archaeological Science with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Archaeological Science with R</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#overview"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#why-do-archaeologists-need-to-learn-to-code"><i class="fa fa-check"></i><b>2.2</b> Why do archaeologists need to learn to code?</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i><b>2.3</b> Why R?</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#who-should-read-this-book"><i class="fa fa-check"></i><b>2.4</b> Who should read this book</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction.html"><a href="introduction.html#prerequisites"><i class="fa fa-check"></i><b>2.5</b> Prerequisites</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction.html"><a href="introduction.html#r"><i class="fa fa-check"></i><b>2.5.1</b> R</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction.html"><a href="introduction.html#rstudio"><i class="fa fa-check"></i><b>2.5.2</b> RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="introduction.html"><a href="introduction.html#key-terms-to-understand-dont-skip-this-bit"><i class="fa fa-check"></i><b>2.6</b> Key terms to understand (don’t skip this bit!)</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="introduction.html"><a href="introduction.html#packages"><i class="fa fa-check"></i><b>2.6.1</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="introduction.html"><a href="introduction.html#getting-help"><i class="fa fa-check"></i><b>2.7</b> Getting help</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="introduction.html"><a href="introduction.html#draft-toc"><i class="fa fa-check"></i><b>2.7.1</b> Draft TOC</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html"><i class="fa fa-check"></i><b>3</b> Implementing reproducible research</a><ul>
+<li class="chapter" data-level="3.1" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#overview-1"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#what-does-it-mean-to-do-reproducible-research"><i class="fa fa-check"></i><b>3.2</b> What does it mean to do reproducible research?</a></li>
+<li class="chapter" data-level="3.3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#literate-programming"><i class="fa fa-check"></i><b>3.3</b> Literate programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#document-metadata-citations-and-the-bibliography"><i class="fa fa-check"></i><b>3.3.1</b> Document metadata, citations and the bibliography</a></li>
+<li class="chapter" data-level="3.3.2" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#narrative-text-structuring-the-document-and-special-characters-in-the-text"><i class="fa fa-check"></i><b>3.3.2</b> Narrative text, structuring the document and special characters in the text</a></li>
+<li class="chapter" data-level="3.3.3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#code-blocks-cross-referencing-figures-and-tables-captions-and-inline-r-code"><i class="fa fa-check"></i><b>3.3.3</b> Code blocks, cross-referencing figures and tables, captions, and inline R code</a></li>
+<li class="chapter" data-level="3.3.4" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#rendering-the-r-markdown-into-an-output-file"><i class="fa fa-check"></i><b>3.3.4</b> Rendering the R Markdown into an output file</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#summary"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dataorganisation.html"><a href="dataorganisation.html"><i class="fa fa-check"></i><b>4</b> Collecting &amp; organising data to analyse with R</a><ul>
+<li class="chapter" data-level="4.1" data-path="dataorganisation.html"><a href="dataorganisation.html#overview-2"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="dataorganisation.html"><a href="dataorganisation.html#file-organisation"><i class="fa fa-check"></i><b>4.2</b> File organisation</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="dataorganisation.html"><a href="dataorganisation.html#guidelines-for-organising-your-files-for-improved-reproducibility"><i class="fa fa-check"></i><b>4.2.1</b> Guidelines for organising your files for improved reproducibility</a></li>
+<li class="chapter" data-level="4.2.2" data-path="dataorganisation.html"><a href="dataorganisation.html#guidelines-for-naming-your-files-to-improve-reproducibility"><i class="fa fa-check"></i><b>4.2.2</b> Guidelines for naming your files to improve reproducibility</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="dataorganisation.html"><a href="dataorganisation.html#spreadsheets-organisation"><i class="fa fa-check"></i><b>4.3</b> Spreadsheets organisation</a></li>
+<li class="chapter" data-level="4.4" data-path="dataorganisation.html"><a href="dataorganisation.html#cell-organisation"><i class="fa fa-check"></i><b>4.4</b> Cell organisation</a></li>
+<li class="chapter" data-level="4.5" data-path="dataorganisation.html"><a href="dataorganisation.html#summary-1"><i class="fa fa-check"></i><b>4.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="gettingdatain.html"><a href="gettingdatain.html"><i class="fa fa-check"></i><b>5</b> Getting data into R</a><ul>
+<li class="chapter" data-level="5.1" data-path="gettingdatain.html"><a href="gettingdatain.html#overview-3"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="gettingdatain.html"><a href="gettingdatain.html#getting-data-from-spreadsheets"><i class="fa fa-check"></i><b>5.2</b> Getting data from spreadsheets</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="gettingdatain.html"><a href="gettingdatain.html#one-spreadsheet-file-one-or-more-sheets"><i class="fa fa-check"></i><b>5.2.1</b> One spreadsheet file, one or more sheets</a></li>
+<li class="chapter" data-level="5.2.2" data-path="gettingdatain.html"><a href="gettingdatain.html#mulitiple-spreadsheet-files"><i class="fa fa-check"></i><b>5.2.2</b> Mulitiple spreadsheet files</a></li>
+<li class="chapter" data-level="5.2.3" data-path="gettingdatain.html"><a href="gettingdatain.html#importing-messy-spreadsheets-or-when-is-it-ok-to-manually-edit-the-data"><i class="fa fa-check"></i><b>5.2.3</b> Importing messy spreadsheets, or when is it ok to manually edit the data?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="gettingdatain.html"><a href="gettingdatain.html#tabular-data-from-non-spreadsheet-programs-pdfs-and-microsoft-word-documents"><i class="fa fa-check"></i><b>5.3</b> Tabular data from non-spreadsheet programs: PDFs and Microsoft Word documents</a></li>
+<li class="chapter" data-level="5.4" data-path="gettingdatain.html"><a href="gettingdatain.html#getting-tabular-data-out-of-unstructured-files"><i class="fa fa-check"></i><b>5.4</b> Getting tabular data out of unstructured files</a></li>
+<li class="chapter" data-level="5.5" data-path="gettingdatain.html"><a href="gettingdatain.html#summary-2"><i class="fa fa-check"></i><b>5.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="preparingthedata.html"><a href="preparingthedata.html"><i class="fa fa-check"></i><b>6</b> Preparing the data for analysis</a><ul>
+<li class="chapter" data-level="6.1" data-path="preparingthedata.html"><a href="preparingthedata.html#overview-4"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="preparingthedata.html"><a href="preparingthedata.html#navigating-data"><i class="fa fa-check"></i><b>6.2</b> Navigating data</a></li>
+<li class="chapter" data-level="6.3" data-path="preparingthedata.html"><a href="preparingthedata.html#five-concepts-for-cleaning-data"><i class="fa fa-check"></i><b>6.3</b> Five concepts for cleaning data</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="preparingthedata.html"><a href="preparingthedata.html#fixing-names"><i class="fa fa-check"></i><b>6.3.1</b> Fixing names</a></li>
+<li class="chapter" data-level="6.3.2" data-path="preparingthedata.html"><a href="preparingthedata.html#converting-column-classes"><i class="fa fa-check"></i><b>6.3.2</b> Converting column classes</a></li>
+<li class="chapter" data-level="6.3.3" data-path="preparingthedata.html"><a href="preparingthedata.html#splitting-and-combining-columns"><i class="fa fa-check"></i><b>6.3.3</b> Splitting and combining columns</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="preparingthedata.html"><a href="preparingthedata.html#wide-and-long-data"><i class="fa fa-check"></i><b>6.4</b> Wide and long data</a></li>
+<li class="chapter" data-level="6.5" data-path="preparingthedata.html"><a href="preparingthedata.html#dealing-with-missing-data"><i class="fa fa-check"></i><b>6.5</b> Dealing with missing data</a></li>
+<li class="chapter" data-level="6.6" data-path="preparingthedata.html"><a href="preparingthedata.html#joining-data-together"><i class="fa fa-check"></i><b>6.6</b> Joining data together</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="visualisatingthedata.html"><a href="visualisatingthedata.html"><i class="fa fa-check"></i><b>7</b> Exploring the data with visualisations</a><ul>
+<li class="chapter" data-level="7.1" data-path="visualisatingthedata.html"><a href="visualisatingthedata.html#overview-5"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="visualisatingthedata.html"><a href="visualisatingthedata.html#empirical-research-into-effective-data-visualisation"><i class="fa fa-check"></i><b>7.2</b> Empirical research into effective data visualisation</a></li>
+</ul></li>
+<li class="part"><span><b>I Working with data</b></span></li>
+<li class="chapter" data-level="8" data-path="artefactdata.html"><a href="artefactdata.html"><i class="fa fa-check"></i><b>8</b> Analysing artefact data</a><ul>
+<li class="chapter" data-level="8.1" data-path="artefactdata.html"><a href="artefactdata.html#overview-6"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="artefactdata.html"><a href="artefactdata.html#basic-analysis-tasks"><i class="fa fa-check"></i><b>8.2</b> Basic analysis tasks</a></li>
+<li class="chapter" data-level="8.3" data-path="artefactdata.html"><a href="artefactdata.html#basic-plotting-tasks"><i class="fa fa-check"></i><b>8.3</b> Basic plotting tasks</a></li>
+<li class="chapter" data-level="8.4" data-path="artefactdata.html"><a href="artefactdata.html#stone-artefacts"><i class="fa fa-check"></i><b>8.4</b> Stone artefacts</a></li>
+<li class="chapter" data-level="8.5" data-path="artefactdata.html"><a href="artefactdata.html#faunal-remains"><i class="fa fa-check"></i><b>8.5</b> Faunal remains</a></li>
+<li class="chapter" data-level="8.6" data-path="artefactdata.html"><a href="artefactdata.html#pottery"><i class="fa fa-check"></i><b>8.6</b> Pottery</a></li>
+<li class="chapter" data-level="8.7" data-path="artefactdata.html"><a href="artefactdata.html#glass"><i class="fa fa-check"></i><b>8.7</b> Glass</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="compositional-pca-ca.html"><a href="compositional-pca-ca.html"><i class="fa fa-check"></i><b>9</b> compositional, PCA, CA</a><ul>
+<li class="chapter" data-level="9.1" data-path="compositional-pca-ca.html"><a href="compositional-pca-ca.html#metal"><i class="fa fa-check"></i><b>9.1</b> Metal</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="shapes.html"><a href="shapes.html"><i class="fa fa-check"></i><b>10</b> shapes?</a></li>
+<li class="part"><span><b>II Working with data</b></span></li>
+<li class="chapter" data-level="11" data-path="stratigraphic.html"><a href="stratigraphic.html"><i class="fa fa-check"></i><b>11</b> Working with stratigraphic data from archaeological excavations</a><ul>
+<li class="chapter" data-level="11.1" data-path="stratigraphic.html"><a href="stratigraphic.html#overview-7"><i class="fa fa-check"></i><b>11.1</b> Overview</a></li>
+<li class="chapter" data-level="11.2" data-path="stratigraphic.html"><a href="stratigraphic.html#visualising-excavation-data"><i class="fa fa-check"></i><b>11.2</b> Visualising excavation data</a></li>
+<li class="chapter" data-level="11.3" data-path="stratigraphic.html"><a href="stratigraphic.html#stratigraphic-analysis"><i class="fa fa-check"></i><b>11.3</b> Stratigraphic analysis</a></li>
+<li class="chapter" data-level="11.4" data-path="stratigraphic.html"><a href="stratigraphic.html#particle-size-analysis"><i class="fa fa-check"></i><b>11.4</b> Particle size analysis</a></li>
+</ul></li>
+<li class="part"><span><b>III Working with data</b></span></li>
+<li class="chapter" data-level="12" data-path="spatialdata.html"><a href="spatialdata.html"><i class="fa fa-check"></i><b>12</b> Spatial data and maps</a><ul>
+<li class="chapter" data-level="12.1" data-path="spatialdata.html"><a href="spatialdata.html#overview-8"><i class="fa fa-check"></i><b>12.1</b> Overview</a></li>
+<li class="chapter" data-level="12.2" data-path="spatialdata.html"><a href="spatialdata.html#making-maps"><i class="fa fa-check"></i><b>12.2</b> Making maps</a></li>
+<li class="chapter" data-level="12.3" data-path="spatialdata.html"><a href="spatialdata.html#doing-spatial-analysis"><i class="fa fa-check"></i><b>12.3</b> Doing spatial analysis</a></li>
+<li class="chapter" data-level="12.4" data-path="spatialdata.html"><a href="spatialdata.html#section"><i class="fa fa-check"></i><b>12.4</b> </a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Archaeological Science with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="spatialdata" class="section level1">
+<h1><span class="header-section-number">Chapter 12</span> Spatial data and maps</h1>
+<div id="overview-8" class="section level2">
+<h2><span class="header-section-number">12.1</span> Overview</h2>
+<p>library(sf)</p>
+<p><a href="http://strimas.com/r/tidy-sf/" class="uri">http://strimas.com/r/tidy-sf/</a>
+<a href="https://walkerke.github.io/2016/12/spatial-pipelines/" class="uri">https://walkerke.github.io/2016/12/spatial-pipelines/</a></p>
+<p><a href="http://rpubs.com/mharris/r_mapping_spatial_data" class="uri">http://rpubs.com/mharris/r_mapping_spatial_data</a>
+<a href="https://pakillo.github.io/GISwithR/#12" class="uri">https://pakillo.github.io/GISwithR/#12</a></p>
+</div>
+<div id="making-maps" class="section level2">
+<h2><span class="header-section-number">12.2</span> Making maps</h2>
+<p>ggplot
+ggmap
+scale and north arrow</p>
+</div>
+<div id="doing-spatial-analysis" class="section level2">
+<h2><span class="header-section-number">12.3</span> Doing spatial analysis</h2>
+<p>polygon area
+counting points in an area
+nearest neighbour</p>
+</div>
+<div id="section" class="section level2">
+<h2><span class="header-section-number">12.4</span> </h2>
+
+<div id="refs" class="references">
+<div>
+<p>Almiron, Marcelo G., Eliana S. Almeida, and Marcio N. Miranda. 2009. “The Reliability of Statistical Functions in Four Software Packages Freely Used in Numerical Computation.” <em>Braz. J. Probab. Stat.</em> 23 (2): 107–19. <a href="https://doi.org/10.1214/08-BJPS017">https://doi.org/10.1214/08-BJPS017</a>.</p>
+</div>
+<div>
+<p>Baggerly, Keith A, and Kevin R Coombes. 2009. “Deriving Chemosensitivity from Cell Lines: Forensic Bioinformatics and Reproducible Research in High-Throughput Biology.” <em>The Annals of Applied Statistics</em>, 1309–34.</p>
+</div>
+<div>
+<p>Baker, Monya. 2016. “Muddled Meanings Hamper Efforts to Fix Reproducibility Crisis.” <em>Nature News</em>. <a href="https://doi.org/10.1038/nature.2016.20076">https://doi.org/10.1038/nature.2016.20076</a>.</p>
+</div>
+<div>
+<p>Barnes, Nick. 2010. “Publish Your Computer Code: It Is Good Enough.” <em>Nature</em> 467 (7317): 753–53.</p>
+</div>
+<div>
+<p>Bateman, Scott, Regan L Mandryk, Carl Gutwin, Aaron Genest, David McDine, and Christopher Brooks. 2010. “Useful Junk?: The Effects of Visual Embellishment on Comprehension and Memorability of Charts.” In <em>Proceedings of the Sigchi Conference on Human Factors in Computing Systems</em>, 2573–82. ACM.</p>
+</div>
+<div>
+<p>Begley, C. Glenn, and Lee M. Ellis. 2012. “Drug Development: Raise Standards for Preclinical Cancer Research.” <em>Nature</em> 483 (7391): 531–33. <a href="https://doi.org/10.1038/483531a">https://doi.org/10.1038/483531a</a>.</p>
+</div>
+<div>
+<p>Bond-Lamberty, Ben, A Peyton Smith, and Vanessa Bailey. 2016. “Running an Open Experiment: Transparency and Reproducibility in Soil and Ecosystem Science.” <em>Environmental Research Letters</em> 11 (8): 084004.</p>
+</div>
+<div>
+<p>Borer, Elizabeth T., Eric W. Seabloom, Matthew B. Jones, and Mark Schildhauer. 2009. “Some Simple Guidelines for Effective Data Management.” <em>The Bulletin of the Ecological Society of America</em> 90 (2): 205–14. <a href="https://doi.org/10.1890/0012-9623-90.2.205">https://doi.org/10.1890/0012-9623-90.2.205</a>.</p>
+</div>
+<div>
+<p>Braun, W John, and Duncan J Murdoch. 2016. <em>A First Course in Statistical Programming with R</em>. Cambridge University Press.</p>
+</div>
+<div>
+<p>Brischoux, François, and Pierre Legagneux. 2009. “Don’t Format Manuscripts: Journals Should Use a Generic Submission Format Until Papers Are Accepted.” <em>The Scientist</em> 23 (7): 24.</p>
+</div>
+<div>
+<p>Carswell, C Melody. 1992. “Choosing Specifiers: An Evaluation of the Basic Tasks Model of Graphical Perception.” <em>Human Factors: The Journal of the Human Factors and Ergonomics Society</em> 34 (5): 535–54.</p>
+</div>
+<div>
+<p>Clarkson, Chris, Mike Smith, Ben Marwick, Richard Fullagar, Lynley A Wallis, Patrick Faulkner, Tiina Manne, Elspeth Hayes, Richard G Roberts, and Zenobia Jacobs. 2015. “The Archaeology, Chronology and Stratigraphy of Madjedbebe (Malakunanja Ii): A Site in Northern Australia with Early Occupation.” Journal Article. <em>Journal of Human Evolution</em> 83: 46–64.</p>
+</div>
+<div>
+<p>Cleveland, William S., and Robert McGill. 1984. “Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods.” Journal Article. <em>Journal of the American Statistical Association</em> 79 (387): 531–54. <a href="http://links.jstor.org/sici?sici=0162-1459%28198409%2979%3A387%3C531%3AGPTEAA%3E2.0.CO%3B2-Y ">http://links.jstor.org/sici?sici=0162-1459%28198409%2979%3A387%3C531%3AGPTEAA%3E2.0.CO%3B2-Y</a>.</p>
+</div>
+<div>
+<p>Cottrell, Allin. 1999. “Word Processors: Stupid and Inefficient.” <a href="Essay, http://www.ecn.wfu.edu/cottrell/wp.html">Essay, http://www.ecn.wfu.edu/cottrell/wp.html</a>.</p>
+</div>
+<div>
+<p>De Vries, Andrie, and Joris Meys. 2015. <em>R for Dummies</em>. John Wiley &amp; Sons.</p>
+</div>
+<div>
+<p>Ehrenberg, ASC. 1977. “Rudiments of Numeracy.” <em>Journal of the Royal Statistical Society. Series A (General)</em>, 277–97.</p>
+</div>
+<div>
+<p>Feinberg, Richard A, and Howard Wainer. 2011. “Extracting Sunbeams from Cucumbers.” <em>Journal of Computational and Graphical Statistics</em> 20 (4): 793–810.</p>
+</div>
+<div>
+<p>Feldman-Stewart, Deb, Nancy Kocovski, Beth A. McConnell, Michael D. Brundage, and William J. Mackillop. 2000. “Perception of Quantitative Information for Treatment Decisions.” Journal Article. <em>Medical Decision Making</em> 20 (2): 228–38. <a href="https://doi.org/10.1177/0272989x0002000208">https://doi.org/10.1177/0272989x0002000208</a>.</p>
+</div>
+<div>
+<p>Ferris, Neal. 1999. “What’s in a Name? The Implications of Archaeological Terminology Used in Nonarchaeological Contexts.” <em>Taming the Taxonomy: Toward a New Understanding of Great Lakes Archaeology, Edited by Ronald Williamson and Christopher Watts</em>, 111–21.</p>
+</div>
+<div>
+<p>Fitzgerald, Michael. 2012. <em>Introducing Regular Expressions</em>. &quot;O’Reilly Media, Inc.&quot;.</p>
+</div>
+<div>
+<p>Friedl, Jeffrey EF. 2002. <em>Mastering Regular Expressions</em>. &quot;O’Reilly Media, Inc.&quot;.</p>
+</div>
+<div>
+<p>Gandrud, Christopher. 2015. <em>Reproducible Research with R and R Studio, Second Edition</em>. 2nd ed. Chapman and Hall Crc the R Series. Chapman; Hall CRC. <a href="http://gen.lib.rus.ec/book/index.php?md5=89E3848976A5DFAC000A892AA29FFE8D">http://gen.lib.rus.ec/book/index.php?md5=89E3848976A5DFAC000A892AA29FFE8D</a>.</p>
+</div>
+<div>
+<p>Gelman, Andrew, Cristian Pasarica, and Rahul Dodhia. 2002. “Let’s Practice What We Preach: Turning Tables into Graphs.” <em>The American Statistician</em> 56 (2): 121–30.</p>
+</div>
+<div>
+<p>Gentleman, Robert, and Temple LangDuncan. 2007. “Statistical Analyses and Reproducible Research.” <em>Journal of Computational and Graphical Statistics</em> 16 (1): 1–23.</p>
+</div>
+<div>
+<p>Gillan, Douglas J, and Edward H Richman. 1994. “Minimalism and the Syntax of Graphs.” <em>Human Factors: The Journal of the Human Factors and Ergonomics Society</em> 36 (4): 619–44.</p>
+</div>
+<div>
+<p>Gillan, Douglas J., Edward Richman, and Michael Neary. 1992. “Minimalism in Graphics.” In <em>Posters and Short Talks of the 1992 Sigchi Conference on Human Factors in Computing Systems</em>, 75–76. CHI ’92. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/1125021.1125090">https://doi.org/10.1145/1125021.1125090</a>.</p>
+</div>
+<div>
+<p>Goodman, Steven N., Daniele Fanelli, and John P. A. Ioannidis. 2016. “What Does Research Reproducibility Mean?” <em>Science Translational Medicine</em> 8 (341): 341ps12–341ps12. <a href="https://doi.org/10.1126/scitranslmed.aaf5027">https://doi.org/10.1126/scitranslmed.aaf5027</a>.</p>
+</div>
+<div>
+<p>Hampton, Stephanie E., Sean S. Anderson, Sarah C. Bagby, Corinna Gries, Xueying Han, Edmund M. Hart, Matthew B. Jones, et al. 2015. “The Tao of Open Science for Ecology.” <em>Ecosphere</em> 6 (7): art120.</p>
+</div>
+<div>
+<p>Hampton, Stephanie E, Carly A Strasser, Joshua J Tewksbury, Wendy K Gram, Amber E Budden, Archer L Batcheller, Clifford S Duke, and John H Porter. 2013. “Big Data and the Future of Ecology.” <em>Frontiers in Ecology and the Environment</em> 11 (3): 156–62. <a href="https://doi.org/10.1890/120103">https://doi.org/10.1890/120103</a>.</p>
+</div>
+<div>
+<p>Haslam, Michael, Chris Clarkson, Richard G. Roberts, Janardhana Bora, Ravi Korisettar, Peter Ditchfield, Allan R. Chivas, et al. 2012. “A Southern Indian Middle Palaeolithic Occupation Surface Sealed by the 74 Ka Toba Eruption: Further Evidence from Jwalapuram Locality 22.” Journal Article. <em>Quaternary International</em> 258: 148–64. <a href="https://doi.org/10.1016/j.quaint.2011.08.040">https://doi.org/10.1016/j.quaint.2011.08.040</a>.</p>
+</div>
+<div>
+<p>Heer, Jeffrey, and Michael Bostock. 2010. “Crowdsourcing Graphical Perception: Using Mechanical Turk to Assess Visualization Design.” In <em>Proceedings of the Sigchi Conference on Human Factors in Computing Systems</em>, 203–12. ACM.</p>
+</div>
+<div>
+<p>Herndon, Thomas, Michael Ash, and Robert Pollin. 2013. “Does High Public Debt Consistently Stifle Economic Growth? A Critique of Reinhart and Rogoff.” <em>Cambridge Journal of Economics</em>. <a href="https://doi.org/10.1093/cje/bet075">https://doi.org/10.1093/cje/bet075</a>.</p>
+</div>
+<div>
+<p>Hoefling, Holger, and Anthony Rossini. 2014. “Reproducible Research for Large-Scale Data Analysis.” In <em>Implementing Reproducible Research</em>, edited by Victoria Stodden, Friedrich Leisch, and Roger D Peng, 1–17. CRC Press.</p>
+</div>
+<div>
+<p>Hullman, Jessica, Eytan Adar, and Priti Shah. 2011. “Benefitting Infovis with Visual Difficulties.” <em>IEEE Transactions on Visualization and Computer Graphics</em> 17 (12): 2213–22.</p>
+</div>
+<div>
+<p>Inbar, Ohad, Noam Tractinsky, and Joachim Meyer. 2007. “Minimalism in Information Visualization: Attitudes Towards Maximizing the Data-Ink Ratio.” In <em>Proceedings of the 14th European Conference on Cognitive Ergonomics: Invent! Explore!</em>, 185–88. ECCE ’07. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/1362550.1362587">https://doi.org/10.1145/1362550.1362587</a>.</p>
+</div>
+<div>
+<p>Ince, Darrel C., Leslie Hatton, and John Graham-Cumming. 2012. “The Case for Open Computer Programs.” <em>Nature</em> 482 (7386): 485–88.</p>
+</div>
+<div>
+<p>Jonge, Edwin de, and Mark van der Loo. 2013. “An Introduction to Data Cleaning with R.” <em>Statistics Netherlands, the Hauge</em>.</p>
+</div>
+<div>
+<p>Keeling, Kellie B, and Robert J Pavur. 2007. “A Comparative Study of the Reliability of Nine Statistical Software Packages.” <em>Computational Statistics &amp; Data Analysis</em> 51 (8): 3811–31.</p>
+</div>
+<div>
+<p>Keller, Gerald. 2000. <em>Applied Statistics with Microsoft Excel</em>. Duxbury.</p>
+</div>
+<div>
+<p>Kelly, James D. 1989. “The Data-Ink Ratio and Accuracy of Newspaper Graphs.” <em>Journalism and Mass Communication Quarterly</em> 66 (3): 632.</p>
+</div>
+<div>
+<p>Kleindienst, MR. 2006. “On Naming Things.” <em>Transitions Before the Transition</em>, 13–28.</p>
+</div>
+<div>
+<p>Knuth, Donald E. 1992. “Literate Programming.” <em>CSLI Lecture Notes, Stanford, CA: Center for the Study of Language and Information (CSLI), 1992</em> 1.</p>
+</div>
+<div>
+<p>Koenker, Roger, and Achim Zeileis. 2009. “On Reproducible Econometric Research.” <em>Journal of Applied Econometrics</em> 24 (5): 833–47.</p>
+</div>
+<div>
+<p>Kosara, Robert, and Caroline Ziemkiewicz. 2010. “Do Mechanical Turks Dream of Square Pie Charts?” In <em>Proceedings of the 3rd Beliv’10 Workshop: BEyond Time and Errors: Novel evaLuation Methods for Information Visualization</em>, 63–70. BELIV ’10. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/2110192.2110202">https://doi.org/10.1145/2110192.2110202</a>.</p>
+</div>
+<div>
+<p>Kosslyn, Stephen M. 1985. “Graphics and Human Information Processing: A Review of Five Books.” <em>Journal of the American Statistical Association</em> 80 (391): 499–512.</p>
+</div>
+<div>
+<p>Kosslyn, Stephen M, and Christopher F Chabris. 1992. “Minding Information Graphics.” <em>Folio: The Magazine for Magazine Management</em> 21 (2): 69–71.</p>
+</div>
+<div>
+<p>Kulla-Mader, Julia. 2007. “Graphs via Ink: Understanding How the Amount of Non-Data-Ink in a Graph Affects Perception and Learning.” <em>Master’s Thesis, Department of Information and Library Science, University of North Carolina</em>.</p>
+</div>
+<div>
+<p>Li, Huiyang, and Nadine Moacdieh. 2014. “Is ‘Chart Junk’ Useful? An Extended Examination of Visual Embellishment.” Journal Article. <em>Proceedings of the Human Factors and Ergonomics Society Annual Meeting</em> 58 (1): 1516–20. <a href="https://doi.org/10.1177/1541931214581316">https://doi.org/10.1177/1541931214581316</a>.</p>
+</div>
+<div>
+<p>Lowndes, Julia S Stewart, Benjamin D Best, Courtney Scarborough, Jamie C Afflerbach, Melanie R Frazier, O’HaraCasey C, Ning Jiang, and Benjamin S Halpern. 2017. “Our Path to Better Science in Less Time Using Open Data Science Tools.” <em>Nature Ecology &amp; Evolution</em> 1: 0160.</p>
+</div>
+<div>
+<p>Marwick, Ben. 2016. “Computational Reproducibility in Archaeological Research: Basic Principles and a Case Study of Their Implementation.” <em>Journal of Archaeological Method and Theory</em>, 1–27. <a href="https://doi.org/10.1007/s10816-015-9272-9">https://doi.org/10.1007/s10816-015-9272-9</a>.</p>
+</div>
+<div>
+<p>Marwick, Ben, Chris Clarkson, O’ConnorSue, and Sophie Collins. 2016. “Early Modern Human Lithic Technology from Jerimalai, East Timor.” Journal Article. <em>Journal of Human Evolution</em> 101: 45–64.</p>
+</div>
+<div>
+<p>Marwick, Ben, Van VlackHannah G., Cyler Conrad, Rasmi Shoocongdej, Cholawit Thongcharoenchaikit, and Seungki Kwak. 2017. “Adaptations to Sea Level Change and Transitions to Agriculture at Khao Toh Chong Rockshelter, Peninsular Thailand.” Journal Article. <em>Journal of Archaeological Science</em> 77: 94–108. <a href="https://doi.org/10.1016/j.jas.2016.10.010">https://doi.org/10.1016/j.jas.2016.10.010</a>.</p>
+</div>
+<div>
+<p>Matloff, Norman. 2011. <em>The Art of R Programming: A Tour of Statistical Software Design</em>. Book. No Starch Press.</p>
+</div>
+<div>
+<p>McCullough, Bruce D, and David A Heiser. 2008. “On the Accuracy of Statistical Procedures in Microsoft Excel 2007.” <em>Computational Statistics &amp; Data Analysis</em> 52 (10): 4570–8.</p>
+</div>
+<div>
+<p>McGurgan, Kevin. 2015. “Data-Ink Ratio and Task Complexity in Graph Comprehension.” <em>Master’s Thesis, Department of Psychology, Rochester Institute of Technology</em>.</p>
+</div>
+<div>
+<p>Meyer, Joachim, David Shinar, and David Leiser. 1997. “Multiple Factors That Determine Performance with Tables and Graphs.” <em>Human Factors: The Journal of the Human Factors and Ergonomics Society</em> 39 (2): 268–86.</p>
+</div>
+<div>
+<p>Morin, A., J. Urban, P. D. Adams, I. Foster, A. Sali, D. Baker, and P. Sliz. 2012. “Shining Light into Black Boxes.” <em>Science</em> 336 (6078): 159–60. <a href="https://doi.org/10.1126/science.1218263">https://doi.org/10.1126/science.1218263</a>.</p>
+</div>
+<div>
+<p>Murrell, Paul. 2016. <em>R Graphics</em>. CRC Press.</p>
+</div>
+<div>
+<p>Noble, William Stafford. 2009. “A Quick Guide to Organizing Computational Biology Projects.” <em>PLOS Computational Biology</em> 5 (7): 1–5. <a href="https://doi.org/10.1371/journal.pcbi.1000424">https://doi.org/10.1371/journal.pcbi.1000424</a>.</p>
+</div>
+<div>
+<p>Nosek, B. A., G. Alter, G. C. Banks, D. Borsboom, S. D. Bowman, S. J. Breckler, S. Buck, et al. 2015. “Promoting an Open Research Culture: Author Guidelines for Journals Could Help to Promote Transparency, Openness, and Reproducibility.” <em>Science (New York, N.Y.)</em> 348 (6242): 1422–5.</p>
+</div>
+<div>
+<p>Prinz, Florian, Thomas Schlange, and Khusru Asadullah. 2011. “Believe It or Not: How Much Can We Rely on Published Data on Potential Drug Targets?” <em>Nat Rev Drug Discov</em> 10 (9): 712–12. <a href="https://doi.org/10.1038/nrd3439-c1">https://doi.org/10.1038/nrd3439-c1</a>.</p>
+</div>
+<div>
+<p>Racine, Jeffrey S. 2012. “RStudio: A Platform-Independent Ide for R and Sweave.” <em>Journal of Applied Econometrics</em> 27 (1): 167–72.</p>
+</div>
+<div>
+<p>Rangecroft, Margaret. 2003. “As Easy as Pie.” Journal Article. <em>Behaviour &amp; Information Technology</em> 22 (6): 421–26. <a href="https://doi.org/10.1080/01449290310001615437">https://doi.org/10.1080/01449290310001615437</a>.</p>
+</div>
+<div>
+<p>Reichman, OJ, Matthew B Jones, and Mark P Schildhauer. 2011. “Challenges and Opportunities of Open Data in Ecology.” <em>Science</em> 331 (6018).</p>
+</div>
+<div>
+<p>Rossini, AJ, Thomas Lumley, and Friedrich Leisch. 2003. “On the Edge: Statistics &amp; Computing: Reproducible Statistical Research.” <em>Chance</em> 16 (2): 41–45.</p>
+</div>
+<div>
+<p>Sandve, Anton AND Taylor, Geir Kjetil AND Nekrutenko. 2013. “Ten Simple Rules for Reproducible Computational Research.” <em>PLoS Comput Biol</em> 9 (10): e1003285. <a href="https://doi.org/10.1371/journal.pcbi.1003285">https://doi.org/10.1371/journal.pcbi.1003285</a>.</p>
+</div>
+<div>
+<p>Schonlau, Matthias, and Ellen Peters. 2012. “Comprehension of Graphs and Tables Depend on the Task: Empirical Evidence from Two Web-Based Studies.” <em>Statistics, Politics, and Policy</em> 3 (2).</p>
+</div>
+<div>
+<p>Schulte, Eric, Dan Davison, Thomas Dye, and Carsten Dominik. 2012. “A Multi-Language Computing Environment for Literate Programming and Reproducible Research.” <em>Journal of Statistical Software</em> 46 (1): 1–24. <a href="https://doi.org/10.18637/jss.v046.i03">https://doi.org/10.18637/jss.v046.i03</a>.</p>
+</div>
+<div>
+<p>Simkin, David, and Reid Hastie. 1987. “An Information-Processing Analysis of Graph Perception.” Journal Article. <em>Journal of the American Statistical Association</em> 82 (398): 454–65. <a href="https://doi.org/10.1080/01621459.1987.10478448">https://doi.org/10.1080/01621459.1987.10478448</a>.</p>
+</div>
+<div>
+<p>Spence, Ian. 1990. “Visual Psychophysics of Simple Graphical Elements.” <em>Journal of Experimental Psychology: Human Perception and Performance</em> 16 (4): 683.</p>
+</div>
+<div>
+<p>———. 2005. “No Humble Pie: The Origins and Usage of a Statistical Chart.” <em>Journal of Educational and Behavioral Statistics</em> 30 (4): 353–68.</p>
+</div>
+<div>
+<p>Spence, Ian, and Stephan Lewandowsky. 1991. “Displaying Proportions and Percentages.” <em>Applied Cognitive Psychology</em> 5 (1): 61–77.</p>
+</div>
+<div>
+<p>Steen, Arturo AND Fang, R. Grant AND Casadevall. 2013. “Why Has the Number of Scientific Retractions Increased?” <em>PLoS ONE</em> 8 (7): e68397. <a href="https://doi.org/10.1371/journal.pone.0068397">https://doi.org/10.1371/journal.pone.0068397</a>.</p>
+</div>
+<div>
+<p>Stodden, Victoria, Friedrich Leisch, and Roger D Peng. 2014. <em>Implementing Reproducible Research</em>. Chapman; Hall/CRC.</p>
+</div>
+<div>
+<p>Strasser, C. A., and S. E. Hampton. 2012. “The Fractured Lab Notebook: Undergraduates and Ecological Data Management Training in the United States.” <em>Ecosphere</em> 3 (12): 1–18. <a href="https://doi.org/10.1890/ES12-00139.1">https://doi.org/10.1890/ES12-00139.1</a>.</p>
+</div>
+<div>
+<p>Sutter, Robert D., Susan B. Wainscott, John R. Boetsch, Craig J. Palmer, and David J. Rugg. 2015. “Practical Guidance for Integrating Data Management into Long-Term Ecological Monitoring Projects.” <em>Wildlife Society Bulletin</em> 39 (3): 451–63. <a href="https://doi.org/10.1002/wsb.548">https://doi.org/10.1002/wsb.548</a>.</p>
+</div>
+<div>
+<p>Talbot, Justin, Vidya Setlur, and Anushka Anand. 2014. “Four Experiments on the Perception of Bar Charts.” <em>IEEE Transactions on Visualization and Computer Graphics</em> 20 (12): 2152–60.</p>
+</div>
+<div>
+<p>Terry, Richard E., Sheldon D. Nelson, Jared Carr, Jacob Parnell, Perry J. Hardin, Mark W. Jackson, and Stephen D. Houston. 2000. “Quantitative Phosphorus Measurement: A Field Test Procedure for Archaeological Site Analysis at Piedras Negras, Guatemala.” Journal Article. <em>Geoarchaeology</em> 15 (2): 151–66. <a href="http://dx.doi.org/10.1002/(SICI)1520-6548(200002)15:2&lt;151::AID-GEA3&gt;3.0.CO;2-T">http://dx.doi.org/10.1002/(SICI)1520-6548(200002)15:2&lt;151::AID-GEA3&gt;3.0.CO;2-T</a>.</p>
+</div>
+<div>
+<p>Tukey, John W. 1990. “Data-Based Graphics: Visual Display in the Decades to Come.” Journal Article. <em>Statistical Science</em> 5 (3): 327–39. <a href="http://www.jstor.org/stable/2245820">http://www.jstor.org/stable/2245820</a>.</p>
+</div>
+<div>
+<p>Van Noorden, Richard. 2011. “Science Publishing: The Trouble with Retractions.” <em>Nature</em> 478 (9): 26–28. <a href="https://doi.org/10.1038/478026a">https://doi.org/10.1038/478026a</a>.</p>
+</div>
+<div>
+<p>Verzani, John. 2011. <em>Getting Started with Rstudio</em>. &quot; O’Reilly Media, Inc.&quot;.</p>
+</div>
+<div>
+<p>Volk, Carol J., Yasmin Lucero, and Katie Barnas. 2014. “Why Is Data Sharing in Collaborative Natural Resource Efforts so Hard and What Can We Do to Improve It?” <em>Environmental Management</em> 53 (5): 883–93. <a href="https://doi.org/10.1007/s00267-014-0258-2">https://doi.org/10.1007/s00267-014-0258-2</a>.</p>
+</div>
+<div>
+<p>Wainer, Howard. 1997. “Improving Tabular Displays, with Naep Tables as Examples and Inspirations.” <em>Journal of Educational and Behavioral Statistics</em> 22 (1): 1–30. <a href="https://doi.org/10.3102/10769986022001001">https://doi.org/10.3102/10769986022001001</a>.</p>
+</div>
+<div>
+<p>White, Ethan, Elita Baldridge, Zachary Brym, Kenneth Locey, Daniel McGlinn, and Sarah Supp. 2013. “Nine Simple Ways to Make It Easier to (Re)use Your Data.” <em>Ideas in Ecology and Evolution</em> 6 (2). <a href="https://doi.org/10.4033/iee.v6i2.4608">https://doi.org/10.4033/iee.v6i2.4608</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley. 2014. <em>Advanced R</em>. CRC Press.</p>
+</div>
+<div>
+<p>———. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Garrett Grolemund. 2016. “R for Data Science.” Sebastopol, CA: O’Reilly. http://​ r4ds.​ had.​ co.​ nz.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and others. 2014. “Tidy Data.” <em>Journal of Statistical Software</em> 59 (10): 1–23.</p>
+</div>
+<div>
+<p>Wilson, Greg, D. A. Aruliah, C. Titus Brown, Chue HongNeil P., Matt Davis, Richard T. Guy, Steven H. D. Haddock, et al. 2014. “Best Practices for Scientific Computing.” <em>PLoS Biol</em> 12 (1).</p>
+</div>
+<div>
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
+</div>
+<div>
+<p>———. 2016. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. CRC Press.</p>
+</div>
+<div>
+<p>Yalta, A Talha. 2008. “The Accuracy of Statistical Distributions in Microsoft Excel 2007.” <em>Computational Statistics &amp; Data Analysis</em> 52 (10): 4579–86.</p>
+</div>
+<div>
+<p>Zacks, Jeff, Ellen Levy, Barbara Tversky, and Diane J Schiano. 1998. “Reading Bar Graphs: Effects of Extraneous Depth Cues and Graphical Context.” <em>Journal of Experimental Psychology: Applied</em> 4 (2): 119.</p>
+</div>
+<div>
+<p>Zubiaga, Arkaitz, and Brian MacNamee. 2015. “Knowing What You Dont Know: Choosing the Right Chart to Show Data Distributions to Non-Expert Users.” In <em>Web Science 2015 Conference, Oxford, United Kingdom, 28 June-1 July 2015</em>. ACM.</p>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="stratigraphic.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/benmarwick/aswr/edit/master/inst/09-Analysing-spatial-data-and-making-maps-with-R.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
