@@ -24,7 +24,7 @@
 <meta name="author" content="Ben Marwick" />
 
 
-<meta name="date" content="2019-05-27" />
+<meta name="date" content="2019-05-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -352,11 +352,31 @@ artefacts_by_colour &lt;-<span class="st"> </span>
                     <span class="dt">mass_kg =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">7</span>))
 <span class="co"># have a look</span>
 artefacts_by_colour</code></pre>
+<pre><code>## # A tibble: 7 x 2
+##   colour     mass_kg
+##   &lt;chr&gt;        &lt;dbl&gt;
+## 1 red              3
+## 2 &quot; green&quot;         5
+## 3 greenish         8
+## 4 green-like       4
+## 5 bleu             2
+## 6 blue             1
+## 7 &quot;Red &quot;           7</code></pre>
 <p>At a quick glance at the ‘colour’ column we can see that ‘blue’ is mis-spelled as ‘bleu’, we might want to combine the variants of ‘green’, and ‘red’ appears in the last row with a capital ‘R’, but all the other colour names are in lower case. In a small table like this is a easy to browse the whole column, but in larger tables we can run <code>unique(artefacts_by_colour$colour)</code> to give a character vector of the unique values in the ‘colour’ column, or <code>table(artefacts_by_colour$colour)</code>, which returns a table showing each unique value and how many times it occurs in the column. However you discover the problems in a column, the good news is that these are very typical issues that make raw data dirty, and we can easily clean them in R. First, we will fix the case so that all the items in the ‘colour’ column are lower case:</p>
 <pre class="sourceCode r"><code class="sourceCode r">artefacts_by_colour<span class="op">$</span>colour &lt;-<span class="st"> </span><span class="kw">tolower</span>(artefacts_by_colour<span class="op">$</span>colour)
 
 <span class="co"># inspect the result</span>
 artefacts_by_colour</code></pre>
+<pre><code>## # A tibble: 7 x 2
+##   colour     mass_kg
+##   &lt;chr&gt;        &lt;dbl&gt;
+## 1 red              3
+## 2 &quot; green&quot;         5
+## 3 greenish         8
+## 4 green-like       4
+## 5 bleu             2
+## 6 blue             1
+## 7 &quot;red &quot;           7</code></pre>
 <p>That has fixed the ‘red’ in the last row, and now we will fix the spelling mistake using the <code>if_else()</code> function. This function is from the dplyr package, there is also an <code>ifelse()</code> in base R, but I prefer the dplyr version because it is more strict, predictable and faster:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 
@@ -368,6 +388,16 @@ artefacts_by_colour<span class="op">$</span>colour &lt;-<span class="st"> </span
 
 <span class="co"># inspect the result</span>
 artefacts_by_colour</code></pre>
+<pre><code>## # A tibble: 7 x 2
+##   colour     mass_kg
+##   &lt;chr&gt;        &lt;dbl&gt;
+## 1 red              3
+## 2 &quot; green&quot;         5
+## 3 greenish         8
+## 4 green-like       4
+## 5 blue             2
+## 6 blue             1
+## 7 &quot;red &quot;           7</code></pre>
 <p>The <code>if_else()</code> function is very useful for data cleaning because we can use it to easily update values in a column. It works by evaluating a condition for each item in a vector, one-by-one, and retuning a new vector with values that depend on how each item is evaluated. In this case the condition is <code>colour == &quot;bleu&quot;</code>, which we can translate as ‘is the value of the column ’colour’ equivalent to “bleu”?‘. For each item in the ’colour’ column, the <code>if_else()</code> function will evaluate that condition and return either <code>TRUE</code> (the value is equalivant to “bleu”) or <code>FALSE</code> (the value is not “bleu”, but something else, like “red”, or “green”). The second argument to <code>if_else()</code> is the value to return if the condition is <code>TRUE</code>. In our example, we can translate this as ‘if the value of the column ’colour’ is “bleu”, then return the value “blue”‘. Or more plainly ’where “bleu” occurs in the ’colour’ column, replace it with “blue”‘, akin to a find-and-replace task you might do in a word processing document. The last argument to <code>if_else()</code> is the value to return if the condition is <code>FALSE</code>. In our example, this value is whatever the value of the ’colour’ column is. So when the <code>if_else()</code> gets to the last item in the ‘colour’ column, it sees the value “red”, and it evaluates the condition as ‘is “red” equivalent to “bleu”?’ and returns <code>FALSE</code>, and then skips over the second argument (what to return if <code>TRUE</code>) and looks at the third argument (what to return if <code>FALSE</code>), sees the column name ‘colour’ and returns the last value of that column, which is “red”. Effectively, it leaves the column values unchanged if the condition is <code>FALSE</code>.</p>
 <p>Note the use of <code>with()</code> in the example above, it saves me from having to type the name of the data frame twice. Without <code>with()</code> I would have typed it like this, repeating the name of the data frame each time I refer to the ‘colour’ column:</p>
 <pre class="sourceCode r"><code class="sourceCode r">artefacts_by_colour<span class="op">$</span>colour &lt;-<span class="st"> </span>
@@ -380,36 +410,251 @@ artefacts_by_colour</code></pre>
 
 <span class="co"># inspect the result</span>
 artefacts_by_colour</code></pre>
+<pre><code>## # A tibble: 7 x 2
+##   colour   mass_kg
+##   &lt;chr&gt;      &lt;dbl&gt;
+## 1 red            3
+## 2 &quot; green&quot;       5
+## 3 green          8
+## 4 green          4
+## 5 blue           2
+## 6 blue           1
+## 7 &quot;red &quot;         7</code></pre>
 <p>In the above example we show the use of the period and asterix as metacharacters in a regular expression. If we wanted to be more selective, we could use another regular expression character, the ‘or’ symbol <code>|</code>, to indicate that we only want to subsitute for a specific set of matches:</p>
 <pre class="sourceCode r"><code class="sourceCode r">artefacts_by_colour<span class="op">$</span>colour &lt;-<span class="st"> </span>
 <span class="st">  </span><span class="kw">gsub</span>(<span class="st">&quot;greenish|green-like&quot;</span>, <span class="st">&quot;green&quot;</span>, artefacts_by_colour<span class="op">$</span>colour)</code></pre>
-<p>We can group characters used in regular expressions into four categories according to their function: converters, quantifiers, positioners, and operators. Converters are perhaps the most confusing of these, because it is not always obvious what they do and how many of them to use. Table <a href="#tab:regex-converters"><strong>??</strong></a> demonstrates this challenge where <code>\\</code> seems to have two opposite functions. When working with <code>\\</code> to convert characters in a regular expression, a useful rule of thumb is to keep adding adding backslashes until it works as desired.</p>
-<p>Quantifiers specify how many repetitions of the pattern we want to match in a string. Table <a href="#tab:regex-converters"><strong>??</strong></a> describes the commonly used quantifiers in R’s regular expressions.</p>
-<p>Positioners, or anchors, indicate the position of a pattern to match within a string. Table <a href="#tab:regex-positioners"><strong>??</strong></a> summarisese some common positioners. These are especially useful for getting a match only at the start or end of a character string.</p>
-<p>Operators are the core of a regular expression pattern, helping to define what to include in the pattern or exclude from it. Table <a href="#tab:regex-positioners"><strong>??</strong></a> summarises some common positioners</p>
-<p>An good guide to regular expresions is <span class="citation">Fitzgerald (<a href="#ref-fitzgerald2012introducing">2012</a>)</span>, and for R in particular, the chapter on strings in <span class="citation">Wickham and Grolemund (<a href="#ref-wickham2016r">2016</a>)</span> is excellent (and is online here: <a href="http://r4ds.had.co.nz/strings.html" class="uri">http://r4ds.had.co.nz/strings.html</a>). There are also many useful websites summarising common uses of regular expressions in R, such as <a href="http://stat545.com/block022_regular-expression.html" class="uri">http://stat545.com/block022_regular-expression.html</a>, as well as sites to learn, build and test your regular expressions (e.g. <a href="http://www.regexr.com/" class="uri">http://www.regexr.com/</a>, <a href="https://regex101.com/" class="uri">https://regex101.com/</a>, and <a href="https://www.debuggex.com/" class="uri">https://www.debuggex.com/</a>). These sites are useful for learning more about regular expressions and understanding specific patterns, but it is easy to get confused with subtle differences in the way various programming languages interpret patterns on these websites. I find that there is no substitute for experimenting in my R console with trial and error on a very small example that represents the operation I want to apply to the full data set. Table <a href="#tab:regex-fns"><strong>??</strong></a> shows the R functions that I most commonly use when working with regular expressions in R.</p>
+<p>We can group characters used in regular expressions into four categories according to their function: converters, quantifiers, positioners, and operators. Converters are perhaps the most confusing of these, because it is not always obvious what they do and how many of them to use. Table <a href="preparingthedata.html#tab:regex-converters">6.1</a> demonstrates this challenge where <code>\\</code> seems to have two opposite functions. When working with <code>\\</code> to convert characters in a regular expression, a useful rule of thumb is to keep adding adding backslashes until it works as desired.</p>
+<table>
+<caption><span id="tab:regex-converters">Table 6.1: </span>Characters commonly used for converting other characters in regular expressions</caption>
+<thead>
+<tr class="header">
+<th align="left">character</th>
+<th align="left">meaning</th>
+<th align="left">example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>\\</code></td>
+<td align="left">convert a normal character into a metacharacter</td>
+<td align="left"><code>&quot;\\s&quot;</code> matches any whitespace character (tabs, newlines and spaces); <code>&quot;\\S&quot;</code> matches any non-whitespace characters; <code>&quot;\\d&quot;</code>?matches any digit; <code>&quot;\\D&quot;</code> matches any non-digit character; <code>&quot;\\w&quot;</code> matches any word character (uppercase letters, lowercase letters, digits and underscore); <code>&quot;\\W&quot;</code> matches any non-word characters (note that we need to double-up the backslash in R, other languages use a single backslash in these contexts)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>\\</code></td>
+<td align="left">convert a metacharacter into a normal (literal) character</td>
+<td align="left"><code>&quot;\\.&quot;</code> matches with a literal period; <code>&quot;\\(&quot;</code> matches with a literal left parenthesis</td>
+</tr>
+</tbody>
+</table>
+<p>Quantifiers specify how many repetitions of the pattern we want to match in a string. Table <a href="preparingthedata.html#tab:regex-converters">6.1</a> describes the commonly used quantifiers in R’s regular expressions.</p>
+<table>
+<caption><span id="tab:regex-quantifiers">Table 6.2: </span>Characters commonly used for quantifing characters to match in regular expressions</caption>
+<thead>
+<tr class="header">
+<th align="left">character</th>
+<th align="left">meaning</th>
+<th align="left">example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>*</code></td>
+<td align="left">any number of repetition, including zero or more of some character/expression (metacharacter)</td>
+<td align="left"><code>&quot;*&quot;</code> matches anything combination of characters</td>
+</tr>
+<tr class="even">
+<td align="left"><code>+</code></td>
+<td align="left">1 or more repetitions; 1 or more of some character/expression (metacharacter)</td>
+<td align="left"><code>&quot;[0-9]+&quot;</code> matches matches many at least digit 1 numbers such as ‘0’, ‘90’, or ‘021442132’</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>?</code></td>
+<td align="left">expression is optional; 0/1 of some character/expression (metacharacter)</td>
+<td align="left"><code>&quot;[Gg]ordon( [Vv]\\.)? [Cc]hilde&quot;</code> matches gordon childe’ and ‘Gordon V. Childe’ (two backslashes are needed to match with a literal period)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>{n}</code></td>
+<td align="left">matches exactly n times</td>
+<td align="left"><code>&quot;ap{2}lique&quot;</code> matches ‘applique’ but not ‘aplique’ or ‘appplique’</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>{n,}</code></td>
+<td align="left">matches at least n times</td>
+<td align="left"><code>&quot;ap{2,}lique&quot;</code> matches ‘applique’ and ‘appplique’, but not ‘aplique’</td>
+</tr>
+<tr class="even">
+<td align="left"><code>{m, n}</code></td>
+<td align="left">interval quantifier, allows specifying the minimum and maximum number of matches (metacharacter); <code>{n,m}</code> matches between n and m times.</td>
+<td align="left"><code>&quot; [1-2]{1}[0-9]{3} &quot;</code> matches years in a sentence, i.e. a space, followed by 1 or 2, followed by three of any of the digits between 0 and 9, followed by a space. It will match ’ 1984 ‘, but not’ 5000 ’ or ’ 2e ’.</td>
+</tr>
+</tbody>
+</table>
+<p>Positioners, or anchors, indicate the position of a pattern to match within a string. Table <a href="preparingthedata.html#tab:regex-positioners">6.3</a> summarisese some common positioners. These are especially useful for getting a match only at the start or end of a character string.</p>
+<table>
+<caption><span id="tab:regex-positioners">Table 6.3: </span>Characters commonly used match at specific positions in regular expressions</caption>
+<thead>
+<tr class="header">
+<th align="left">character</th>
+<th align="left">meaning</th>
+<th align="left">example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>^</code></td>
+<td align="left">start of the line (metacharacter)</td>
+<td align="left"><code>&quot;^text</code>&quot; matches lines such as ‘text’</td>
+</tr>
+<tr class="even">
+<td align="left"><code>$</code></td>
+<td align="left">end of the line (metacharacter)</td>
+<td align="left"><code>&quot;text$&quot;</code> matches lines such as ‘…text’</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>\b</code></td>
+<td align="left">empty string at either edge of a word. Don’t confuse it with <code>&quot;^ $&quot;</code> which marks the edge of a string.</td>
+<td align="left"><code>&quot;\\bpost</code>&quot; will match ‘post-processual’ and’ post hole’, but not ‘imposter’</td>
+</tr>
+<tr class="even">
+<td align="left"><code>\B</code></td>
+<td align="left">empty string provided it is not at an edge of a word</td>
+<td align="left"><code>&quot;\\Bpost</code>&quot; will match ‘imposter’ but not ‘post-processual’ and ‘post hole’</td>
+</tr>
+</tbody>
+</table>
+<p>Operators are the core of a regular expression pattern, helping to define what to include in the pattern or exclude from it. Table <a href="preparingthedata.html#tab:regex-positioners">6.3</a> summarises some common positioners</p>
+<table>
+<caption><span id="tab:regex-operators">Table 6.4: </span>Operators commonly used to make regular expression patterns</caption>
+<thead>
+<tr class="header">
+<th align="left">character</th>
+<th align="left">meaning</th>
+<th align="left">example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>.</code></td>
+<td align="left">any character (metacharacter)</td>
+<td align="left"><code>&quot;8.11&quot;</code> matches 8/11, 0811, 8-11, etc</td>
+</tr>
+<tr class="even">
+<td align="left"><code>[...]</code></td>
+<td align="left">set of characters that will be accepted in the match (character class)</td>
+<td align="left"><code>&quot;^[Ii]&quot;</code> matches both of these lines: ‘I dug at…’ or i dug at…’</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>[0-9]</code></td>
+<td align="left">searches for a a range of characters (character class)</td>
+<td align="left"><code>&quot;[a-zA-Z]&quot;</code> will match any letter in upper or lower case, <code>&quot;[0-9]&quot;</code> will match any digit</td>
+</tr>
+<tr class="even">
+<td align="left"><code>[^...]</code></td>
+<td align="left">when used at beginning of character class, “^” means “not” (metacharacter)</td>
+<td align="left"><code>&quot;[^?.]$&quot;</code> matches any line that does not end in ‘.’ or ‘?’. Will match ‘How old is it!’ but not ‘How old is it?’</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>|</code></td>
+<td align="left">“or”, used to combine subexpressions called alternatives (metacharacter)</td>
+<td align="left"><code>&quot;^([Nn]eolithic|[Pp]al(ae|e)olithic)&quot;</code> matches any character strings that start with lower/upper case ‘Neolithic’ and ‘Palaeolithic’ and ‘Paleolithic…’ (alternate spelling).</td>
+</tr>
+<tr class="even">
+<td align="left"><code>(...)</code></td>
+<td align="left">define group as the the text in parentheses, groups will be remembered and can be referred to by \1, \2, etc.</td>
+<td align="left"><code>&quot;([A-Z]\\.)&quot;,  &quot;\\1&quot;</code> matches any single capital letter, followed by a single literal period, anywhere in the character string (e.g. a person’s middle initial)</td>
+</tr>
+</tbody>
+</table>
+<p>An good guide to regular expresions is <span class="citation">Fitzgerald (<a href="#ref-fitzgerald2012introducing">2012</a>)</span>, and for R in particular, the chapter on strings in <span class="citation">Wickham and Grolemund (<a href="#ref-wickham2016r">2016</a>)</span> is excellent (and is online here: <a href="http://r4ds.had.co.nz/strings.html" class="uri">http://r4ds.had.co.nz/strings.html</a>). There are also many useful websites summarising common uses of regular expressions in R, such as <a href="http://stat545.com/block022_regular-expression.html" class="uri">http://stat545.com/block022_regular-expression.html</a>, as well as sites to learn, build and test your regular expressions (e.g. <a href="http://www.regexr.com/" class="uri">http://www.regexr.com/</a>, <a href="https://regex101.com/" class="uri">https://regex101.com/</a>, and <a href="https://www.debuggex.com/" class="uri">https://www.debuggex.com/</a>). These sites are useful for learning more about regular expressions and understanding specific patterns, but it is easy to get confused with subtle differences in the way various programming languages interpret patterns on these websites. I find that there is no substitute for experimenting in my R console with trial and error on a very small example that represents the operation I want to apply to the full data set. Table <a href="preparingthedata.html#tab:regex-fns">6.5</a> shows the R functions that I most commonly use when working with regular expressions in R.</p>
+<table>
+<caption><span id="tab:regex-fns">Table 6.5: </span>Functions commonly used to work with regular expressions. The stringr package has many other functions in addition to these that make data clearning easy and fast.</caption>
+<thead>
+<tr class="header">
+<th align="left">Task</th>
+<th align="left">Functions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Identify match to a pattern</td>
+<td align="left"><code>grep(..., value = FALSE)</code>,<code>grepl()</code>,<code>stringr::str_detect()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Extract match to a pattern</td>
+<td align="left"><code>grep(..., value = TRUE)</code>,<code>stringr::str_extract()</code>,<code>stringr::str_extract_all()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Locate pattern within a string, i.e. give the start position of matched patterns</td>
+<td align="left"><code>stringr::str_locate()</code>,<code>string::str_locate_all()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Replace a pattern</td>
+<td align="left"><code>gsub()</code>,<code>stringr::str_replace()</code>,<code>stringr::str_replace_all()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Split a string using a pattern</td>
+<td align="left"><code>strsplit()</code>,<code>stringr::str_split()</code></td>
+</tr>
+</tbody>
+</table>
 <p>Regular expressions are useful for many other data cleaning tasks besides fixing names, and we will see them pop up in other contexts. However, it can be templing to try to use regular expressions where another approach may be better suited. For example, you might try to write a complex regular expression where a series of simpler regular expressions or even <code>if_else()</code> statements might be easier to write and understand. When you get stuck with regular expressions, take a moment to reflect on simpler options, perhaps breaking the problem into smaller pieces and tackling each piece one at a time.</p>
 <p>To return to our small table of artefacts, we are nearly done with fixing the problems in with the colour names. The data frame looks good when we view it in the console, but a final check with <code>table(artefacts_by_colour$colour)</code> reveals that we still have some inconsistences in some of the colour names.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># check the data frame</span>
-artefacts_by_colour
-
-<span class="co"># final check to see if anything else needs fixing</span>
+artefacts_by_colour</code></pre>
+<pre><code>## # A tibble: 7 x 2
+##   colour   mass_kg
+##   &lt;chr&gt;      &lt;dbl&gt;
+## 1 red            3
+## 2 &quot; green&quot;       5
+## 3 green          8
+## 4 green          4
+## 5 blue           2
+## 6 blue           1
+## 7 &quot;red &quot;         7</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># final check to see if anything else needs fixing</span>
 <span class="kw">table</span>(artefacts_by_colour<span class="op">$</span>colour)</code></pre>
+<pre><code>## 
+##  green   blue  green    red   red  
+##      1      2      2      1      1</code></pre>
 <p>The output of <code>table()</code> shows that we still have two distinct names for ‘green’ and also for ‘red’, yet we cannot see any obvious differences in these names. To take a closer look, we must print the vector in isolation:</p>
 <pre class="sourceCode r"><code class="sourceCode r">artefacts_by_colour<span class="op">$</span>colour</code></pre>
+<pre><code>## [1] &quot;red&quot;    &quot; green&quot; &quot;green&quot;  &quot;green&quot;  &quot;blue&quot;   &quot;blue&quot;   &quot;red &quot;</code></pre>
 <p>Now we can see the problem - there are leading and trailing spaces that are revealed by the double quotation marks. Those single spaces mean that R sees &quot; green&quot; as distinct from “green”. An easy and fast way to remove these is with the <code>str_trim()</code> function from Hadley Wickham’s stringr package. After that we can use <code>table()</code> to confirm that the colour names are as expected:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(stringr)
 artefacts_by_colour<span class="op">$</span>colour &lt;-<span class="st"> </span><span class="kw">str_trim</span>(artefacts_by_colour<span class="op">$</span>colour)
 
 <span class="co"># check that the colour names are as expected</span>
 <span class="kw">table</span>(artefacts_by_colour<span class="op">$</span>colour)</code></pre>
+<pre><code>## 
+##  blue green   red 
+##     2     3     2</code></pre>
 <p>In situations where you have a large number of columns we can use <code>map_df()</code> to automatically apply functions such as <code>str_trim()</code> to all the columns in a data frame, for example:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map_df</span>(artefacts_by_colour, <span class="op">~</span><span class="kw">str_trim</span>(.x))</code></pre>
+<pre><code>## # A tibble: 7 x 2
+##   colour mass_kg
+##   &lt;chr&gt;  &lt;chr&gt;  
+## 1 red    3      
+## 2 green  5      
+## 3 green  8      
+## 4 green  4      
+## 5 blue   2      
+## 6 blue   1      
+## 7 red    7</code></pre>
 <p>However, this has the undesirable side-effect of coercing all columns into the character class, notice in the above output that the ‘mass_kg’ is now a character column. To trim the white space on only the character coloumns, andleave the numeric columns untouched, we can use <code>map_if()</code> and specify a condition that the columns must satisfy to determine if the function will be applied:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">map_if</span>(artefacts_by_colour, 
        is.character, 
        <span class="op">~</span><span class="kw">str_trim</span>(.x)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">as_data_frame</span>()</code></pre>
+<pre><code>## # A tibble: 7 x 2
+##   colour mass_kg
+##   &lt;chr&gt;    &lt;dbl&gt;
+## 1 red          3
+## 2 green        5
+## 3 green        8
+## 4 green        4
+## 5 blue         2
+## 6 blue         1
+## 7 red          7</code></pre>
 <p>The condition we apply here is <code>is.character()</code> which tests to see if each column is character class. If the column is character class, then the <code>str_trim()</code> function is applied to it. The output from <code>map_if()</code> is a list, so we need to add <code>as_data_frame()</code> to convert the list back into a data frame, ready for the next step.</p>
 </div>
 <div id="converting-column-classes" class="section level3">
@@ -419,16 +664,40 @@ artefacts_by_colour<span class="op">$</span>colour &lt;-<span class="st"> </span
 
 <span class="co"># have a look</span>
 artefacts_by_colour</code></pre>
+<pre><code>## # A tibble: 8 x 2
+##   colour mass_kg
+##   &lt;chr&gt;  &lt;chr&gt;  
+## 1 red    3      
+## 2 green  5      
+## 3 green  8      
+## 4 green  4      
+## 5 blue   2      
+## 6 blue   1      
+## 7 red    7      
+## 8 yellow 2.5.</code></pre>
 <p>When we read this table into R, this ‘mass_kg’ column is now a character column and our attempts to do numerical operations, like calculate the average, will fail. In a simple case like this, where we can see digits but the class is character, <code>as.numeric()</code> is a good choice:</p>
 <pre class="sourceCode r"><code class="sourceCode r">artefacts_by_colour<span class="op">$</span>mass_kg &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(artefacts_by_colour<span class="op">$</span>mass_kg)
 
 <span class="co"># see the result</span>
 artefacts_by_colour</code></pre>
+<pre><code>## # A tibble: 8 x 2
+##   colour mass_kg
+##   &lt;chr&gt;    &lt;dbl&gt;
+## 1 red          3
+## 2 green        5
+## 3 green        8
+## 4 green        4
+## 5 blue         2
+## 6 blue         1
+## 7 red          7
+## 8 yellow      NA</code></pre>
 <p>The key thing to notice here is that while the ‘mass_kg’ column has been converted to a numeric (of the type ‘double’), the last item, which was ‘2.5.’ is now “NA”, which stands for ‘not available’. This is a special or ‘reserved’ word in the R language that represents a missing value. Is is important to be aware of missing values in your data because some common functions (such as <code>mean()</code>) will return only NA if there is even one missing value, unless you specifically instruct the function to remove the NA values (e.g. <code>mean(x, na.rm = TRUE)</code> will remove the NAs so that a mean can be calculated). In some cases data are genuinely missing, for example if the last item in the ‘mass_kg’ column was ‘??’, then all we know is that someone entered some data, but it’s not meaningful data about the mass of the artefact. But since we have ‘2.5.’ we can reasonably infer that the correct value is ‘2.5’. We can use a regular expresion to handle this situation, for example, here is a fairly comprehensive pattern that will extract numbers (including decimal values) from a wide variety of situations in a character vector:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(stringr)
 
 x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2.5.&quot;</span>, <span class="st">&quot;-100.001&quot;</span>, <span class="st">&quot;1.1kg&quot;</span>, <span class="st">&quot;p.10&quot;</span>, <span class="st">&quot;10kg&quot;</span>, <span class="st">&quot;1.0p5&quot;</span>, <span class="st">&quot;1p0.5&quot;</span>)
 <span class="kw">str_extract</span>(x, <span class="st">&quot;-?</span><span class="ch">\\</span><span class="st">.?</span><span class="ch">\\</span><span class="st">d+</span><span class="ch">\\</span><span class="st">.*</span><span class="ch">\\</span><span class="st">d*&quot;</span>)</code></pre>
+<pre><code>## [1] &quot;2.5&quot;      &quot;-100.001&quot; &quot;1.1&quot;      &quot;.10&quot;      &quot;10&quot;       &quot;1.0&quot;     
+## [7] &quot;1&quot;</code></pre>
 <p>It is often helpful to annotate a complex regular expression to show the role of each character:</p>
 <pre><code>str_extract(x, &quot;-?\\.?\\d+\\.*\\d*&quot;)
 #                |  |  |   |  |
@@ -442,6 +711,7 @@ x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot
 <p>This pattern captures numbers in several typical mis-entered forms, including when units are accidently added, or stray characters appear at the beginning or end of the number. It does not do well with more ambiguous cases such as the last two items where there is a character in the middle of the number. Indeed, even as humans we cannot easily determine if ‘1.0p5’ is meant to be ‘1.005’ or ‘1.05’. We would need to consider the context of the data recording in detail to make a decision about how to handle values like that (e.g. Was the instrument even capable of reporting a mass to the nearest 0.005 kg? Can we round up to the nearest 0.5 kg wihout any substantial loss of data?). Such a complex regular expression as the previous example may cause more problems that it solves, and we may prefer a simpler, case-by-case approach for handling badly formed values. To solve only the problem of unwanted trailing characters, such a ‘2.5.’ and ‘10kg’, we can use a simpler regular expresion:</p>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2.5.&quot;</span>, <span class="st">&quot;-100.001&quot;</span>, <span class="st">&quot;1.1kg&quot;</span>, <span class="st">&quot;p.10&quot;</span>, <span class="st">&quot;10kg&quot;</span>, <span class="st">&quot;1.0p5&quot;</span>, <span class="st">&quot;1p0.5&quot;</span>)
 <span class="kw">str_extract</span>(x, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">d+</span><span class="ch">\\</span><span class="st">.*</span><span class="ch">\\</span><span class="st">d*&quot;</span>)</code></pre>
+<pre><code>## [1] &quot;2.5&quot;     &quot;100.001&quot; &quot;1.1&quot;     &quot;10&quot;      &quot;10&quot;      &quot;1.0&quot;     &quot;1&quot;</code></pre>
 <p>Here it is with annotations:</p>
 <pre><code>str_extract(x, &quot;\\d+\\.*\\d*&quot;)
 #                |   |  |

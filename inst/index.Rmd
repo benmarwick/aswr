@@ -156,6 +156,7 @@ knitr::write_bib(c(
 # sudo R CMD javareconf
 # install.packages("rJava")
 # remotes::install_github(c("ropensci/tabulizerjars", "ropensci/tabulizer"))
+# none of that works
 
 # - To render the book to PDF and HTML (since it's [nested in a project directory](https://github.com/rstudio/bookdown/issues/215)), 
 # rmarkdown::render_site("inst/.", output_format = 'bookdown::gitbook', encoding = 'UTF-8')

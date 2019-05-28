@@ -372,7 +372,7 @@ artefacts_by_colour <-
 artefacts_by_colour <- rbind(artefacts_by_colour, c("yellow", "2.5."))
 ```
 
-```{r}
+```{r eval=FALSE}
 artefacts_by_colour$mass_kg <- 
   as.numeric(str_extract(artefacts_by_colour$mass_kg, 
                          "\\d+\\.*\\d*"))
@@ -394,7 +394,7 @@ str(terry_table)
 
 An especially nice detail about `type_convert()` is that is also automatically trims leading and trailing white spaces, solving the problem we saw above with " green" and "green". The`type_convert()` function is automatically applied when you use any of the the `read_*()` functions from the readr package (e.g. `read_csv()` and `read_table2()`), so that can save some time and frustration by choosing one of those functions to import your data. Finally we have a table that is basically suitable for visualisation and analysis, so we should save it as a CSV ready for the next steps, and so we can deposit it in a repository where it can easilty be reused by others:
 
-```{r}
+```{r eval=FALSE}
 write_csv(terry_table, "data/data_output/terry_table.csv")
 ```
 
@@ -404,7 +404,7 @@ If we look carefully at the first column of 'terry_table', we see sample identif
 
 The simplest method is one we have seen in the previous chapter, `separate()` from the tidyr package:
 
-```{r}
+```{r eval=FALSE}
 library(tidyr) # load the library
 
 terry_table_split <- 
