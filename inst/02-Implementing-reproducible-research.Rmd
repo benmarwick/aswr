@@ -214,10 +214,10 @@ Another important option for managing code blocks in an R Markdown document is l
 ```
 ````
 
-In this example the label is 'simple-addition', and this is the key to make cross-references work in R Markdown. Code block labels do have a few constraints, they can only contain alphanumeric characters (a-z, A-Z, 0-9), slashes (/), or dashes (-). Underscores are not allowed in code block labels, and code block labels must be unique, you cannot have two blocks with the same label. We use the labels to link in-text cross-reference to the output of the code block with that label. The general for of cross-referencing is to type `\@ref(fig:label)` where `label` is the code block label that you are referring to. If you are referring to a code block that produces a table (by using `knitr::kable()`), then the general form is `\@ref(tab:label)`. In addition to a code block label, a second element is required to enable cross-referencing. This is a caption, which we can add using the `fig.cap` option in the first line of the code block.  For example, this code block produces a simple plot, and is labelled 'simple-plot', and we have set the caption as 'A simple plot' :
+In this example the label is 'simple-addition', and this is the key to make cross-references work in R Markdown. Code block labels do have a few constraints, they can only contain alphanumeric characters (a-z, A-Z, 0-9), slashes (/), or dashes (-). Underscores are not allowed in code block labels, and code block labels must be unique, you cannot have two blocks with the same label. We use the labels to link in-text cross-reference to the output of the code block with that label. The general form of cross-referencing is to type `\@ref(fig:label)` where `label` is the code block label that you are referring to. If you are referring to a code block that produces a table (by using `knitr::kable()`), then the general form is `\@ref(tab:label)`. In addition to a code block label, a second element is required to enable cross-referencing. This is a caption, which we can add using the `fig.cap` option in the first line of the code block.  For example, this code block produces a simple plot, and is labelled 'simple-plot', and we have set the caption as 'This is a simple plot' :
 
 ````r
-`r ''````{r simple-plot, echo = FALSE, fig.cap = = "This is a simple plot."}
+`r ''````{r simple-plot, echo = FALSE, fig.cap = "This is a simple plot."}
 plot(1:10)
 ```
 ````
