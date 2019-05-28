@@ -360,9 +360,22 @@ table_from_pdf &lt;-<span class="st"> </span><span class="kw">extract_tables</sp
 
 <span class="co"># inspect the output of extract_tables(), here we acces the first item in the list</span>
 <span class="co"># and coerce to a data frame</span>
-<span class="kw">as_data_frame</span>(table_from_pdf[[<span class="dv">1</span>]])
-
-<span class="co"># save as a CSV file easier downstream use and reuse by others</span>
+<span class="kw">as_data_frame</span>(table_from_pdf[[<span class="dv">1</span>]])</code></pre>
+<pre><code>## # A tibble: 39 x 6
+##    V1     V2        V3      V4      V5    V6          
+##    &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;       
+##  1 &quot;&quot;     Mehlich P Olsen P Total P &quot;&quot;    Ring Test   
+##  2 Sample (mg/kg)   (mg/kg) (mg/kg) &quot;&quot;    Rating (1–5)
+##  3 O15-1  17.3      6.5     1762    &quot;&quot;    2           
+##  4 10G-1  18.3      6.5     1627    &quot;&quot;    2           
+##  5 N9-10  18.9      9.4     1496    &quot;&quot;    3           
+##  6 10H-1  20.6      4.5     1657    &quot;&quot;    4           
+##  7 10D-4  22.0      7.0     1143    &quot;&quot;    3           
+##  8 N9-12  23.0      10.0    1103    &quot;&quot;    4           
+##  9 N9-8   23.0      17.0    1678    &quot;&quot;    4           
+## 10 O17-2  23.1      15.4    1851    &quot;&quot;    3           
+## # … with 29 more rows</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># save as a CSV file easier downstream use and reuse by others</span>
 <span class="kw">write.csv</span>(table_from_pdf[[<span class="dv">1</span>]], <span class="st">&quot;data/data_output/table_from_Terry_et_al_2000.csv&quot;</span>)</code></pre>
 <p>The tabulizer package also has an interactive mode allowing you to click and drag a rectangle over a page to select the area to extract from. For large PDF files you can use the <code>split_pdf()</code> function to separate out the pages with tables to improve the performance of <code>extract_tables()</code>. Of course, after extracting the table from the PDF you should save it as a CSV file to ensure that it can more easily be resued in the future.</p>
 <p>We can similarly extract table from Microsoft Word documents using the Bob Rudis’ docxtractr packages.The docxtractr package provides tools to count the number of tables in a documents, identify the table structure, and extract tables from Microsoft Word docx documents. The example below shows how we can extract a table of magnetic susceptibility data from the supplementary materials published in from <span class="citation">Haslam et al. (<a href="#ref-Haslam2012">2012</a>)</span>. Here is how the table looks in Microsoft Word:</p>

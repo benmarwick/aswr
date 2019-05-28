@@ -301,9 +301,19 @@ my_list$c          # third item in the list (as the class of that item)</code></
 <h3><span class="header-section-number">6.3.1</span> Fixing names</h3>
 <p>Fixing names refers to two tasks: putting the correct column names on a data frame, and correcting misspellings of names of items with columns in the data frame. A common problem with column names on data frames is that the ones your expect are missing, and instead you have column names like X1, X2, X3… or V1, V2, V3… We encountered this problem in the previous chapter when we used the <code>extract_tables()</code> function from the tabulizer package to extract a table from a PDF. The first challenge with the output of that function is that it returns a matrix:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(table_from_pdf[[<span class="dv">1</span>]])</code></pre>
+<pre><code>## [1] &quot;matrix&quot;</code></pre>
 <p>So we use <code>as_data_frame()</code> from the dplyr package to convert this into a tibble data frame (there is a <code>as.data.frame()</code> function for which no package is needed, but I find that the dplyr version has more useful defaults settings). We need to convert the matrix into a data frame so that we can have column with different classes, for example the ‘Sample’ column needs to be character class so it can hold a mix of letters and numbers, and the measurement columns need to be numeric so we can compute on them. So we can convert to a data frame, and then use <code>head()</code> to inspect the output:</p>
 <pre class="sourceCode r"><code class="sourceCode r">terry_table &lt;-<span class="st"> </span><span class="kw">as_data_frame</span>(table_from_pdf[[<span class="dv">1</span>]])
 <span class="kw">head</span>(terry_table)</code></pre>
+<pre><code>## # A tibble: 6 x 6
+##   V1     V2        V3      V4      V5    V6          
+##   &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;       
+## 1 &quot;&quot;     Mehlich P Olsen P Total P &quot;&quot;    Ring Test   
+## 2 Sample (mg/kg)   (mg/kg) (mg/kg) &quot;&quot;    Rating (1–5)
+## 3 O15-1  17.3      6.5     1762    &quot;&quot;    2           
+## 4 10G-1  18.3      6.5     1627    &quot;&quot;    2           
+## 5 N9-10  18.9      9.4     1496    &quot;&quot;    3           
+## 6 10H-1  20.6      4.5     1657    &quot;&quot;    4</code></pre>
 <p>In the output we see that the actual column names are V1, V2, V3, etc., and the column names we want are in the first and second row. If the column names were exclisvely in the first row, we could assign the first row to the data frame column names, and then delete the first row. The pattern for this is:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(my_df) &lt;-<span class="st"> </span>my_df[ <span class="dv">1</span>, ]      <span class="co"># assign first row to the column names</span>
 my_df        &lt;-<span class="st"> </span>my_df[<span class="op">-</span><span class="dv">1</span>, ]      <span class="co"># delete the first row </span></code></pre>
@@ -321,12 +331,20 @@ terry_table &lt;-<span class="st"> </span>terry_table[<span class="op">-</span><
 
 <span class="co"># view output </span>
 terry_table_col_names</code></pre>
+<pre><code>##                       V1                       V2                       V3 
+##                &quot; Sample&quot;      &quot;Mehlich P (mg/kg)&quot;        &quot;Olsen P (mg/kg)&quot; 
+##                       V4                       V5                       V6 
+##        &quot;Total P (mg/kg)&quot;                      &quot; &quot; &quot;Ring Test Rating (1–5)&quot;</code></pre>
 <p>The output is quite good, we have combined the first and second row of each column to get a meaningful set of column names. But a few problems remain: there is a space before the S in ‘Sample’ in the first item in the resulting character vector, the fifth item is only a space, with no text, and the sixth item does not have the correct symbols. The leading space in the first item is s nuisance and can easily be removed with the function <code>trimws()</code> which trims white space from the start and end of a character string (but not the internal spaces):</p>
 <pre class="sourceCode r"><code class="sourceCode r">terry_table_col_names &lt;-<span class="st"> </span>
 <span class="kw">trimws</span>(terry_table_col_names)
 
 <span class="co"># see the result</span>
 terry_table_col_names</code></pre>
+<pre><code>##                       V1                       V2                       V3 
+##                 &quot;Sample&quot;      &quot;Mehlich P (mg/kg)&quot;        &quot;Olsen P (mg/kg)&quot; 
+##                       V4                       V5                       V6 
+##        &quot;Total P (mg/kg)&quot;                       &quot;&quot; &quot;Ring Test Rating (1–5)&quot;</code></pre>
 <p>The empty element in the fifth item is due to the <code>extract_tables()</code> function guessing that there was a fifth column in this table. However, we saw in our earlier inspections that the fifth column contains no values, so it can safely be deleted from the table, and the fifth element of the names can also be deleted:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># delete the fifth column </span>
 terry_table &lt;-<span class="st"> </span>terry_table[ , <span class="dv">-5</span>]
@@ -344,6 +362,16 @@ terry_table_col_names &lt;-<span class="st"> </span>terry_table_col_names[<span 
 
 <span class="co"># inspect the result:</span>
 <span class="kw">head</span>(terry_table)</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   Sample `Mehlich P (mg/… `Olsen P (mg/kg… `Total P (mg/kg…
+##   &lt;chr&gt;  &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;           
+## 1 O15-1  17.3             6.5              1762            
+## 2 10G-1  18.3             6.5              1627            
+## 3 N9-10  18.9             9.4              1496            
+## 4 10H-1  20.6             4.5              1657            
+## 5 10D-4  22.0             7.0              1143            
+## 6 N9-12  23.0             10.0             1103            
+## # … with 1 more variable: `Ring Test Rating (1-6)` &lt;chr&gt;</code></pre>
 <p>That completes the process of fixing the column names for this table, which is a typical set of operations for cleaning a data frame to prepare it for analysis. We still need to convert the column classes for some of the columns from character to numeric, but we will do that in a later section.</p>
 <p>The second important task relating to fixing names is correcting data entry errors in values in a column. Suppose we have this simple table of artefact by colours, compiled by a group of undergraduate students:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make a simple data frame</span>
@@ -725,6 +753,17 @@ x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot
 
 <span class="co"># inspect the output</span>
 artefacts_by_colour</code></pre>
+<pre><code>## # A tibble: 8 x 2
+##   colour     mass_kg
+##   &lt;chr&gt;        &lt;dbl&gt;
+## 1 red            3  
+## 2 &quot; green&quot;       5  
+## 3 greenish       8  
+## 4 green-like     4  
+## 5 bleu           2  
+## 6 blue           1  
+## 7 &quot;Red &quot;         7  
+## 8 yellow         2.5</code></pre>
 <p>In some situations, such as when you have much larger data frames, it may not be practical to attend to each mis-typed value and extract the numeric value, as we did in the example above. With a larger data set you may be more tolerant of missing values, and main task is simply to get all the columns into the most convienent class, and deal with the NA values later. The <code>type_convert()</code> function from the readr package solves this problem by automatically sampling a bunch of rows in each column and guessing what the class is, and then coercing the column to that class. Consider the ‘terry_table’ data frame that we worked on earlier in the chapter to fix the column names. Last we looked at it all the columns were character class, although columns 2-4 clearly contain numbers. We can use <code>type_convert()</code> to quickly and easily fix the column classes:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
 
@@ -732,6 +771,12 @@ terry_table &lt;-<span class="st"> </span><span class="kw">type_convert</span>(t
 
 <span class="co"># inspect the output</span>
 <span class="kw">str</span>(terry_table)</code></pre>
+<pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    37 obs. of  5 variables:
+##  $ Sample                : chr  &quot;O15-1&quot; &quot;10G-1&quot; &quot;N9-10&quot; &quot;10H-1&quot; ...
+##  $ Mehlich P (mg/kg)     : num  17.3 18.3 18.9 20.6 22 23 23 23.1 23.3 23.4 ...
+##  $ Olsen P (mg/kg)       : num  6.5 6.5 9.4 4.5 7 10 17 15.4 12.8 9.2 ...
+##  $ Total P (mg/kg)       : num  1762 1627 1496 1657 1143 ...
+##  $ Ring Test Rating (1-6): num  2 2 3 4 3 4 4 3 4 2 ...</code></pre>
 <p>An especially nice detail about <code>type_convert()</code> is that is also automatically trims leading and trailing white spaces, solving the problem we saw above with &quot; green&quot; and “green”. The<code>type_convert()</code> function is automatically applied when you use any of the the <code>read_*()</code> functions from the readr package (e.g. <code>read_csv()</code> and <code>read_table2()</code>), so that can save some time and frustration by choosing one of those functions to import your data. Finally we have a table that is basically suitable for visualisation and analysis, so we should save it as a CSV ready for the next steps, and so we can deposit it in a repository where it can easilty be reused by others:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_csv</span>(terry_table, <span class="st">&quot;data/data_output/terry_table.csv&quot;</span>)</code></pre>
 </div>

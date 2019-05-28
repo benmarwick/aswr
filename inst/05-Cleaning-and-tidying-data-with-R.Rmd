@@ -3,7 +3,6 @@ library(knitr)
 opts_chunk$set(message = FALSE,
                warning = FALSE,
                cache = TRUE,
-               eval = FALSE,
                fig.align = 'center',
                fig.width = 7)
 ```
@@ -63,13 +62,13 @@ Now that we have our data imported into R, and we have some familiarity with how
 
 Fixing names refers to two tasks: putting the correct column names on a data frame, and correcting misspellings of names of items with columns in the data frame. A common problem with column names on data frames is that the ones your expect are missing, and instead you have column names like X1, X2, X3... or V1, V2, V3... We encountered this problem in the previous chapter when we used the `extract_tables()` function from the tabulizer package to extract a table from a PDF. The first challenge with the output of that function is that it returns a matrix:
 
-```{r eval=FALSE}
+```{r }
 class(table_from_pdf[[1]])
 ```
 
 So we use `as_data_frame()` from the dplyr package to convert this into a tibble data frame (there is a `as.data.frame()` function for which no package is needed, but I find that the dplyr version has more useful defaults settings). We need to convert the matrix into a data frame so that we can have column with different classes, for example the 'Sample' column needs to be character class so it can hold a mix of letters and numbers, and the measurement columns need to be numeric so we can compute on them. So we can convert to a data frame, and then use `head()` to inspect the output:
 
-```{r eval=FALSE}
+```{r }
 terry_table <- as_data_frame(table_from_pdf[[1]])
 head(terry_table)
 ```
@@ -98,7 +97,7 @@ my_df <- docxtractr::assign_colnames(my_df, 1)
 
 This is an ideal solution for this common problem where the column names are in the first row and we want to move them to the proper place. However, our example here is slighly more complex because the column names are spread across the first and second rows of the data frame. In this case, the general strategy is to create a character vecttor that is the result of pasting together the first and second row for each column, then proceed as above and move the first row to the column names. In the code below we take the first and second rows of the data frame (`terry_table[c(1:2), ]`), and use the `paste()` function to combine them into a a single character string for each column. The `collapse = " "` argument to to the `paste()` function indicates that we want to collapse the two items into one item where they are separated by a space. So that "Total P" (row 1 col 4), and "(mg/kg)" (row 2 col 4) become one item: "Total P (mg/kg)". To automate this process across each column of the 'terry_table' data frame, we use the `map_chr()` function, which also converts the output to a character vector (compare to the generic `map()` which returns a list):  
 
-```{r eval=FALSE}
+```{r }
 # extract and combine first two rows
 terry_table_col_names <- 
   map_chr(terry_table[c(1:2), ], 
@@ -113,7 +112,7 @@ terry_table_col_names
 
 The output is quite good, we have combined the first and second row of each column to get a meaningful set of column names. But a few problems remain: there is a space before the S in 'Sample' in the first item in the resulting character vector, the fifth item is only a space, with no text, and the sixth item does not have the correct symbols. The leading space in the first item is s nuisance and can easily be removed with the function `trimws()` which trims white space from the start and end of a character string (but not the internal spaces):
 
-```{r eval=FALSE}
+```{r }
 terry_table_col_names <- 
 trimws(terry_table_col_names)
 
@@ -123,7 +122,7 @@ terry_table_col_names
 
 The empty element in the fifth item is due to the `extract_tables()` function guessing that there was a fifth column in this table. However, we saw in our earlier inspections that the fifth column contains no values, so it can safely be deleted from the table, and the fifth element of the names can also be deleted:
 
-```{r eval=FALSE}
+```{r }
 # delete the fifth column 
 terry_table <- terry_table[ , -5]
 
@@ -133,13 +132,13 @@ terry_table_col_names <- terry_table_col_names[-5]
 
 The only issue remaining now is the incorrect reading of the characters in the name of the last column. These errors are likely due to subtle differences in the encoding of numbers and letters in the PDF, and the types of encoding that R can easily handle. Encoding is a complex topic relating to the rules a computer follows when it stores human-readable characters as zeros and ones. In any case, the simplest fix is to directly update that item by replacing it with what we can see in the PDF that we got the data from:
 
-```{r eval=FALSE}
+```{r }
 terry_table_col_names[5] <- "Ring Test Rating (1-6)" 
 ```
 
 If we had a large table with many columns, and most of the column names had an encoding issue like this, we would want an automated method to deal with all the columns at once, rather than directly updating each element by hand as we did here. For example, we could use the `parse_character()` fucntion from the readr package to convert the encoding to something that looks sensible:
 
-```{r eval=FALSE}
+```{r }
 terry_table_col_names <- 
   parse_character(terry_table_col_names, 
                   locale = locale(encoding = "UTF-8"))
@@ -147,7 +146,7 @@ terry_table_col_names <-
 
 The final step here is to assign the character vector of column names to the column names of the data frame:
 
-```{r eval=FALSE}
+```{r }
 names(terry_table) <- terry_table_col_names
 
 # inspect the result:
@@ -372,7 +371,7 @@ artefacts_by_colour <-
 artefacts_by_colour <- rbind(artefacts_by_colour, c("yellow", "2.5."))
 ```
 
-```{r eval=FALSE}
+```{r }
 artefacts_by_colour$mass_kg <- 
   as.numeric(str_extract(artefacts_by_colour$mass_kg, 
                          "\\d+\\.*\\d*"))
@@ -383,7 +382,7 @@ artefacts_by_colour
 
 In some situations, such as when you have much larger data frames, it may not be practical to attend to each mis-typed value and extract the numeric value, as we did in the example above. With a larger data set you may be more tolerant of missing values, and main task is simply to get all the columns into the most convienent class, and deal with the NA values later. The `type_convert()` function from the readr package solves this problem by automatically sampling a bunch of rows in each column and guessing what the class is, and then coercing the column to that class. Consider the 'terry_table' data frame that we worked on earlier in the chapter to fix the column names. Last we looked at it all the columns were character class, although columns 2-4 clearly contain numbers. We can use `type_convert()` to quickly and easily fix the column classes:
 
-```{r eval=FALSE}
+```{r }
 library(readr)
 
 terry_table <- type_convert(terry_table)
@@ -394,7 +393,7 @@ str(terry_table)
 
 An especially nice detail about `type_convert()` is that is also automatically trims leading and trailing white spaces, solving the problem we saw above with " green" and "green". The`type_convert()` function is automatically applied when you use any of the the `read_*()` functions from the readr package (e.g. `read_csv()` and `read_table2()`), so that can save some time and frustration by choosing one of those functions to import your data. Finally we have a table that is basically suitable for visualisation and analysis, so we should save it as a CSV ready for the next steps, and so we can deposit it in a repository where it can easilty be reused by others:
 
-```{r eval=FALSE}
+```{r }
 write_csv(terry_table, "data/data_output/terry_table.csv")
 ```
 
@@ -404,7 +403,7 @@ If we look carefully at the first column of 'terry_table', we see sample identif
 
 The simplest method is one we have seen in the previous chapter, `separate()` from the tidyr package:
 
-```{r eval=FALSE}
+```{r }
 library(tidyr) # load the library
 
 terry_table_split <- 

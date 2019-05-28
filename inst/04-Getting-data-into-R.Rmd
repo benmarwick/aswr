@@ -138,7 +138,7 @@ knitr::include_graphics("images/page_from_Terry_et_ al_2000_[P].png")
 
 In the example below, the `extract_tables()` function returns a list with one item. If a page has multiple tables, or text and tables, this list would have additional items. In the example below, the list item is a character matrix, which is the table that we want to work with. We can coerce the matrix to a data frame with `as_data_frame()` from the dplyr package, and then the table is nearly ready to work with in R. There are a few additional steps of cleaning to do before we can work with this table, such as moving the first and second rows out of the table and into the column headings, and coercing the measurement columns from character class to numeric class so they are suitable for numerical operations. We will investigate how to do these tasks when we discuss cleaning data in Chapter X. 
 
-```{r eval=FALSE}
+```{r }
 library(tabulizer) # load the libraries
 library(dplyr)
 
