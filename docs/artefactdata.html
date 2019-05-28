@@ -1,41 +1,41 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Archaeological Science with R</title>
-  <meta name="description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Analysing artefact data | Archaeological Science with R</title>
+  <meta name="description" content="This is the book site for ‘Archaeological Science with R’." />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Archaeological Science with R" />
+  <meta property="og:title" content="Chapter 8 Analysing artefact data | Archaeological Science with R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>." />
+  <meta property="og:description" content="This is the book site for ‘Archaeological Science with R’." />
   <meta name="github-repo" content="benmarwick/aswr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Archaeological Science with R" />
+  <meta name="twitter:title" content="Chapter 8 Analysing artefact data | Archaeological Science with R" />
   
-  <meta name="twitter:description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>." />
+  <meta name="twitter:description" content="This is the book site for ‘Archaeological Science with R’." />
   
 
-<meta name="author" content="Ben Marwick">
+<meta name="author" content="Ben Marwick" />
 
 
-<meta name="date" content="2018-11-01">
+<meta name="date" content="2019-05-27" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="visualisatingthedata.html">
 <link rel="next" href="compositional-pca-ca.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -48,12 +48,12 @@
 
 
 <script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -153,16 +153,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7.1" data-path="introduction.html"><a href="introduction.html#draft-toc"><i class="fa fa-check"></i><b>2.7.1</b> Draft TOC</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html"><i class="fa fa-check"></i><b>3</b> Implementing reproducible research</a><ul>
-<li class="chapter" data-level="3.1" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#overview-1"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
-<li class="chapter" data-level="3.2" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#what-does-it-mean-to-do-reproducible-research"><i class="fa fa-check"></i><b>3.2</b> What does it mean to do reproducible research?</a></li>
-<li class="chapter" data-level="3.3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#literate-programming"><i class="fa fa-check"></i><b>3.3</b> Literate programming</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#document-metadata-citations-and-the-bibliography"><i class="fa fa-check"></i><b>3.3.1</b> Document metadata, citations and the bibliography</a></li>
-<li class="chapter" data-level="3.3.2" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#narrative-text-structuring-the-document-and-special-characters-in-the-text"><i class="fa fa-check"></i><b>3.3.2</b> Narrative text, structuring the document and special characters in the text</a></li>
-<li class="chapter" data-level="3.3.3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#code-blocks-cross-referencing-figures-and-tables-captions-and-inline-r-code"><i class="fa fa-check"></i><b>3.3.3</b> Code blocks, cross-referencing figures and tables, captions, and inline R code</a></li>
-<li class="chapter" data-level="3.3.4" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#rendering-the-r-markdown-into-an-output-file"><i class="fa fa-check"></i><b>3.3.4</b> Rendering the R Markdown into an output file</a></li>
+<li class="chapter" data-level="3" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html"><i class="fa fa-check"></i><b>3</b> Writing reproducible research</a><ul>
+<li class="chapter" data-level="3.1" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#overview-1"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#what-does-it-mean-to-do-reproducible-research"><i class="fa fa-check"></i><b>3.2</b> What does it mean to do reproducible research?</a></li>
+<li class="chapter" data-level="3.3" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#literate-programming"><i class="fa fa-check"></i><b>3.3</b> Literate programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#document-metadata-citations-and-the-bibliography"><i class="fa fa-check"></i><b>3.3.1</b> Document metadata, citations and the bibliography</a></li>
+<li class="chapter" data-level="3.3.2" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#narrative-text-structuring-the-document-and-special-characters-in-the-text"><i class="fa fa-check"></i><b>3.3.2</b> Narrative text, structuring the document and special characters in the text</a></li>
+<li class="chapter" data-level="3.3.3" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#code-blocks"><i class="fa fa-check"></i><b>3.3.3</b> Code blocks</a></li>
+<li class="chapter" data-level="3.3.4" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#cross-referencing-and-captioning-figures"><i class="fa fa-check"></i><b>3.3.4</b> Cross-referencing and captioning figures</a></li>
+<li class="chapter" data-level="3.3.5" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#cross-referencing-captioning-tables"><i class="fa fa-check"></i><b>3.3.5</b> Cross-referencing captioning tables</a></li>
+<li class="chapter" data-level="3.3.6" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#using-inline-r-code-to-put-results-in-the-text"><i class="fa fa-check"></i><b>3.3.6</b> Using inline R code to put results in the text</a></li>
+<li class="chapter" data-level="3.3.7" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#rendering-the-r-markdown-into-an-output-file"><i class="fa fa-check"></i><b>3.3.7</b> Rendering the R Markdown into an output file</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#summary"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
+<li class="chapter" data-level="3.4" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#summary"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="dataorganisation.html"><a href="dataorganisation.html"><i class="fa fa-check"></i><b>4</b> Collecting &amp; organising data to analyse with R</a><ul>
 <li class="chapter" data-level="4.1" data-path="dataorganisation.html"><a href="dataorganisation.html#overview-2"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
@@ -320,7 +323,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -332,6 +335,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/benmarwick/aswr/edit/master/inst/07-Analysing-artefact-data-with-R.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": null,
 "toc": {

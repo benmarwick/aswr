@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Writing reproducible research | Archaeological Science with R</title>
+  <meta name="description" content="This is the book site for ‘Archaeological Science with R’." />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Writing reproducible research | Archaeological Science with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the book site for ‘Archaeological Science with R’." />
+  <meta name="github-repo" content="benmarwick/aswr" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Writing reproducible research | Archaeological Science with R" />
+  
+  <meta name="twitter:description" content="This is the book site for ‘Archaeological Science with R’." />
+  
+
+<meta name="author" content="Ben Marwick" />
+
+
+<meta name="date" content="2019-05-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction.html">
+<link rel="next" href="dataorganisation.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Archaeological Science with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Archaeological Science with R</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#overview"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#why-do-archaeologists-need-to-learn-to-code"><i class="fa fa-check"></i><b>2.2</b> Why do archaeologists need to learn to code?</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i><b>2.3</b> Why R?</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#who-should-read-this-book"><i class="fa fa-check"></i><b>2.4</b> Who should read this book</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction.html"><a href="introduction.html#prerequisites"><i class="fa fa-check"></i><b>2.5</b> Prerequisites</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction.html"><a href="introduction.html#r"><i class="fa fa-check"></i><b>2.5.1</b> R</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction.html"><a href="introduction.html#rstudio"><i class="fa fa-check"></i><b>2.5.2</b> RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="introduction.html"><a href="introduction.html#key-terms-to-understand-dont-skip-this-bit"><i class="fa fa-check"></i><b>2.6</b> Key terms to understand (don’t skip this bit!)</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="introduction.html"><a href="introduction.html#packages"><i class="fa fa-check"></i><b>2.6.1</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="introduction.html"><a href="introduction.html#getting-help"><i class="fa fa-check"></i><b>2.7</b> Getting help</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="introduction.html"><a href="introduction.html#draft-toc"><i class="fa fa-check"></i><b>2.7.1</b> Draft TOC</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html"><i class="fa fa-check"></i><b>3</b> Writing reproducible research</a><ul>
+<li class="chapter" data-level="3.1" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#overview-1"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#what-does-it-mean-to-do-reproducible-research"><i class="fa fa-check"></i><b>3.2</b> What does it mean to do reproducible research?</a></li>
+<li class="chapter" data-level="3.3" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#literate-programming"><i class="fa fa-check"></i><b>3.3</b> Literate programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#document-metadata-citations-and-the-bibliography"><i class="fa fa-check"></i><b>3.3.1</b> Document metadata, citations and the bibliography</a></li>
+<li class="chapter" data-level="3.3.2" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#narrative-text-structuring-the-document-and-special-characters-in-the-text"><i class="fa fa-check"></i><b>3.3.2</b> Narrative text, structuring the document and special characters in the text</a></li>
+<li class="chapter" data-level="3.3.3" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#code-blocks"><i class="fa fa-check"></i><b>3.3.3</b> Code blocks</a></li>
+<li class="chapter" data-level="3.3.4" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#cross-referencing-and-captioning-figures"><i class="fa fa-check"></i><b>3.3.4</b> Cross-referencing and captioning figures</a></li>
+<li class="chapter" data-level="3.3.5" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#cross-referencing-captioning-tables"><i class="fa fa-check"></i><b>3.3.5</b> Cross-referencing captioning tables</a></li>
+<li class="chapter" data-level="3.3.6" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#using-inline-r-code-to-put-results-in-the-text"><i class="fa fa-check"></i><b>3.3.6</b> Using inline R code to put results in the text</a></li>
+<li class="chapter" data-level="3.3.7" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#rendering-the-r-markdown-into-an-output-file"><i class="fa fa-check"></i><b>3.3.7</b> Rendering the R Markdown into an output file</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#summary"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dataorganisation.html"><a href="dataorganisation.html"><i class="fa fa-check"></i><b>4</b> Collecting &amp; organising data to analyse with R</a><ul>
+<li class="chapter" data-level="4.1" data-path="dataorganisation.html"><a href="dataorganisation.html#overview-2"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="dataorganisation.html"><a href="dataorganisation.html#file-organisation"><i class="fa fa-check"></i><b>4.2</b> File organisation</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="dataorganisation.html"><a href="dataorganisation.html#guidelines-for-organising-your-files-for-improved-reproducibility"><i class="fa fa-check"></i><b>4.2.1</b> Guidelines for organising your files for improved reproducibility</a></li>
+<li class="chapter" data-level="4.2.2" data-path="dataorganisation.html"><a href="dataorganisation.html#guidelines-for-naming-your-files-to-improve-reproducibility"><i class="fa fa-check"></i><b>4.2.2</b> Guidelines for naming your files to improve reproducibility</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="dataorganisation.html"><a href="dataorganisation.html#spreadsheets-organisation"><i class="fa fa-check"></i><b>4.3</b> Spreadsheets organisation</a></li>
+<li class="chapter" data-level="4.4" data-path="dataorganisation.html"><a href="dataorganisation.html#cell-organisation"><i class="fa fa-check"></i><b>4.4</b> Cell organisation</a></li>
+<li class="chapter" data-level="4.5" data-path="dataorganisation.html"><a href="dataorganisation.html#summary-1"><i class="fa fa-check"></i><b>4.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="gettingdatain.html"><a href="gettingdatain.html"><i class="fa fa-check"></i><b>5</b> Getting data into R</a><ul>
+<li class="chapter" data-level="5.1" data-path="gettingdatain.html"><a href="gettingdatain.html#overview-3"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="gettingdatain.html"><a href="gettingdatain.html#getting-data-from-spreadsheets"><i class="fa fa-check"></i><b>5.2</b> Getting data from spreadsheets</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="gettingdatain.html"><a href="gettingdatain.html#one-spreadsheet-file-one-or-more-sheets"><i class="fa fa-check"></i><b>5.2.1</b> One spreadsheet file, one or more sheets</a></li>
+<li class="chapter" data-level="5.2.2" data-path="gettingdatain.html"><a href="gettingdatain.html#mulitiple-spreadsheet-files"><i class="fa fa-check"></i><b>5.2.2</b> Mulitiple spreadsheet files</a></li>
+<li class="chapter" data-level="5.2.3" data-path="gettingdatain.html"><a href="gettingdatain.html#importing-messy-spreadsheets-or-when-is-it-ok-to-manually-edit-the-data"><i class="fa fa-check"></i><b>5.2.3</b> Importing messy spreadsheets, or when is it ok to manually edit the data?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="gettingdatain.html"><a href="gettingdatain.html#tabular-data-from-non-spreadsheet-programs-pdfs-and-microsoft-word-documents"><i class="fa fa-check"></i><b>5.3</b> Tabular data from non-spreadsheet programs: PDFs and Microsoft Word documents</a></li>
+<li class="chapter" data-level="5.4" data-path="gettingdatain.html"><a href="gettingdatain.html#getting-tabular-data-out-of-unstructured-files"><i class="fa fa-check"></i><b>5.4</b> Getting tabular data out of unstructured files</a></li>
+<li class="chapter" data-level="5.5" data-path="gettingdatain.html"><a href="gettingdatain.html#summary-2"><i class="fa fa-check"></i><b>5.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="preparingthedata.html"><a href="preparingthedata.html"><i class="fa fa-check"></i><b>6</b> Preparing the data for analysis</a><ul>
+<li class="chapter" data-level="6.1" data-path="preparingthedata.html"><a href="preparingthedata.html#overview-4"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="preparingthedata.html"><a href="preparingthedata.html#navigating-data"><i class="fa fa-check"></i><b>6.2</b> Navigating data</a></li>
+<li class="chapter" data-level="6.3" data-path="preparingthedata.html"><a href="preparingthedata.html#five-concepts-for-cleaning-data"><i class="fa fa-check"></i><b>6.3</b> Five concepts for cleaning data</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="preparingthedata.html"><a href="preparingthedata.html#fixing-names"><i class="fa fa-check"></i><b>6.3.1</b> Fixing names</a></li>
+<li class="chapter" data-level="6.3.2" data-path="preparingthedata.html"><a href="preparingthedata.html#converting-column-classes"><i class="fa fa-check"></i><b>6.3.2</b> Converting column classes</a></li>
+<li class="chapter" data-level="6.3.3" data-path="preparingthedata.html"><a href="preparingthedata.html#splitting-and-combining-columns"><i class="fa fa-check"></i><b>6.3.3</b> Splitting and combining columns</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="preparingthedata.html"><a href="preparingthedata.html#wide-and-long-data"><i class="fa fa-check"></i><b>6.4</b> Wide and long data</a></li>
+<li class="chapter" data-level="6.5" data-path="preparingthedata.html"><a href="preparingthedata.html#dealing-with-missing-data"><i class="fa fa-check"></i><b>6.5</b> Dealing with missing data</a></li>
+<li class="chapter" data-level="6.6" data-path="preparingthedata.html"><a href="preparingthedata.html#joining-data-together"><i class="fa fa-check"></i><b>6.6</b> Joining data together</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="visualisatingthedata.html"><a href="visualisatingthedata.html"><i class="fa fa-check"></i><b>7</b> Exploring the data with visualisations</a><ul>
+<li class="chapter" data-level="7.1" data-path="visualisatingthedata.html"><a href="visualisatingthedata.html#overview-5"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="visualisatingthedata.html"><a href="visualisatingthedata.html#empirical-research-into-effective-data-visualisation"><i class="fa fa-check"></i><b>7.2</b> Empirical research into effective data visualisation</a></li>
+</ul></li>
+<li class="part"><span><b>I Working with data</b></span></li>
+<li class="chapter" data-level="8" data-path="artefactdata.html"><a href="artefactdata.html"><i class="fa fa-check"></i><b>8</b> Analysing artefact data</a><ul>
+<li class="chapter" data-level="8.1" data-path="artefactdata.html"><a href="artefactdata.html#overview-6"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="artefactdata.html"><a href="artefactdata.html#basic-analysis-tasks"><i class="fa fa-check"></i><b>8.2</b> Basic analysis tasks</a></li>
+<li class="chapter" data-level="8.3" data-path="artefactdata.html"><a href="artefactdata.html#basic-plotting-tasks"><i class="fa fa-check"></i><b>8.3</b> Basic plotting tasks</a></li>
+<li class="chapter" data-level="8.4" data-path="artefactdata.html"><a href="artefactdata.html#stone-artefacts"><i class="fa fa-check"></i><b>8.4</b> Stone artefacts</a></li>
+<li class="chapter" data-level="8.5" data-path="artefactdata.html"><a href="artefactdata.html#faunal-remains"><i class="fa fa-check"></i><b>8.5</b> Faunal remains</a></li>
+<li class="chapter" data-level="8.6" data-path="artefactdata.html"><a href="artefactdata.html#pottery"><i class="fa fa-check"></i><b>8.6</b> Pottery</a></li>
+<li class="chapter" data-level="8.7" data-path="artefactdata.html"><a href="artefactdata.html#glass"><i class="fa fa-check"></i><b>8.7</b> Glass</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="compositional-pca-ca.html"><a href="compositional-pca-ca.html"><i class="fa fa-check"></i><b>9</b> compositional, PCA, CA</a><ul>
+<li class="chapter" data-level="9.1" data-path="compositional-pca-ca.html"><a href="compositional-pca-ca.html#metal"><i class="fa fa-check"></i><b>9.1</b> Metal</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="shapes.html"><a href="shapes.html"><i class="fa fa-check"></i><b>10</b> shapes?</a></li>
+<li class="part"><span><b>II Working with data</b></span></li>
+<li class="chapter" data-level="11" data-path="stratigraphic.html"><a href="stratigraphic.html"><i class="fa fa-check"></i><b>11</b> Working with stratigraphic data from archaeological excavations</a><ul>
+<li class="chapter" data-level="11.1" data-path="stratigraphic.html"><a href="stratigraphic.html#overview-7"><i class="fa fa-check"></i><b>11.1</b> Overview</a></li>
+<li class="chapter" data-level="11.2" data-path="stratigraphic.html"><a href="stratigraphic.html#visualising-excavation-data"><i class="fa fa-check"></i><b>11.2</b> Visualising excavation data</a></li>
+<li class="chapter" data-level="11.3" data-path="stratigraphic.html"><a href="stratigraphic.html#stratigraphic-analysis"><i class="fa fa-check"></i><b>11.3</b> Stratigraphic analysis</a></li>
+<li class="chapter" data-level="11.4" data-path="stratigraphic.html"><a href="stratigraphic.html#particle-size-analysis"><i class="fa fa-check"></i><b>11.4</b> Particle size analysis</a></li>
+</ul></li>
+<li class="part"><span><b>III Working with data</b></span></li>
+<li class="chapter" data-level="12" data-path="spatialdata.html"><a href="spatialdata.html"><i class="fa fa-check"></i><b>12</b> Spatial data and maps</a><ul>
+<li class="chapter" data-level="12.1" data-path="spatialdata.html"><a href="spatialdata.html#overview-8"><i class="fa fa-check"></i><b>12.1</b> Overview</a></li>
+<li class="chapter" data-level="12.2" data-path="spatialdata.html"><a href="spatialdata.html#making-maps"><i class="fa fa-check"></i><b>12.2</b> Making maps</a></li>
+<li class="chapter" data-level="12.3" data-path="spatialdata.html"><a href="spatialdata.html#doing-spatial-analysis"><i class="fa fa-check"></i><b>12.3</b> Doing spatial analysis</a></li>
+<li class="chapter" data-level="12.4" data-path="spatialdata.html"><a href="spatialdata.html#section"><i class="fa fa-check"></i><b>12.4</b> </a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Archaeological Science with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="writing-reproducible-research" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Writing reproducible research</h1>
+<div id="overview-1" class="section level2">
+<h2><span class="header-section-number">3.1</span> Overview</h2>
+<p>Reproducibility refers to the ability of a researcher to duplicate the results of a prior study using the same materials as were used by the original researcher <span class="citation">(Goodman, Fanelli, and Ioannidis <a href="#ref-Goodman341ps12">2016</a>)</span>. This is a cornerstone of the sciences because if we cannot reproduce previous studies, we cannot rely on their results, and we cannot build on them to generate new knowledge. But what does R have to do with such a weighty topic? The answer is that because we interact with R by writing commands in a script file, which we can save, share and archive, we are doing our analysis in a way that can be reproduced. This can be contrasted with analysing data in Excel, SPSS, PAST and other mouse-driven software where many of the intermediate steps are typically mouse-clicks that leave no trace. Another person inspecting your Excel file may struggle to identify the decisions you made in your data anlysis because of the many ephemeral and unrecorded steps that led to the final result.</p>
+<p>Why is reproducibility gaining attention? Four factors have lead to growing concerns about the reproducibility of scientific results in modern science. The first factor is reruns of landmark biomedical experiments that have failed to produce the same results as the initial publication of the experiment <span class="citation">(Prinz, Schlange, and Asadullah <a href="#ref-Prinz2011drugtargets">2011</a>; Begley and Ellis <a href="#ref-Begley2012clinical">2012</a>)</span>. The second factor is the discovery of high-profile studies where the published results were flawed due to simple errors data analysis<span class="citation">(Baggerly and Coombes <a href="#ref-baggerly2009deriving">2009</a>; Herndon, Ash, and Pollin <a href="#ref-Herndon2013austerity">2013</a>)</span>. Third, there has been a sharp rise in the number of scholarly publications that have been retracted due to discoveries of misconduct such as fraudulent data and plagiarism <span class="citation">(Van Noorden <a href="#ref-Vannoorden2011retractions">2011</a>; Steen <a href="#ref-Steen2013retractions">2013</a>)</span>. Finally, there has been a growth of data-intensive research that use massive computer simulations or collect enourmous amounts of data from vast numbers of sensors (ie. astronomy and oceanography). These events have stimulated extensive discussion in many disciplines about how to improve the reproducibility of scientific research. Some of this discussion has resulted in calls from diverse dsicplines <span class="citation">(Nosek et al. <a href="#ref-nosek2015open">2015</a>)</span> for publications to be accompanied by both the raw data that generated the figures in the paper <span class="citation">(Reichman, Jones, and Schildhauer <a href="#ref-reichman2011challenges">2011</a>)</span>, and the programming code that shows the steps taken in the data analysis <span class="citation">(Barnes <a href="#ref-barnes2010publish">2010</a>; Ince, Hatton, and Graham-Cumming <a href="#ref-Ince1012opencomputer">2012</a>; Morin et al. <a href="#ref-Morin2012blackbox">2012</a>)</span>. Related to these calls are a manifesto-like journal articles by groups of researchers that call for substantial changes in the research workflow to improve reproducibilty and transparency <span class="citation">(Wilson et al. <a href="#ref-wilson2014best">2014</a>; Hampton et al. <a href="#ref-Hampton2015tao">2015</a>; Sandve <a href="#ref-Sandve2013tenrules">2013</a>)</span>. I have explored these principles in more detail in Marwick <span class="citation">(<a href="#ref-Marwick2016JAMT">2016</a>)</span>.</p>
+<p>In this chapter I show how archaeologists can respond to these calls for increased reproducibilty and transparency. I describe two key principles: literate programming for enabling reproducibilty, and version control for enhancing transparency. Literate programming refers to the use of a computing environment for authoring documents that contain a mix of natural (eg. English) and computer (eg. R) languages <span class="citation">(Schulte et al. <a href="#ref-Schulte2012literate">2012</a>)</span>. Conveniently, R and RStudio are well-equipped to support literate programming, so this practice is relatively easy to learn. The second section of this chapter introduces version control using Git as a principle and tool for enhancing transparency and collaboration. Version control of literate programming files allows you to keep track of all the changes that you and your co-authors make to your files. Using the Git software for version control, you and your collaborators can safely create multiple different versions of your files to experiment with, and either abandon the results, merge them with the main versions, or revert to an earlier version. Athough, neither of these are strictly part of R, R integrates very well with other tools that enable these principles. This makes R unique as an environment for working reproducibly with minimal effort.</p>
+</div>
+<div id="what-does-it-mean-to-do-reproducible-research" class="section level2">
+<h2><span class="header-section-number">3.2</span> What does it mean to do reproducible research?</h2>
+<p>Before showing how we can make our research more reproucible, we should explore exactly what we mean by ‘reproducible’ because it is not widely used in archaeology. There is variation surrounding the use of the term ‘reproducibility’ in biology and computer science, especially in comparison to closely related terms such as replicability and reliability <span class="citation">(Baker <a href="#ref-Baker2016">2016</a>)</span>. Here we follow Stodden’s [<span class="citation">(<a href="#ref-stodden2014implementing">2014</a>)</span>; Stodden2016] defintion and taxnonomy of reproducibility, dividing the concept into three parts: empirical, computational, and statistical.</p>
+<p>The first part is empirical reproducibility, also called ‘replicability’. For an archaeologist, this means evaluating a previously obtained result by re-excavating a site that another researcher had previously excavated, studying a museum collection that had previously been analysed by another person, or repeating an experiement that has been previously published. Empirical reproducibility is about returning to the source of the data and physically collecting the data again. Archaeologists do this routinely, for example, we return to famous sites such as Star Carr, Catal Huyuk, and Niah Cave to excavate them again. Usually this happens decades after the original excavation that make the site prominent. This is not exact empirical reproducibility, because we do not use the exact procedures of the previous workers, but instead use modern field methods to extract more data from the site, and improve upon and extend the earlier work. But the general idea of testing the previous claims about the site is usually the key motivation for returning to it.</p>
+<p>The second and third parts of ‘reproducibility’ are computational and statistical reproducibility. Computational reproducibility refers to redoing the calculations of another researcher’s quantitative results using their original datasets and methods (i.e. code). This type of reproducibility does not involve independent data collection, but instead uses the methods and data collected by the original investigator. Enhancing computational reproducibility includes preseving the steps of how raw data are cleaned, tidied, and combined or separated in preparation for anlaysis and visualisation. Statistical reproducibility is enhanced when detailed information is provided about the choice of statistical tests, model parameters, threshold values, and other details that determine the outcomes of statistical analyses.</p>
+<p>Computational and statistical reproducibilty are less familiar to most archaeologists, because our disciplinary culture tends to value secrecy and privacy, rather than sharing and openness of the mundane details of our analyses. Many archaeologists view the production of a research publication like the writing of a novel. The creative processes and drafting of the novel is typically a personal, private process that the author keeps to themself. Similarly, the readers of the novel generally have no expectation to see these drafts or have any exposure to the creative process. The author and the reader have a shared understanding that the published novel is the final product, and no other materials from the creative process (e.g. earlier drafts, notes, outlines) are needed to make sense of it. This is because the novel is primarily an aesthetic product, its value coming from how it arouses the emotions of the reader. Early drafts of the novel are typically irrelevant to the aesthetic value of the final published novel. Of course there are exceptions, for example we often enjoy to hear the author of a novel speak about their inspirations and motives in interviews, and literary scholars find value in the notes and paraphenalia of writers. For the most part, however, these details are not part of the unspoken contract between the fiction writer and their readers</p>
+<p>Archaeological research, like other sciences, is fundamentally different from novel-writing, although traditional scholarly norms of not sharing anything except the final published article tend to reinforce the novel-writing model. The value of an archaeological publication is primarily not aesthetic, but in the truth-values of the claims made about human behvaiour in the past. In order to make a robust assessment of these claims, the reader may need to know details of the analytical process that are not presented in the final publication. There are many reasons why relavant details might not be inlcuded in a publcation. Primarily, we cannot anticipate and address every potential question in the limited space of a typical journal article. These kinds of private correspondences between readers and authors are common, and imply an interesting defintion of what data are in a research context. The implication is that that we as authors don’t have the final say on what data and method details are necessary to make our case. Whatever our readers (e.g. peer reviewers, other scholars) demand is what counts as the necessary data and methods details. This scholarly author-reader relationship is very different from the novel author-reader relationship. In our case, by making publiclly available our data and our code at the point of publication of our articles, we make it a lot easier for our readers to find the materials they need to evaluate our claims and resuse our work. Many fields are shifting their scholarly practices in recognition of this special relationship between author and reader. A full account is beyond the scope of this chapter, but betailed desriptions of these new ways of doing science are available for Oceanography <span class="citation">(Lowndes et al. <a href="#ref-lowndes2017our">2017</a>)</span> and soil science <span class="citation">(Bond-Lamberty, Smith, and Bailey <a href="#ref-bond2016running">2016</a>)</span>.</p>
+<p>Returning to the question of computational reprodubility, my view is one of the most pressing problems is that our research publications rarely include enough of the data to enable exact reanalysis, and our methods are rarely presented in enough detail to allow another person to independantly repeat our analysis unabimguously. This type of reproducibility is becoming an important issue for recent archaeological research due to advances in technology and the rapid spread of computational methods for many kinds of basic archaeological analysis. This can make it difficult to trust published research, and difficult for others to use newly published research in their own work. The short answer to improving computational and statistical reproducibility in archaeology is for archaeologists to include data files and programming code with their publications. These extra documents will allow another researcher to see all the steps from when the raw data entered the researcher’s computer to the end point where these data were summarised and visualised in a journal article. Literate programming methods are an efficient solution to this problem of combining code with the narratice text of publcations and reports.</p>
+</div>
+<div id="literate-programming" class="section level2">
+<h2><span class="header-section-number">3.3</span> Literate programming</h2>
+<p>The general principle of literate programming is to write code and text in one document so that a human reader can easily understand the purpose of the code <span class="citation">(Knuth <a href="#ref-knuth1992literate">1992</a>)</span>. The original context of literate programming was to have a system for writing code so that text can be included among the code to explain the algorithms and data structures to other human readers. The concept of literate programming has evolved over time, and taken on a slightly different meaning within the R community, which might be more accurately called ‘literate computing’, ‘literate statistical programming’, ‘literate data analysis’, or ‘literate statistical practice’ <span class="citation">(Schulte et al. <a href="#ref-Schulte2012literate">2012</a>; Rossini, Lumley, and Leisch <a href="#ref-rossini2003edge">2003</a>; Koenker and Zeileis <a href="#ref-koenker2009reproducible">2009</a>; Gentleman and Temple Lang <a href="#ref-gentleman2007statistical">2007</a>; Hoefling and Rossini <a href="#ref-hoefling2014reproducible">2014</a>)</span>. These new terms reflects a shift in the focus of literate programming from what was originally writing computer programs with some annotations for human users, to writing research reports that contain programming code to do data anlaysis and visualisation. Although the terminology is varied, the essence of the concept is that programing code is embedded or interleaved with the narrative text in the same document.</p>
+<p>Writing research documents using a literate programming method improves reproducibility because a reader can see the details of the analytical methods used to compute the statistics, tables and plots of the publication or report. We do not need to copy and paste results from one program to another, because the code produces the results <em>in situ</em> each time the document is rendered. This elimintes errors from copy-pasting into a Microsoft Word document, where we have the risk that we might accidently skip some parts of the text that need updating. This approach also improves efficiency because we have the code and text in one place, greatly simplifying the organisation of our files. This makes it easier for us to navigate our project directories, and makes it easier to share files with collaborators and other people because they can more quicky find their way around.</p>
+<p>Using R we have several options for doing literate programming. The one I recommend is centred on Yihui Xie’s <code>knitr</code> package (plus several others) and the <code>markdown</code> plain text format. It is easy to learn, very well supported with extensive documentation <span class="citation">(Xie <a href="#ref-YihuiKnitrBook">2015</a>)</span>, and enables all the usual scholarly writing requirements, such as captioning and cross-references figures and tables, citations and complex notation. The file format we use for this is called R Markdown, which is a plain text file that has the .Rmd suffx. We write text and code in the Rmd file using a text editor (such as RStudio), and ‘render’ or ‘knit’ that Rmd into an output format such as Microsoft Word, HTML or PDF. The rendered version contains the formatted text, citations, tables, figures, etc., and is suitable for submission to a journal, or circulation to colleagues. When writing an Rmd file, you typically have three key components: (1) the document metadata (usually a section at the top of the document), (2) the narrative text (the text of your article or report), and (3) the code blocks (sections of R code in between paragraphs of narrative text that generate plots, tables and other output to appear in the rendered document).</p>
+<div id="document-metadata-citations-and-the-bibliography" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Document metadata, citations and the bibliography</h3>
+<p>The metadata section is defined by three dashes at the top and bottom of the section. In this section, we can indicate the title, author, date and many other details of the document. Crucially we can also specify what type of document to render the Rmd into, e.g. Microsoft Word document, PDF or HTML file. The metadata contains instructions for document-level details such as whether or not to include a table of contents, what style to use for the citations and reference list, and what template should be used to style the rendered document (e.g. to add line numbers). Here is an example of the metadata section from the Rmd file of one of my publications:</p>
+<pre><code>---
+title: &#39;Movement of lithics by trampling: An experiment in the Madjedbebe sediments, northern Australia&#39;
+author:
+- Ben Marwick
+- Elspeth Hayes
+- Chris Clarkson
+- Richard Fullagar
+date: &#39;2019-05-27&#39;
+output:
+   bookdown::word_document2:
+    fig_caption: yes
+    reference_docx: templates/template.docx
+bibliography: trampling.bib
+csl: journal-of-archaeological-science.csl
+abstract: |
+  Understanding post-depositional movement of artefacts is vital to making reliable claims about the formation of archaeological deposits. Human trampling has long been recognised as a contributor to post-depositional artefact displacement. We investigate the degree to which artefact form (shape-and-size) attributes can predict how an artefact is moved by trampling. We use the Zingg classification system to describe artefact form. Our trampling substrate is the recently excavated archaeological deposits from Madjedbebe, northern Australia. Madjedbebe is an important site because it contains early evidence of human activity in Australia. The age of artefacts at Madjedbebe is contentious because of the possibility of artefacts moving due to trampling. We trampled artefacts in Madjedbebe sediments and measured their displacement, as well as modelling the movement of artefacts by computer simulation. Artefact elongation is a significant predictor of horizontal distance moved by trampling, and length, width, thickness and volume are significant predictors of the vertical distance. The explanatory power of these artefact variables is small, indicating that many other factors are also important in determining how an artefact moves during trampling. Our experiment indicates that trampling has not contributed to extensive downward displacement of artefacts at Madjedbebe.
+keywords: |
+  Trampling; Artifact movement; Experimental archaeology; Australia; Simulation
+---</code></pre>
+<p>The language of this metadata is not R, but a format called YAML, and is distinctive with its <code>key: value</code> patterns. This example shows just a few of the possible metadata fields. The title, author and abstract fields are straightforward, but you can see that the date field has some R code that will insert the current date when the document is rendered. This means that the outputted docx file will automatically have the date of the latest change, and I don’t have to worry about updating it by hand. The <code>output:</code> field shows that I have used the <code>word_document2()</code> function from the <code>bookdown</code> package to render this Rmd into a Microsoft Word document. This <code>word_document2()</code> function is important for writing scholarly documents with R Markdown because it provides the automatic numbering and cross-referencing of figures and tables in the document. The bookdown package also contains related functions for writing a multi-part document such as a book or manual.</p>
+<p>In the document metadata above I have also indicated that I want to show the figure captions in the output doucment with <code>fig_caption: yes</code>. The line <code>reference_docx: templates/template.docx</code> indicates that I am using a docx file called <code>template.docx</code> as custom template to add some styling to my output. In this specific case, the <code>template.docx</code> adds line numbers to the rendered docx file, specifies Times New Roman as the body text font, and a few other minor adjustments to meet the submission requirements of our target journal. The rticles package by RStudio provdes Rmd templates for manuscripts for several major scholarly publishers. A template for producing output that follows the APA style (American Psychological Association) can be found in the <a href="https://github.com/crsh/papaja">crsh/papaja</a> package. Other templates are available in the the [Pakillo/rmdTemplates/])(<a href="https://github.com/Pakillo/rmdTemplates/" class="uri">https://github.com/Pakillo/rmdTemplates/</a>) package. Many Rmd metadata fields are documented at <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>, and <a href="https://www.rstudio.org/links/r_markdown_reference_guide" class="uri">https://www.rstudio.org/links/r_markdown_reference_guide</a>. I have also found many useful examples of Rmd metadata by browsing and searching github.com.</p>
+<p>We can also see the file containing the bibliographical information specified at <code>bibliography:</code>, and a file that gives the in-text citation and reference list style at <code>csl:</code> (citation style language). R Markdown can handle bibliography files in a variety of formats, including RIS, EndNote’s .enl and BibTeX’s .bib. I typically use BibTex, and my <code>.bib</code> file is a plain text file that I create by copying and pasting the reference details from various sources, such as my reference manager library (e.g. EndNote, Mendeley, Zotero) or directly from Google Scholar. The <code>.csl</code> file is one I copied directly from a collection of journal citation styles (e.g. from <a href="http://citationstyles.org/" class="uri">http://citationstyles.org/</a>). Here are the bibliographic details for one of the items in the <code>.bib</code> file for this book:</p>
+<pre><code>@article{Marwick2016JAMT,
+year={2016},
+issn={1072-5369},
+journal={Journal of Archaeological Method and Theory},
+doi={10.1007/s10816-015-9272-9},
+title={Computational Reproducibility in Archaeological Research: Basic Principles and a Case Study of Their Implementation},
+url={http://dx.doi.org/10.1007/s10816-015-9272-9},
+publisher={Springer US},
+keywords={Reproducible research; Computer programming; Software engineering; Australian archaeology; Open science},
+author={Marwick, Ben},
+pages={1-27},
+language={English}
+}</code></pre>
+<p>Most of the lines in the above example are easy to understand attributes of a bibliographic reference. Perhaps the most important detail is in the first line, <code>Marwick2016JAMT</code>, which is the key that we used to link the in-text citation to these bibliographic details. To include a citation of this paper in my R markdown file, I type <code>[@Marwick2016JAMT]</code>, and this is rendered in the output document as a nicely formatted citation like this: <span class="citation">(Marwick <a href="#ref-Marwick2016JAMT">2016</a>)</span>. All of the usual variations of in-text citations are possible with this notation:</p>
+<table>
+<colgroup>
+<col width="22%" />
+<col width="38%" />
+<col width="38%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Effect</th>
+<th>Markdown notation</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Complex combinations of citations</td>
+<td><code>...some narrative text... [see @Marwick2016JAMT, pp. 13-15; also @knuth1992literate, ch. 1].</code></td>
+<td>…some narrative text… <span class="citation">(see Marwick <a href="#ref-Marwick2016JAMT">2016</a>, 13–15; also Knuth <a href="#ref-knuth1992literate">1992</a>, ch. 1)</span>.</td>
+</tr>
+<tr class="even">
+<td>Page ranges</td>
+<td><code>...some narrative text... [@Marwick2016JAMT, pp. 13-15, 18-19 and elsewhere].</code></td>
+<td>…some narrative text… <span class="citation">(Marwick <a href="#ref-Marwick2016JAMT">2016</a>, 13–15, 18–19 and elsewhere)</span>.</td>
+</tr>
+<tr class="odd">
+<td>Multiple citations</td>
+<td><code>...some narrative text...  [@Marwick2016JAMT; @knuth1992literate].</code></td>
+<td>…some narrative text… <span class="citation">(Marwick <a href="#ref-Marwick2016JAMT">2016</a>; Knuth <a href="#ref-knuth1992literate">1992</a>)</span>.</td>
+</tr>
+<tr class="even">
+<td>Date-only citation</td>
+<td><code>Marwick says you should use a scripting language for your analysis [-@Marwick2016JAMT].</code></td>
+<td>Marwick says you should use a scripting language for your analysis <span class="citation">(<a href="#ref-Marwick2016JAMT">2016</a>)</span></td>
+</tr>
+<tr class="odd">
+<td>Use author’s name in text</td>
+<td><code>@Marwick2016JAMT says you should use a scripting language for your analysis.</code></td>
+<td><span class="citation">Marwick (<a href="#ref-Marwick2016JAMT">2016</a>)</span> says you should use a scripting language for your analysis.</td>
+</tr>
+<tr class="even">
+<td>Use author’s name and page number</td>
+<td><code>@Marwick2016JAMT [p. 13] ays you should use a scripting language for your analysis.</code></td>
+<td><span class="citation">Marwick (<a href="#ref-Marwick2016JAMT">2016</a>, 13)</span> says you should use a scripting language for your analysis</td>
+</tr>
+<tr class="odd">
+<td>Multiple cites by same author</td>
+<td><code>many good examples by Marwick et al. [-@MarwickVanVlack; -@MarwickJerimalai]</code></td>
+<td>many good examples by Marwick et al. <span class="citation">(<a href="#ref-MarwickVanVlack">2017</a>, <a href="#ref-MarwickJerimalai">2016</a>)</span></td>
+</tr>
+</tbody>
+</table>
+<p>When the Rmd document is rendered, these citations appear in the output document with proper styling and the reference list is automatically generated and added to the end of the document. The styleing of the citations and reference list is controlled by the <code>.csl</code> file, it could be author-date, as above, or numbered citations, etc.</p>
+<p>Typically, directly after this block of metadata we have a block of code that contains all the <code>library()</code> functions to enable all the functions that we use from contributed packages. This is a useful convention because it helps other readers quickly see what packages are required to perform the analysis in your report. In this book I have taken a different approach and show the library calls much more often than strictly necessary to help you make associations between libraries and the functions they contain.</p>
+</div>
+<div id="narrative-text-structuring-the-document-and-special-characters-in-the-text" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Narrative text, structuring the document and special characters in the text</h3>
+<p>Narrative text refers to the body text of your document, such as this paragraph you’re currently reading. Most archaeologists are accustomed to writing in a word processor such as Miscroft Word, where can change the appearance of the document while we write, for example by adding bold formatting and changing the size of the font. When we use Microsoft Word, we are using a “what you see is what you get” editor – we edit a document in a form resembling the final printed or presented document. Writing an R Markdown document is a different experience because we writing in plain text, and we include instructions in the document that only apply formatting during the process of rendering to generate the output. This means that while we are writing an R Markdown document we do not see bold text or text in difference sizes. This is a very typical writing experience for many researchers in the natural and physical sciences, where the LaTeX document preparation system is popular for writing journal articles <span class="citation">(Brischoux and Legagneux <a href="#ref-brischoux2009don">2009</a>)</span>. LaTeX is a widely used code-based document preparation system, with particular strengths in complex formatting needed by technical scientific documents. Although highly flexible, LaTeX is also complex and verbose, requiring a lot of typing to add the formatting code to your document. LaTeX requires a basic working knowledge of computer programming, so non-programming researchers seldom use it. This method of creating documents is preferred in disciplines such as mathematics and physics, where complex equations are written using code, because for many people it is easier to write code to produce equations than use a mouse to click on menus and buttons to select the special characters needed for equations. Markdown is closely related to LaTeX, but much simpler system for preparing documents. Markdown does not require any programming skills to use, so it is well-suited for researchers in the social sciences. The advantage of Markdown over LaTeX is that the document is much less cluttered with formatting code for typical writing, but LaTeX can be used where more complex symbols, expressions or formatting are necessary.</p>
+<p>There are several reasons why a plain text document preparation system might be prefereble over a word processor. The most compelling one is that we cannot interweave exectutible R code in a word processor document. Of course we can add R code to a word processor document, but there is no way to run the code in that document to update the document. We must copy and paste updated results into the word processor document. With a plain text format such as R Markdown, we can include R code, and have that code generate output to update the figures, tables and other results in the document. This is the most important charactersting of R Markdown that makes our documents more reproducbile. Finally, plain text files are able to take advantage of the git version control system for collaboration. This system allow fine-grained control of the history of changes to a plain text document, more on this below in the <a href="#vc">Version Control</a> section below.</p>
+<p>Some other reasons to use a plain text format that are important to me include portability, compactness, security and collaboration <span class="citation">(Cottrell <a href="#ref-cottrell1999word">1999</a>)</span>. Portability means that when we use a plain text system such as R Markdown, anybody, using any computer platform, will be able to read our text, even if they don’t have the means to view or print the rendered version. With plain text, the accessibiltiy of the contents of our document is not restricted to a certain program, or a specific operating system, which might become increasly hard to find working copies of in the future. This guarantee of long-term accessibility should have a special appeal to archaeologists who are more senstive than most researchers to the decadal pace of technological change. Compactness refers to the size of the file, often plain text files requires orders of magnitude less disk space that corresponding word processor files. This means plain text files are more quicker and more responsive to work with, and easier to circulate and store. Security is about the risk of losing your document to software crashes or file corruption. With a plain text document we have much less that can go wrong in the normal course of preparing the document.</p>
+<p>Choosing software to write plain text documents can be challenging because of the wide variety of options. I recommend RStudio because it contains comprensive support for writing R Markdown, saving time and effort. For example, RStudio will highlight markdown text and R code in a way that makes it more readable. It will automatically indent or tidy up your code as you write it. It will also passively signal to you when you’ve done something wrong in your code (such as forget a closing bracket, semicolon or quotation mark). RStudio also comes with Pandoc built-in, which is the software that helps with converting between Markdown and Micrsoft Word, PDF and HTML. Having Pandoc built-in to RStudio saves you from working with Pandoc outside of RStudio in a terminal.</p>
+<p>Other popular editors for writing R Markdown documents include Sublime Text (for OSX only), Notepad++ (for Windows only), Atom (cross-platorm) and Emacs (also cross-platorm). These other editors are ideal if you enjoy spening time configuring and customising your writing environment. If your priority is writing text and code, or you are collaborationg with authors who don’t enjoy spening time configuring and customising, then RStudio is a good choice. The RStudio text editor, like the others, do not include any tools for formatting your text <em>in situ</em>, for example you cannot make words appear in the editor with bold or italic characters. This is a deliberate design, and is typical among text editing programs used for writing code and Markdown. When working with a plain text editor, we type unformatted plain text and code, and among the text we include instructions on how the final document should appear. For example if we want a word to appear in italics, we would type in our R Markdown document it like <code>*this*</code>. In this example, when we convert our R Markdown document into a final version, such as a PDF, the two asterix symbols will be interpreted by Pandoc to produce a document with <em>this</em> word in italics. Headings and subheadings are indicated by <code>#</code> symbols, the top level heading has a single <code>#</code> directly preceeding the header text, and second and third level headings have <code>##</code> and <code>###</code>, and so on, like so:</p>
+<pre><code># This is my top-level heading, such as &#39;Introduction&#39;
+
+## This is my second-level heading, suitable for a sub-heading
+
+### This is my third-level heading, i.e. a sub-sub-heading. Probably we don&#39;t want to many levels of heading below this one because it may overwhelm our reader.</code></pre>
+<p>Typically in writing for research we need to include special symbols that are not part of the common character set. The following table shows how to generate commonly used symbols in a R Markdown document, the notation surrounded by dollar signs <code>$</code> is LaTeX notation:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Markdown/LaTeX notation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>per mille ‰</td>
+<td><code>$\text{\textperthousand}$</code></td>
+</tr>
+<tr class="even">
+<td>delta δ</td>
+<td><code>$\delta$</code></td>
+</tr>
+<tr class="odd">
+<td>plus-minus ±</td>
+<td><code>$\pm$</code></td>
+</tr>
+<tr class="even">
+<td>degree °</td>
+<td><code>$\text{\textdegree}$</code></td>
+</tr>
+<tr class="odd">
+<td>subscript CO<sub>2</sub></td>
+<td><code>CO~2~</code></td>
+</tr>
+<tr class="even">
+<td>superscript <sup>14</sup>C</td>
+<td><code>^14^C</code></td>
+</tr>
+</tbody>
+</table>
+<p>With LaTeX it is possible to include a great range of mathematical symbols into your text. There are numerous online sources to look up the notation for a specific symbol or expression, e.g. <a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics" class="uri">https://en.wikibooks.org/wiki/LaTeX/Mathematics</a></p>
+</div>
+<div id="code-blocks" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> Code blocks</h3>
+<p>In an R Mardowm document code blocks (also known as chunks) are demarcated by three backticks, followed by curly brackets indicating the programming language of the code. Here is a very simple code block that demonstrates how the backticks are used:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="st">```</span><span class="dt">{r}</span>
+<span class="dt">1 + 1</span>
+<span class="st">```</span></code></pre>
+<p>If this block was in our document, the output would look like this:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></code></pre>
+<pre><code>## [1] 2</code></pre>
+<p>Often in writing for research we don’t want all the code blocks to be visible in the rendered output because they disrupt the reader’s experience with the contents of the document (and journal editors don’t like to see code blocks in submitted manuscripts). We can stop the code blocks from appearing in the rendered output in two ways. First is an option we can set for each block in the document, in case we case to show some blocks and hide others in the rendered output. Second is a single setting we can make for the whole document that hides all the blocks. To hide one code block we can use the <code>echo</code> option in the block we want to hide, like this:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="st">```</span><span class="dt">{r echo = FALSE}</span>
+<span class="dt">1 + 1</span>
+<span class="st">```</span></code></pre>
+<p>But to hide all the blocks, we add a new block at the top of our document, directly below our document metadata, to set document-wide options, like this:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="st">```</span><span class="dt">{r include = FALSE}</span>
+<span class="dt">library(knitr)</span>
+<span class="dt">opts_chunk$set(echo = FALSE)</span>
+<span class="st">```</span></code></pre>
+<p>Note that this example has both <code>include =</code>, and <code>echo =</code>. They are subtly different, <code>include = FALSE</code> will let the code run, but include neither the text of the code nor its output in the rendered document, while <code>echo = FALSE</code> hides the code but lets the output appear (such as a plot). There are a large number of options for controlling the behaviour of code blocks in R Markdown documents. These are documented at <a href="https://yihui.name/knitr/options/" class="uri">https://yihui.name/knitr/options/</a>, <span class="citation">Xie (<a href="#ref-YihuiKnitrBook">2015</a>)</span> and <span class="citation">Gandrud (<a href="#ref-Gandrud2015">2015</a>)</span>. I typically use these options to configure how the code blocks appear in my rendered documents:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(knitr)
+opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">FALSE</span>,
+               <span class="dt">warning =</span> <span class="ot">FALSE</span>,
+               <span class="dt">message =</span> <span class="ot">FALSE</span>,
+               <span class="dt">dpi =</span> <span class="dv">900</span>,
+               <span class="dt">fig.align =</span> <span class="st">&#39;center&#39;</span>)
+               
+<span class="co"># image width should be 90 mm for 1 col, 140 mm for 1.5 col, 190mm for two cols</span>
+fig_width_two_col &lt;-<span class="st"> </span><span class="dv">190</span><span class="op">/</span><span class="dv">25</span> <span class="co"># inches</span>
+fig_width_one_col &lt;-<span class="st"> </span><span class="dv">90</span><span class="op">/</span><span class="dv">25</span> <span class="co"># inches</span></code></pre>
+<p>In addition to hiding all the code blocks with <code>echo = FALSE</code>, the <code>warning =</code> and <code>message =</code> options prevent these types of messages from appearing with my output. This means that if I have a code block that generates a plot, but might also produce a warning, I will not see that that warning in my rendered output. I will still see the warnings and messages while I am developing the code interactively in the console, and they will be printed in the console when the document is rendered. The <code>dpi =</code> option ensures that the resolution of the plots that are created by the code blocks are suitably high, and <code>fig.align =</code> centre-aligns my figures. The two lines at the bottom of that code block create objects that store a value that I use in other code blocks to set the width of the plot or figure that a code block produces, more on that below. Thre are many other possible options that can be set at this point, to see the full list, run <code>?opts_chunk</code> in your R console, and see <a href="https://yihui.name/knitr/options/#chunk_options" class="uri">https://yihui.name/knitr/options/#chunk_options</a> for a description of what they do.</p>
+<div id="saving-time-with-blocks-of-long-running-code" class="section level4">
+<h4><span class="header-section-number">3.3.3.1</span> Saving time with blocks of long-running code</h4>
+<p>If you have a block of code in your document that takes some time to run (e.g. more than 5 minutes), there are several options to avoid having to run that code every time you render the document. One simple method is to using caching for the code block, so that when the code block is first run, the results will be stored. These stored results will be each time the document is rendered, saving time waiting for the code to run again. The cached results will be reused until the code in that code block is changed. After the code in that block is changed, the code will be re-run then next tim that the document is rendered. Here’s an exampe of a code block that uses caching:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="st">```</span><span class="dt">{r code-block-A, echo = FALSE, cache = TRUE}</span>
+<span class="dt">z &lt;- rnorm(10) # generate ten random numbers</span>
+<span class="st">```</span></code></pre>
+<p>Because we set <code>cache = TRUE</code>, the object <code>z</code> will be stored and reused each time we render the document, until we make a change to the code in this block. Sometimes we might have a mix of cached and unchached code blocks, and some of the cached code blocks depend on each other. For example, suppose we have code block A (cf. the code block above) that performs a long-running computation, and later in our document we have code block B that uses the result of A to perform a second, different long-running computation. We would use <code>cache = TRUE</code> for both code block A and B to store the results so we don’t have to wait while we work on other parts of the document. But we also need to indicate that if there is a change to the code in code block A, but no change in the code in code block B, then the code in code block B still needs to be re-run to incorporate the update in code block A. We can manage this dependency between these two code blocks by adding <code>dependson =</code> to code block B, for example:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="st">```</span><span class="dt">{r code-block-B, echo = FALSE, cache = TRUE, dependson = &#39;code-block-A&#39;}</span>
+<span class="dt">mean(z)</span>
+<span class="st">```</span></code></pre>
+<p>We can also use <code>dependson =</code> to reference multiple code blocks, for example <code>dependson = c('code-block-A', 'code-block-C')</code>. The use of <code>dependson =</code> in code block in an R Markdown document ensures that when other code blocks are changed, this block will be updated accordingly. Caching can increase the complexity of a document substantially, and I generally use it sparingly. Further readering on the details of caching in R Markdown can be found at <a href="https://yihui.name/knitr/demo/cache/" class="uri">https://yihui.name/knitr/demo/cache/</a>.</p>
+<p>A second strategy for saving time with long-running code is to explicitly save the output on the first run, and then re-use that output by loading it in later code blocks. A typical use-case for this method is when a computation takes days or weeks, for example, on a high-perfomance computing facility, and you want to save the output in a portable format and reuse it in different documents. In this case you might save the output as a plain text open format file (such as CSV or XML) and load them with a <code>read_xxx</code> function (more on these in Chapter X). Or you might save the output of the long-running computation as an RData object using <code>save()</code> (ideal for when you want to save many objects) or save as a rds object using <code>saveRDS()</code> (ideal from when you want to save a single object, such as the object <code>z</code> in the code block above). Although plain text open file formats are better for long-term presernation of data, an RData object might be preferable if the structure of the output data if difficult to represent in a flat table (for example, a deeply nested list). To use a saved data object we can include in a code block <code>load()</code> for RData files, and <code>readRDS()</code> for rds files.</p>
+</div>
+</div>
+<div id="cross-referencing-and-captioning-figures" class="section level3">
+<h3><span class="header-section-number">3.3.4</span> Cross-referencing and captioning figures</h3>
+<p>Another important option for managing code blocks in an R Markdown document is labelling them. Labelling is useful for two reasons, firstly for efficiently navigating through many blocks in a document, and secondly to enable cross-referencing of tables and figures. Here’s an example of a code block with a label:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="st">```</span><span class="dt">{r simple-addition, echo = FALSE}</span>
+<span class="dt">1 + 1</span>
+<span class="st">```</span></code></pre>
+<p>In this example the label is ‘simple-addition’, and this is the key to make cross-references work in R Markdown. Code block labels do have a few constraints, they can only contain alphanumeric characters (a-z, A-Z, 0-9), slashes (/), or dashes (-). Underscores are not allowed in code block labels, and code block labels must be unique, you cannot have two blocks with the same label. We use the labels to link in-text cross-reference to the output of the code block with that label. The general form of cross-referencing is to type <code>\@ref(fig:label)</code> where <code>label</code> is the code block label that you are referring to. If you are referring to a code block that produces a table (by using <code>knitr::kable()</code>), then the general form is <code>\@ref(tab:label)</code>. In addition to a code block label, a second element is required to enable cross-referencing. This is a caption, which we can add using the <code>fig.cap</code> option in the first line of the code block. For example, this code block produces a simple plot, and is labelled ‘simple-plot’, and we have set the caption as ‘This is a simple plot’ :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="st">```</span><span class="dt">{r simple-plot, echo = FALSE, fig.cap = &quot;This is a simple plot.&quot;}</span>
+<span class="dt">plot(1:10)</span>
+<span class="st">```</span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre>
+<div class="figure"><span id="fig:simple-plot"></span>
+<img src="aswr_files/figure-html/simple-plot-1.png" alt="This is a simple plot." width="672" />
+<p class="caption">
+Figure 3.1: This is a simple plot.
+</p>
+</div>
+<p>When we want to refer to that plot in our text, we type <code>\@ref(fig:simple-plot)</code> and this will be rendered into the figure number that this plot has in our document, for example, Figure <a href="writing-reproducible-research.html#fig:simple-plot">3.1</a>. Occasionally we need to include a cross-reference within the caption of a table or figure. To make this work need to add one backslash, like this <code>\\@ref(fig:simple-plot)</code>. The second backslash ‘escapes’ or hides the other backslash from being interpreted by R. This is necessary because the backslash is one of a small set of special characters, or metacharacters that have specific meaning in R that is different from how we use them in English writing. The others metacharacters are: $ * + ? <a href="spatialdata.html#section"></a> ^ { } | ( )  and the period at the end of this sentence. The special properties of these metacharacters are very useful for cleaning and manipulating data, we’ll discuss this more in Chapter XX.</p>
+<p>Relating to figures, another code block option that I use often is <code>fig.width</code>. When writing a manuscript for submission to a journal, I will check the journal’s instructions to authors for information about figure sizes. Often they specify a width in millimeters for images that span one or two columns. You can see in one of the above code blocks I created an object called <code>fig_width_one_col</code>, this just holds a single numeric value for the width of a figure (in inches) in order to span two columns in one of the archaeology journals that I have published in. This saves me time so I don’t have to adjust the width of each figure indvidually. In this example we can see three important functions: 1) how to set the width of the plot using <code>fig.width =</code>, 2) how to cross-reference another figure elswhere in the document with <code>\\@ref</code>, and 3) how to use a citation in a caption (just like we would in a paragraph of narrative text:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="st">```</span><span class="dt">{r simple-plot-one-col-wide, echo = TRUE, fig.cap = &quot;A simple plot. This plot is one column wide, unlike Figure </span><span class="st">``</span><span class="dt"> </span><span class="st">`</span>\\<span class="op">@</span><span class="kw">ref</span>(fig<span class="op">:</span>simple<span class="op">-</span>plot)<span class="st">`</span><span class="dt"> </span><span class="st">``</span><span class="dt"> which is wider. A classic source of information for plotting in R is @murrell2016Rgraphics.&quot;, fig.width = fig_width_one_col}</span>
+<span class="dt">plot(1:10)</span>
+<span class="st">```</span></code></pre>
+<div class="figure"><span id="fig:simple-plot-one-col-wide"></span>
+<img src="aswr_files/figure-html/simple-plot-one-col-wide-1.png" alt="A simple plot. This plot is one column wide, unlike Figure \@ref(fig:simple-plot) which is wider. Good sources of information for plotting in R include @murrell2016Rgraphics and @wickham2016ggplot2." width="345.6" />
+<p class="caption">
+Figure 3.2: A simple plot. This plot is one column wide, unlike Figure <a href="writing-reproducible-research.html#fig:simple-plot">3.1</a> which is wider. Good sources of information for plotting in R include <span class="citation">Murrell (<a href="#ref-murrell2016Rgraphics">2016</a>)</span> and <span class="citation">Wickham (<a href="#ref-wickham2016ggplot2">2016</a>)</span>.
+</p>
+</div>
+</div>
+<div id="cross-referencing-captioning-tables" class="section level3">
+<h3><span class="header-section-number">3.3.5</span> Cross-referencing captioning tables</h3>
+<p>Including tables in R Markdown is similarly straightforward. I typically use the <code>kable()</code> function from the knitr package, and occassionaly Hao Zhu’s <a href="https://cran.r-project.org/package=kableExtra">kableExtra</a> package for more elaborate tables. However, there are a many other packages for producing more complex and flexible tables. There is an informative table comparing some of the more widely used packages in the vignette of the huxtable package (<a href="https://cran.r-project.org/web/packages/huxtable/vignettes/design-principles.html" class="uri">https://cran.r-project.org/web/packages/huxtable/vignettes/design-principles.html</a>). A detailed review of all the options for making tables is beyond the scope of this chapter, and we can simply note here that you can make any table design you want in R Markdown, with a little effort. Table <a href="writing-reproducible-research.html#tab:simple-table">3.1</a> shows simple table that results from the <code>kable()</code> function from the knitr package:</p>
+<table>
+<caption><span id="tab:simple-table">Table 3.1: </span></caption>
+<thead>
+<tr class="header">
+<th align="left">Rule</th>
+<th align="left">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">O</td>
+<td align="left">Order rows and columns by size or some other meaningful measure</td>
+</tr>
+<tr class="even">
+<td align="left">R</td>
+<td align="left">Round to two or three significant or effective digits.</td>
+</tr>
+<tr class="odd">
+<td align="left">A</td>
+<td align="left">Average or sum rows and columns to provide a visual focus</td>
+</tr>
+<tr class="even">
+<td align="left">C</td>
+<td align="left">Columnize: put items to be compared in the same column, one above the other.</td>
+</tr>
+<tr class="odd">
+<td align="left">L</td>
+<td align="left">Lay out the table to facilitate comparisons, don’t insert too much white space: things to be compared should be close to each other, but add gaps every 5 or so rows to help the eye travel across the table.</td>
+</tr>
+<tr class="even">
+<td align="left">E</td>
+<td align="left">Explain the patterns of the data and use descriptive titles</td>
+</tr>
+</tbody>
+</table>
+<p>Caption with ‘invalid multibyte string’: “The table summarises some simple and classic guidelines for presenting data in tables <span class="citation">(Ehrenberg <a href="#ref-ehrenberg1977rudiments">1977</a>; Feinberg and Wainer <a href="#ref-feinberg2011extracting">2011</a>; Wainer <a href="#ref-Wainer1997ImprovingTabular">1997</a>)</span>. To make the guidelines more memorable, we can abbreviate them into the mnemonic ‘oracle’. These guidelines should not be followed blindly: tables are meant for communication, and you should rather ignore these guidelines than slavishly follow them and corrupt the message of your table.”</p>
+<p>Notice that the method for adding a caption to a table is slightly different from captioning a figure. For a table, we add a caption with the <code>caption =</code> argument in the <code>kable()</code> function, rather than the <code>fig.cap =</code> option for the code block. However, the method for cross-referencing a table is similar to cross-referencing a figure, we type <code>\@ref(tab:simple-table)</code>, which automatically gives us the table number when rendered: <a href="writing-reproducible-research.html#tab:simple-table">3.1</a>. Just like when referencing figures we use the code block label as the link. The only difference in the cross-reference syntax is <code>tab:</code> for tables instead of <code>fig:</code> for figures.</p>
+<p>A key principle to keep in mind when preparing a table for a report or publication is that a table is for communication, not data storage. To store data for resuse you need to archive a digital file, saved in an open, plain text format (such as CSV), and deposit it in a well-known and trustworthy data repository, and include in your publication a persistant URL (such as a DOI) to the file. Tables interleaved amongst text are meant for human eyes and minds, not for machine ingest, so you should design them with this in mind to opitmise their effectiveness. In any cases a plot many be more effective that a table, see <span class="citation">Gelman, Pasarica, and Dodhia (<a href="#ref-gelman2002let">2002</a>)</span> for examples of plots can improve on tables.</p>
+</div>
+<div id="using-inline-r-code-to-put-results-in-the-text" class="section level3">
+<h3><span class="header-section-number">3.3.6</span> Using inline R code to put results in the text</h3>
+<p>Often in writing for research we want to include some numeric output within our text, such as the output of some data analysis or a hypothesis test. For writers using Microsoft Word or similiar software, they will compute their result in another program, such as Microsoft Excel or SPSS, and then paste the results into their Word document. The problem with this method is keeping the Word document up to date during the many iternations that data anlyses often involve. There is a mental burden to keeping track of all the locations in a document where a value needs to be updated when a new analysis is completed. R Markdown provides a solution to the problem with in-line R code. When writing in R Markdown document, we can write R code in the middle of a sentence to compute a result, and when the document is rendered, the code is excecuted and numerical output appears in our rendered document in place of the R code. When typing in-line R code we demarcate it with a single backtick at the start and end, and the code is prefixed with the letter ‘r’ to indicate the programming language. Here is a simple example: in our R Markdown document we type <code>`r  5 * 2`</code> (as in ‘five times two’), and when we render that document we will see 10 in place of the R code.</p>
+<p>When writing in-line R code it is good practice to keep the code short so that the code doesn’t interrupt the flow of the sentence for the reader (i.e. you, when you are writing the Rmd document, and your colleagues who are also editing that document). An easy way to keep the in-line code short is to use a code block for the more complex operations, and then assign the result that you want to show in the text to an object. You then use that object in the in-line R code to make the values appear in the rendered text. Here is a simple code block to demonstrate this approach:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We add up all the numbers from 1 to 10</span>
+x &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)  </code></pre>
+<p>And here is our narrative text that includes inline code to use the output from that code block in a sentence. The inline code is typed as: <code>`r  x`</code>, and we can use the output like this: The sum of all the numbers from 1 to 10 is 55. This appoach is especially convienent for extracting a few values value from a large table or other data object, and rounding them so it is suitable to include in a sentence. A common use-case for this approach is when we do a statistical hypothesis test and want to report the test statistic and p-value in parentheses in of a sentence. More on this in Chapter XX.</p>
+<p>For further reading on more details on figures, tables, cross-referencing and citation in R Markdown documents I recommend <span class="citation">Xie (<a href="#ref-xie2016bookdown">2016</a>)</span>. For more details on customising code chunks, a good reference is <span class="citation">Xie (<a href="#ref-YihuiKnitrBook">2015</a>)</span>.</p>
+</div>
+<div id="rendering-the-r-markdown-into-an-output-file" class="section level3">
+<h3><span class="header-section-number">3.3.7</span> Rendering the R Markdown into an output file</h3>
+<p>By far the simplest method to render, or convert, an R Markdown document into a Microsoft Word, HTML or PDF document is to click on the ‘Knit’ button at the top of the source editor window in RStudio. The Knit button will inspect the settings in our R Markdown document metadata, and render the output according to those specifications. It is of course also possible to use a function to render the document from the console. For example <code>rmarkdown::render(&quot;my_document.Rmd&quot;)</code> (i.e. the render function in the rmarkdown package) or <code>knitr::knit(&quot;my_document.Rmd&quot;)</code> (i.e. the knit function in the knitr package). These functions can take many options to control how the Rmd file is rendered, however, I generally avoid using them because they are bad for reproducibility. Because a document cannot render itself, we must use the <code>knit</code> or <code>render</code> functions outside of the document, and this means that some of the options for how the document is rendered might not be contained in the document. I prefer to have the rendering options self-contained in the Rmd document, and then either use the knit button, or a very simple function such as <code>render(&quot;my_document.Rmd&quot;)</code> with no additional arguments. This means that I will always have a record of the settings I need to render the my document because they are contained within the document itself, rather than as arguments to the <code>render()</code> function.</p>
+<p>Generally I eschew mouse-driven actions in the course of data anlaysis, because they often leave no trace and are bad for reproducbility. The two major exceptions are rendering an R Markdown into an output document, where I recommend a mouse-click on the knit button in RStudio, and setting the working directory. For setting the working directory, I recommend using the RStudio toolbar and clicking on ‘Session’ -&gt; ‘Set Working Directory’, and then usually the best option is to choose ‘To Source File Location’. However, when you become more familiar with complex file structures you may find the other options more useful. By excluding these two actions from the code in your R Markdown document you make your document more portable. This is because the full path of the working directory your computer is probably unique to that computer, and if another person attempts to use your code on their computer any function that uses your path will fail because your path does not exist on their computer. For rendering the document, it is important to keep the rendering options specified in the document metadata (i.e. the YAML front matter at the top of the Rmd file), rather than in a <code>render()</code> function call. This ensures that when another person attempts to render your document, then have all the information necessary about, for example, what <code>.bib</code> file to use for your citations and references.</p>
+</div>
+</div>
+<div id="summary" class="section level2">
+<h2><span class="header-section-number">3.4</span> Summary</h2>
+<p>In this chapter I described a key principles of reproducible research, literate programming. This is dervied from computer science research and has been adopted by other disciplines, such as ecology and political science, to enable computational and statistical reproducibility. I also demonstrate the current software tools (R Markdown and knitr) that allow us to put this principle into practice. Over time, these software tools will change, and perhaps be replaced by something completely different. However, the principles that they are based on will endure, and are worth becoming familiar with as key concepts in computational and statistical reproducibility.</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-baggerly2009deriving">
+<p>Baggerly, Keith A, and Kevin R Coombes. 2009. “Deriving Chemosensitivity from Cell Lines: Forensic Bioinformatics and Reproducible Research in High-Throughput Biology.” <em>The Annals of Applied Statistics</em>. JSTOR, 1309–34.</p>
+</div>
+<div id="ref-Baker2016">
+<p>Baker, Monya. 2016. “Muddled Meanings Hamper Efforts to Fix Reproducibility Crisis.” <em>Nature News</em>. <a href="https://doi.org/10.1038/nature.2016.20076">https://doi.org/10.1038/nature.2016.20076</a>.</p>
+</div>
+<div id="ref-barnes2010publish">
+<p>Barnes, Nick. 2010. “Publish Your Computer Code: It Is Good Enough.” <em>Nature</em> 467 (7317). Nature Publishing Group: 753–53.</p>
+</div>
+<div id="ref-Begley2012clinical">
+<p>Begley, C. Glenn, and Lee M. Ellis. 2012. “Drug Development: Raise Standards for Preclinical Cancer Research.” <em>Nature</em> 483 (7391): 531–33. <a href="https://doi.org/10.1038/483531a">https://doi.org/10.1038/483531a</a>.</p>
+</div>
+<div id="ref-bond2016running">
+<p>Bond-Lamberty, Ben, A Peyton Smith, and Vanessa Bailey. 2016. “Running an Open Experiment: Transparency and Reproducibility in Soil and Ecosystem Science.” <em>Environmental Research Letters</em> 11 (8). IOP Publishing: 084004.</p>
+</div>
+<div id="ref-brischoux2009don">
+<p>Brischoux, François, and Pierre Legagneux. 2009. “Don’t Format Manuscripts: Journals Should Use a Generic Submission Format Until Papers Are Accepted.” <em>The Scientist</em> 23 (7): 24.</p>
+</div>
+<div id="ref-cottrell1999word">
+<p>Cottrell, Allin. 1999. “Word Processors: Stupid and Inefficient.” <a href="Essay, http://www.ecn.wfu.edu/cottrell/wp.html">Essay, http://www.ecn.wfu.edu/cottrell/wp.html</a>.</p>
+</div>
+<div id="ref-ehrenberg1977rudiments">
+<p>Ehrenberg, ASC. 1977. “Rudiments of Numeracy.” <em>Journal of the Royal Statistical Society. Series A (General)</em>. JSTOR, 277–97.</p>
+</div>
+<div id="ref-feinberg2011extracting">
+<p>Feinberg, Richard A, and Howard Wainer. 2011. “Extracting Sunbeams from Cucumbers.” <em>Journal of Computational and Graphical Statistics</em> 20 (4). Taylor &amp; Francis: 793–810.</p>
+</div>
+<div id="ref-Gandrud2015">
+<p>Gandrud, Christopher. 2015. <em>Reproducible Research with R and R Studio, Second Edition</em>. 2nd ed. Chapman and Hall Crc the R Series. Chapman; Hall CRC. <a href="http://gen.lib.rus.ec/book/index.php?md5=89E3848976A5DFAC000A892AA29FFE8D">http://gen.lib.rus.ec/book/index.php?md5=89E3848976A5DFAC000A892AA29FFE8D</a>.</p>
+</div>
+<div id="ref-gelman2002let">
+<p>Gelman, Andrew, Cristian Pasarica, and Rahul Dodhia. 2002. “Let’s Practice What We Preach: Turning Tables into Graphs.” <em>The American Statistician</em> 56 (2). Taylor &amp; Francis: 121–30.</p>
+</div>
+<div id="ref-gentleman2007statistical">
+<p>Gentleman, Robert, and Duncan Temple Lang. 2007. “Statistical Analyses and Reproducible Research.” <em>Journal of Computational and Graphical Statistics</em> 16 (1). Taylor &amp; Francis: 1–23.</p>
+</div>
+<div id="ref-Goodman341ps12">
+<p>Goodman, Steven N., Daniele Fanelli, and John P. A. Ioannidis. 2016. “What Does Research Reproducibility Mean?” <em>Science Translational Medicine</em> 8 (341). American Association for the Advancement of Science: 341ps12–341ps12. <a href="https://doi.org/10.1126/scitranslmed.aaf5027">https://doi.org/10.1126/scitranslmed.aaf5027</a>.</p>
+</div>
+<div id="ref-Hampton2015tao">
+<p>Hampton, Stephanie E., Sean S. Anderson, Sarah C. Bagby, Corinna Gries, Xueying Han, Edmund M. Hart, Matthew B. Jones, et al. 2015. “The Tao of Open Science for Ecology.” <em>Ecosphere</em> 6 (7): art120.</p>
+</div>
+<div id="ref-Herndon2013austerity">
+<p>Herndon, Thomas, Michael Ash, and Robert Pollin. 2013. “Does High Public Debt Consistently Stifle Economic Growth? A Critique of Reinhart and Rogoff.” <em>Cambridge Journal of Economics</em>. <a href="https://doi.org/10.1093/cje/bet075">https://doi.org/10.1093/cje/bet075</a>.</p>
+</div>
+<div id="ref-hoefling2014reproducible">
+<p>Hoefling, Holger, and Anthony Rossini. 2014. “Reproducible Research for Large-Scale Data Analysis.” In <em>Implementing Reproducible Research</em>, edited by Victoria Stodden, Friedrich Leisch, and Roger D Peng, 1–17. CRC Press.</p>
+</div>
+<div id="ref-Ince1012opencomputer">
+<p>Ince, Darrel C., Leslie Hatton, and John Graham-Cumming. 2012. “The Case for Open Computer Programs.” <em>Nature</em> 482 (7386): 485–88.</p>
+</div>
+<div id="ref-knuth1992literate">
+<p>Knuth, Donald E. 1992. “Literate Programming.” <em>CSLI Lecture Notes, Stanford, CA: Center for the Study of Language and Information (CSLI), 1992</em> 1.</p>
+</div>
+<div id="ref-koenker2009reproducible">
+<p>Koenker, Roger, and Achim Zeileis. 2009. “On Reproducible Econometric Research.” <em>Journal of Applied Econometrics</em> 24 (5). Wiley Online Library: 833–47.</p>
+</div>
+<div id="ref-lowndes2017our">
+<p>Lowndes, Julia S Stewart, Benjamin D Best, Courtney Scarborough, Jamie C Afflerbach, Melanie R Frazier, Casey C O’Hara, Ning Jiang, and Benjamin S Halpern. 2017. “Our Path to Better Science in Less Time Using Open Data Science Tools.” <em>Nature Ecology &amp; Evolution</em> 1. Nature Publishing Group: 0160.</p>
+</div>
+<div id="ref-Marwick2016JAMT">
+<p>Marwick, Ben. 2016. “Computational Reproducibility in Archaeological Research: Basic Principles and a Case Study of Their Implementation.” <em>Journal of Archaeological Method and Theory</em>. Springer US, 1–27. <a href="https://doi.org/10.1007/s10816-015-9272-9">https://doi.org/10.1007/s10816-015-9272-9</a>.</p>
+</div>
+<div id="ref-MarwickJerimalai">
+<p>Marwick, Ben, Chris Clarkson, Sue O’Connor, and Sophie Collins. 2016. “Early Modern Human Lithic Technology from Jerimalai, East Timor.” Journal Article. <em>Journal of Human Evolution</em> 101: 45–64.</p>
+</div>
+<div id="ref-MarwickVanVlack">
+<p>Marwick, Ben, Hannah G. Van Vlack, Cyler Conrad, Rasmi Shoocongdej, Cholawit Thongcharoenchaikit, and Seungki Kwak. 2017. “Adaptations to Sea Level Change and Transitions to Agriculture at Khao Toh Chong Rockshelter, Peninsular Thailand.” Journal Article. <em>Journal of Archaeological Science</em> 77: 94–108. <a href="https://doi.org/10.1016/j.jas.2016.10.010">https://doi.org/10.1016/j.jas.2016.10.010</a>.</p>
+</div>
+<div id="ref-Morin2012blackbox">
+<p>Morin, A., J. Urban, P. D. Adams, I. Foster, A. Sali, D. Baker, and P. Sliz. 2012. “Shining Light into Black Boxes.” <em>Science</em> 336 (6078): 159–60. <a href="https://doi.org/10.1126/science.1218263">https://doi.org/10.1126/science.1218263</a>.</p>
+</div>
+<div id="ref-murrell2016Rgraphics">
+<p>Murrell, Paul. 2016. <em>R Graphics</em>. CRC Press.</p>
+</div>
+<div id="ref-nosek2015open">
+<p>Nosek, B. A., G. Alter, G. C. Banks, D. Borsboom, S. D. Bowman, S. J. Breckler, S. Buck, et al. 2015. “Promoting an Open Research Culture: Author Guidelines for Journals Could Help to Promote Transparency, Openness, and Reproducibility.” <em>Science (New York, N.Y.)</em> 348 (6242): 1422–5.</p>
+</div>
+<div id="ref-Prinz2011drugtargets">
+<p>Prinz, Florian, Thomas Schlange, and Khusru Asadullah. 2011. “Believe It or Not: How Much Can We Rely on Published Data on Potential Drug Targets?” <em>Nat Rev Drug Discov</em> 10 (9): 712–12. <a href="https://doi.org/10.1038/nrd3439-c1">https://doi.org/10.1038/nrd3439-c1</a>.</p>
+</div>
+<div id="ref-reichman2011challenges">
+<p>Reichman, OJ, Matthew B Jones, and Mark P Schildhauer. 2011. “Challenges and Opportunities of Open Data in Ecology.” <em>Science</em> 331 (6018).</p>
+</div>
+<div id="ref-rossini2003edge">
+<p>Rossini, AJ, Thomas Lumley, and Friedrich Leisch. 2003. “On the Edge: Statistics &amp; Computing: Reproducible Statistical Research.” <em>Chance</em> 16 (2). Taylor &amp; Francis Group: 41–45.</p>
+</div>
+<div id="ref-Sandve2013tenrules">
+<p>Sandve, Anton AND Taylor, Geir Kjetil AND Nekrutenko. 2013. “Ten Simple Rules for Reproducible Computational Research.” <em>PLoS Comput Biol</em> 9 (10). Public Library of Science: e1003285. <a href="https://doi.org/10.1371/journal.pcbi.1003285">https://doi.org/10.1371/journal.pcbi.1003285</a>.</p>
+</div>
+<div id="ref-Schulte2012literate">
+<p>Schulte, Eric, Dan Davison, Thomas Dye, and Carsten Dominik. 2012. “A Multi-Language Computing Environment for Literate Programming and Reproducible Research.” <em>Journal of Statistical Software</em> 46 (1): 1–24. <a href="https://doi.org/10.18637/jss.v046.i03">https://doi.org/10.18637/jss.v046.i03</a>.</p>
+</div>
+<div id="ref-Steen2013retractions">
+<p>Steen, Arturo AND Fang, R. Grant AND Casadevall. 2013. “Why Has the Number of Scientific Retractions Increased?” <em>PLoS ONE</em> 8 (7). Public Library of Science: e68397. <a href="https://doi.org/10.1371/journal.pone.0068397">https://doi.org/10.1371/journal.pone.0068397</a>.</p>
+</div>
+<div id="ref-stodden2014implementing">
+<p>Stodden, Victoria, Friedrich Leisch, and Roger D Peng. 2014. <em>Implementing Reproducible Research</em>. Chapman; Hall/CRC.</p>
+</div>
+<div id="ref-Vannoorden2011retractions">
+<p>Van Noorden, Richard. 2011. “Science Publishing: The Trouble with Retractions.” <em>Nature</em> 478 (9): 26–28. <a href="https://doi.org/10.1038/478026a">https://doi.org/10.1038/478026a</a>.</p>
+</div>
+<div id="ref-Wainer1997ImprovingTabular">
+<p>Wainer, Howard. 1997. “Improving Tabular Displays, with Naep Tables as Examples and Inspirations.” <em>Journal of Educational and Behavioral Statistics</em> 22 (1): 1–30. <a href="https://doi.org/10.3102/10769986022001001">https://doi.org/10.3102/10769986022001001</a>.</p>
+</div>
+<div id="ref-wickham2016ggplot2">
+<p>Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer.</p>
+</div>
+<div id="ref-wilson2014best">
+<p>Wilson, Greg, D. A. Aruliah, C. Titus Brown, Neil P. Chue Hong, Matt Davis, Richard T. Guy, Steven H. D. Haddock, et al. 2014. “Best Practices for Scientific Computing.” <em>PLoS Biol</em> 12 (1).</p>
+</div>
+<div id="ref-YihuiKnitrBook">
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
+</div>
+<div id="ref-xie2016bookdown">
+<p>Xie, Yihui. 2016. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. CRC Press.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dataorganisation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/benmarwick/aswr/edit/master/inst/02-Writing-reproducible-research.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

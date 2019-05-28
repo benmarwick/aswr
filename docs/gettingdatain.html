@@ -1,41 +1,41 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Archaeological Science with R</title>
-  <meta name="description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Getting data into R | Archaeological Science with R</title>
+  <meta name="description" content="This is the book site for ‘Archaeological Science with R’." />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Archaeological Science with R" />
+  <meta property="og:title" content="Chapter 5 Getting data into R | Archaeological Science with R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>." />
+  <meta property="og:description" content="This is the book site for ‘Archaeological Science with R’." />
   <meta name="github-repo" content="benmarwick/aswr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Archaeological Science with R" />
+  <meta name="twitter:title" content="Chapter 5 Getting data into R | Archaeological Science with R" />
   
-  <meta name="twitter:description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>." />
+  <meta name="twitter:description" content="This is the book site for ‘Archaeological Science with R’." />
   
 
-<meta name="author" content="Ben Marwick">
+<meta name="author" content="Ben Marwick" />
 
 
-<meta name="date" content="2018-11-01">
+<meta name="date" content="2019-05-27" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="dataorganisation.html">
 <link rel="next" href="preparingthedata.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -48,12 +48,12 @@
 
 
 <script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -153,16 +153,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7.1" data-path="introduction.html"><a href="introduction.html#draft-toc"><i class="fa fa-check"></i><b>2.7.1</b> Draft TOC</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html"><i class="fa fa-check"></i><b>3</b> Implementing reproducible research</a><ul>
-<li class="chapter" data-level="3.1" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#overview-1"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
-<li class="chapter" data-level="3.2" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#what-does-it-mean-to-do-reproducible-research"><i class="fa fa-check"></i><b>3.2</b> What does it mean to do reproducible research?</a></li>
-<li class="chapter" data-level="3.3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#literate-programming"><i class="fa fa-check"></i><b>3.3</b> Literate programming</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#document-metadata-citations-and-the-bibliography"><i class="fa fa-check"></i><b>3.3.1</b> Document metadata, citations and the bibliography</a></li>
-<li class="chapter" data-level="3.3.2" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#narrative-text-structuring-the-document-and-special-characters-in-the-text"><i class="fa fa-check"></i><b>3.3.2</b> Narrative text, structuring the document and special characters in the text</a></li>
-<li class="chapter" data-level="3.3.3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#code-blocks-cross-referencing-figures-and-tables-captions-and-inline-r-code"><i class="fa fa-check"></i><b>3.3.3</b> Code blocks, cross-referencing figures and tables, captions, and inline R code</a></li>
-<li class="chapter" data-level="3.3.4" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#rendering-the-r-markdown-into-an-output-file"><i class="fa fa-check"></i><b>3.3.4</b> Rendering the R Markdown into an output file</a></li>
+<li class="chapter" data-level="3" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html"><i class="fa fa-check"></i><b>3</b> Writing reproducible research</a><ul>
+<li class="chapter" data-level="3.1" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#overview-1"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#what-does-it-mean-to-do-reproducible-research"><i class="fa fa-check"></i><b>3.2</b> What does it mean to do reproducible research?</a></li>
+<li class="chapter" data-level="3.3" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#literate-programming"><i class="fa fa-check"></i><b>3.3</b> Literate programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#document-metadata-citations-and-the-bibliography"><i class="fa fa-check"></i><b>3.3.1</b> Document metadata, citations and the bibliography</a></li>
+<li class="chapter" data-level="3.3.2" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#narrative-text-structuring-the-document-and-special-characters-in-the-text"><i class="fa fa-check"></i><b>3.3.2</b> Narrative text, structuring the document and special characters in the text</a></li>
+<li class="chapter" data-level="3.3.3" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#code-blocks"><i class="fa fa-check"></i><b>3.3.3</b> Code blocks</a></li>
+<li class="chapter" data-level="3.3.4" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#cross-referencing-and-captioning-figures"><i class="fa fa-check"></i><b>3.3.4</b> Cross-referencing and captioning figures</a></li>
+<li class="chapter" data-level="3.3.5" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#cross-referencing-captioning-tables"><i class="fa fa-check"></i><b>3.3.5</b> Cross-referencing captioning tables</a></li>
+<li class="chapter" data-level="3.3.6" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#using-inline-r-code-to-put-results-in-the-text"><i class="fa fa-check"></i><b>3.3.6</b> Using inline R code to put results in the text</a></li>
+<li class="chapter" data-level="3.3.7" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#rendering-the-r-markdown-into-an-output-file"><i class="fa fa-check"></i><b>3.3.7</b> Rendering the R Markdown into an output file</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#summary"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
+<li class="chapter" data-level="3.4" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#summary"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="dataorganisation.html"><a href="dataorganisation.html"><i class="fa fa-check"></i><b>4</b> Collecting &amp; organising data to analyse with R</a><ul>
 <li class="chapter" data-level="4.1" data-path="dataorganisation.html"><a href="dataorganisation.html#overview-2"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
@@ -261,9 +264,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="one-spreadsheet-file-one-or-more-sheets" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> One spreadsheet file, one or more sheets</h3>
 <p>Although the CSV file might be the ideal format for tabular data, and the simplest to work with in R, in our day-to-day work with diverse collaborators usually means that we need to get data in and out of Microsoft Excel. There are many packages for working with Excel files (e.g. gdata and xlsx), but the one I recommend is readxl by Hadley Wickham because it is the simplest to install and use. You can install it with <code>install.packages(&quot;readxl&quot;)</code>. Here is a demonstration of a simple use of this package to read in one sheet of one Excel file:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">library</span>(readxl)</a>
-<a class="sourceLine" id="cb36-2" data-line-number="2">jerimalai_sq_a &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/jerimalai_lithics.xlsx&quot;</span>)</a>
-<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="co"># if you have a CSV file, use read_csv() from the readr package</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)
+jerimalai_sq_a &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/jerimalai_lithics.xlsx&quot;</span>)
+<span class="co"># if you have a CSV file, use read_csv() from the readr package</span></code></pre>
 <p>As you type that code to import your own spreadsheets, you can save some typing with a special tab-complete function in RStudio. After you type <code>read_excel(&quot;&quot;)</code>, move your cursor between the two double quotation marks, and press tab (or Control+Space). A small window will pop up at that location, giving you a list of items to choose from, saving you from typing the full names of the path and file. Figure <a href="gettingdatain.html#fig:rstudiotabcompletefilebrowsing">5.1</a> shows an example of this, where you can see that I have tabbed once to get a list and select the ‘data’ folder, and then I’ve tabbed again to get a list of the contents of that folder. Then I can use the arrow keys to select, or type the first few letters of the file I want to complete the command. This kind of tab-completion is possible for many R functions, and can substantially increase the efficiency of your coding by reducing the amount of typing you need to do, and saving you from making spelling mistakes.</p>
 <div class="figure" style="text-align: center"><span id="fig:rstudiotabcompletefilebrowsing"></span>
 <img src="images/rstudio_tab_complete_file_browsing.png" alt="Schematic of file organisation for a simple example of using an Excel file with R." width="400pt" />
@@ -288,24 +291,24 @@ Figure 5.3: Screenshot of the help page for the function read_excel.
 </div>
 <p>We can skip over most of the details on the <code>read_excel()</code> help page, but there is one more argument that is worth nothing because it is very handy. The <code>skip</code> argument allows us to specify a number of row to skip when importing from and Excel file. This is especially useful when our speadsheet has a row with merged cells at the top, perhaps to indicate groups of similiar variables (i.e. columns). We usually want to skip over these rows with merged cells when we import data from spreadsheets like this. For example, we might do <code>read_excel(&quot;data/jerimalai_lithics.xlsx&quot;, skip = 1)</code> to skip the first row of our spreadsheet (our example spreadsheet does not contain any merged cells in the first row, so we don’t need to skip it for this spreadsheet).</p>
 <p>If we wanted to read in the second sheet of our Excel file, which contains data on the stone artefacts from excavation square B, we have two options:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">jerimalai_sq_b &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/jerimalai_lithics.xlsx&quot;</span>,</a>
-<a class="sourceLine" id="cb37-2" data-line-number="2">                             <span class="dt">sheet =</span> <span class="dv">2</span>) <span class="co"># using the sheet number</span></a>
-<a class="sourceLine" id="cb37-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="co"># or we can do it like this:</span></a>
-<a class="sourceLine" id="cb37-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb37-6" data-line-number="6">jerimalai_sq_b &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/jerimalai_lithics.xlsx&quot;</span>,</a>
-<a class="sourceLine" id="cb37-7" data-line-number="7">                             <span class="dt">sheet =</span> <span class="st">&quot;Jerimalai_All_Artefacts_Sq_B&quot;</span>) </a>
-<a class="sourceLine" id="cb37-8" data-line-number="8"><span class="co"># using the name of the sheet in our Excel file</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">jerimalai_sq_b &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/jerimalai_lithics.xlsx&quot;</span>,
+                             <span class="dt">sheet =</span> <span class="dv">2</span>) <span class="co"># using the sheet number</span>
+
+<span class="co"># or we can do it like this:</span>
+
+jerimalai_sq_b &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/jerimalai_lithics.xlsx&quot;</span>,
+                             <span class="dt">sheet =</span> <span class="st">&quot;Jerimalai_All_Artefacts_Sq_B&quot;</span>) 
+<span class="co"># using the name of the sheet in our Excel file</span></code></pre>
 <p>I prefer to use the sheet name for the <code>sheet =</code> argument because if the order of sheets in the Excel file changes the function will no longer read in the correct data when <code>sheet = 2</code>.</p>
 <p>Now we have read in two sheets from our Excel file, and we have two data frames ready to work with in our R session. But what if we have a large number of sheets in a single Excel file? In this case it will be tedious to repeat these lines many times, changing the sheet name for each copy of the lines. Avoiding repititive tedium is one of the strengths of using a programmming language for data analysis, and here is how we can solve this particular problem:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="co"># create a character vector of sheet names</span></a>
-<a class="sourceLine" id="cb38-2" data-line-number="2">jerimalai_sheet_names &lt;-<span class="st"> </span><span class="kw">excel_sheets</span>(<span class="st">&quot;data/jerimalai_lithics.xlsx&quot;</span>)</a>
-<a class="sourceLine" id="cb38-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="co"># iterate over the vector of sheet names to read in the data from each sheet</span></a>
-<a class="sourceLine" id="cb38-5" data-line-number="5"><span class="kw">library</span>(purrr)</a>
-<a class="sourceLine" id="cb38-6" data-line-number="6">jerimalai_all_sheets &lt;-<span class="st"> </span><span class="kw">map</span>(jerimalai_sheet_names, </a>
-<a class="sourceLine" id="cb38-7" data-line-number="7">                            <span class="op">~</span><span class="kw">read_excel</span>(<span class="st">&quot;data/jerimalai_lithics.xlsx&quot;</span>,</a>
-<a class="sourceLine" id="cb38-8" data-line-number="8">                                        <span class="dt">sheet =</span> .x))</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create a character vector of sheet names</span>
+jerimalai_sheet_names &lt;-<span class="st"> </span><span class="kw">excel_sheets</span>(<span class="st">&quot;data/jerimalai_lithics.xlsx&quot;</span>)
+
+<span class="co"># iterate over the vector of sheet names to read in the data from each sheet</span>
+<span class="kw">library</span>(purrr)
+jerimalai_all_sheets &lt;-<span class="st"> </span><span class="kw">map</span>(jerimalai_sheet_names, 
+                            <span class="op">~</span><span class="kw">read_excel</span>(<span class="st">&quot;data/jerimalai_lithics.xlsx&quot;</span>,
+                                        <span class="dt">sheet =</span> .x))</code></pre>
 <p>In plain English, the above example uses the <code>excel_sheets()</code> function (from the readxl package) to get the sheet names from our Excel file. We have just two sheets in our example, but this same approach could be used for 10, or 100, or more sheets. The object <code>jerimalai_sheet_names</code> is a character vector containing the names of the sheets in our Excel file. The next part of the example loads functions from Hadley Wickham’s purrr package, and then shows how we can use the <code>map()</code> function to apply to the <code>read_excel()</code> function to each sheet of our Excel file. For each item in the <code>jerimalai_sheet_names</code> vector, that is, each sheet name, the <code>map()</code> function will apply the <code>read_excel()</code> function, and store the resulting data frame in <code>jerimalai_all_sheets</code>. There are two important details in the <code>map()</code> function to note here, first is the <code>~</code>, which we use to indicate that we want the function <code>read_excel()</code> to operate on each element of <code>jerimalai_sheet_names</code>, and second is the <code>.x</code> which is a place-holder for each specific element of <code>jerimalai_sheet_names</code>.</p>
 <p>In the above example we take advantage of a very powerful and efficient programming concept known as a loop or for-loop. This is an instruction to the computer to repeat a piece of code a specific number of times. In our example, the computer will repeat <code>read_excel()</code> two times, once for each sheet in our Excel file. During the first repitition, the <code>.x</code> in the <code>map()</code> function takes the value of Jerimalai_All_Artefacts_Sq_A, the first sheet name, and during the second repitition the <code>.x</code> becomes Jerimalai_All_Artefacts_Sq_B, the second sheet name. With just two repititions, this complexity might seem like overkill, but you can imagine how much time we would save if we had 50 or 500 sheets. There are other methods for writing for loops in R (e.g. using <code>for()</code> and <code>lapply()</code>), but I prefer <code>map()</code> for most occasions because it is quick to type and easy to read and understand when I come back to my code after some time away and can’t immediately remember what is going on. For further reading about other methods of writing loops in R, I recommend <span class="citation">De Vries and Meys (<a href="#ref-de2015r">2015</a>)</span>, <span class="citation">Matloff (<a href="#ref-Matloff2011art">2011</a>)</span>, or <span class="citation">Wickham (<a href="#ref-wickham2014advanced">2014</a>)</span>.</p>
 <p>The result of our <code>map()</code> function is a list of two data frames. A list is a very useful data type in R, and worth to get comfortable with. So far we have used vectors (a single sequence of data elements), such as the character vector <code>jerimalai_sheet_names</code> that holds the sheet names of our Excel file, and data frames, which are tables of data similar to what we see in Excel spreadsheets and other tabular structures. Often our data frames have one observation per row, with each column representing a variable, a measure, feature, or characteristic of that observation, but more exotic uses are also possible, such as storing lists in rows. Our jerimalai data frame is a good example of a typical data frame, with each row representing a single stone artefact (or observation) and each column represented a variable that we recorded for each artefact. So how is a list different from a vector or data frame? A list is a generic vector that can contain a mixture of any kind of object. We can have a list or several numeric vectors, or a list that includes several numeric, character and logical vectors, or a list of data frames, or a list of lists, and so on. Lists are the most versatile objects in R because we can store anything in them.</p>
@@ -313,49 +316,24 @@ Figure 5.3: Screenshot of the help page for the function read_excel.
 <div id="mulitiple-spreadsheet-files" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> Mulitiple spreadsheet files</h3>
 <p>If we have a handful, or hundreds of spreadsheet files, we can take advantage of the same looping concept that we used for reading multiple sheets to quickly read all these files into our R session. In the example below we have a folder called many_excel_files that contains two Excel files (but it could be any number, 10, 100, 1000 or more files). We will make a character vector of the Excel file names, then we will loop over each file name to extract the data from each Excel file, one at a time, and collect the results in a list:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="co"># get the file names and store in a character vector</span></a>
-<a class="sourceLine" id="cb39-2" data-line-number="2">my_numerous_excel_files_names &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&quot;data/many_excel_files&quot;</span>, </a>
-<a class="sourceLine" id="cb39-3" data-line-number="3">                                      <span class="dt">full.names =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb39-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb39-5" data-line-number="5"><span class="co"># apply the read_excel() function to each file in our vector of file names</span></a>
-<a class="sourceLine" id="cb39-6" data-line-number="6">my_numerous_excel_files_data &lt;-<span class="st"> </span><span class="kw">map</span>(my_numerous_excel_files_names, </a>
-<a class="sourceLine" id="cb39-7" data-line-number="7">                                    <span class="op">~</span><span class="kw">read_excel</span>(.x))</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># get the file names and store in a character vector</span>
+my_numerous_excel_files_names &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&quot;data/many_excel_files&quot;</span>, 
+                                      <span class="dt">full.names =</span> <span class="ot">TRUE</span>)
+
+<span class="co"># apply the read_excel() function to each file in our vector of file names</span>
+my_numerous_excel_files_data &lt;-<span class="st"> </span><span class="kw">map</span>(my_numerous_excel_files_names, 
+                                    <span class="op">~</span><span class="kw">read_excel</span>(.x))</code></pre>
 <p>In this example we see the function <code>list.files()</code>, which is very useful, and comes built-in with R (we don’t need to install a package for this one). As we use it here, <code>list.files()</code> creates a list of all the files in the many_excel_files folder. But sometimes we don’t want to read in all the files, just a set of them, according to something they have in common. We can use the <code>pattern</code> argument to restrict the files that <code>list.files()</code> will list. For example, if we have a mix of text files and Excel files in a folder, but we only want to get a list of the Excel files, we can use pattern like this:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">only_my_excel_files &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&quot;data/many_excel_files&quot;</span>, </a>
-<a class="sourceLine" id="cb40-2" data-line-number="2">                                  <span class="dt">pattern =</span> <span class="st">&quot;.xlsx$&quot;</span>, </a>
-<a class="sourceLine" id="cb40-3" data-line-number="3">                                  <span class="dt">full.names =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb40-4" data-line-number="4">                                  <span class="dt">ignore.case =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">only_my_excel_files &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&quot;data/many_excel_files&quot;</span>, 
+                                  <span class="dt">pattern =</span> <span class="st">&quot;.xlsx$&quot;</span>, 
+                                  <span class="dt">full.names =</span> <span class="ot">TRUE</span>, 
+                                  <span class="dt">ignore.case =</span> <span class="ot">TRUE</span>)</code></pre>
 <p>When we use <code>pattern = &quot;.xlsx$&quot;</code>, we are telling the computer that we only want to list files that have ‘.xlsx’ at the end of their filename. The dollar sign requires that the characters <code>.xlxs</code> match our search only when they are at the end of the filename. For example, this filename would not match this pattern: <code>names_of_.xlsx_files.docx</code> because although it contains the string <code>.xlxs</code>, the end of the filename is <code>docx</code>, so it doesn’t match our pattern. We can capture files ending with ‘.xlsx’ or ‘.XLSX’ by adding <code>ignore.case = TRUE</code>, which will ignore differences between upper and lower case characters. We can also use <code>pattern</code> to match other parts of the file names using regular expressions. For example, if we have many spreadsheets that are named in this format: ‘region_name-site_name-square_name-recorder_initials.xlsx’, we can write R code to select files that have the characters ‘BM’ only after the third ‘-’ to get all the files for regions/sites/squares that I recorded. We will discuss how to use regular expressions to do this kind of selection in Chapter XX.</p>
 <p>Our use of <code>map()</code> in the above example is very similar to how we used it when we read in multiple sheets from one Excel file. We can see the common elements <code>~</code> (indicating the function to be repeated) and <code>.x</code> (a place-holder for each element of the vector that the function will operate on) in both examples. Similarly, the output we receive from the <code>map()</code> function in this example is a list of data frames. This approach is especially useful when we have a large number of Excel files that are similarly structured (i.e. the same number of columns with the same column names) because then we can also use <code>map()</code> to analyse the visualise that data.</p>
 </div>
 <div id="importing-messy-spreadsheets-or-when-is-it-ok-to-manually-edit-the-data" class="section level3">
 <h3><span class="header-section-number">5.2.3</span> Importing messy spreadsheets, or when is it ok to manually edit the data?</h3>
 <p>In the examples so far, we have assumed that the data in the spreadsheet is a tidy rectangle in the upper left corner of the sheet, and does not contain any formatting or formulas that are important for our analyses. We introduced <code>skip</code> as a method to ignore rows with merged cells or other information that we don’t need. However, what can we do if our Excel file contains a set of tables in a single sheet? Or when some bold text in some cells conveys important important information? The rexcel package by Rich FitzJohn and Jenny Bryan and the tidyxl package by Duncan Garmonsway can help with capturing data, formulae and formatting information from an Excel sheet. The jailbreakr package, also by Rich FitzJohn and Jenny Bryan can help with Excel files that contains a set of tables laid out on a single sheet. Similarly, the unpivotr package by Duncan Garmonsway can help with importing Excel spreadsheets containing complex or irregular layouts of into regular data frames in R.</p>
-<p>The use of these packages is difficult to generalise into a simple example because messy spreadsheets are often messy in their own way. Here I have contrived an example of a messy spreadsheet with three tables in one sheet <a href="gettingdatain.html#fig:messyexcel">5.4</a>. The data come from Marwick et al. <span class="citation">(<a href="#ref-MarwickVanVlack">2017</a>)</span>, and the code below shows how we can use the rexcel and jailbreakr packages to automatically identify the three minitables in the sheet, and extract them into a data frame for further work.</p>
-<div class="figure" style="text-align: center"><span id="fig:messyexcel"></span>
-<img src="images/messy_ktc_data.png" alt="Screenshot of a messy Excel sheet with three minitables on one sheet" width="400pt" />
-<p class="caption">
-Figure 5.4: Screenshot of a messy Excel sheet with three minitables on one sheet
-</p>
-</div>
-<p>In the code below, we use the <code>rexcel_read()</code> function to extract data, formatting and formulars from the spreadsheet into R. Then we use the <code>split_sheet()</code> function to classify our sheet into regions that contain tabular data. The output from <code>split_sheet()</code> is a list, and we can access the second item in the list (i.e. the secon minitable on the sheet) with <code>messy_ktc_split_sheet[[2]]</code> (for more about working with lists, see Chapter XX). To access the cell values for this second minitable, we use <code>messy_ktc_split_sheet[[2]]$values()</code>, and we apply the function <code>as.data.frame()</code> to convert the output to a data frame that we can work with.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="co"># to install these packages, you&#39;ll need to run these lines:</span></a>
-<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="co"># devtools::install_github(c(&quot;hadley/xml2&quot;, </span></a>
-<a class="sourceLine" id="cb41-3" data-line-number="3"><span class="co">#                            &quot;rsheets/linen&quot;, </span></a>
-<a class="sourceLine" id="cb41-4" data-line-number="4"><span class="co">#                            &quot;rsheets/cellranger&quot;, </span></a>
-<a class="sourceLine" id="cb41-5" data-line-number="5"><span class="co">#                            &quot;rsheets/rexcel&quot;, </span></a>
-<a class="sourceLine" id="cb41-6" data-line-number="6"><span class="co">#                            &quot;rsheets/jailbreakr&quot;))</span></a>
-<a class="sourceLine" id="cb41-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb41-8" data-line-number="8"><span class="kw">library</span>(rexcel)</a>
-<a class="sourceLine" id="cb41-9" data-line-number="9"><span class="co"># read in the messy spreadsheet file</span></a>
-<a class="sourceLine" id="cb41-10" data-line-number="10">messy_ktc &lt;-<span class="st"> </span><span class="kw">rexcel_read</span>(<span class="st">&quot;data/messy_ktc_data.xlsx&quot;</span>)</a>
-<a class="sourceLine" id="cb41-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb41-12" data-line-number="12"><span class="kw">library</span>(jailbreakr)</a>
-<a class="sourceLine" id="cb41-13" data-line-number="13"><span class="co"># automatically detect minitables within the sheet</span></a>
-<a class="sourceLine" id="cb41-14" data-line-number="14">messy_ktc_split_sheet &lt;-<span class="st"> </span><span class="kw">split_sheet</span>(messy_ktc)</a>
-<a class="sourceLine" id="cb41-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb41-16" data-line-number="16"><span class="co"># access one of the minitables</span></a>
-<a class="sourceLine" id="cb41-17" data-line-number="17">lithic_data &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(messy_ktc_split_sheet[[<span class="dv">2</span>]]<span class="op">$</span><span class="kw">values</span>())</a></code></pre></div>
 <p>Although these methods can make working with messy spreadsheets less painful, they raise the question of whether we should simply edit the spreadsheet manually so that it’s more convienent for importing into R (e.g. moving the each of the tables onto their own sheet or own file, or creating a new column to represent the variable that was indicated by the bold text formatting). Manually editing is tempting because it could be quicker and less frustrating than importing the file as-is and write R code to arrange the data into a more useful form.</p>
 <p>The decision about whether to manually edit the data, or write code to arrange the data can be difficult. In my experience, it can take up to an hour or two to work out the code to take data from a messy spreadsheet and arrange it into a convienent form in R. On the other hand, it can take just a few minutes to manually edit the spreadsheet to prepare it for importing into R and be ready for use. If time is the only consideration, the choice may be obvious. However, manually editing the data is problematic because it can involve decisions that change the results of your analysis, but leave no trace and are impossible, or very inconvienent, to reverse. Making undocumented decisions in the data analysis workflow violates a key principle of reproducible research, that every decision about the data analysis should be documented in the analysis scripts. One way around this is to write a brief note that describes how you altered the data from its original form to the form you used to import into R. This note is included with the original, unaltered data, your new modified data in your project compendium so anyone can trace your steps in editing the data. There are some software packages that can help with this (e.g. <a href="https://datproject.org/" class="uri">https://datproject.org/</a>), but I have not seen any in regular use among social scientists, so I am reluctant to make specific recommendations.</p>
 <p>One factor that might help you decide where to manually edit a spreadsheet or to write code to workaround the messy spreadsheet is whether or not other people need to edit the spreadsheet during to time that you are working with it. If your collaborators are still updating and circulating the spreadsheet while you are working on the analysis, then it may be disruptive if you reorganise the sheet in the middle of this process. In this situation it may be preferable to write code to handle the messiness. On the other hand, if the data in the spreadsheet is final and no further changes are being made by other people, then manual editing wont be disruptive to the collaboration process, and might be a better option.</p>
@@ -364,97 +342,84 @@ Figure 5.4: Screenshot of a messy Excel sheet with three minitables on one sheet
 <div id="tabular-data-from-non-spreadsheet-programs-pdfs-and-microsoft-word-documents" class="section level2">
 <h2><span class="header-section-number">5.3</span> Tabular data from non-spreadsheet programs: PDFs and Microsoft Word documents</h2>
 <p>While spreadsheets and spreadsheet-like data are easy to import into R, occasionally we need to get tabular data out of other kinds of documents for our analysis. This is often the case when we want to use data published in a report or as supplementary materials to a journal article. For small tables it may be practical to transcribe them into a spreadsheet by hand, and then read that spreadsheet into R using the methods described above. However, when you have large tables, or many tables across many pages or many documents this is undesirable because it is time consuming and will likely introduce transcription errors.</p>
-<p>Below is an example of how we can extract a table from a specific page of a PDF file of a journal article. Using Thomas Leeper’s tabulizer package, we specify the file to operate on, and the page (or pages) to look for tables on. Consider the table in Figure <a href="gettingdatain.html#fig:terry-table-pic">5.5</a>, which is from <span class="citation">Terry et al. (<a href="#ref-Terry2000">2000</a>)</span>. This would be tedious to transcribe by hand, so we can use the extract_tables function from the tabulizer package to read the PDF and extract this table to use in R.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;images/page_from_Terry_et_ al_2000_[P].png&quot;</span>)</a></code></pre></div>
+<p>Below is an example of how we can extract a table from a specific page of a PDF file of a journal article. Using Thomas Leeper’s tabulizer package, we specify the file to operate on, and the page (or pages) to look for tables on. Consider the table in Figure <a href="gettingdatain.html#fig:terry-table-pic">5.4</a>, which is from <span class="citation">Terry et al. (<a href="#ref-Terry2000">2000</a>)</span>. This would be tedious to transcribe by hand, so we can use the extract_tables function from the tabulizer package to read the PDF and extract this table to use in R.</p>
+<pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;images/page_from_Terry_et_ al_2000_[P].png&quot;</span>)</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:terry-table-pic"></span>
 <img src="images/page_from_Terry_et_%20al_2000_[P].png" alt="A table of a data from a PDF file." width="3304" />
 <p class="caption">
-Figure 5.5: A table of a data from a PDF file.
+Figure 5.4: A table of a data from a PDF file.
 </p>
 </div>
 <p>In the example below, the <code>extract_tables()</code> function returns a list with one item. If a page has multiple tables, or text and tables, this list would have additional items. In the example below, the list item is a character matrix, which is the table that we want to work with. We can coerce the matrix to a data frame with <code>as_data_frame()</code> from the dplyr package, and then the table is nearly ready to work with in R. There are a few additional steps of cleaning to do before we can work with this table, such as moving the first and second rows out of the table and into the column headings, and coercing the measurement columns from character class to numeric class so they are suitable for numerical operations. We will investigate how to do these tasks when we discuss cleaning data in Chapter X.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">library</span>(tabulizer) <span class="co"># load the libraries</span></a>
-<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb43-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb43-4" data-line-number="4"><span class="co"># read in the table from the PDF file</span></a>
-<a class="sourceLine" id="cb43-5" data-line-number="5">table_from_pdf &lt;-<span class="st"> </span><span class="kw">extract_tables</span>(<span class="st">&quot;data/Terry_et_al_2000_[P].pdf&quot;</span>, </a>
-<a class="sourceLine" id="cb43-6" data-line-number="6">                                 <span class="dt">pages =</span> <span class="dv">9</span>)</a>
-<a class="sourceLine" id="cb43-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb43-8" data-line-number="8"><span class="co"># inspect the output of extract_tables(), here we acces the first item in the list</span></a>
-<a class="sourceLine" id="cb43-9" data-line-number="9"><span class="co"># and coerce to a data frame</span></a>
-<a class="sourceLine" id="cb43-10" data-line-number="10"><span class="kw">as_data_frame</span>(table_from_pdf[[<span class="dv">1</span>]])</a></code></pre></div>
-<pre><code>## # A tibble: 39 x 6
-##    V1     V2        V3      V4      V5    V6          
-##    &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;       
-##  1 &quot;&quot;     Mehlich P Olsen P Total P &quot;&quot;    Ring Test   
-##  2 Sample (mg/kg)   (mg/kg) (mg/kg) &quot;&quot;    Rating (1–5)
-##  3 O15-1  17.3      6.5     1762    &quot;&quot;    2           
-##  4 10G-1  18.3      6.5     1627    &quot;&quot;    2           
-##  5 N9-10  18.9      9.4     1496    &quot;&quot;    3           
-##  6 10H-1  20.6      4.5     1657    &quot;&quot;    4           
-##  7 10D-4  22.0      7.0     1143    &quot;&quot;    3           
-##  8 N9-12  23.0      10.0    1103    &quot;&quot;    4           
-##  9 N9-8   23.0      17.0    1678    &quot;&quot;    4           
-## 10 O17-2  23.1      15.4    1851    &quot;&quot;    3           
-## # ... with 29 more rows</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="co"># save as a CSV file easier downstream use and reuse by others</span></a>
-<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="kw">write.csv</span>(table_from_pdf[[<span class="dv">1</span>]], <span class="st">&quot;data/data_output/table_from_Terry_et_al_2000.csv&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tabulizer) <span class="co"># load the libraries</span>
+<span class="kw">library</span>(dplyr)
+
+<span class="co"># read in the table from the PDF file</span>
+table_from_pdf &lt;-<span class="st"> </span><span class="kw">extract_tables</span>(<span class="st">&quot;data/Terry_et_al_2000_[P].pdf&quot;</span>, 
+                                 <span class="dt">pages =</span> <span class="dv">9</span>)
+
+<span class="co"># inspect the output of extract_tables(), here we acces the first item in the list</span>
+<span class="co"># and coerce to a data frame</span>
+<span class="kw">as_data_frame</span>(table_from_pdf[[<span class="dv">1</span>]])
+
+<span class="co"># save as a CSV file easier downstream use and reuse by others</span>
+<span class="kw">write.csv</span>(table_from_pdf[[<span class="dv">1</span>]], <span class="st">&quot;data/data_output/table_from_Terry_et_al_2000.csv&quot;</span>)</code></pre>
 <p>The tabulizer package also has an interactive mode allowing you to click and drag a rectangle over a page to select the area to extract from. For large PDF files you can use the <code>split_pdf()</code> function to separate out the pages with tables to improve the performance of <code>extract_tables()</code>. Of course, after extracting the table from the PDF you should save it as a CSV file to ensure that it can more easily be resued in the future.</p>
 <p>We can similarly extract table from Microsoft Word documents using the Bob Rudis’ docxtractr packages.The docxtractr package provides tools to count the number of tables in a documents, identify the table structure, and extract tables from Microsoft Word docx documents. The example below shows how we can extract a table of magnetic susceptibility data from the supplementary materials published in from <span class="citation">Haslam et al. (<a href="#ref-Haslam2012">2012</a>)</span>. Here is how the table looks in Microsoft Word:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;images/Haslam_et_al_2012_[Jwalapuram].png&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;images/Haslam_et_al_2012_[Jwalapuram].png&quot;</span>)</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:haslam-table-pic"></span>
 <img src="images/Haslam_et_al_2012_[Jwalapuram].png" alt="A table of a data from a Microsoft Word file." width="196" />
 <p class="caption">
-Figure 5.6: A table of a data from a Microsoft Word file.
+Figure 5.5: A table of a data from a Microsoft Word file.
 </p>
 </div>
 <p>And here is the code for extracting this table out of the complete supplementary materials document:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">library</span>(docxtractr) <span class="co"># load the library</span></a>
-<a class="sourceLine" id="cb47-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb47-3" data-line-number="3"><span class="co"># read in the docx file</span></a>
-<a class="sourceLine" id="cb47-4" data-line-number="4">docx_file &lt;-<span class="st"> </span><span class="kw">read_docx</span>(<span class="st">&quot;data/Haslam_et_al_2012_[Jwalapuram].docx&quot;</span>)</a>
-<a class="sourceLine" id="cb47-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb47-6" data-line-number="6"><span class="co"># extract the second table in the docx file into a data frame</span></a>
-<a class="sourceLine" id="cb47-7" data-line-number="7">table_from_docx &lt;-<span class="st"> </span><span class="kw">docx_extract_tbl</span>(docx_file, <span class="dt">tbl_number =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb47-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb47-9" data-line-number="9"><span class="co"># view the first few rows</span></a>
-<a class="sourceLine" id="cb47-10" data-line-number="10"><span class="kw">head</span>(table_from_docx)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(docxtractr) <span class="co"># load the library</span>
+
+<span class="co"># read in the docx file</span>
+docx_file &lt;-<span class="st"> </span><span class="kw">read_docx</span>(<span class="st">&quot;data/Haslam_et_al_2012_[Jwalapuram].docx&quot;</span>)
+
+<span class="co"># extract the second table in the docx file into a data frame</span>
+table_from_docx &lt;-<span class="st"> </span><span class="kw">docx_extract_tbl</span>(docx_file, <span class="dt">tbl_number =</span> <span class="dv">2</span>)
+
+<span class="co"># view the first few rows</span>
+<span class="kw">head</span>(table_from_docx)</code></pre>
 <pre><code>## # A tibble: 6 x 6
-##   Sample `Depth (cm)` lf1    hf2    `fd%3` fd4  
-##   &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;
-## 1 SS1    30           1.7129 1.5590 8.98   153.9
-## 2 SS2    40           1.8777 1.6864 10.19  191.3
-## 3 SS3    50           2.0472 1.8417 10.04  205.5
-## 4 SS4    60           2.2143 1.9761 10.76  238.2
-## 5 SS5    70           2.2806 2.0092 11.90  271.3
-## 6 SS6    80           2.0868 1.8658 10.59  220.9</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="co"># write to CSV file for easier reuse and achiving</span></a>
-<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="kw">library</span>(readr)</a>
-<a class="sourceLine" id="cb49-3" data-line-number="3"><span class="kw">write_csv</span>(table_from_docx, <span class="st">&quot;data/data_output/mag-sus-data-from-Haslam_et_al_2012.csv&quot;</span>)</a></code></pre></div>
+##   Sample Depth..cm. lf1    hf2    fd.3  fd4  
+##   &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;
+## 1 SS1    30         1.7129 1.5590 8.98  153.9
+## 2 SS2    40         1.8777 1.6864 10.19 191.3
+## 3 SS3    50         2.0472 1.8417 10.04 205.5
+## 4 SS4    60         2.2143 1.9761 10.76 238.2
+## 5 SS5    70         2.2806 2.0092 11.90 271.3
+## 6 SS6    80         2.0868 1.8658 10.59 220.9</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># write to CSV file for easier reuse and achiving</span>
+<span class="kw">library</span>(readr)
+<span class="kw">write_csv</span>(table_from_docx, <span class="st">&quot;data/data_output/mag-sus-data-from-Haslam_et_al_2012.csv&quot;</span>)</code></pre>
 <p>Notice that we do not get the Greek symbols in the data frame, nor do we get the comments below the table. The <code>docx_extract_tbl()</code> function only extracts the contents of the table, and exotic characters may be dropped.</p>
 <p>The docxtractr package does not have an interactive method like the tabulizer does for PDF files, but docxtractr has the <code>docx_describe_tbls()</code> function that can detect cells merged across rows or columns. It does not un-merge those cells, but it will help you identify where they are, so you can be more efficient with data cleaning.</p>
 </div>
 <div id="getting-tabular-data-out-of-unstructured-files" class="section level2">
 <h2><span class="header-section-number">5.4</span> Getting tabular data out of unstructured files</h2>
 <p>The methods above for working with spreadsheets and tables will likely cover the majority of cases for getting data into R, but occassionaly we have to work with data that is not stored in a convienently structured format. For example, some kinds of analytical instruments output data in plain text files that lack a convenient structure or widely used format. In that case, we can read the file in using more generic file reading functions. Consider this plain text file of excavation data with three columns of data, each column separated by a space:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;images/unstructured_data_example.png&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;images/unstructured_data_example.png&quot;</span>)</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:plain-text-table-pic"></span>
 <img src="images/unstructured_data_example.png" alt="A table of a data from a plain text file (viewed in Notepad++)" width="117" />
 <p class="caption">
-Figure 5.7: A table of a data from a plain text file (viewed in Notepad++)
+Figure 5.6: A table of a data from a plain text file (viewed in Notepad++)
 </p>
 </div>
 <p>We can use the function <code>read_table2()</code> from Hadley Wickham’s readr package, this can read plain text files and identify columns that are separated by one or more white spaces. A ‘white space’ is one or more spaces, tabs, newlines characters or carriage return characters (i.e. a press of the ‘enter’ or ‘return’ key). Since our text file has space-separated columns, this function will automatically detect these, and place the data into a data frame. The <code>read_table2()</code> function is very similar to the base R <code>read.table()</code> function, which does not require installation of any packages. However, <code>read_table2()</code> has two major advantages which make it worth installing the readr package: first, the default settings are more convienent (with <code>read.table()</code> we also need to specify <code>stringsAsFactors = FALSE</code>), and it automatically detects the column classes and sets them for us. In the example below we see that the column classes are ‘character’, ‘integer’ and ‘double’, which is what we would expect them to be, and so they are immediately useful for calculation and visualisation, saving us a few steps of data cleaning.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">library</span>(readr) <span class="co"># load library</span></a>
-<a class="sourceLine" id="cb51-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb51-3" data-line-number="3"><span class="co"># read in unstructured data from plain text file</span></a>
-<a class="sourceLine" id="cb51-4" data-line-number="4">unstr_data &lt;-<span class="st"> </span><span class="kw">read_table2</span>(<span class="st">&quot;data/unstructured_data_simple_example.txt&quot;</span>)</a>
-<a class="sourceLine" id="cb51-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb51-6" data-line-number="6"><span class="co"># inspect the result</span></a>
-<a class="sourceLine" id="cb51-7" data-line-number="7"><span class="kw">head</span>(unstr_data)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr) <span class="co"># load library</span>
+
+<span class="co"># read in unstructured data from plain text file</span>
+unstr_data &lt;-<span class="st"> </span><span class="kw">read_table2</span>(<span class="st">&quot;data/unstructured_data_simple_example.txt&quot;</span>)
+
+<span class="co"># inspect the result</span>
+<span class="kw">head</span>(unstr_data)</code></pre>
 <pre><code>## # A tibble: 6 x 3
 ##   Square  Spit Depth
-##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt;
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
 ## 1 C3         1  0   
 ## 2 C3         2  0.02
 ## 3 C3         3  0.05
@@ -462,106 +427,106 @@ Figure 5.7: A table of a data from a plain text file (viewed in Notepad++)
 ## 5 C3         5  0.16
 ## 6 C3         6  0.22</code></pre>
 <p>But what if we had a more complicated plain text document, say with series of table separatd by a blank line, and with each table having a short table on the line above the column headers? Consider the image below, which shows total statin data colleced during archaeological excavations at Madjedbebe <span class="citation">(Clarkson et al. <a href="#ref-Clarkson2015">2015</a>)</span>:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;images/unstructured_data_complex_example.png&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;images/unstructured_data_complex_example.png&quot;</span>)</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:plain-text-copmlex-table-pic"></span>
 <img src="images/unstructured_data_complex_example.png" alt="A table of a complex data from a plain text file (viewed in Notepad++)" width="265" />
 <p class="caption">
-Figure 5.8: A table of a complex data from a plain text file (viewed in Notepad++)
+Figure 5.7: A table of a complex data from a plain text file (viewed in Notepad++)
 </p>
 </div>
 <p>One option is to manually edit the plain text file to save it as many separate files, with one table in each file. This is feasible for a small number of tables, but if we have hundreds of tables in a single plain text file we would prefer a more efficient method. We can use the <code>scan()</code> function to read this file into R, and then perform some operations to get it into a useful form:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="co"># read in the file</span></a>
-<a class="sourceLine" id="cb54-2" data-line-number="2">unstr_data_complex &lt;-<span class="st"> </span><span class="kw">scan</span>(<span class="st">&quot;data/unstructured_data_complex_example.txt&quot;</span>, </a>
-<a class="sourceLine" id="cb54-3" data-line-number="3">                          <span class="dt">what =</span> <span class="kw">character</span>(),</a>
-<a class="sourceLine" id="cb54-4" data-line-number="4">                          <span class="dt">blank.lines.skip =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb54-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb54-6" data-line-number="6"><span class="co"># inspect the output</span></a>
-<a class="sourceLine" id="cb54-7" data-line-number="7"><span class="kw">head</span>(unstr_data_complex)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># read in the file</span>
+unstr_data_complex &lt;-<span class="st"> </span><span class="kw">scan</span>(<span class="st">&quot;data/unstructured_data_complex_example.txt&quot;</span>, 
+                          <span class="dt">what =</span> <span class="kw">character</span>(),
+                          <span class="dt">blank.lines.skip =</span> <span class="ot">FALSE</span>)
+
+<span class="co"># inspect the output</span>
+<span class="kw">head</span>(unstr_data_complex)</code></pre>
 <pre><code>## [1] &quot;first&quot;       &quot;set&quot;         &quot;5013.038383&quot; &quot;4997.840727&quot; &quot;100.739809&quot; 
 ## [6] &quot;SL_B5_N&quot;</code></pre>
 <p>The result of the <code>scan()</code> function is a single character vector, where each item in the table is one item in the vector. No structure of the table is preserved in this character vector, we must impose this structure back on to the data, based on our knoweldge of the plain text file. The first detail to work on is that each table is separated by a blank line. To ensure that <code>scan()</code> sees these, we se the argument <code>blank.lines.skip =</code> to FALSE. Then, in the character vector resulting from <code>scan()</code>, we see the blanks lines as an empty element, <code>&quot;&quot;</code>, in the vector. We can split this character vector on these empty elements to separate each table into its own object.</p>
 <p>First we find the locations in the character vector of the empty elements that represent the blank lines. We can use <code>which()</code> to find the index values where the vector is equivalent to (<code>==</code>) the empty element:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">blank_line_locations &lt;-<span class="st"> </span><span class="kw">which</span>(unstr_data_complex <span class="op">==</span><span class="st"> &quot;&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">blank_line_locations &lt;-<span class="st"> </span><span class="kw">which</span>(unstr_data_complex <span class="op">==</span><span class="st"> &quot;&quot;</span>)</code></pre>
 <p>They are at element numbers 75 and 154. We can use these element numbers with <code>split_at()</code>, a function in the aswr package, to split the character vector at the blank line locations, and get a list of several vectors:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">library</span>(aswr)</a>
-<a class="sourceLine" id="cb57-2" data-line-number="2">list_of_tables &lt;-<span class="st"> </span><span class="kw">split_at</span>(unstr_data_complex, blank_line_locations)</a>
-<a class="sourceLine" id="cb57-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb57-4" data-line-number="4"><span class="co"># inspect the output</span></a>
-<a class="sourceLine" id="cb57-5" data-line-number="5"><span class="kw">str</span>(list_of_tables)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(aswr)
+list_of_tables &lt;-<span class="st"> </span><span class="kw">split_at</span>(unstr_data_complex, blank_line_locations)
+
+<span class="co"># inspect the output</span>
+<span class="kw">str</span>(list_of_tables)</code></pre>
 <p>Because we know that the first element of the second and subsequent items in the list represents the empty line, we can delete it. We firstly select only the second and later elements of the list with <code>list_of_tables[2:length(list_of_tables)]</code>, and then we map over those elements and using negative indexing in square brackets to drop the first item in each character vector in those elements of the list:</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">library</span>(purrr)</a>
-<a class="sourceLine" id="cb58-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb58-3" data-line-number="3">list_of_tables[<span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(list_of_tables)] &lt;-</a>
-<a class="sourceLine" id="cb58-4" data-line-number="4"><span class="st">  </span><span class="kw">map</span>(list_of_tables[<span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(list_of_tables)], <span class="op">~</span>.x[<span class="op">-</span><span class="dv">1</span>])</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(purrr)
+
+list_of_tables[<span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(list_of_tables)] &lt;-
+<span class="st">  </span><span class="kw">map</span>(list_of_tables[<span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(list_of_tables)], <span class="op">~</span>.x[<span class="op">-</span><span class="dv">1</span>])</code></pre>
 <p>Now we can take the table labels (‘first set’, ‘second set’, etc.) from the character vectors and into the list, to name the elements in the list. We map over each character vector in the list, extract the first two items in the vector with <code>.x[1:2</code>], paste them into a single item with <code>paste(.x[1:2], collapse = &quot; &quot;)</code>, and then simplify the result (which woult normally be a list using <code>map()</code>) into a character vector by using <code>map_chr</code>:</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">table_labels &lt;-<span class="st"> </span><span class="kw">map_chr</span>(list_of_tables, <span class="op">~</span><span class="kw">paste</span>(.x[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">collapse =</span> <span class="st">&quot; &quot;</span>))</a>
-<a class="sourceLine" id="cb59-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb59-3" data-line-number="3"><span class="co"># assign these labels to name the list items:</span></a>
-<a class="sourceLine" id="cb59-4" data-line-number="4"><span class="kw">names</span>(list_of_tables) &lt;-<span class="st"> </span>table_labels</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">table_labels &lt;-<span class="st"> </span><span class="kw">map_chr</span>(list_of_tables, <span class="op">~</span><span class="kw">paste</span>(.x[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], <span class="dt">collapse =</span> <span class="st">&quot; &quot;</span>))
+
+<span class="co"># assign these labels to name the list items:</span>
+<span class="kw">names</span>(list_of_tables) &lt;-<span class="st"> </span>table_labels</code></pre>
 <p>Now the table names are preserved in the list, we can delete them from the character vectors using negative indexing to drop the first two elements of each vector:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">list_of_tables &lt;-<span class="st"> </span><span class="kw">map</span>(list_of_tables, <span class="op">~</span>.x[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)])</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">list_of_tables &lt;-<span class="st"> </span><span class="kw">map</span>(list_of_tables, <span class="op">~</span>.x[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)])</code></pre>
 <p>Now we want to transform each character vector into a table with four columns, as we see them in the plain text file. Because we know there are four columns, we can use the <code>seq()</code> function to extract values from every fourth position in the vector to extract each column. By starting at the first item and extracting every fourth item we get the first column, then starting at the second item and extracting every fourth item we get the second column, and so on. Then we have four vectors that can be combined into a data frame. I have spelled this out in detail for the first table in the file below:</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="co"># Just transform the first character vector into a table with four cols:</span></a>
-<a class="sourceLine" id="cb61-2" data-line-number="2">x &lt;-<span class="st"> </span>list_of_tables[[<span class="dv">1</span>]]</a>
-<a class="sourceLine" id="cb61-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb61-4" data-line-number="4">col1 &lt;-<span class="st"> </span>x[<span class="kw">seq</span>(<span class="dv">1</span>, <span class="kw">length</span>(x), <span class="dv">4</span>)]</a>
-<a class="sourceLine" id="cb61-5" data-line-number="5">col2 &lt;-<span class="st"> </span>x[<span class="kw">seq</span>(<span class="dv">2</span>, <span class="kw">length</span>(x), <span class="dv">4</span>)]</a>
-<a class="sourceLine" id="cb61-6" data-line-number="6">col3 &lt;-<span class="st"> </span>x[<span class="kw">seq</span>(<span class="dv">3</span>, <span class="kw">length</span>(x), <span class="dv">4</span>)]</a>
-<a class="sourceLine" id="cb61-7" data-line-number="7">col4 &lt;-<span class="st"> </span>x[<span class="kw">seq</span>(<span class="dv">4</span>, <span class="kw">length</span>(x), <span class="dv">4</span>)]</a>
-<a class="sourceLine" id="cb61-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb61-9" data-line-number="9">the_first_table &lt;-<span class="st"> </span><span class="kw">data_frame</span>(col1, col2, col3, col4)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Just transform the first character vector into a table with four cols:</span>
+x &lt;-<span class="st"> </span>list_of_tables[[<span class="dv">1</span>]]
+
+col1 &lt;-<span class="st"> </span>x[<span class="kw">seq</span>(<span class="dv">1</span>, <span class="kw">length</span>(x), <span class="dv">4</span>)]
+col2 &lt;-<span class="st"> </span>x[<span class="kw">seq</span>(<span class="dv">2</span>, <span class="kw">length</span>(x), <span class="dv">4</span>)]
+col3 &lt;-<span class="st"> </span>x[<span class="kw">seq</span>(<span class="dv">3</span>, <span class="kw">length</span>(x), <span class="dv">4</span>)]
+col4 &lt;-<span class="st"> </span>x[<span class="kw">seq</span>(<span class="dv">4</span>, <span class="kw">length</span>(x), <span class="dv">4</span>)]
+
+the_first_table &lt;-<span class="st"> </span><span class="kw">data_frame</span>(col1, col2, col3, col4)</code></pre>
 <p>But we want an approach that will operate automatically on each item in the list, to avoid copying and pasting this code, which is time consumring and error-inducing. The aswr package contains the function <code>df_from_vector()</code> that automates this process for a list of any length, and for tables of any number of columns. We supply the name of the list of character vectors, and the number of columns that each table should have, and we get a list of data frames in return:</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="co"># process the list of character vectors into a list of data frames</span></a>
-<a class="sourceLine" id="cb62-2" data-line-number="2">list_of_data_frames &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb62-3" data-line-number="3"><span class="st">  </span><span class="kw">map</span>(list_of_tables, <span class="op">~</span><span class="kw">df_from_vector</span>(.x, <span class="dv">4</span>))</a>
-<a class="sourceLine" id="cb62-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb62-5" data-line-number="5"><span class="co"># inspect the output</span></a>
-<a class="sourceLine" id="cb62-6" data-line-number="6"><span class="kw">str</span>(list_of_data_frames)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># process the list of character vectors into a list of data frames</span>
+list_of_data_frames &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw">map</span>(list_of_tables, <span class="op">~</span><span class="kw">df_from_vector</span>(.x, <span class="dv">4</span>))
+
+<span class="co"># inspect the output</span>
+<span class="kw">str</span>(list_of_data_frames)</code></pre>
 <p>And now that list of data frames presents the data to use in a convienent tabular structure that is amenable for cleaning, analysis and visualisation. Some further cleaning is necessary, such as adding informative column names, but we have saved a lot of tedious manipulation of the file by hand with these few lines of code. However, this example does contain one detail that we can explore further, to better approximate an unstructured data file - that the table names in the raw data data will be exactly the same length (i.e. “first set”, “second set”, etc.). A more challenging data set would have table names of unpredictable length, requiring a slightly different strategy to read in the file and impose a tabular structure onto the text. To tackle this problem, we can start with <code>readLines()</code>, which reads in each row of the raw data as one element of a character vector:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">more_complex &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;data/unstructured_data_more_complex_example.txt&quot;</span>)</a>
-<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="kw">str</span>(more_complex)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">more_complex &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;data/unstructured_data_more_complex_example.txt&quot;</span>)
+<span class="kw">str</span>(more_complex)</code></pre>
 <pre><code>##  chr [1:61] &quot;first table&quot; &quot;5013.038383 4997.840727 100.739809 SL_B5_N&quot; ...</code></pre>
 <p>We can follow the same pattern as above by splitting this one large character vector by the empty elements, here we next <code>which()</code> in <code>split_at()</code> for more compact expression, and we can go ahead and remove the empty element (that we used to split on) from the second and subsequent list elements with <code>map()</code>:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">list_of_complex_tables &lt;-<span class="st"> </span><span class="kw">split_at</span>(more_complex, </a>
-<a class="sourceLine" id="cb65-2" data-line-number="2">                                   <span class="kw">which</span>(more_complex <span class="op">==</span><span class="st"> &quot;&quot;</span>))</a>
-<a class="sourceLine" id="cb65-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb65-4" data-line-number="4">list_of_complex_tables[<span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(list_of_complex_tables)] &lt;-</a>
-<a class="sourceLine" id="cb65-5" data-line-number="5"><span class="st">  </span><span class="kw">map</span>(list_of_complex_tables[<span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(list_of_complex_tables)], <span class="op">~</span>.x[<span class="op">-</span><span class="dv">1</span>])</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">list_of_complex_tables &lt;-<span class="st"> </span><span class="kw">split_at</span>(more_complex, 
+                                   <span class="kw">which</span>(more_complex <span class="op">==</span><span class="st"> &quot;&quot;</span>))
+
+list_of_complex_tables[<span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(list_of_complex_tables)] &lt;-
+<span class="st">  </span><span class="kw">map</span>(list_of_complex_tables[<span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(list_of_complex_tables)], <span class="op">~</span>.x[<span class="op">-</span><span class="dv">1</span>])</code></pre>
 <p>Now we have a list, where each element is a character vector, and each element in the vectors is a row of the table. For example, each element looks something like this “5012.884297 4997.24741 100.707435 PF_B6_1_C14X232”, with the four columns combined into one element, separated by a space. Our task now is to extract the table names and remove them from the character vectors, then transform the character vectors into a data frame.</p>
 <p>Here we assign the first element of each vector to be the names of the list items:</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="kw">names</span>(list_of_complex_tables) &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="st">  </span><span class="kw">map</span>(list_of_complex_tables, <span class="op">~</span>.x[<span class="dv">1</span>])</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(list_of_complex_tables) &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw">map</span>(list_of_complex_tables, <span class="op">~</span>.x[<span class="dv">1</span>])</code></pre>
 <p>And then remove that first item from the character vector, now that we have preserved it elsewhere:</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">list_of_complex_tables &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="st">  </span><span class="kw">map</span>(list_of_complex_tables, <span class="op">~</span>.x[<span class="op">-</span><span class="dv">1</span>])</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">list_of_complex_tables &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw">map</span>(list_of_complex_tables, <span class="op">~</span>.x[<span class="op">-</span><span class="dv">1</span>])</code></pre>
 <p>Now we have a list of character vectors, and we can separate each item in the vector into four columns. Let’s show how this can be done on the first item in the list, then generalise to all items in the list:</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="kw">library</span>(dplyr) <span class="co"># load libraries</span></a>
-<a class="sourceLine" id="cb68-2" data-line-number="2"><span class="kw">library</span>(tidyr)</a>
-<a class="sourceLine" id="cb68-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb68-4" data-line-number="4"><span class="co"># extract the first item in the list</span></a>
-<a class="sourceLine" id="cb68-5" data-line-number="5">x &lt;-<span class="st"> </span>list_of_complex_tables[[<span class="dv">1</span>]]</a>
-<a class="sourceLine" id="cb68-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb68-7" data-line-number="7">output &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb68-8" data-line-number="8"><span class="st">  </span>x <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb68-9" data-line-number="9"><span class="st">  </span><span class="kw">data_frame</span>(<span class="dt">y =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb68-10" data-line-number="10"><span class="st">  </span><span class="kw">separate</span>(<span class="dt">col =</span> y, </a>
-<a class="sourceLine" id="cb68-11" data-line-number="11">           <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;col1&quot;</span>, <span class="st">&quot;col2&quot;</span>, <span class="st">&quot;col3&quot;</span>, <span class="st">&quot;col4&quot;</span>), </a>
-<a class="sourceLine" id="cb68-12" data-line-number="12">           <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>,</a>
-<a class="sourceLine" id="cb68-13" data-line-number="13">           <span class="dt">convert =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr) <span class="co"># load libraries</span>
+<span class="kw">library</span>(tidyr)
+
+<span class="co"># extract the first item in the list</span>
+x &lt;-<span class="st"> </span>list_of_complex_tables[[<span class="dv">1</span>]]
+
+output &lt;-<span class="st"> </span>
+<span class="st">  </span>x <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">data_frame</span>(<span class="dt">y =</span> .) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">separate</span>(<span class="dt">col =</span> y, 
+           <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;col1&quot;</span>, <span class="st">&quot;col2&quot;</span>, <span class="st">&quot;col3&quot;</span>, <span class="st">&quot;col4&quot;</span>), 
+           <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>,
+           <span class="dt">convert =</span> <span class="ot">TRUE</span>)</code></pre>
 <p>In the above example, we first extract the first item from the list, which we store as an object called ‘x’. Then we convert this character vector into a data frame with one column using<code>data_frame()</code>, in this function we create a column called ‘y’, by assigning the character vector ‘y’ to this column. In this sequence of operations we are using the ‘pipe’ symbol, <code>%&gt;%</code>, which we can translate as ‘then’, in the example above we can translate the first few lines as “Take the character vector ‘x’, then (<code>%&gt;%</code>), place that vector into a column in a new data frame (<code>data_frame(y = .)</code>), and then separate”, and so on. The specific task that the pipe does is to take the object to its left (in this case x) and pass it to the first function on its right (in this case <code>data_frame()</code>. We can specifically refer to the object taken by the pipe with a period <code>.</code>, so that the period in <code>data_frame(y = .)</code> refers to the object ‘x’ on the previous line. This pattern of piping objects from one function to another is highly readable, and often results in efficient, tidy code that is easy to understand and re-use.</p>
 <p>After creating the data frame from the character vector, we then (<code>%&gt;%</code>) pass this data frame to the <code>separate()</code> function from Hadley Wickham’s tidyr package. The <code>separate()</code> function is designed to split one column in a data frame into multiple columns, so it is ideal for our problem of splitting the column we have into four new columns. In the <code>separate()</code> function, the first argument is the data frame with the column to split, in our example we this is passed in invisibly by the pipe symbol, and we do not need to type it. So the first argument that we need to explicity supply to <code>separate()</code> is the name of the column in our data frame to separate, which is ‘y’. After that, we need to give the names of the new columns that we want to split ‘y’ into. Here I have simply called them col1 through col4, but they can be almost anything. The next required detail is the character to split ‘y’ on. In this case, we can split on the single blank space between each item in the character column ‘y’. Finally, we set <code>convert = TRUE</code>, this tells the <code>separate()</code> fucntion to automatically detect the column class, and convert the new column to the detected class. The result of this sequence of operations is shown below. We can see that we have a data frame with four columns, as expected, and the columns have sensible classes and are ready for analysis:</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="kw">head</span>(output)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(output)</code></pre>
 <p>To generalise this column-splitting approach for automated repeated use on multiple items in a list we can combine it with the <code>map()</code> function. The only change we need to make to the sequence of operations we described above is to to change ‘x’ to ‘.x’, the rest remains the same. This change from ‘x’ to ‘.x’ means that the input to the <code>data_frame()</code>-<code>separate()</code> sequence changes from the character vector ‘x’ that we extracted above, to the iterator, ‘.x’, which stands in place of each item in the list that we supply to the <code>map()</code> function.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">list_of_complex_tables_separated &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb70-2" data-line-number="2"><span class="kw">map</span>(list_of_complex_tables, </a>
-<a class="sourceLine" id="cb70-3" data-line-number="3">  <span class="op">~</span>.x <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb70-4" data-line-number="4"><span class="st">  </span><span class="kw">data_frame</span>(<span class="dt">y =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb70-5" data-line-number="5"><span class="st">  </span><span class="kw">separate</span>(<span class="dt">col =</span> y, </a>
-<a class="sourceLine" id="cb70-6" data-line-number="6">           <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;col1&quot;</span>, <span class="st">&quot;col2&quot;</span>, <span class="st">&quot;col3&quot;</span>, <span class="st">&quot;col4&quot;</span>), </a>
-<a class="sourceLine" id="cb70-7" data-line-number="7">           <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>,</a>
-<a class="sourceLine" id="cb70-8" data-line-number="8">           <span class="dt">convert =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">list_of_complex_tables_separated &lt;-<span class="st"> </span>
+<span class="kw">map</span>(list_of_complex_tables, 
+  <span class="op">~</span>.x <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">data_frame</span>(<span class="dt">y =</span> .) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">separate</span>(<span class="dt">col =</span> y, 
+           <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;col1&quot;</span>, <span class="st">&quot;col2&quot;</span>, <span class="st">&quot;col3&quot;</span>, <span class="st">&quot;col4&quot;</span>), 
+           <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>,
+           <span class="dt">convert =</span> <span class="ot">TRUE</span>))</code></pre>
 <p>In the example above, we start with the <code>map()</code> function because we want to repeatedly apply a set of operations to each item in a list. Our list is the list of character vectors, called ‘list_of_complex_tables’, resulting from reading in the unstructured plain te file, and the first few steps of extracting the table lables. The tilde symbol <code>~</code> indicates that what follows that symbol is a function to apply to each element of the list ‘list_of_complex_tables’. For this function, we have pasted in the code that we used to experiment on the first item in the list, and now the <code>map()</code> function will automatically apply this code to each item in the list. All we have to do it wait for it to finish. The structure of the output of this operation is shown below. We have a list with three items, each item is a data frame with four columns, just as expected.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="kw">str</span>(list_of_complex_tables_separated)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(list_of_complex_tables_separated)</code></pre>
 <p>You may never encounter unstructered data exactly like these examples, but this general pattern is likely to save time and frustration when working with data in unsual formats. The general pattern that the above examples use is:</p>
 <ol style="list-style-type: decimal">
 <li><p>Read in the plain text file using a generic function such as <code>read_table2()</code>, <code>scan()</code>, or <code>readLines()</code>. If the unstructured data is in a Microsoft Word document, you may need to open that document in a word processer and save it as a plain text file (i.e. .txt) to read it into R. If the data are in a PDF, Jeroen Ooms’ package pdftools can read the PDF into R as a character vector.</p></li>
@@ -582,29 +547,26 @@ Figure 5.8: A table of a complex data from a plain text file (viewed in Notepad+
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
-<div id="ref-MarwickJerimalai">
-<p>Marwick, Ben, Chris Clarkson, O’ConnorSue, and Sophie Collins. 2016. “Early Modern Human Lithic Technology from Jerimalai, East Timor.” Journal Article. <em>Journal of Human Evolution</em> 101: 45–64.</p>
+<div id="ref-Clarkson2015">
+<p>Clarkson, Chris, Mike Smith, Ben Marwick, Richard Fullagar, Lynley A Wallis, Patrick Faulkner, Tiina Manne, Elspeth Hayes, Richard G Roberts, and Zenobia Jacobs. 2015. “The Archaeology, Chronology and Stratigraphy of Madjedbebe (Malakunanja Ii): A Site in Northern Australia with Early Occupation.” Journal Article. <em>Journal of Human Evolution</em> 83: 46–64.</p>
 </div>
 <div id="ref-de2015r">
 <p>De Vries, Andrie, and Joris Meys. 2015. <em>R for Dummies</em>. John Wiley &amp; Sons.</p>
 </div>
+<div id="ref-Haslam2012">
+<p>Haslam, Michael, Chris Clarkson, Richard G. Roberts, Janardhana Bora, Ravi Korisettar, Peter Ditchfield, Allan R. Chivas, et al. 2012. “A Southern Indian Middle Palaeolithic Occupation Surface Sealed by the 74 Ka Toba Eruption: Further Evidence from Jwalapuram Locality 22.” Journal Article. <em>Quaternary International</em> 258: 148–64. <a href="https://doi.org/10.1016/j.quaint.2011.08.040">https://doi.org/10.1016/j.quaint.2011.08.040</a>.</p>
+</div>
+<div id="ref-MarwickJerimalai">
+<p>Marwick, Ben, Chris Clarkson, Sue O’Connor, and Sophie Collins. 2016. “Early Modern Human Lithic Technology from Jerimalai, East Timor.” Journal Article. <em>Journal of Human Evolution</em> 101: 45–64.</p>
+</div>
 <div id="ref-Matloff2011art">
 <p>Matloff, Norman. 2011. <em>The Art of R Programming: A Tour of Statistical Software Design</em>. Book. No Starch Press.</p>
-</div>
-<div id="ref-wickham2014advanced">
-<p>Wickham, Hadley. 2014. <em>Advanced R</em>. CRC Press.</p>
-</div>
-<div id="ref-MarwickVanVlack">
-<p>Marwick, Ben, Van VlackHannah G., Cyler Conrad, Rasmi Shoocongdej, Cholawit Thongcharoenchaikit, and Seungki Kwak. 2017. “Adaptations to Sea Level Change and Transitions to Agriculture at Khao Toh Chong Rockshelter, Peninsular Thailand.” Journal Article. <em>Journal of Archaeological Science</em> 77: 94–108. <a href="https://doi.org/10.1016/j.jas.2016.10.010">https://doi.org/10.1016/j.jas.2016.10.010</a>.</p>
 </div>
 <div id="ref-Terry2000">
 <p>Terry, Richard E., Sheldon D. Nelson, Jared Carr, Jacob Parnell, Perry J. Hardin, Mark W. Jackson, and Stephen D. Houston. 2000. “Quantitative Phosphorus Measurement: A Field Test Procedure for Archaeological Site Analysis at Piedras Negras, Guatemala.” Journal Article. <em>Geoarchaeology</em> 15 (2): 151–66. <a href="http://dx.doi.org/10.1002/(SICI)1520-6548(200002)15:2&lt;151::AID-GEA3&gt;3.0.CO;2-T">http://dx.doi.org/10.1002/(SICI)1520-6548(200002)15:2&lt;151::AID-GEA3&gt;3.0.CO;2-T</a>.</p>
 </div>
-<div id="ref-Haslam2012">
-<p>Haslam, Michael, Chris Clarkson, Richard G. Roberts, Janardhana Bora, Ravi Korisettar, Peter Ditchfield, Allan R. Chivas, et al. 2012. “A Southern Indian Middle Palaeolithic Occupation Surface Sealed by the 74 Ka Toba Eruption: Further Evidence from Jwalapuram Locality 22.” Journal Article. <em>Quaternary International</em> 258: 148–64. <a href="https://doi.org/10.1016/j.quaint.2011.08.040">https://doi.org/10.1016/j.quaint.2011.08.040</a>.</p>
-</div>
-<div id="ref-Clarkson2015">
-<p>Clarkson, Chris, Mike Smith, Ben Marwick, Richard Fullagar, Lynley A Wallis, Patrick Faulkner, Tiina Manne, Elspeth Hayes, Richard G Roberts, and Zenobia Jacobs. 2015. “The Archaeology, Chronology and Stratigraphy of Madjedbebe (Malakunanja Ii): A Site in Northern Australia with Early Occupation.” Journal Article. <em>Journal of Human Evolution</em> 83: 46–64.</p>
+<div id="ref-wickham2014advanced">
+<p>Wickham, Hadley. 2014. <em>Advanced R</em>. CRC Press.</p>
 </div>
 </div>
             </section>
@@ -633,7 +595,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -645,6 +607,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/benmarwick/aswr/edit/master/inst/04-Getting-data-into-R.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": null,
 "toc": {

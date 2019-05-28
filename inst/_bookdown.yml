@@ -1,3 +1,4 @@
 book_filename: "aswr"
 chapter_name: "Chapter "
 output_dir: ../docs
+delete_merged_file: true

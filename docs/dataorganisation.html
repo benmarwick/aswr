@@ -1,41 +1,41 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Archaeological Science with R</title>
-  <meta name="description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Collecting &amp; organising data to analyse with R | Archaeological Science with R</title>
+  <meta name="description" content="This is the book site for ‘Archaeological Science with R’." />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Archaeological Science with R" />
+  <meta property="og:title" content="Chapter 4 Collecting &amp; organising data to analyse with R | Archaeological Science with R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>." />
+  <meta property="og:description" content="This is the book site for ‘Archaeological Science with R’." />
   <meta name="github-repo" content="benmarwick/aswr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Archaeological Science with R" />
+  <meta name="twitter:title" content="Chapter 4 Collecting &amp; organising data to analyse with R | Archaeological Science with R" />
   
-  <meta name="twitter:description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>." />
+  <meta name="twitter:description" content="This is the book site for ‘Archaeological Science with R’." />
   
 
-<meta name="author" content="Ben Marwick">
+<meta name="author" content="Ben Marwick" />
 
 
-<meta name="date" content="2018-11-01">
+<meta name="date" content="2019-05-27" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="implementing-reproducible-research.html">
+<link rel="prev" href="writing-reproducible-research.html">
 <link rel="next" href="gettingdatain.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -48,12 +48,12 @@
 
 
 <script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -153,16 +153,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7.1" data-path="introduction.html"><a href="introduction.html#draft-toc"><i class="fa fa-check"></i><b>2.7.1</b> Draft TOC</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html"><i class="fa fa-check"></i><b>3</b> Implementing reproducible research</a><ul>
-<li class="chapter" data-level="3.1" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#overview-1"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
-<li class="chapter" data-level="3.2" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#what-does-it-mean-to-do-reproducible-research"><i class="fa fa-check"></i><b>3.2</b> What does it mean to do reproducible research?</a></li>
-<li class="chapter" data-level="3.3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#literate-programming"><i class="fa fa-check"></i><b>3.3</b> Literate programming</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#document-metadata-citations-and-the-bibliography"><i class="fa fa-check"></i><b>3.3.1</b> Document metadata, citations and the bibliography</a></li>
-<li class="chapter" data-level="3.3.2" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#narrative-text-structuring-the-document-and-special-characters-in-the-text"><i class="fa fa-check"></i><b>3.3.2</b> Narrative text, structuring the document and special characters in the text</a></li>
-<li class="chapter" data-level="3.3.3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#code-blocks-cross-referencing-figures-and-tables-captions-and-inline-r-code"><i class="fa fa-check"></i><b>3.3.3</b> Code blocks, cross-referencing figures and tables, captions, and inline R code</a></li>
-<li class="chapter" data-level="3.3.4" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#rendering-the-r-markdown-into-an-output-file"><i class="fa fa-check"></i><b>3.3.4</b> Rendering the R Markdown into an output file</a></li>
+<li class="chapter" data-level="3" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html"><i class="fa fa-check"></i><b>3</b> Writing reproducible research</a><ul>
+<li class="chapter" data-level="3.1" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#overview-1"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#what-does-it-mean-to-do-reproducible-research"><i class="fa fa-check"></i><b>3.2</b> What does it mean to do reproducible research?</a></li>
+<li class="chapter" data-level="3.3" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#literate-programming"><i class="fa fa-check"></i><b>3.3</b> Literate programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#document-metadata-citations-and-the-bibliography"><i class="fa fa-check"></i><b>3.3.1</b> Document metadata, citations and the bibliography</a></li>
+<li class="chapter" data-level="3.3.2" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#narrative-text-structuring-the-document-and-special-characters-in-the-text"><i class="fa fa-check"></i><b>3.3.2</b> Narrative text, structuring the document and special characters in the text</a></li>
+<li class="chapter" data-level="3.3.3" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#code-blocks"><i class="fa fa-check"></i><b>3.3.3</b> Code blocks</a></li>
+<li class="chapter" data-level="3.3.4" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#cross-referencing-and-captioning-figures"><i class="fa fa-check"></i><b>3.3.4</b> Cross-referencing and captioning figures</a></li>
+<li class="chapter" data-level="3.3.5" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#cross-referencing-captioning-tables"><i class="fa fa-check"></i><b>3.3.5</b> Cross-referencing captioning tables</a></li>
+<li class="chapter" data-level="3.3.6" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#using-inline-r-code-to-put-results-in-the-text"><i class="fa fa-check"></i><b>3.3.6</b> Using inline R code to put results in the text</a></li>
+<li class="chapter" data-level="3.3.7" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#rendering-the-r-markdown-into-an-output-file"><i class="fa fa-check"></i><b>3.3.7</b> Rendering the R Markdown into an output file</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#summary"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
+<li class="chapter" data-level="3.4" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#summary"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="dataorganisation.html"><a href="dataorganisation.html"><i class="fa fa-check"></i><b>4</b> Collecting &amp; organising data to analyse with R</a><ul>
 <li class="chapter" data-level="4.1" data-path="dataorganisation.html"><a href="dataorganisation.html#overview-2"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
@@ -322,17 +325,17 @@ fig01_scatterplot-lithics-chert.png
 fig02_histogram-lithic-chert-flakes.png</code></pre>
 <p>There are three componenets of machine readable file names that are particularly relevant in research contexts. The first is that file names do not contain spaces, punctuation marks (with some exceptions) or exotic characters such as accents. Machine readability is also improved by consistent capitalisation of letters, since to a computer upper and lower case instances of the same letter are almost as different as A and Z are to us.</p>
 <p>The second component of making file names machine readable is to make them easy to compute on. File names that are easy to compute on make deliberate use of delimiters such as the hyphen and underscore. In the examples above, hyphens are used to delimit words in the file name, and numbers in the data. But the underscore is used to delimit units of metadata in the filename, for example to separate the date from the description, or the figure number from its description. This careful use of delimiters means that it is possible to extract metadata from the file names. For example, we can use R to compute on the file names to get data relevant to our analysis:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="co"># read in the file names</span></a>
-<a class="sourceLine" id="cb31-2" data-line-number="2">my_files &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&quot;data/file_naming/&quot;</span>)</a>
-<a class="sourceLine" id="cb31-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb31-4" data-line-number="4"><span class="co"># Make a data frame of the units of infomation in the file names</span></a>
-<a class="sourceLine" id="cb31-5" data-line-number="5"><span class="kw">library</span>(stringr)</a>
-<a class="sourceLine" id="cb31-6" data-line-number="6"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb31-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb31-8" data-line-number="8"><span class="kw">str_split</span>(my_files, </a>
-<a class="sourceLine" id="cb31-9" data-line-number="9">          <span class="dt">pattern =</span> <span class="st">&quot;_&quot;</span>, </a>
-<a class="sourceLine" id="cb31-10" data-line-number="10">          <span class="dt">simplify =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb31-11" data-line-number="11"><span class="st">  </span><span class="kw">as_data_frame</span>()</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># read in the file names</span>
+my_files &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&quot;data/file_naming/&quot;</span>)
+
+<span class="co"># Make a data frame of the units of infomation in the file names</span>
+<span class="kw">library</span>(stringr)
+<span class="kw">library</span>(dplyr)
+
+<span class="kw">str_split</span>(my_files, 
+          <span class="dt">pattern =</span> <span class="st">&quot;_&quot;</span>, 
+          <span class="dt">simplify =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">as_data_frame</span>()</code></pre>
 <pre><code>## # A tibble: 6 x 4
 ##   V1         V2     V3     V4          
 ##   &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;       
@@ -359,8 +362,8 @@ fig02_histogram-lithic-chert-flakes.png</code></pre>
 <li>Each type of observational unit forms a table.</li>
 </ol>
 <p>Make data ‘tidy’ means getting datasets organised in a way that makes data analysis possible, or better, easy. The rules relating to the principle of tidy data are simply, first, put all your variables in their own columns - where a variable is the thing you’re measuring, like ‘weight’ or ‘length’, and second, put each observation in its own row. The most common violation of these rules is a failure to keep each variable in its own column, with one column representing more than one variable. The table below is two thirds tidy, with each observation (i.e. each archaeological site) as a row, and each observational unit as a table, but is a typical example of a violation of having each variable in its own column. In the Site_type column we see h (for hearth), as h (artefact scatter and hearth), as kf (artefact scatter and knapping floor), and so on. In this form, it is difficult to subset the sites, for example to extract only the sites containing hearths. A more tidy approach would be to have one column for hearth, one column for artefact scatter, and so on. Then each of these columns can be operated on individually, and we have more fine-grained control over the data.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">untidy_data &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;data/untidy_data.xlsx&quot;</span>)</a>
-<a class="sourceLine" id="cb33-2" data-line-number="2">knitr<span class="op">::</span><span class="kw">kable</span>(untidy_data)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">untidy_data &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;data/untidy_data.xlsx&quot;</span>)
+knitr<span class="op">::</span><span class="kw">kable</span>(untidy_data)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -405,7 +408,7 @@ fig02_histogram-lithic-chert-flakes.png</code></pre>
 <p>Combining multiple pieces of information into one cell is often tempting beacause it makes data collection faster because less time is spent navigating between fields. If you find it impossible to avoid combining information into one cell, or the data were collected by someone else and has this problem already, there are methods in R for cleaning and separating that we will explore in Chapter X. The main point here is to clean and tidy the data before you analyse it, and before you archive it for others to use.</p>
 <p>The second characteristic of tidy data, each observation forming a row, is easy to accomplish when recording data from a set of speciments, such as artefacts or faunal remains. In that situation it is natural for one artefact to be represented by one row of the table. It is less natural to follow this rule when, for example each row is a site, and some of the columns are counts of pottery types. The proper tidy form in this case would be one row for each site-pottery type combination, but this is a very inconvienent form for data collection. So during data collection we can tolerate a little untidyness for the sake of optimising the speed and convienence of data entry. In Chapter X we will explore methods for making field-collected data truely tidy and suitable for analysis and visualisation.</p>
 <p>By contrast, the third characteristic of tidy data, that each type of observational unit forms a table, is simple to implement. In the context of working in a spreadsheet, the implication is that each sheet contains only one table. Each sheet should have a single contiguous rectangle of data. This means resisting the temptation to arrange a grid of small tables across a single sheet. Although this a common strategy for organising data because it makes it easy to glance across the small tables to compare them, it is problematic because each row in that sheet contains more than one observation because one row spans several small tables. Similarly, column names are likely to be duplicated because they appear in each of the small tables. These complications make it harder to clean and tidy your data into a form that is useful for analysis and visualisation. The rule is one table per sheet, and if you follow that rule you will make the final tidying of your data for analysis much simpler and quicker. Making small changes to the way you organise your data in spreadsheets, can have a great impact on efficiency and reliability when it comes to data cleaning and analysis.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;images/messy_ktc_data.png&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;images/messy_ktc_data.png&quot;</span>)</code></pre>
 <div class="figure"><span id="fig:unnamed-chunk-13"></span>
 <img src="images/messy_ktc_data.png" alt="This screenshot shows archaeological data that is untidy for several reasons, including multiple tables on one sheet, multiple values in one column (e.g. SW1), and multiple header rows in a table" width="564" />
 <p class="caption">
@@ -418,7 +421,7 @@ Figure 4.1: This screenshot shows archaeological data that is untidy for several
 <p>At the most granular level of data collection is the individual spreadsheet cell or data entry field. Bad habits in data entry can require substantial time to fix before those data are suitable for analysis, and lead to errors in the results, regardless of what software yo use. Here I briefly review some of the common errors of cell organiation in the hope that if you are aware of them you might be motivated to avoid them in your data collection.</p>
 <p>Choosing a good null value requires careful thought. Where you know that the value is zero, of course you should enter zero. But where the value was not measured, or could not be measured, you don’t want to enter zero because that implies that you know something about the value. You also don’t want to leave that field blank, because that could be interpreted as having missed to record that data. Blank cells are ambiguous - did the data collector skip that field by accident, or is were they not able to record a value for that field, or was the value zero? The best choice for the value we need in this situation is NA or NULL <span class="citation">(White et al. <a href="#ref-White2013Nineways">2013</a>)</span>. NA is a good choice because it is a special (or reserved) word in the R language, so R can handle NAs easily. NULL might be better if your data uses NA as an abbreviation, such as “North America” (NULL is also a special word in R)</p>
 <p>Another common pain point when moving from data collection to data analysis is where spreadsheets using formatting to convey information. For example, when a cell has coloured text or highlighting to indicate some extra information about that specimen or record. Related problems occur when bold or italic text is used to signal some important quality about the data. These types of are well-established in tables in publication, for example using bold to indicate values that are statistically significant. But at the point of data collection that use of cell and text decoration to convey information makes it very difficult to calculate on those values. It is always better to have another column to capture that information, rather than highlighting the cell or formatting the text.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;images/messy_ktc_data_cell_decoration.png&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;images/messy_ktc_data_cell_decoration.png&quot;</span>)</code></pre>
 <div class="figure"><span id="fig:unnamed-chunk-14"></span>
 <img src="images/messy_ktc_data_cell_decoration.png" alt="This screenshot shows spreadsheet formatting that is usesd to convey information. In this case, this yellow highlighing indicates that complete ceramic vessels were found in that level. A better approach would be to have a column called 'complete_pots', with values indicating the number of complete vessels in each unit" width="338" />
 <p class="caption">
@@ -435,11 +438,23 @@ Figure 4.2: This screenshot shows spreadsheet formatting that is usesd to convey
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
-<div id="ref-White2013Nineways">
-<p>White, Ethan, Elita Baldridge, Zachary Brym, Kenneth Locey, Daniel McGlinn, and Sarah Supp. 2013. “Nine Simple Ways to Make It Easier to (Re)use Your Data.” <em>Ideas in Ecology and Evolution</em> 6 (2). <a href="https://doi.org/10.4033/iee.v6i2.4608">https://doi.org/10.4033/iee.v6i2.4608</a>.</p>
-</div>
 <div id="ref-Borer2009">
-<p>Borer, Elizabeth T., Eric W. Seabloom, Matthew B. Jones, and Mark Schildhauer. 2009. “Some Simple Guidelines for Effective Data Management.” <em>The Bulletin of the Ecological Society of America</em> 90 (2): 205–14. <a href="https://doi.org/10.1890/0012-9623-90.2.205">https://doi.org/10.1890/0012-9623-90.2.205</a>.</p>
+<p>Borer, Elizabeth T., Eric W. Seabloom, Matthew B. Jones, and Mark Schildhauer. 2009. “Some Simple Guidelines for Effective Data Management.” <em>The Bulletin of the Ecological Society of America</em> 90 (2). The Ecological Society of America: 205–14. <a href="https://doi.org/10.1890/0012-9623-90.2.205">https://doi.org/10.1890/0012-9623-90.2.205</a>.</p>
+</div>
+<div id="ref-ferris1999s">
+<p>Ferris, Neal. 1999. “What’s in a Name? The Implications of Archaeological Terminology Used in Nonarchaeological Contexts.” <em>Taming the Taxonomy: Toward a New Understanding of Great Lakes Archaeology, Edited by Ronald Williamson and Christopher Watts</em>, 111–21.</p>
+</div>
+<div id="ref-Hamptonetal2013">
+<p>Hampton, Stephanie E, Carly A Strasser, Joshua J Tewksbury, Wendy K Gram, Amber E Budden, Archer L Batcheller, Clifford S Duke, and John H Porter. 2013. “Big Data and the Future of Ecology.” <em>Frontiers in Ecology and the Environment</em> 11 (3). Ecological Society of America: 156–62. <a href="https://doi.org/10.1890/120103">https://doi.org/10.1890/120103</a>.</p>
+</div>
+<div id="ref-kleindienst2006naming">
+<p>Kleindienst, MR. 2006. “On Naming Things.” <em>Transitions Before the Transition</em>. Springer, 13–28.</p>
+</div>
+<div id="ref-Noble2009org">
+<p>Noble, William Stafford. 2009. “A Quick Guide to Organizing Computational Biology Projects.” <em>PLOS Computational Biology</em> 5 (7). Public Library of Science: 1–5. <a href="https://doi.org/10.1371/journal.pcbi.1000424">https://doi.org/10.1371/journal.pcbi.1000424</a>.</p>
+</div>
+<div id="ref-StrasserHampton2012">
+<p>Strasser, C. A., and S. E. Hampton. 2012. “The Fractured Lab Notebook: Undergraduates and Ecological Data Management Training in the United States.” <em>Ecosphere</em> 3 (12). Ecological Society of America: 1–18. <a href="https://doi.org/10.1890/ES12-00139.1">https://doi.org/10.1890/ES12-00139.1</a>.</p>
 </div>
 <div id="ref-Sutter2015">
 <p>Sutter, Robert D., Susan B. Wainscott, John R. Boetsch, Craig J. Palmer, and David J. Rugg. 2015. “Practical Guidance for Integrating Data Management into Long-Term Ecological Monitoring Projects.” <em>Wildlife Society Bulletin</em> 39 (3): 451–63. <a href="https://doi.org/10.1002/wsb.548">https://doi.org/10.1002/wsb.548</a>.</p>
@@ -447,23 +462,11 @@ Figure 4.2: This screenshot shows spreadsheet formatting that is usesd to convey
 <div id="ref-Volk2014">
 <p>Volk, Carol J., Yasmin Lucero, and Katie Barnas. 2014. “Why Is Data Sharing in Collaborative Natural Resource Efforts so Hard and What Can We Do to Improve It?” <em>Environmental Management</em> 53 (5): 883–93. <a href="https://doi.org/10.1007/s00267-014-0258-2">https://doi.org/10.1007/s00267-014-0258-2</a>.</p>
 </div>
-<div id="ref-Hamptonetal2013">
-<p>Hampton, Stephanie E, Carly A Strasser, Joshua J Tewksbury, Wendy K Gram, Amber E Budden, Archer L Batcheller, Clifford S Duke, and John H Porter. 2013. “Big Data and the Future of Ecology.” <em>Frontiers in Ecology and the Environment</em> 11 (3): 156–62. <a href="https://doi.org/10.1890/120103">https://doi.org/10.1890/120103</a>.</p>
-</div>
-<div id="ref-StrasserHampton2012">
-<p>Strasser, C. A., and S. E. Hampton. 2012. “The Fractured Lab Notebook: Undergraduates and Ecological Data Management Training in the United States.” <em>Ecosphere</em> 3 (12): 1–18. <a href="https://doi.org/10.1890/ES12-00139.1">https://doi.org/10.1890/ES12-00139.1</a>.</p>
-</div>
-<div id="ref-Noble2009org">
-<p>Noble, William Stafford. 2009. “A Quick Guide to Organizing Computational Biology Projects.” <em>PLOS Computational Biology</em> 5 (7): 1–5. <a href="https://doi.org/10.1371/journal.pcbi.1000424">https://doi.org/10.1371/journal.pcbi.1000424</a>.</p>
-</div>
-<div id="ref-kleindienst2006naming">
-<p>Kleindienst, MR. 2006. “On Naming Things.” <em>Transitions Before the Transition</em>, 13–28.</p>
-</div>
-<div id="ref-ferris1999s">
-<p>Ferris, Neal. 1999. “What’s in a Name? The Implications of Archaeological Terminology Used in Nonarchaeological Contexts.” <em>Taming the Taxonomy: Toward a New Understanding of Great Lakes Archaeology, Edited by Ronald Williamson and Christopher Watts</em>, 111–21.</p>
+<div id="ref-White2013Nineways">
+<p>White, Ethan, Elita Baldridge, Zachary Brym, Kenneth Locey, Daniel McGlinn, and Sarah Supp. 2013. “Nine Simple Ways to Make It Easier to (Re)use Your Data.” <em>Ideas in Ecology and Evolution</em> 6 (2). <a href="https://doi.org/10.4033/iee.v6i2.4608">https://doi.org/10.4033/iee.v6i2.4608</a>.</p>
 </div>
 <div id="ref-wickham2014tidy">
-<p>Wickham, Hadley, and others. 2014. “Tidy Data.” <em>Journal of Statistical Software</em> 59 (10): 1–23.</p>
+<p>Wickham, Hadley, and others. 2014. “Tidy Data.” <em>Journal of Statistical Software</em> 59 (10). Foundation for Open Access Statistics: 1–23.</p>
 </div>
 </div>
             </section>
@@ -471,7 +474,7 @@ Figure 4.2: This screenshot shows spreadsheet formatting that is usesd to convey
           </div>
         </div>
       </div>
-<a href="implementing-reproducible-research.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="writing-reproducible-research.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="gettingdatain.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -492,7 +495,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -504,6 +507,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/benmarwick/aswr/edit/master/inst/03-Collecting-data-for-R.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": null,
 "toc": {

@@ -1,4 +1,4 @@
-# Implementing reproducible research
+# Writing reproducible research
   
 ## Overview
 
@@ -128,7 +128,7 @@ superscript ^14^C | `^14^C`
 With LaTeX it is possible to include a great range of mathematical symbols into your text. There are numerous online sources to look up the notation for a specific symbol or expression, e.g. <https://en.wikibooks.org/wiki/LaTeX/Mathematics>
 
 
-### Code blocks, cross-referencing figures and tables, captions, and inline R code
+### Code blocks
 
 In an R Mardowm document code blocks (also known as chunks) are demarcated by three backticks, followed by curly brackets indicating the programming language of the code. Here is a very simple code block that demonstrates how the backticks are used:
 
@@ -204,7 +204,7 @@ We can also use  `dependson = ` to reference multiple code blocks, for example `
 
 A second strategy for saving time with long-running code is to explicitly save the output on the first run, and then re-use that output by loading it in later code blocks. A typical use-case for this method is when a computation takes days or weeks, for example, on a high-perfomance computing facility, and you want to save the output in a portable format and reuse it in different documents. In this case you might save the output as a plain text open format file (such as CSV or XML) and load them with a `read_xxx` function (more on these in Chapter X). Or you might save the output of the long-running computation as an RData object using `save()` (ideal for when you want to save many objects) or save as a rds object using `saveRDS()` (ideal from when you want to save a single object, such as the object `z` in the code block above). Although plain text open file formats are better for long-term presernation of data, an RData object might be preferable if the structure of the output data if difficult to represent in a flat table (for example, a deeply nested list). To use a saved data object we can include in a code block `load()` for RData files, and `readRDS()` for rds files. 
 
-#### Cross-referencing and captioning figures
+### Cross-referencing and captioning figures
 
 Another important option for managing code blocks in an R Markdown document is labelling them. Labelling is useful for two reasons, firstly for efficiently navigating through many blocks in a document, and secondly to enable cross-referencing of tables and figures. Here's an example of a code block with a label:
 
@@ -240,7 +240,7 @@ plot(1:10)
 plot(1:10)
 ```
 
-#### Cross-referencing captioning tables
+### Cross-referencing captioning tables
 
 Including tables in R Markdown is similarly straightforward. I typically use the `kable()` function from the knitr package, and occassionaly Hao Zhu's [kableExtra](https://cran.r-project.org/package=kableExtra) package for more elaborate tables. However, there are a many other packages for producing more complex and flexible tables. There is an informative table comparing some of the more widely used packages in the vignette of the huxtable package (<https://cran.r-project.org/web/packages/huxtable/vignettes/design-principles.html>). A detailed review of all the options for making tables is beyond the scope of this chapter, and we can simply note here that you can make any table design you want in R Markdown, with a little effort. Table \@ref(tab:simple-table) shows simple table that results from the `kable()` function from the knitr package:
 
@@ -260,7 +260,7 @@ Notice that the method for adding a caption to a table is slightly different fro
 
 A key principle to keep in mind when preparing a table for a report or publication is that a table is for communication, not data storage. To store data for resuse you need to archive a digital file, saved in an open, plain text format (such as CSV), and deposit it in a well-known and trustworthy data repository, and include in your publication a persistant URL (such as a DOI) to the file. Tables interleaved amongst text are meant for human eyes and minds, not for machine ingest, so you should design them with this in mind to opitmise their effectiveness. In any cases a plot many be more effective that a table, see @gelman2002let for examples of plots can improve on tables.  
 
-#### Using inline R code to put results in the text
+### Using inline R code to put results in the text
 
 Often in writing for research we want to include some numeric output within our text, such as the output of some data analysis or a hypothesis test. For writers using Microsoft Word or similiar software, they will compute their result in another program, such as Microsoft Excel or SPSS, and then paste the results into their Word document. The problem with this method is keeping the Word document up to date during the many iternations that data anlyses often involve. There is a mental burden to keeping track of all the locations in a document where a value needs to be updated when a new analysis is completed. R Markdown provides a solution to the problem with in-line R code. When writing in R Markdown document, we can write R code in the middle of a sentence to compute a result, and when the document is rendered, the code is excecuted and numerical output appears in our rendered document in place of the R code. When typing in-line R code we demarcate it with a single backtick at the start and end, and the code is prefixed with the letter 'r' to indicate the programming language. Here is a simple example: in our R Markdown document we type `` `r '\x60r  5 * 2\x60'` `` (as in 'five times two'), and when we render that document we will see `r 5 * 2` in place of the R code. 
 
@@ -279,7 +279,7 @@ For further reading on more details on figures, tables, cross-referencing and ci
 
 By far the simplest method to render, or convert, an R Markdown document into a Microsoft Word, HTML or PDF document is to click on the 'Knit' button at the top of the source editor window in RStudio. The Knit button will inspect the settings in our R Markdown document metadata, and render the output according to those specifications. It is of course also possible to use a function to render the document from the console. For example `rmarkdown::render("my_document.Rmd")` (i.e. the render function in the rmarkdown package) or `knitr::knit("my_document.Rmd")` (i.e. the knit function in the knitr package). These functions can take many options to control how the Rmd file is rendered, however, I generally avoid using them because they are bad for reproducibility. Because a document cannot render itself, we must use the `knit` or `render` functions outside of the document, and this means that some of the options for how the document is rendered might not be contained in the document. I prefer to have the rendering options self-contained in the Rmd document, and then either use the knit button, or a very simple function such as `render("my_document.Rmd")` with no additional arguments. This means that I will always have a record of the settings I need to render the my document because they are contained within the document itself, rather than as arguments to the `render()` function.  
 
-Generally I eschew mouse-driven actions in the course of data anlaysis, because they often leave no trace and are bad for reproducbility. The two major exceptions are rendering an R Markdown into an output document, where I recommend a mouse-click on the knit button in RStudio, and setting the working directory. For setting the working directory, I recommend using the RStudio toolbar and clicking on 'Session' -> 'Set Working Directory', and then usually the best option is to choose 'To Source File Location'. However, when you become more familiar with complex file structures you may find the other options more useful. By excluding these two actions from the code in your R Markdown document you make your document more portable. This is because the full path of the working directory your computer is probably unique to that computer, and if another person attempts to use your code on their computer any function that uses your path will fail because your path does not exist on their computer. For rendering the document, it is important to keep the rendering options specified in the document metadata, rather than in a `render()` function call. This ensures that when another person attempts to render your document, then have all the information necessary about, for example, what `.bib` file to use for your citations and references. 
+Generally I eschew mouse-driven actions in the course of data anlaysis, because they often leave no trace and are bad for reproducbility. The two major exceptions are rendering an R Markdown into an output document, where I recommend a mouse-click on the knit button in RStudio, and setting the working directory. For setting the working directory, I recommend using the RStudio toolbar and clicking on 'Session' -> 'Set Working Directory', and then usually the best option is to choose 'To Source File Location'. However, when you become more familiar with complex file structures you may find the other options more useful. By excluding these two actions from the code in your R Markdown document you make your document more portable. This is because the full path of the working directory your computer is probably unique to that computer, and if another person attempts to use your code on their computer any function that uses your path will fail because your path does not exist on their computer. For rendering the document, it is important to keep the rendering options specified in the document metadata (i.e. the YAML front matter at the top of the Rmd file), rather than in a `render()` function call. This ensures that when another person attempts to render your document, then have all the information necessary about, for example, what `.bib` file to use for your citations and references. 
 
 ## Summary
 

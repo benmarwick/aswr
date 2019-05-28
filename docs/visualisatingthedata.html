@@ -1,41 +1,41 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Archaeological Science with R</title>
-  <meta name="description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Exploring the data with visualisations | Archaeological Science with R</title>
+  <meta name="description" content="This is the book site for ‘Archaeological Science with R’." />
+  <meta name="generator" content="bookdown 0.10 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Archaeological Science with R" />
+  <meta property="og:title" content="Chapter 7 Exploring the data with visualisations | Archaeological Science with R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>." />
+  <meta property="og:description" content="This is the book site for ‘Archaeological Science with R’." />
   <meta name="github-repo" content="benmarwick/aswr" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Archaeological Science with R" />
+  <meta name="twitter:title" content="Chapter 7 Exploring the data with visualisations | Archaeological Science with R" />
   
-  <meta name="twitter:description" content="This is the book site for <strong>‘Archaeological Science with R’</strong>." />
+  <meta name="twitter:description" content="This is the book site for ‘Archaeological Science with R’." />
   
 
-<meta name="author" content="Ben Marwick">
+<meta name="author" content="Ben Marwick" />
 
 
-<meta name="date" content="2018-11-01">
+<meta name="date" content="2019-05-27" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="preparingthedata.html">
 <link rel="next" href="artefactdata.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -48,12 +48,12 @@
 
 
 <script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/plotly-binding-4.9.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -153,16 +153,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7.1" data-path="introduction.html"><a href="introduction.html#draft-toc"><i class="fa fa-check"></i><b>2.7.1</b> Draft TOC</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html"><i class="fa fa-check"></i><b>3</b> Implementing reproducible research</a><ul>
-<li class="chapter" data-level="3.1" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#overview-1"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
-<li class="chapter" data-level="3.2" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#what-does-it-mean-to-do-reproducible-research"><i class="fa fa-check"></i><b>3.2</b> What does it mean to do reproducible research?</a></li>
-<li class="chapter" data-level="3.3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#literate-programming"><i class="fa fa-check"></i><b>3.3</b> Literate programming</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#document-metadata-citations-and-the-bibliography"><i class="fa fa-check"></i><b>3.3.1</b> Document metadata, citations and the bibliography</a></li>
-<li class="chapter" data-level="3.3.2" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#narrative-text-structuring-the-document-and-special-characters-in-the-text"><i class="fa fa-check"></i><b>3.3.2</b> Narrative text, structuring the document and special characters in the text</a></li>
-<li class="chapter" data-level="3.3.3" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#code-blocks-cross-referencing-figures-and-tables-captions-and-inline-r-code"><i class="fa fa-check"></i><b>3.3.3</b> Code blocks, cross-referencing figures and tables, captions, and inline R code</a></li>
-<li class="chapter" data-level="3.3.4" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#rendering-the-r-markdown-into-an-output-file"><i class="fa fa-check"></i><b>3.3.4</b> Rendering the R Markdown into an output file</a></li>
+<li class="chapter" data-level="3" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html"><i class="fa fa-check"></i><b>3</b> Writing reproducible research</a><ul>
+<li class="chapter" data-level="3.1" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#overview-1"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#what-does-it-mean-to-do-reproducible-research"><i class="fa fa-check"></i><b>3.2</b> What does it mean to do reproducible research?</a></li>
+<li class="chapter" data-level="3.3" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#literate-programming"><i class="fa fa-check"></i><b>3.3</b> Literate programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#document-metadata-citations-and-the-bibliography"><i class="fa fa-check"></i><b>3.3.1</b> Document metadata, citations and the bibliography</a></li>
+<li class="chapter" data-level="3.3.2" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#narrative-text-structuring-the-document-and-special-characters-in-the-text"><i class="fa fa-check"></i><b>3.3.2</b> Narrative text, structuring the document and special characters in the text</a></li>
+<li class="chapter" data-level="3.3.3" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#code-blocks"><i class="fa fa-check"></i><b>3.3.3</b> Code blocks</a></li>
+<li class="chapter" data-level="3.3.4" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#cross-referencing-and-captioning-figures"><i class="fa fa-check"></i><b>3.3.4</b> Cross-referencing and captioning figures</a></li>
+<li class="chapter" data-level="3.3.5" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#cross-referencing-captioning-tables"><i class="fa fa-check"></i><b>3.3.5</b> Cross-referencing captioning tables</a></li>
+<li class="chapter" data-level="3.3.6" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#using-inline-r-code-to-put-results-in-the-text"><i class="fa fa-check"></i><b>3.3.6</b> Using inline R code to put results in the text</a></li>
+<li class="chapter" data-level="3.3.7" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#rendering-the-r-markdown-into-an-output-file"><i class="fa fa-check"></i><b>3.3.7</b> Rendering the R Markdown into an output file</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="implementing-reproducible-research.html"><a href="implementing-reproducible-research.html#summary"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
+<li class="chapter" data-level="3.4" data-path="writing-reproducible-research.html"><a href="writing-reproducible-research.html#summary"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="dataorganisation.html"><a href="dataorganisation.html"><i class="fa fa-check"></i><b>4</b> Collecting &amp; organising data to analyse with R</a><ul>
 <li class="chapter" data-level="4.1" data-path="dataorganisation.html"><a href="dataorganisation.html#overview-2"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
@@ -271,56 +274,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <h3>References</h3>
 <div id="refs" class="references">
-<div id="ref-Tukey1990">
-<p>Tukey, John W. 1990. “Data-Based Graphics: Visual Display in the Decades to Come.” Journal Article. <em>Statistical Science</em> 5 (3): 327–39. <a href="http://www.jstor.org/stable/2245820">http://www.jstor.org/stable/2245820</a>.</p>
-</div>
-<div id="ref-Inbar2007">
-<p>Inbar, Ohad, Noam Tractinsky, and Joachim Meyer. 2007. “Minimalism in Information Visualization: Attitudes Towards Maximizing the Data-Ink Ratio.” In <em>Proceedings of the 14th European Conference on Cognitive Ergonomics: Invent! Explore!</em>, 185–88. ECCE ’07. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/1362550.1362587">https://doi.org/10.1145/1362550.1362587</a>.</p>
-</div>
-<div id="ref-kulla2007graphs">
-<p>Kulla-Mader, Julia. 2007. “Graphs via Ink: Understanding How the Amount of Non-Data-Ink in a Graph Affects Perception and Learning.” <em>Master’s Thesis, Department of Information and Library Science, University of North Carolina</em>.</p>
-</div>
-<div id="ref-kosslyn1985graphics">
-<p>Kosslyn, Stephen M. 1985. “Graphics and Human Information Processing: A Review of Five Books.” <em>Journal of the American Statistical Association</em> 80 (391): 499–512.</p>
-</div>
-<div id="ref-carswell1992choosing">
-<p>Carswell, C Melody. 1992. “Choosing Specifiers: An Evaluation of the Basic Tasks Model of Graphical Perception.” <em>Human Factors: The Journal of the Human Factors and Ergonomics Society</em> 34 (5): 535–54.</p>
-</div>
-<div id="ref-hullman2011benefitting">
-<p>Hullman, Jessica, Eytan Adar, and Priti Shah. 2011. “Benefitting Infovis with Visual Difficulties.” <em>IEEE Transactions on Visualization and Computer Graphics</em> 17 (12): 2213–22.</p>
-</div>
 <div id="ref-bateman2010useful">
 <p>Bateman, Scott, Regan L Mandryk, Carl Gutwin, Aaron Genest, David McDine, and Christopher Brooks. 2010. “Useful Junk?: The Effects of Visual Embellishment on Comprehension and Memorability of Charts.” In <em>Proceedings of the Sigchi Conference on Human Factors in Computing Systems</em>, 2573–82. ACM.</p>
 </div>
-<div id="ref-limoacdieh">
-<p>Li, Huiyang, and Nadine Moacdieh. 2014. “Is ‘Chart Junk’ Useful? An Extended Examination of Visual Embellishment.” Journal Article. <em>Proceedings of the Human Factors and Ergonomics Society Annual Meeting</em> 58 (1): 1516–20. <a href="https://doi.org/10.1177/1541931214581316">https://doi.org/10.1177/1541931214581316</a>.</p>
-</div>
-<div id="ref-kelly1989data">
-<p>Kelly, James D. 1989. “The Data-Ink Ratio and Accuracy of Newspaper Graphs.” <em>Journalism and Mass Communication Quarterly</em> 66 (3): 632.</p>
-</div>
-<div id="ref-mcgurgan2015data">
-<p>McGurgan, Kevin. 2015. “Data-Ink Ratio and Task Complexity in Graph Comprehension.” <em>Master’s Thesis, Department of Psychology, Rochester Institute of Technology</em>.</p>
-</div>
-<div id="ref-gillan1994minimalism">
-<p>Gillan, Douglas J, and Edward H Richman. 1994. “Minimalism and the Syntax of Graphs.” <em>Human Factors: The Journal of the Human Factors and Ergonomics Society</em> 36 (4): 619–44.</p>
-</div>
-<div id="ref-Gillan1992">
-<p>Gillan, Douglas J., Edward Richman, and Michael Neary. 1992. “Minimalism in Graphics.” In <em>Posters and Short Talks of the 1992 Sigchi Conference on Human Factors in Computing Systems</em>, 75–76. CHI ’92. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/1125021.1125090">https://doi.org/10.1145/1125021.1125090</a>.</p>
+<div id="ref-carswell1992choosing">
+<p>Carswell, C Melody. 1992. “Choosing Specifiers: An Evaluation of the Basic Tasks Model of Graphical Perception.” <em>Human Factors: The Journal of the Human Factors and Ergonomics Society</em> 34 (5). Sage Publications: 535–54.</p>
 </div>
 <div id="ref-clevelandmcgill1984">
 <p>Cleveland, William S., and Robert McGill. 1984. “Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods.” Journal Article. <em>Journal of the American Statistical Association</em> 79 (387): 531–54. <a href="http://links.jstor.org/sici?sici=0162-1459%28198409%2979%3A387%3C531%3AGPTEAA%3E2.0.CO%3B2-Y ">http://links.jstor.org/sici?sici=0162-1459%28198409%2979%3A387%3C531%3AGPTEAA%3E2.0.CO%3B2-Y</a>.</p>
 </div>
+<div id="ref-FeldmanStewart2000">
+<p>Feldman-Stewart, Deb, Nancy Kocovski, Beth A. McConnell, Michael D. Brundage, and William J. Mackillop. 2000. “Perception of Quantitative Information for Treatment Decisions.” Journal Article. <em>Medical Decision Making</em> 20 (2): 228–38. <a href="https://doi.org/10.1177/0272989x0002000208">https://doi.org/10.1177/0272989x0002000208</a>.</p>
+</div>
+<div id="ref-gillan1994minimalism">
+<p>Gillan, Douglas J, and Edward H Richman. 1994. “Minimalism and the Syntax of Graphs.” <em>Human Factors: The Journal of the Human Factors and Ergonomics Society</em> 36 (4). SAGE Publications: 619–44.</p>
+</div>
+<div id="ref-Gillan1992">
+<p>Gillan, Douglas J., Edward Richman, and Michael Neary. 1992. “Minimalism in Graphics.” In <em>Posters and Short Talks of the 1992 Sigchi Conference on Human Factors in Computing Systems</em>, 75–76. CHI ’92. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/1125021.1125090">https://doi.org/10.1145/1125021.1125090</a>.</p>
+</div>
 <div id="ref-heer2010crowdsourcing">
 <p>Heer, Jeffrey, and Michael Bostock. 2010. “Crowdsourcing Graphical Perception: Using Mechanical Turk to Assess Visualization Design.” In <em>Proceedings of the Sigchi Conference on Human Factors in Computing Systems</em>, 203–12. ACM.</p>
+</div>
+<div id="ref-hullman2011benefitting">
+<p>Hullman, Jessica, Eytan Adar, and Priti Shah. 2011. “Benefitting Infovis with Visual Difficulties.” <em>IEEE Transactions on Visualization and Computer Graphics</em> 17 (12). IEEE: 2213–22.</p>
+</div>
+<div id="ref-Inbar2007">
+<p>Inbar, Ohad, Noam Tractinsky, and Joachim Meyer. 2007. “Minimalism in Information Visualization: Attitudes Towards Maximizing the Data-Ink Ratio.” In <em>Proceedings of the 14th European Conference on Cognitive Ergonomics: Invent! Explore!</em>, 185–88. ECCE ’07. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/1362550.1362587">https://doi.org/10.1145/1362550.1362587</a>.</p>
+</div>
+<div id="ref-kelly1989data">
+<p>Kelly, James D. 1989. “The Data-Ink Ratio and Accuracy of Newspaper Graphs.” <em>Journalism and Mass Communication Quarterly</em> 66 (3). Association for Education in Journalism, etc.: 632.</p>
 </div>
 <div id="ref-Kosara2010">
 <p>Kosara, Robert, and Caroline Ziemkiewicz. 2010. “Do Mechanical Turks Dream of Square Pie Charts?” In <em>Proceedings of the 3rd Beliv’10 Workshop: BEyond Time and Errors: Novel evaLuation Methods for Information Visualization</em>, 63–70. BELIV ’10. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/2110192.2110202">https://doi.org/10.1145/2110192.2110202</a>.</p>
 </div>
-<div id="ref-talbot2014four">
-<p>Talbot, Justin, Vidya Setlur, and Anushka Anand. 2014. “Four Experiments on the Perception of Bar Charts.” <em>IEEE Transactions on Visualization and Computer Graphics</em> 20 (12): 2152–60.</p>
+<div id="ref-kosslyn1985graphics">
+<p>Kosslyn, Stephen M. 1985. “Graphics and Human Information Processing: A Review of Five Books.” <em>Journal of the American Statistical Association</em> 80 (391). Taylor &amp; Francis: 499–512.</p>
 </div>
-<div id="ref-zubiaga2015knowing">
-<p>Zubiaga, Arkaitz, and Brian MacNamee. 2015. “Knowing What You Dont Know: Choosing the Right Chart to Show Data Distributions to Non-Expert Users.” In <em>Web Science 2015 Conference, Oxford, United Kingdom, 28 June-1 July 2015</em>. ACM.</p>
+<div id="ref-kosslyn1992minding">
+<p>Kosslyn, Stephen M, and Christopher F Chabris. 1992. “Minding Information Graphics.” <em>Folio: The Magazine for Magazine Management</em> 21 (2): 69–71.</p>
+</div>
+<div id="ref-kulla2007graphs">
+<p>Kulla-Mader, Julia. 2007. “Graphs via Ink: Understanding How the Amount of Non-Data-Ink in a Graph Affects Perception and Learning.” <em>Master’s Thesis, Department of Information and Library Science, University of North Carolina</em>.</p>
+</div>
+<div id="ref-limoacdieh">
+<p>Li, Huiyang, and Nadine Moacdieh. 2014. “Is ‘Chart Junk’ Useful? An Extended Examination of Visual Embellishment.” Journal Article. <em>Proceedings of the Human Factors and Ergonomics Society Annual Meeting</em> 58 (1): 1516–20. <a href="https://doi.org/10.1177/1541931214581316">https://doi.org/10.1177/1541931214581316</a>.</p>
+</div>
+<div id="ref-mcgurgan2015data">
+<p>McGurgan, Kevin. 2015. “Data-Ink Ratio and Task Complexity in Graph Comprehension.” <em>Master’s Thesis, Department of Psychology, Rochester Institute of Technology</em>.</p>
+</div>
+<div id="ref-meyer1997multiple">
+<p>Meyer, Joachim, David Shinar, and David Leiser. 1997. “Multiple Factors That Determine Performance with Tables and Graphs.” <em>Human Factors: The Journal of the Human Factors and Ergonomics Society</em> 39 (2). SAGE Publications: 268–86.</p>
 </div>
 <div id="ref-Rangecroftpie">
 <p>Rangecroft, Margaret. 2003. “As Easy as Pie.” Journal Article. <em>Behaviour &amp; Information Technology</em> 22 (6): 421–26. <a href="https://doi.org/10.1080/01449290310001615437">https://doi.org/10.1080/01449290310001615437</a>.</p>
@@ -328,29 +331,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ref-schonlau2012comprehension">
 <p>Schonlau, Matthias, and Ellen Peters. 2012. “Comprehension of Graphs and Tables Depend on the Task: Empirical Evidence from Two Web-Based Studies.” <em>Statistics, Politics, and Policy</em> 3 (2).</p>
 </div>
-<div id="ref-zacks1998reading">
-<p>Zacks, Jeff, Ellen Levy, Barbara Tversky, and Diane J Schiano. 1998. “Reading Bar Graphs: Effects of Extraneous Depth Cues and Graphical Context.” <em>Journal of Experimental Psychology: Applied</em> 4 (2): 119.</p>
-</div>
-<div id="ref-spence2005no">
-<p>Spence, Ian. 2005. “No Humble Pie: The Origins and Usage of a Statistical Chart.” <em>Journal of Educational and Behavioral Statistics</em> 30 (4): 353–68.</p>
-</div>
-<div id="ref-FeldmanStewart2000">
-<p>Feldman-Stewart, Deb, Nancy Kocovski, Beth A. McConnell, Michael D. Brundage, and William J. Mackillop. 2000. “Perception of Quantitative Information for Treatment Decisions.” Journal Article. <em>Medical Decision Making</em> 20 (2): 228–38. <a href="https://doi.org/10.1177/0272989x0002000208">https://doi.org/10.1177/0272989x0002000208</a>.</p>
-</div>
 <div id="ref-simkinhastie">
 <p>Simkin, David, and Reid Hastie. 1987. “An Information-Processing Analysis of Graph Perception.” Journal Article. <em>Journal of the American Statistical Association</em> 82 (398): 454–65. <a href="https://doi.org/10.1080/01621459.1987.10478448">https://doi.org/10.1080/01621459.1987.10478448</a>.</p>
 </div>
 <div id="ref-spence1990visual">
-<p>Spence, Ian. 1990. “Visual Psychophysics of Simple Graphical Elements.” <em>Journal of Experimental Psychology: Human Perception and Performance</em> 16 (4): 683.</p>
+<p>Spence, Ian. 1990. “Visual Psychophysics of Simple Graphical Elements.” <em>Journal of Experimental Psychology: Human Perception and Performance</em> 16 (4). American Psychological Association: 683.</p>
+</div>
+<div id="ref-spence2005no">
+<p>Spence, Ian. 2005. “No Humble Pie: The Origins and Usage of a Statistical Chart.” <em>Journal of Educational and Behavioral Statistics</em> 30 (4). Sage Publications: 353–68.</p>
 </div>
 <div id="ref-spence1991displaying">
-<p>Spence, Ian, and Stephan Lewandowsky. 1991. “Displaying Proportions and Percentages.” <em>Applied Cognitive Psychology</em> 5 (1): 61–77.</p>
+<p>Spence, Ian, and Stephan Lewandowsky. 1991. “Displaying Proportions and Percentages.” <em>Applied Cognitive Psychology</em> 5 (1). Wiley Online Library: 61–77.</p>
 </div>
-<div id="ref-meyer1997multiple">
-<p>Meyer, Joachim, David Shinar, and David Leiser. 1997. “Multiple Factors That Determine Performance with Tables and Graphs.” <em>Human Factors: The Journal of the Human Factors and Ergonomics Society</em> 39 (2): 268–86.</p>
+<div id="ref-talbot2014four">
+<p>Talbot, Justin, Vidya Setlur, and Anushka Anand. 2014. “Four Experiments on the Perception of Bar Charts.” <em>IEEE Transactions on Visualization and Computer Graphics</em> 20 (12). IEEE: 2152–60.</p>
 </div>
-<div id="ref-kosslyn1992minding">
-<p>Kosslyn, Stephen M, and Christopher F Chabris. 1992. “Minding Information Graphics.” <em>Folio: The Magazine for Magazine Management</em> 21 (2): 69–71.</p>
+<div id="ref-Tukey1990">
+<p>Tukey, John W. 1990. “Data-Based Graphics: Visual Display in the Decades to Come.” Journal Article. <em>Statistical Science</em> 5 (3): 327–39. <a href="http://www.jstor.org/stable/2245820">http://www.jstor.org/stable/2245820</a>.</p>
+</div>
+<div id="ref-zacks1998reading">
+<p>Zacks, Jeff, Ellen Levy, Barbara Tversky, and Diane J Schiano. 1998. “Reading Bar Graphs: Effects of Extraneous Depth Cues and Graphical Context.” <em>Journal of Experimental Psychology: Applied</em> 4 (2). American Psychological Association: 119.</p>
+</div>
+<div id="ref-zubiaga2015knowing">
+<p>Zubiaga, Arkaitz, and Brian MacNamee. 2015. “Knowing What You Dont Know: Choosing the Right Chart to Show Data Distributions to Non-Expert Users.” In <em>Web Science 2015 Conference, Oxford, United Kingdom, 28 June-1 July 2015</em>. ACM.</p>
 </div>
 </div>
             </section>
@@ -379,7 +382,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -391,6 +394,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/benmarwick/aswr/edit/master/inst/06-Visualising-data-with-R.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": null,
 "toc": {

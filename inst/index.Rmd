@@ -151,6 +151,12 @@ knitr::write_bib(c(
 ```{r eval = FALSE, echo = FALSE}
 ### Notes to self
 
+# so many pkgs
+# get JDK https://www.oracle.com/technetwork/java/javase/downloads/
+# sudo R CMD javareconf
+# install.packages("rJava")
+# remotes::install_github(c("ropensci/tabulizerjars", "ropensci/tabulizer"))
+
 # - To render the book to PDF and HTML (since it's [nested in a project directory](https://github.com/rstudio/bookdown/issues/215)), 
 # rmarkdown::render_site("inst/.", output_format = 'bookdown::gitbook', encoding = 'UTF-8')
 # setwd and then bookdown::render_book("index.Rmd", "bookdown::gitbook")

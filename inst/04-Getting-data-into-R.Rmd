@@ -120,34 +120,6 @@ Our use of `map()` in the above example is very similar to how we used it when w
 
 In the examples so far, we have assumed that the data in the spreadsheet is a tidy rectangle in the upper left corner of the sheet, and does not contain any formatting or formulas that are important for our analyses. We introduced `skip` as a method to ignore rows with merged cells or other information that we don't need. However, what can we do if our Excel file contains a set of tables in a single sheet? Or when some bold text in some cells conveys important important information? The rexcel package by Rich FitzJohn and Jenny Bryan and the tidyxl package by Duncan Garmonsway can help with capturing data, formulae and formatting information from an Excel sheet. The jailbreakr package, also by Rich FitzJohn and Jenny Bryan can help with Excel files that contains a set of tables laid out on a single sheet. Similarly, the unpivotr package by Duncan Garmonsway can help with importing Excel spreadsheets containing complex or irregular layouts of into regular data frames in R. 
 
-The use of these packages is difficult to generalise into a simple example because messy spreadsheets are often messy in their own way. Here I have contrived an example of a messy spreadsheet with three tables in one sheet \@ref(fig:messyexcel). The data come from Marwick et al. [-@MarwickVanVlack], and the code below shows how we can use the rexcel and jailbreakr packages to automatically identify the three minitables in the sheet, and extract them into a data frame for further work. 
-
-```{r messyexcel, echo = FALSE, out.width = "400pt", fig.cap="Screenshot of a messy Excel sheet with three minitables on one sheet"}
-knitr::include_graphics("images/messy_ktc_data.png")
-```
-
-In the code below, we use the `rexcel_read()` function to extract data, formatting and formulars from the spreadsheet into R. Then we use the `split_sheet()` function to classify our sheet into regions that contain tabular data. The output from `split_sheet()` is a list, and we can access the second item in the list (i.e. the secon minitable on the sheet) with `messy_ktc_split_sheet[[2]]` (for more about working with lists, see Chapter XX). To access the cell values for this second minitable, we use `messy_ktc_split_sheet[[2]]$values()`, and we apply the function `as.data.frame()` to convert the output to a data frame that we can work with.  
-
-```{r messyspreadsheet}
-# to install these packages, you'll need to run these lines:
-# devtools::install_github(c("hadley/xml2", 
-#                            "rsheets/linen", 
-#                            "rsheets/cellranger", 
-#                            "rsheets/rexcel", 
-#                            "rsheets/jailbreakr"))
-
-library(rexcel)
-# read in the messy spreadsheet file
-messy_ktc <- rexcel_read("data/messy_ktc_data.xlsx")
-
-library(jailbreakr)
-# automatically detect minitables within the sheet
-messy_ktc_split_sheet <- split_sheet(messy_ktc)
-
-# access one of the minitables
-lithic_data <- as.data.frame(messy_ktc_split_sheet[[2]]$values())
-```
-
 Although these methods can make working with messy spreadsheets less painful, they raise the question of whether we should simply edit the spreadsheet manually so that it's more convienent for importing into R (e.g. moving the each of the tables onto their own sheet or own file, or creating a new column to represent the variable that was indicated by the bold text formatting). Manually editing is tempting because it could be quicker and less frustrating than importing the file as-is and write R code to arrange the data into a more useful form. 
 
 The decision about whether to manually edit the data, or write code to arrange the data can be difficult. In my experience, it can take up to an hour or two to work out the code to take data from a messy spreadsheet and arrange it into a convienent form in R. On the other hand, it can take just a few minutes to manually edit the spreadsheet to prepare it for importing into R and be ready for use. If time is the only consideration, the choice may be obvious. However, manually editing the data is problematic because it can involve decisions that change the results of your analysis, but leave no trace and are impossible, or very inconvienent, to reverse. Making undocumented decisions in the data analysis workflow violates a key principle of reproducible research, that every decision about the data analysis should be documented in the analysis scripts. One way around this is to write a brief note that describes how you altered the data from its original form to the form you used to import into R. This note is included with the original, unaltered data, your new modified data in your project compendium so anyone can trace your steps in editing the data. There are some software packages that can help with this (e.g. <https://datproject.org/>), but I have not seen any in regular use among social scientists, so I am reluctant to make specific recommendations. 
@@ -166,7 +138,7 @@ knitr::include_graphics("images/page_from_Terry_et_ al_2000_[P].png")
 
 In the example below, the `extract_tables()` function returns a list with one item. If a page has multiple tables, or text and tables, this list would have additional items. In the example below, the list item is a character matrix, which is the table that we want to work with. We can coerce the matrix to a data frame with `as_data_frame()` from the dplyr package, and then the table is nearly ready to work with in R. There are a few additional steps of cleaning to do before we can work with this table, such as moving the first and second rows out of the table and into the column headings, and coercing the measurement columns from character class to numeric class so they are suitable for numerical operations. We will investigate how to do these tasks when we discuss cleaning data in Chapter X. 
 
-```{r}
+```{r eval=FALSE}
 library(tabulizer) # load the libraries
 library(dplyr)
 
